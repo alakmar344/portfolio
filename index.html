@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alakmar Teenwala - AI Architect & Developer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Space+Mono:wght@400;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #0a0a0a;
+            --paper: #faf8f5;
+            --accent: #ff4d00;
+            --accent-soft: #ff7a3d;
+            --gray: #666666;
+            --light-gray: #e0ddd8;
+            --border: #d4d0ca;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Cursor */
+        body {
+            cursor: none;
+        }
+
+        #cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 10000;
+            transition: transform 0.15s ease;
+            mix-blend-mode: difference;
+        }
+
+        #cursor.grow {
+            transform: scale(2);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            padding: 4rem 6vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 77, 0, 0.05) 0%, rgba(255, 122, 61, 0.02) 100%);
+            clip-path: polygon(30% 0, 100% 0, 100% 100%, 0% 100%);
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1400px;
+        }
+
+        .label {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            animation: slideUp 0.6s ease forwards;
+            opacity: 0;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 900;
+            line-height: 0.95;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        h1 .line {
+            display: block;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        h1 .line:nth-child(1) {
+            animation: slideUp 0.8s ease 0.2s forwards;
+        }
+
+        h1 .line:nth-child(2) {
+            animation: slideUp 0.8s ease 0.35s forwards;
+            color: var(--accent);
+            font-style: italic;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.5rem);
+            max-width: 800px;
+            line-height: 1.5;
+            margin-bottom: 3rem;
+            color: var(--gray);
+            opacity: 0;
+            animation: slideUp 0.8s ease 0.5s forwards;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 4rem;
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: slideUp 0.8s ease 0.65s forwards;
+        }
+
+        .stat {
+            position: relative;
+        }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--gray);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            opacity: 0;
+            animation: slideUp 0.8s ease 0.8s forwards;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            text-decoration: none;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid var(--ink);
+        }
+
+        .btn-primary {
+            background: var(--ink);
+            color: var(--paper);
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--accent);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .btn-primary:hover::before {
+            left: 0;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--ink);
+            border-color: var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 6vw;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--gray);
+            animation: float 2s ease-in-out infinite;
+        }
+
+        .scroll-line {
+            width: 40px;
+            height: 2px;
+            background: var(--accent);
+        }
+
+        /* Expertise Section */
+        .expertise {
+            padding: 8rem 6vw;
+            background: var(--ink);
+            color: var(--paper);
+            position: relative;
+        }
+
+        .expertise::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 5rem;
+            gap: 2rem;
+        }
+
+        .section-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 8rem;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.05);
+            line-height: 1;
+        }
+
+        .section-title-wrap {
+            flex: 1;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.6);
+            max-width: 600px;
+        }
+
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .expertise-card {
+            padding: 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.02);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .expertise-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 77, 0, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .expertise-card:hover::before {
+            left: 100%;
+        }
+
+        .expertise-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .expertise-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .expertise-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-soft);
+        }
+
+        .expertise-card ul {
+            list-style: none;
+        }
+
+        .expertise-card li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.95rem;
+        }
+
+        .expertise-card li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        /* Projects Section */
+        .projects {
+            padding: 8rem 6vw;
+            position: relative;
+        }
+
+        .project-card {
+            margin-bottom: 6rem;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+        }
+
+        .project-card:nth-child(even) {
+            grid-template-columns: 1fr 1.2fr;
+        }
+
+        .project-card:nth-child(even) .project-content {
+            order: 2;
+        }
+
+        .project-card:nth-child(even) .project-visual {
+            order: 1;
+        }
+
+        .project-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .project-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            line-height: 1.1;
+        }
+
+        .project-role {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+
+        .project-description {
+            margin-bottom: 2rem;
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        .project-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .project-features li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid var(--light-gray);
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-features li:last-child {
+            border-bottom: none;
+        }
+
+        .feature-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--accent);
+            min-width: 100px;
+        }
+
+        .feature-value {
+            flex: 1;
+            color: var(--ink);
+        }
+
+        .project-visual {
+            position: relative;
+            height: 500px;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .project-visual::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 80%;
+            background: radial-gradient(circle, rgba(255, 77, 0, 0.1) 0%, transparent 70%);
+        }
+
+        .visual-icon {
+            font-size: 8rem;
+            color: var(--accent);
+            opacity: 0.3;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-metrics {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .metric {
+            flex: 1;
+            padding: 1.5rem;
+            background: rgba(255, 77, 0, 0.05);
+            border-left: 3px solid var(--accent);
+        }
+
+        .metric-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 0.3rem;
+        }
+
+        .metric-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--gray);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 8rem 6vw;
+            background: var(--ink);
+            color: var(--paper);
+            text-align: center;
+            position: relative;
+        }
+
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
+
+        .contact h2 {
+            margin-bottom: 2rem;
+            color: var(--paper);
+        }
+
+        .contact-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.6);
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            line-height: 1.6;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 4rem;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.2rem 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-decoration: none;
+            color: var(--paper);
+            transition: all 0.3s ease;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        .contact-link:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .contact-icon {
+            font-size: 1.3rem;
+        }
+
+        .footer {
+            padding: 2rem 6vw;
+            background: var(--ink);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.4);
+            text-align: center;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+        }
+
+        /* Animations */
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero {
+                padding: 3rem 5vw;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .section-header {
+                flex-direction: column;
+            }
+
+            .section-number {
+                font-size: 5rem;
+            }
+
+            .project-card,
+            .project-card:nth-child(even) {
+                grid-template-columns: 1fr;
+            }
+
+            .project-card:nth-child(even) .project-content,
+            .project-card:nth-child(even) .project-visual {
+                order: initial;
+            }
+
+            .project-metrics {
+                flex-direction: column;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            body {
+                cursor: auto;
+            }
+
+            #cursor {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="cursor"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <span class="label">Alakmar Teenwala · Available for Collaboration</span>
+            <h1>
+                <span class="line">Building the Future</span>
+                <span class="line">with Intelligence</span>
+            </h1>
+            <p class="hero-subtitle">
+                AI Architect & Full-Stack Developer specializing in high-context LLM systems, 
+                cutting-edge web experiences, and scalable intelligent applications that bridge 
+                complex infrastructure with elegant design.
+            </p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-number">430+</div>
+                    <div class="stat-label">Active Users</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">120k</div>
+                    <div class="stat-label">Context Window</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">99%</div>
+                    <div class="stat-label">Uptime</div>
+                </div>
+            </div>
+            <div class="cta-buttons">
+                <a href="#contact" class="btn btn-primary">Let's Build Together</a>
+                <a href="#projects" class="btn btn-secondary">Explore Work</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-line"></div>
+            <span>Scroll to Explore</span>
+        </div>
+    </section>
+
+    <!-- Expertise Section -->
+    <section class="expertise">
+        <div class="section-header">
+            <div class="section-number">01</div>
+            <div class="section-title-wrap">
+                <h2>Technical Arsenal</h2>
+                <p class="section-subtitle">
+                    Mastering the complete stack from AI infrastructure to pixel-perfect interfaces
+                </p>
+            </div>
+        </div>
+
+        <div class="expertise-grid">
+            <div class="expertise-card">
+                <div class="expertise-icon">🧠</div>
+                <h3>AI & Machine Learning</h3>
+                <ul>
+                    <li>SARVAM Model Integration (v9.1)</li>
+                    <li>Strategic Prompt Engineering</li>
+                    <li>High-Context Architecture (32k+ chars)</li>
+                    <li>Tesseract.js OCR Implementation</li>
+                    <li>Natural Language Processing</li>
+                </ul>
+            </div>
+
+            <div class="expertise-card">
+                <div class="expertise-icon">⚡</div>
+                <h3>Web Development</h3>
+                <ul>
+                    <li>JavaScript (ES6+) & Modern Frameworks</li>
+                    <li>HTML5/CSS3 Advanced Techniques</li>
+                    <li>Glassmorphic UI Design</li>
+                    <li>Responsive & Accessible Interfaces</li>
+                    <li>Performance Optimization</li>
+                </ul>
+            </div>
+
+            <div class="expertise-card">
+                <div class="expertise-icon">🚀</div>
+                <h3>Infrastructure & DevOps</h3>
+                <ul>
+                    <li>GitHub Version Control & Collaboration</li>
+                    <li>Vercel Deployment & Optimization</li>
+                    <li>Scalable Cloud Architecture</li>
+                    <li>CI/CD Pipeline Management</li>
+                    <li>Production Monitoring & Analytics</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects">
+        <div class="section-header">
+            <div class="section-number">02</div>
+            <div class="section-title-wrap">
+                <h2>Featured Work</h2>
+                <p class="section-subtitle">
+                    Real-world applications pushing the boundaries of AI and user experience
+                </p>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-content">
+                <div class="project-number">PROJECT 01</div>
+                <h3>eSAMz AI</h3>
+                <p class="project-role">sole developer · 2025-2026</p>
+                <p class="project-description">
+                    A next-generation AI chat platform featuring sophisticated glassmorphic UI 
+                    and unprecedented context handling. Built to handle complex, long-form conversations 
+                    with exceptional speed and accuracy.
+                </p>
+                <ul class="project-features">
+                    <li>
+                        <span class="feature-label">Model</span>
+                        <span class="feature-value">SARVAM v9.1 with 32k character context limit</span>
+                    </li>
+                    <li>
+                        <span class="feature-label">Design</span>
+                        <span class="feature-value">Custom glassmorphic interface with real-time updates</span>
+                    </li>
+                    <li>
+                        <span class="feature-label">Scale</span>
+                        <span class="feature-value">430+ active users, high engagement retention</span>
+                    </li>
+                    <li>
+                        <span class="feature-label">Website</span>
+                        <span class="feature-value">esamz.site · esamz.info</span>
+                    </li>
+                </ul>
+                <div class="project-metrics">
+                    <div class="metric">
+                        <div class="metric-value">430+</div>
+                        <div class="metric-label">Users</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">99%</div>
+                        <div class="metric-label">Uptime</div>
+                    </div>
+                </div>
+            </div>
+            <div class="project-visual">
+                <div class="visual-icon">💬</div>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-content">
+                <div class="project-number">PROJECT 02</div>
+                <h3>CiboCocinar</h3>
+                <p class="project-role">sole Developer · 2026</p>
+                <p class="project-description">
+                    An AI-powered voice cooking assistant designed for hands-free kitchen guidance. 
+                    Sophisticated voice recognition and natural conversation flow make complex 
+                    recipes accessible in high-activity environments.
+                </p>
+                <ul class="project-features">
+                    <li>
+                        <span class="feature-label">Technology</span>
+                        <span class="feature-value">Low-latency voice recognition & NLP</span>
+                    </li>
+                    <li>
+                        <span class="feature-label">UX</span>
+                        <span class="feature-value">Hands-free operation optimized for cooking</span>
+                    </li>
+                    <li>
+                        <span class="feature-label">Features</span>
+                        <span class="feature-value">Real-time recipe guidance, timer management</span>
+                    </li>
+                </ul>
+                <div class="project-metrics">
+                    <div class="metric">
+                        <div class="metric-value">&lt;200ms</div>
+                        <div class="metric-label">Response Time</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">Voice</div>
+                        <div class="metric-label">First Interface</div>
+                    </div>
+                </div>
+            </div>
+            <div class="project-visual">
+                <div class="visual-icon">🎙️</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <h2>Let's Build Something Extraordinary</h2>
+        <p class="contact-subtitle">
+            Currently open to collaborations on AI infrastructure, custom LLM implementations, 
+            and high-end web development projects. Let's create the future together.
+        </p>
+        <div class="contact-links">
+            <a href="https://github.com/alakmar344" target="_blank" class="contact-link">
+                <span class="contact-icon">💻</span>
+                <span>GitHub</span>
+            </a>
+            <a href="mailto:esamzai365@gmail.com" class="contact-link">
+                <span class="contact-icon">✉️</span>
+                <span>Email</span>
+            </a>
+            <a href="https://esamz.site" target="_blank" class="contact-link">
+                <span class="contact-icon">🌐</span>
+                <span>esamz.site</span>
+            </a>
+            <a href="https://esamz.info" target="_blank" class="contact-link">
+                <span class="contact-icon">🚀</span>
+                <span>esamz.info</span>
+            </a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>© 2026 Alakmar Teenwala</p>
+    </footer>
+
+    <script>
+        // Custom Cursor
+        const cursor = document.getElementById('cursor');
+        const interactiveElements = document.querySelectorAll('a, button, .project-card');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('grow'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('grow'));
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Scroll Reveal Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.expertise-card, .project-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Dynamic Stats Counter
+        const animateValue = (element, start, end, duration) => {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const value = Math.floor(progress * (end - start) + start);
+                element.textContent = value + (element.dataset.suffix || '');
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        };
+
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.dataset.animated) {
+                    const number = entry.target.querySelector('.stat-number') || entry.target.querySelector('.metric-value');
+                    const text = number.textContent;
+                    const value = parseInt(text.replace(/[^0-9]/g, ''));
+                    if (value) {
+                        number.dataset.suffix = text.replace(/[0-9]/g, '');
+                        animateValue(number, 0, value, 1500);
+                        entry.target.dataset.animated = 'true';
+                    }
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.stat, .metric').forEach(stat => {
+            statsObserver.observe(stat);
+        });
+    </script>
+</body>
+</html>
