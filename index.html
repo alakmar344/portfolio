@@ -54,6 +54,28 @@
             --font-label: 'Sora', sans-serif;
         }
 
+        /* Dark Mode */
+        html.dark-mode {
+            --bg-primary: #0f0e0c;
+            --bg-secondary: #1a1815;
+            --bg-tertiary: #252220;
+            --text-primary: #f5f3f0;
+            --text-secondary: #d4cfc8;
+            --text-tertiary: #a39d96;
+            --accent: #7fa3c8;
+            --accent-light: #2a3a4a;
+            --white: #1a1815;
+            --border: #2a2520;
+        }
+
+        html.dark-mode nav {
+            background: rgba(15, 14, 12, 0.8);
+        }
+
+        html.dark-mode nav.scrolled {
+            background: rgba(15, 14, 12, 0.95);
+        }
+
         html {
             scroll-behavior: smooth;
         }
@@ -175,6 +197,44 @@
         }
 
         .github-link:hover {
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            color: var(--accent);
+        }
+
+        .theme-toggle {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+            padding: 0;
+        }
+
+        .theme-toggle:hover {
             color: var(--accent);
         }
 
@@ -856,9 +916,20 @@
                 <a href="#books">Books</a>
                 <a href="#contact">Contact</a>
             </div>
-            <a href="https://github.com/alakmar344" target="_blank" class="github-link">
-                <i data-lucide="github" style="width: 20px; height: 20px;"></i>
-            </a>
+            <div class="social-links">
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+                    <i data-lucide="moon" style="width: 20px; height: 20px;"></i>
+                </button>
+                <a href="https://github.com/alakmar344" target="_blank" class="social-link" aria-label="GitHub">
+                    <i data-lucide="github" style="width: 20px; height: 20px;"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/alakmar-teenwala-054067393" target="_blank" class="social-link" aria-label="LinkedIn">
+                    <i data-lucide="linkedin" style="width: 20px; height: 20px;"></i>
+                </a>
+                <a href="https://instagram.com/its_alakmar7" target="_blank" class="social-link" aria-label="Instagram">
+                    <i data-lucide="instagram" style="width: 20px; height: 20px;"></i>
+                </a>
+            </div>
         </div>
     </nav>
 
@@ -1071,6 +1142,14 @@
                     <i data-lucide="github" style="width: 16px; height: 16px;"></i>
                     View GitHub
                 </a>
+                <a href="https://www.linkedin.com/in/alakmar-teenwala-054067393" target="_blank" class="btn btn-contact btn-contact-secondary">
+                    <i data-lucide="linkedin" style="width: 16px; height: 16px;"></i>
+                    LinkedIn
+                </a>
+                <a href="https://instagram.com/its_alakmar7" target="_blank" class="btn btn-contact btn-contact-secondary">
+                    <i data-lucide="instagram" style="width: 16px; height: 16px;"></i>
+                    Instagram
+                </a>
             </div>
             <div class="contact-footer">
                 <p>© 2026 Al-Aqmar Tinwala. Crafted with precision and purpose.</p>
@@ -1079,6 +1158,26 @@
     </section>
 
     <script>
+        // Dark mode toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+
+        // Check for saved theme preference or default to light mode
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        if (savedTheme === 'dark') {
+            html.classList.add('dark-mode');
+        }
+
+        // Toggle theme
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark-mode');
+            const isDarkMode = html.classList.contains('dark-mode');
+            localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+            
+            // Update icon
+            lucide.createIcons();
+        });
+
         // Smooth scroll navigation
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
