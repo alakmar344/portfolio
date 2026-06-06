@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AL-AQMAR Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <style>
         :root {
             --primary: #1a1a1a;
@@ -43,7 +43,8 @@
 
         .nav-link {
             position: relative;
-            color: rgba(var(--foreground), 0.7);
+            color: var(--foreground);
+            opacity: 0.7;
             transition: all 0.2s;
             font-size: 0.75rem;
             font-weight: 600;
@@ -53,7 +54,7 @@
         }
 
         .nav-link:hover {
-            color: var(--foreground);
+            opacity: 1;
         }
 
         .nav-link::after {
@@ -286,7 +287,7 @@
                 <p class="text-lg opacity-60 mb-12">Nine live products. Thousands of users. Zero compromise.</p>
 
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="projects-grid">
-                    <!-- Projects will be injected here or hardcoded -->
+                    <!-- Projects will be injected here -->
                 </div>
             </div>
         </section>
@@ -312,9 +313,15 @@
 
                 <div class="flex flex-wrap gap-4 mb-8">
                     <a href="mailto:esamzai365@gmail.com" class="btn-solid">Send Email</a>
-                    <a href="https://github.com/alakmar344" target="_blank" class="btn-outline">View GitHub</a>
-                    <a href="https://linkedin.com/in/alakmar-teenwala-054067393" target="_blank" class="btn-outline">LinkedIn</a>
-                    <a href="https://instagram.com/its_alakmar7" target="_blank" class="btn-outline">Instagram</a>
+                    <a href="https://github.com/alakmar344" target="_blank" class="btn-outline">
+                        <i data-lucide="github" class="w-4 h-4"></i> GitHub
+                    </a>
+                    <a href="https://linkedin.com/in/alakmar-teenwala-054067393" target="_blank" class="btn-outline">
+                        <i data-lucide="linkedin" class="w-4 h-4"></i> LinkedIn
+                    </a>
+                    <a href="https://instagram.com/its_alakmar7" target="_blank" class="btn-outline">
+                        <i data-lucide="instagram" class="w-4 h-4"></i> Instagram
+                    </a>
                 </div>
             </div>
         </section>
@@ -326,9 +333,6 @@
     </div>
 
     <script>
-        // Lucide icons initialization
-        lucide.createIcons();
-
         // Data
         const projects = [
             { title: 'eSAMz AI', description: 'Flagship privacy-first AI. 128k context, web search, powered by Gemma 4 26b. 3,000+ users.', icon: '🤖', tags: ['Rust', 'Gemma 4 26b'], link: 'https://esamz.info' },
@@ -380,6 +384,9 @@
             `;
             booksGrid.appendChild(card);
         });
+
+        // Lucide icons initialization
+        lucide.createIcons();
 
         // Theme Toggle
         const themeToggle = document.getElementById('theme-toggle');
