@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Al-Aqmar Tinwala | 3D Portfolio</title>
+    <style>
+        :root {
+            --glass-bg: rgba(15, 15, 25, 0.65);
+            --glass-border: rgba(255, 255, 255, 0.15);
+            --text-main: #ffffff;
+            --text-sub: #cbd5e1;
+            --accent: #38bdf8;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            color: var(--text-main);
+            overflow-x: hidden;
+            background: #050510;
+        }
+
+        /* --- BACKGROUND & SCENERY LAYERS --- */
+        #bg-layer {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0;
+            transition: background 1.2s ease;
+        }
+
+        #scenery {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 1;
+            pointer-events: none;
+            transition: opacity 0.8s ease;
+            opacity: 0;
+        }
+
+        /* Background Themes */
+        .bg-hero { background: radial-gradient(circle at 50% 20%, #1a1a3a 0%, #050510 100%); }
+        .bg-philosophy { background: linear-gradient(135deg, #2b1055 0%, #7597de 100%); }
+        .bg-ai { background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364); }
+        .bg-arcade { background: linear-gradient(to bottom, #141e30, #243b55); }
+        .bg-startup { background: linear-gradient(to bottom, #e6dada, #274046); }
+        .bg-school { background: linear-gradient(to bottom, #4ca1af 0%, #c4e0e5 60%, #8B4513 100%); }
+        .bg-zen { background: linear-gradient(to bottom, #134e5e, #71b280); }
+        .bg-market { background: linear-gradient(to bottom, #ff9966, #ff5e62); }
+        .bg-kitchen { background: linear-gradient(to bottom, #ffffff, #e6e9f0); }
+        .bg-stock { background: linear-gradient(to bottom, #000428, #004e92); }
+        .bg-art { background: linear-gradient(135deg, #ff0844 0%, #ffb199 100%); }
+        .bg-library { background: linear-gradient(to bottom, #3e2723, #1b120f); }
+        .bg-contact { background: linear-gradient(to bottom, #ff512f, #dd2476); }
+
+        /* Scenery Elements */
+        .scn-hero::before {
+            content: ''; position: absolute; width: 2px; height: 2px; background: white;
+            box-shadow: 100px 50px white, 200px 150px white, 300px 80px white, 400px 200px white, 500px 100px white, 600px 250px white, 700px 50px white, 800px 180px white, 900px 120px white;
+            border-radius: 50%;
+        }
+        .scn-hero::after {
+            content: ''; position: absolute; top: 10%; right: 15%; width: 80px; height: 80px;
+            background: #fff; border-radius: 50%; box-shadow: 0 0 40px #fff, 0 0 80px #a8dadc;
+        }
+        .scn-school::after {
+            content: '🏫'; position: absolute; bottom: 35vh; left: 50%; transform: translateX(-50%);
+            font-size: 180px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
+        }
+        .scn-ai::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: linear-gradient(rgba(0, 255, 255, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+        .scn-arcade::before {
+            content: '🕹️'; position: absolute; bottom: 35vh; right: 15%; font-size: 150px; opacity: 0.3;
+        }
+        .scn-startup::after {
+            content: '🏢'; position: absolute; bottom: 35vh; left: 15%; font-size: 150px; opacity: 0.4;
+        }
+        .scn-zen::after {
+            content: '🌿'; position: absolute; bottom: 35vh; left: 50%; transform: translateX(-50%); font-size: 150px; opacity: 0.6;
+        }
+        .scn-market::after {
+            content: '🏪'; position: absolute; bottom: 35vh; right: 20%; font-size: 150px; opacity: 0.5;
+        }
+        .scn-kitchen::after {
+            content: '🍳'; position: absolute; bottom: 35vh; left: 20%; font-size: 150px; opacity: 0.4;
+        }
+        .scn-stock::before {
+            content: '📈'; position: absolute; top: 20%; left: 10%; font-size: 200px; opacity: 0.1; color: #0f0;
+        }
+        .scn-art::after {
+            content: '🎨'; position: absolute; bottom: 35vh; right: 15%; font-size: 150px; opacity: 0.5;
+        }
+        .scn-library::after {
+            content: '📚'; position: absolute; bottom: 35vh; left: 50%; transform: translateX(-50%); font-size: 180px; opacity: 0.6;
+        }
+        .scn-contact::after {
+            content: '🌅'; position: absolute; bottom: 35vh; left: 50%; transform: translateX(-50%); font-size: 200px; opacity: 0.8;
+        }
+
+        /* --- 3D ROAD & CAR --- */
+        .road-container {
+            position: fixed;
+            bottom: 0; left: 0; width: 100%; height: 60vh;
+            perspective: 400px;
+            z-index: 2;
+            pointer-events: none;
+            overflow: hidden;
+            mask-image: linear-gradient(to top, black 60%, transparent 100%);
+        }
+
+        .road {
+            position: absolute;
+            bottom: 0; left: 50%;
+            width: 300px; height: 200%;
+            transform: translateX(-50%) rotateX(65deg);
+            transform-origin: bottom center;
+            background-color: #1a1a1a;
+            background-image: linear-gradient(to bottom, transparent 50%, #f1faee 50%, #f1faee 60%, transparent 60%);
+            background-size: 15px 150px;
+            background-position: center;
+            background-repeat: repeat-y;
+            animation: drive 0.4s linear infinite;
+            box-shadow: 0 0 50px rgba(0,0,0,0.8);
+        }
+
+        .road::before, .road::after {
+            content: ''; position: absolute; top: 0; bottom: 0; width: 8px; background: #f1faee;
+        }
+        .road::before { left: 0; }
+        .road::after { right: 0; }
+
+        @keyframes drive {
+            from { background-position: center 0; }
+            to { background-position: center 150px; }
+        }
+
+        .car {
+            position: fixed;
+            bottom: 8%; left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            width: 120px; height: 90px;
+            filter: drop-shadow(0 20px 15px rgba(0,0,0,0.6));
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-3px); }
+        }
+
+        .car-body {
+            width: 100%; height: 55%; background: #e63946;
+            border-radius: 12px 12px 6px 6px; position: absolute; bottom: 0;
+            box-shadow: inset 0 -5px 10px rgba(0,0,0,0.3);
+        }
+        .car-roof {
+            width: 75%; height: 45%; background: #1d3557;
+            border-radius: 15px 15px 0 0; position: absolute; top: 5px; left: 12.5%;
+        }
+        .car-window {
+            width: 85%; height: 60%; background: #a8dadc;
+            border-radius: 8px 8px 0 0; position: absolute; bottom: 0; left: 7.5%;
+            opacity: 0.8;
+        }
+        .wheel {
+            width: 22px; height: 30px; background: #050505;
+            border-radius: 6px; position: absolute; bottom: -12px;
+            border: 2px solid #333;
+        }
+        .wheel.left { left: 8px; }
+        .wheel.right { right: 8px; }
+        .taillight {
+            width: 25px; height: 12px; background: #ff0000;
+            box-shadow: 0 0 20px #ff0000, 0 0 40px #ff0000;
+            position: absolute; bottom: 12px; border-radius: 4px;
+        }
+        .taillight.left { left: 12px; }
+        .taillight.right { right: 12px; }
+
+        /* --- HUD --- */
+        .hud {
+            position: fixed; top: 20px; left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(12px);
+            padding: 12px 30px;
+            border-radius: 50px;
+            border: 1px solid rgba(255,255,255,0.2);
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            color: var(--accent);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        /* --- CONTENT PANELS --- */
+        main {
+            position: relative;
+            z-index: 10;
+            padding-bottom: 10vh;
+        }
+
+        .panel {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6rem 2rem;
+            position: relative;
+        }
+
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 28px;
+            padding: 3.5rem;
+            max-width: 850px;
+            width: 100%;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+            transform: translateY(30px);
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .panel.active .glass-card {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        h1 { font-size: 3.5rem; margin-bottom: 1rem; line-height: 1.1; }
+        h2 { font-size: 2.5rem; margin-bottom: 1.5rem; color: var(--accent); }
+        h3 { font-size: 1.8rem; margin-bottom: 1rem; }
+        p { font-size: 1.15rem; line-height: 1.7; color: var(--text-sub); margin-bottom: 1.5rem; }
+        
+        .highlight { color: #fff; font-weight: 600; }
+        
+        .tags { display: flex; flex-wrap: wrap; gap: 10px; margin: 1.5rem 0; }
+        .tag {
+            background: rgba(255,255,255,0.1);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 20px;
+            margin: 2rem 0;
+        }
+        .stat-box {
+            background: rgba(255,255,255,0.05);
+            padding: 1.5rem;
+            border-radius: 16px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .stat-num { font-size: 2.2rem; font-weight: 800; color: var(--accent); }
+        .stat-label { font-size: 0.9rem; color: var(--text-sub); margin-top: 5px; }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            background: var(--accent);
+            color: #000;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s;
+            margin-right: 15px;
+            margin-top: 10px;
+        }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(56, 189, 248, 0.4); }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-top: 2rem;
+        }
+
+        .project-item {
+            background: rgba(255,255,255,0.05);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: transform 0.3s;
+        }
+        .project-item:hover { transform: translateX(10px); border-color: var(--accent); }
+        .project-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 2rem;
+        }
+        .contact-links a {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: color 0.3s;
+        }
+        .contact-links a:hover { color: #fff; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            .glass-card { padding: 2rem; }
+            .hud { font-size: 0.9rem; padding: 10px 20px; }
+            .car { transform: scale(0.7) translateX(-70%); }
+            .road { width: 200px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Dynamic Background & Scenery -->
+    <div id="bg-layer" class="bg-hero"></div>
+    <div id="scenery" class="scn-hero active"></div>
+
+    <!-- 3D Road & Car -->
+    <div class="road-container">
+        <div class="road"></div>
+    </div>
+    <div class="car">
+        <div class="car-roof">
+            <div class="car-window"></div>
+        </div>
+        <div class="car-body">
+            <div class="taillight left"></div>
+            <div class="taillight right"></div>
+        </div>
+        <div class="wheel left"></div>
+        <div class="wheel right"></div>
+    </div>
+
+    <!-- HUD -->
+    <div class="hud">
+        ARRIVING AT: <span id="dest-text">AL-AQMAR HQ</span>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero -->
+        <section class="panel active" data-bg="bg-hero" data-dest="AL-AQMAR HQ" data-scn="scn-hero">
+            <div class="glass-card">
+                <h1>Building the Future.<br>Architecting <span style="color: var(--accent)">Elegance</span>.</h1>
+                <p><span class="highlight">Al-Aqmar Tinwala.</span> 13-year-old AI Architect. Crafting high-performance intelligence with a soul. 3,000+ users. Zero noise. Pure impact.</p>
+                <div class="tags">
+                    <span class="tag">Rust</span>
+                    <span class="tag">Next.js</span>
+                    <span class="tag">Gemma 4 26b</span>
+                    <span class="tag">Privacy-First</span>
+                </div>
+                <div class="stats">
+                    <div class="stat-box"><div class="stat-num">3,000+</div><div class="stat-label">Active Users</div></div>
+                    <div class="stat-box"><div class="stat-num">20+</div><div class="stat-label">Open Source</div></div>
+                    <div class="stat-box"><div class="stat-num">2</div><div class="stat-label">Publications</div></div>
+                    <div class="stat-box"><div class="stat-num">9</div><div class="stat-label">Live Products</div></div>
+                </div>
+                <a href="#philosophy" class="btn">Explore Portfolio</a>
+                <a href="#contact" class="btn btn-outline">Get in Touch</a>
+            </div>
+        </section>
+
+        <!-- Philosophy -->
+        <section class="panel" id="philosophy" data-bg="bg-philosophy" data-dest="THE PHILOSOPHY" data-scn="">
+            <div class="glass-card">
+                <h2>The Philosophy</h2>
+                <p>I'm a full-stack developer and AI architect. At 13, I've already built production systems serving thousands. I don't believe in "too young" or "too small to matter."</p>
+                <p>Every line of code I write is guided by one principle: <span class="highlight">Heart First</span>. Technology should serve people with dignity, not extract value from them.</p>
+                <div class="project-grid">
+                    <div class="project-item">
+                        <div class="project-icon">✨</div>
+                        <h3>Heart First</h3>
+                        <p>Technology for genuine impact.</p>
+                    </div>
+                    <div class="project-item">
+                        <div class="project-icon">🔒</div>
+                        <h3>Privacy-First</h3>
+                        <p>Zero-retention by design.</p>
+                    </div>
+                </div>
+                <p style="margin-top: 2rem; font-style: italic; font-size: 1.3rem; text-align: center; color: #fff;">"I'm 13 and just getting started."</p>
+            </div>
+        </section>
+
+        <!-- Project 1: eSAMz AI -->
+        <section class="panel" data-bg="bg-ai" data-dest="eSAMz AI LAB" data-scn="scn-ai">
+            <div class="glass-card">
+                <div class="project-icon">🤖</div>
+                <h2>eSAMz AI</h2>
+                <p>Flagship privacy-first AI. 128k context, web search, powered by Gemma 4 26b. Serving 3,000+ users with zero data retention.</p>
+                <div class="tags"><span class="tag">Rust</span><span class="tag">Gemma 4 26b</span></div>
+                <a href="#" class="btn">Launch →</a>
+            </div>
+        </section>
+
+        <!-- Project 2: Neon Tic-Tac-Toe -->
+        <section class="panel" data-bg="bg-arcade" data-dest="NEON ARCADE" data-scn="scn-arcade">
+            <div class="glass-card">
+                <div class="project-icon">🎮</div>
+                <h2>Neon Tic-Tac-Toe</h2>
+                <p>Minimalist, high-contrast gaming experience. Dark-mode first, responsive, and optimized for performance.</p>
+                <div class="tags"><span class="tag">Vanilla JS</span><span class="tag">HTML5/CSS3</span></div>
+                <a href="#" class="btn">Launch →</a>
+            </div>
+        </section>
+
+        <!-- Project 3: PivotIQ -->
+        <section class="panel" data-bg="bg-startup" data-dest="STARTUP HUB" data-scn="scn-startup">
+            <div class="glass-card">
+                <div class="project-icon">🚀</div>
+                <h2>PivotIQ</h2>
+                <p>Startup idea validation. Helps founders test concepts with investor-style prompts and risk checks.</p>
+                <div class="tags"><span class="tag">Gemini</span><span class="tag">Strategy</span></div>
+                <a href="#" class="btn">Launch →</a>
+            </div>
+        </section>
+
+        <!-- Project 4: RealLearn (SCHOOL) -->
+        <section class="panel" data-bg="bg-school" data-dest="REALLEARN SCHOOL" data-scn="scn-school">
+            <div class="glass-card">
+                <div class="project-icon">🎓</div>
+                <h2>RealLearn</h2>
+                <p>AI-powered adaptive learning. Transforms one question into a 3-part journey with real-world context.</p>
+                <div class="tags"><span class="tag">Gemma 4</span><span class="tag">EdTech</span></div>
+                <a href="#" class="btn">Launch →</a>
+            </div>
+        </section>
+
+        <!-- Project 5: MindEase -->
+        <section class="panel" data-bg="bg-zen" data-dest="ZEN GARDEN" data-scn="scn-zen">
+            <div class="glass-card">
+                <div class="project-icon">🧠</div>
+                <h2>MindEase</h2>
+                <p>Emotional support chatbot. On-device only, 20 languages, voice output. Zero storage.</p>
+                <div class="tags"><span class="tag">On-Device</span><span class="tag">Wellness</span></div>
+                <a href="#" class="btn">Launch →</a>
+            </div>
+        </section>
+
+        <!-- Project 6: Hissab -->
+        <section class="panel" data-bg="bg-market" data-dest="LOCAL MARKET" data-scn="scn-market">
+            <div class="glass-card">
+                <div class="project-icon">📊</div>
+                <h2>Hissab</h2>
+                <p>Sales tracker for Indian small businesses. Mobile-first, 30-day analytics, profit margins.</p>
+                <div class="tags"><span class="tag">Finance</span><span class="tag">Analytics</span></div>
+                <a href="#" class="btn">Launch →</a>
+            </div>
+        </section>
+
+        <!-- Project 7: CiboCocinar -->
+        <section class="panel" data-bg="bg-kitchen" data-dest="MODERN KITCHEN" data-scn="scn-kitchen">
+            <div class="glass-card">
+                <div class="project-icon">🎤</div>
+                <h2>CiboCocinar</h2>
+                <p>Voice-first cooking assistant. <200ms latency. Hands-free kitchen guidance.</p>
+                <div class="tags"><span class="tag">Voice AI</span><span class="tag">Cooking</span></div>
+                <a href="#" class="btn">Launch →</a>
+            </div>
+        </section>
+
+        <!-- Project 8: SeeMarket -->
+        <section class="panel" data-bg="bg-stock" data-dest="STOCK EXCHANGE" data-scn="scn-stock">
+            <div class="glass-card">
+                <div class="project-icon">📈</div>
+                <h2>SeeMarket</h2>
+                <p>Market intelligence. Live movers, watchlists, AI-powered symbol Q&A for traders.</p>
+                <div class="tags"><span class="tag">Fintech</span><span class="tag">Real-time</span></div>
+                <a href="#" class="btn">Launch →</a>
+            </div>
+        </section>
+
+        <!-- Project 9: Fit The Color -->
+        <section class="panel" data-bg="bg-art" data-dest="ART STUDIO" data-scn="scn-art">
+            <div class="glass-card">
+                <div class="project-icon">🎨</div>
+                <h2>Fit The Color</h2>
+                <p>Advanced color compatibility engine. Strategic design decisions with mathematical analysis.</p>
+                <div class="tags"><span class="tag">Next.js 15</span><span class="tag">Design QA</span></div>
+                <a href="#" class="btn">Launch →</a>
+            </div>
+        </section>
+
+        <!-- Library -->
+        <section class="panel" data-bg="bg-library" data-dest="THE LIBRARY" data-scn="scn-library">
+            <div class="glass-card">
+                <h2>The Library</h2>
+                <div class="project-grid">
+                    <div class="project-item">
+                        <div class="project-icon">📘</div>
+                        <h3>Bestseller: The AI Mastery Handbook</h3>
+                        <p>Claude, Gemini, Llama, ChatGPT explained. AI history, LLM mechanics, and prompt engineering.</p>
+                        <a href="#" class="btn">Amazon KDP →</a>
+                    </div>
+                    <div class="project-item">
+                        <div class="project-icon">📗</div>
+                        <h3>New Release: 30 Days Mastering Claude Code</h3>
+                        <p>30-day hands-on journey to mastering Claude Code. From the founder of eSAMz AI.</p>
+                        <a href="#" class="btn">Amazon KDP →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section class="panel" id="contact" data-bg="bg-contact" data-dest="JOURNEY'S END" data-scn="scn-contact">
+            <div class="glass-card">
+                <h2>Let's Build Together</h2>
+                <p>Have an idea? Want to collaborate? Let's create something meaningful together.</p>
+                <div class="contact-links">
+                    <a href="mailto:proman007power@gmail.com">📧 proman007power@gmail.com</a>
+                    <a href="https://GitHub.com/alakmar344" target="_blank">💻 GitHub.com/alakmar344</a>
+                    <a href="https://linkedin.com/in/alakmar-teenwala-054067393" target="_blank">💼 LinkedIn / Al-Aqmar Teenwala</a>
+                    <a href="https://instagram.com/its_alakmar7" target="_blank">📸 Instagram / @its_alakmar7</a>
+                </div>
+                <p style="margin-top: 3rem; font-size: 0.9rem; opacity: 0.7; text-align: center;">© 2026 Al-Aqmar Tinwala. Crafted with precision and purpose.</p>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const sections = document.querySelectorAll('.panel');
+        const bgLayer = document.getElementById('bg-layer');
+        const sceneryLayer = document.getElementById('scenery');
+        const destText = document.getElementById('dest-text');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    
+                    const bg = entry.target.dataset.bg;
+                    const dest = entry.target.dataset.dest;
+                    const scn = entry.target.dataset.scn;
+                    
+                    // Update Background
+                    bgLayer.className = 'bg-layer ' + bg;
+                    
+                    // Update Scenery
+                    if (scn) {
+                        sceneryLayer.className = 'scn ' + scn + ' active';
+                    } else {
+                        sceneryLayer.className = 'scenery';
+                    }
+                    
+                    // Update HUD
+                    destText.textContent = dest;
+                }
+            });
+        }, { threshold: 0.5 });
+
+        sections.forEach(s => observer.observe(s));
+    </script>
+</body>
+</html>
