@@ -42,6 +42,10 @@ body{background:var(--bg);color:var(--ink);font-family:'Space Grotesk',sans-seri
 .loadbar i{position:absolute;inset:0;background:linear-gradient(90deg,var(--cy),var(--vi));transform-origin:left;transform:scaleX(0);transition:transform .25s ease}
 .boot-sub{font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--muted);letter-spacing:.25em}
 
+/* ---------- TOAST NOTIFICATIONS ---------- */
+.toast{position:fixed;bottom:30px;right:30px;background:rgba(10,12,20,.95);backdrop-filter:blur(12px);border:1px solid rgba(78,240,210,.3);border-radius:99px;padding:12px 24px;font-family:'JetBrains Mono',monospace;font-size:.8rem;color:var(--cy);z-index:1000;transform:translateX(120%);transition:transform .3s cubic-bezier(.2,.8,.2,1);pointer-events:none;box-shadow:0 8px 20px rgba(0,0,0,.3)}
+.toast.show{transform:translateX(0)}
+
 /* ---------- CURSOR ---------- */
 .cursor{position:fixed;width:38px;height:38px;border:1px solid rgba(78,240,210,.6);border-radius:50%;pointer-events:none;z-index:999;transform:translate(-50%,-50%);transition:width .25s,height .25s,border-color .25s,background .25s;mix-blend-mode:screen}
 .cursor.grow{width:70px;height:70px;background:rgba(78,240,210,.08);border-color:var(--cy)}
@@ -82,13 +86,19 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;backdrop-filter:blur(18px);b
 .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:130px 0 60px;position:relative}
 .arabic-bg{position:absolute;right:-2%;top:50%;transform:translateY(-50%);font-family:'Amiri',serif;font-size:clamp(8rem,24vw,20rem);color:rgba(245,236,215,.04);pointer-events:none;user-select:none;line-height:1;z-index:-1;animation:arabicglow 8s ease-in-out infinite alternate}
 @keyframes arabicglow{to{color:rgba(139,123,255,.07)}}
-.moon{position:absolute;top:16%;right:8%;width:clamp(70px,11vw,130px);height:clamp(70px,11vw,130px);border-radius:50%;background:radial-gradient(circle at 36% 34%,#fffaf0,var(--moon) 45%,#bfae87 100%);box-shadow:0 0 60px rgba(245,236,215,.35),0 0 200px rgba(245,236,215,.12),inset -14px -10px 30px rgba(80,70,45,.35);animation:moonfloat 7s ease-in-out infinite;cursor:none}
+.moon{position:absolute;top:16%;right:8%;width:clamp(70px,11vw,130px);height:clamp(70px,11vw,130px);border-radius:50%;background:radial-gradient(circle at 36% 34%,#fffaf0,var(--moon) 45%,#bfae87 100%);box-shadow:0 0 60px rgba(245,236,215,.35),0 0 200px rgba(245,236,215,.12),inset -14px -10px 30px rgba(80,70,45,.35);animation:moonfloat 7s ease-in-out infinite;cursor:pointer;transition:transform .2s,filter .2s}
+.moon:active{transform:scale(.96)}
 .moon::before,.moon::after{content:'';position:absolute;border-radius:50%;background:rgba(120,108,76,.28);box-shadow:inset 2px 2px 5px rgba(60,52,32,.4)}
 .moon::before{width:22%;height:22%;top:24%;left:30%}
 .moon::after{width:14%;height:14%;top:58%;left:56%}
 @keyframes moonfloat{50%{transform:translateY(-16px)}}
-.moon-label{position:absolute;top:calc(16% + clamp(80px,12vw,145px));right:8%;font-family:'Caveat',cursive;font-size:1.15rem;color:rgba(245,236,215,.55);transform:rotate(-4deg);animation:moonfloat 7s ease-in-out infinite}
-@media(max-width:760px){.moon{top:12%;right:5%}.moon-label{display:none}.arabic-bg{font-size:9rem;opacity:.7}}
+.moon-label{position:absolute;top:calc(16% + clamp(80px,12vw,145px));right:8%;font-family:'Caveat',cursive;font-size:1.15rem;color:rgba(245,236,215,.55);transform:rotate(-4deg);animation:moonfloat 7s ease-in-out infinite;pointer-events:none}
+@media(max-width:760px){
+  .moon{top:12%;right:5%;width:clamp(55px,12vw,90px);height:clamp(55px,12vw,90px)}
+  .moon-label{display:none}
+  .arabic-bg{font-size:6rem;opacity:.3;right:-8%}
+  .hero{padding:110px 0 40px}
+}
 .tag{display:inline-flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.32em;text-transform:uppercase;color:var(--cy);border:1px solid rgba(78,240,210,.25);padding:9px 18px;border-radius:99px;width:fit-content;background:rgba(78,240,210,.05)}
 .tag i{width:7px;height:7px;border-radius:50%;background:var(--cy);animation:pulse 1.8s ease infinite}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(78,240,210,.6)}60%{box-shadow:0 0 0 9px rgba(78,240,210,0)}}
@@ -101,7 +111,7 @@ h1 .line:nth-child(2) span{animation-delay:.14s}
 @keyframes hue{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
 .typed-wrap{margin-top:18px;font-family:'JetBrains Mono',monospace;font-size:clamp(.85rem,2vw,1.05rem);color:var(--vi);letter-spacing:.12em;min-height:1.6em}
 .typed-wrap .caret{display:inline-block;width:9px;background:var(--vi);animation:blink 1s steps(1) infinite;color:transparent}
-.hero-sub{margin-top:16px;font-size:clamp(1rem,2.3vw,1.3rem);color:var(--muted);max-width:640px;line-height:1.65}
+.hero-sub{margin-top:16px;font-size:clamp(1rem,2.3vw,1.3rem);color:#cbd5e6;max-width:640px;line-height:1.65}
 .hero-sub b{color:var(--ink);font-weight:600}
 .hero-impact{margin-top:14px;font-family:'JetBrains Mono',monospace;font-size:.8rem;letter-spacing:.22em;color:var(--cy);text-transform:uppercase}
 .cta{display:flex;gap:18px;margin-top:42px;flex-wrap:wrap}
@@ -118,16 +128,17 @@ h1 .line:nth-child(2) span{animation-delay:.14s}
 /* ---------- MARQUEE ---------- */
 .marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:20px 0;overflow:hidden;white-space:nowrap;background:rgba(255,255,255,.015)}
 .track{display:inline-flex;gap:54px;animation:scroll 26s linear infinite;padding-right:54px}
-.marquee:hover .track{animation-play-state:paused}
+.marquee.pause .track{animation-play-state:paused}
 .track span{font-family:'JetBrains Mono',monospace;font-size:.82rem;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);display:inline-flex;align-items:center;gap:54px}
 .track span::after{content:'☾';color:var(--am);font-size:.8rem}
 @keyframes scroll{to{transform:translateX(-50%)}}
 
 /* ---------- STATS ---------- */
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin:90px 0}
-.stat{background:var(--bg2);padding:42px 26px;text-align:center;transition:background .4s}
-.stat:hover{background:#0e111c}
-.stat b{display:block;font-size:clamp(2rem,4.6vw,3rem);font-weight:700;background:linear-gradient(120deg,var(--ink),var(--cy));-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat{background:var(--bg2);padding:42px 26px;text-align:center;transition:all .3s cubic-bezier(.2,.8,.2,1);cursor:default}
+.stat:hover{background:#0e111c;transform:translateY(-3px)}
+.stat b{display:block;font-size:clamp(2rem,4.6vw,3rem);font-weight:700;background:linear-gradient(120deg,var(--ink),var(--cy));-webkit-background-clip:text;background-clip:text;color:transparent;transition:all .3s}
+.stat:hover b{text-shadow:0 0 12px rgba(78,240,210,.4)}
 .stat small{display:block;margin-top:10px;color:var(--muted);font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;font-family:'JetBrains Mono',monospace}
 @media(max-width:760px){.stats{grid-template-columns:repeat(2,1fr)}}
 
@@ -153,16 +164,17 @@ section{padding:90px 0}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:54px}
 @media(max-width:980px){.grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:640px){.grid{grid-template-columns:1fr}}
-.card{position:relative;border:1px solid var(--line);border-radius:var(--r);padding:32px 28px;background:var(--bg2);overflow:hidden;transform-style:preserve-3d;transition:border-color .4s;display:flex;flex-direction:column;min-height:300px}
-.card::before{content:'';position:absolute;inset:0;background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(78,240,210,.1),transparent 42%);opacity:0;transition:opacity .4s;pointer-events:none}
+.card{position:relative;border:1px solid var(--line);border-radius:var(--r);padding:32px 28px;background:var(--bg2);overflow:hidden;transform-style:preserve-3d;transition:border-color .4s,transform .2s;display:flex;flex-direction:column;min-height:300px}
+.card::before{content:'';position:absolute;inset:0;background:radial-gradient(600px circle at var(--mx,50%) var(--my,50%),rgba(78,240,210,.12),transparent 70%);opacity:0;transition:opacity .4s;pointer-events:none}
 .card:hover::before{opacity:1}
-.card:hover{border-color:rgba(78,240,210,.3)}
+.card:hover{border-color:rgba(78,240,210,.4);transform:scale(1.01)}
 .card .em{font-size:2rem;margin-bottom:18px;display:inline-block;transition:transform .4s}
 .card:hover .em{transform:scale(1.18) rotate(-6deg)}
 .card h3{font-size:1.25rem;margin-bottom:10px}
 .card p{color:var(--muted);font-size:.92rem;line-height:1.65;flex:1}
 .chips{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}
-.chip{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;padding:5px 12px;border-radius:99px;border:1px solid var(--line);color:var(--cy);background:rgba(78,240,210,.05)}
+.chip{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;padding:5px 12px;border-radius:99px;border:1px solid var(--line);color:var(--cy);background:rgba(78,240,210,.05);cursor:pointer;transition:all .2s}
+.chip:hover{background:rgba(78,240,210,.15);border-color:var(--cy);transform:translateY(-1px)}
 .launch{font-weight:600;font-size:.88rem;color:var(--ink);text-decoration:none;display:inline-flex;align-items:center;gap:8px;width:fit-content}
 .launch i{transition:transform .3s;font-style:normal;color:var(--cy)}
 .launch:hover i{transform:translateX(6px)}
@@ -222,7 +234,7 @@ footer .hb{display:inline-block;animation:heartbeat 1.6s ease-in-out infinite;co
 <main id="top">
   <header class="hero wrap">
     <div class="arabic-bg">القمر</div>
-    <div class="moon hoverable" id="moon" title="Al-Aqmar = The Moon"></div>
+    <div class="moon hoverable" id="moon" title="Click me for a shooting star ✨ (3x = burst)" aria-label="Interactive moon: click for a shooting star, triple click for meteor shower"></div>
     <div class="moon-label">"Al-Aqmar" means The Moon ✨</div>
     <div class="tag"><i></i><span id="greet">Building the Future. Architecting Elegance.</span></div>
     <h1>
@@ -239,7 +251,7 @@ footer .hb{display:inline-block;animation:heartbeat 1.6s ease-in-out infinite;co
     <div class="scrollhint">SCROLL<i></i></div>
   </header>
 
-  <div class="marquee">
+  <div class="marquee" id="marquee">
     <div class="track">
       <span>Rust</span><span>Next.js</span><span>Gemma 4 26b</span><span>Privacy-First</span><span>3,000+ Active Users</span><span>20+ Open Source</span><span>2 Publications</span><span>9 Live Products</span>
       <span>Rust</span><span>Next.js</span><span>Gemma 4 26b</span><span>Privacy-First</span><span>3,000+ Active Users</span><span>20+ Open Source</span><span>2 Publications</span><span>9 Live Products</span>
@@ -270,15 +282,15 @@ footer .hb{display:inline-block;animation:heartbeat 1.6s ease-in-out infinite;co
     <p class="kicker rv">02 / Live Products</p>
     <h2 class="h2 rv">The Portfolio</h2>
     <div class="grid">
-      <div class="card rv hoverable"><span class="flag">FLAGSHIP</span><span class="em">🤖</span><h3>eSAMz AI</h3><p>Flagship privacy-first AI. 128k context, web search, powered by Gemma 4 26b. Serving 3,000+ users with zero data retention.</p><div class="chips"><span class="chip">Rust</span><span class="chip">Gemma 4 26b</span></div><a class="launch hoverable" href="https://esamz.info" target="_blank" rel="noopener">Launch <i>→</i></a></div>
-      <div class="card rv hoverable"><span class="em">🎮</span><h3>Neon Tic-Tac-Toe</h3><p>Minimalist, high-contrast gaming experience. Dark-mode first, responsive, and optimized for performance.</p><div class="chips"><span class="chip">Vanilla JS</span><span class="chip">HTML5/CSS3</span></div><a class="launch hoverable" href="https://tic-info.vercel.app" target="_blank" rel="noopener">Launch <i>→</i></a></div>
-      <div class="card rv hoverable"><span class="em">🚀</span><h3>PivotIQ</h3><p>Startup idea validation. Helps founders test concepts with investor-style prompts and risk checks.</p><div class="chips"><span class="chip">Gemini</span><span class="chip">Strategy</span></div><a class="launch hoverable" href="https://pivot-iq.info.vercel.app" target="_blank" rel="noopener">Launch <i>→</i></a></div>
-      <div class="card rv hoverable"><span class="em">🎓</span><h3>RealLearn</h3><p>AI-powered adaptive learning. Transforms one question into a 3-part journey with real-world context.</p><div class="chips"><span class="chip">Gemma 4</span><span class="chip">EdTech</span></div><a class="launch hoverable" href="https://reallearn-info.vercel.app" target="_blank" rel="noopener">Launch <i>→</i></a></div>
-      <div class="card rv hoverable"><span class="em">🧠</span><h3>MindEase</h3><p>Emotional support chatbot. On-device only, 20 languages, voice output. Zero storage.</p><div class="chips"><span class="chip">On-Device</span><span class="chip">Wellness</span></div><a class="launch hoverable" href="https://me.esamz.info" target="_blank" rel="noopener">Launch <i>→</i></a></div>
-      <div class="card rv hoverable"><span class="em">📊</span><h3>Hissab</h3><p>Sales tracker for Indian small businesses. Mobile-first, 30-day analytics, profit margins.</p><div class="chips"><span class="chip">Finance</span><span class="chip">Analytics</span></div><a class="launch hoverable" href="https://hisaab.esamz.info" target="_blank" rel="noopener">Launch <i>→</i></a></div>
-      <div class="card rv hoverable"><span class="em">🎤</span><h3>CiboCocinar</h3><p>Voice-first cooking assistant. &lt;200ms latency. Hands-free kitchen guidance.</p><div class="chips"><span class="chip">Voice AI</span><span class="chip">Cooking</span></div><a class="launch hoverable" href="https://cibo.esamz.info" target="_blank" rel="noopener">Launch <i>→</i></a></div>
-      <div class="card rv hoverable"><span class="em">📈</span><h3>SeeMarket</h3><p>Market intelligence. Live movers, watchlists, AI-powered symbol Q&amp;A for traders.</p><div class="chips"><span class="chip">Fintech</span><span class="chip">Real-time</span></div><a class="launch hoverable" href="#">Launch <i>→</i></a></div>
-      <div class="card rv hoverable"><span class="em">🎨</span><h3>Fit The Color</h3><p>Advanced color compatibility engine. Strategic design decisions with mathematical analysis.</p><div class="chips"><span class="chip">Next.js 15</span><span class="chip">Design QA</span></div><a class="launch hoverable" href="https://fit-the-color-info.vercel.app" target="_blank" rel="noopener">Launch <i>→</i></a></div>
+      <div class="card rv hoverable"><span class="flag">FLAGSHIP</span><span class="em">🤖</span><h3>eSAMz AI</h3><p>Flagship privacy-first AI. 128k context, web search, powered by Gemma 4 26b. Serving 3,000+ users with zero data retention.</p><div class="chips"><span class="chip" data-info="Systems programming language, memory safe">Rust</span><span class="chip" data-info="Google's open LLM, 26B parameters">Gemma 4 26b</span></div><a class="launch hoverable" href="https://esamz.info" target="_blank" rel="noopener">Launch <i>→</i></a></div>
+      <div class="card rv hoverable"><span class="em">🎮</span><h3>Neon Tic-Tac-Toe</h3><p>Minimalist, high-contrast gaming experience. Dark-mode first, responsive, and optimized for performance.</p><div class="chips"><span class="chip" data-info="Pure JavaScript, no frameworks">Vanilla JS</span><span class="chip" data-info="Semantic HTML5 + modern CSS">HTML5/CSS3</span></div><a class="launch hoverable" href="https://tic-info.vercel.app" target="_blank" rel="noopener">Launch <i>→</i></a></div>
+      <div class="card rv hoverable"><span class="em">🚀</span><h3>PivotIQ</h3><p>Startup idea validation. Helps founders test concepts with investor-style prompts and risk checks.</p><div class="chips"><span class="chip" data-info="Google's Gemini API for analysis">Gemini</span><span class="chip" data-info="Lean methodology">Strategy</span></div><a class="launch hoverable" href="https://pivot-iq.info.vercel.app" target="_blank" rel="noopener">Launch <i>→</i></a></div>
+      <div class="card rv hoverable"><span class="em">🎓</span><h3>RealLearn</h3><p>AI-powered adaptive learning. Transforms one question into a 3-part journey with real-world context.</p><div class="chips"><span class="chip" data-info="Local LLM deployment">Gemma 4</span><span class="chip" data-info="Learning science">EdTech</span></div><a class="launch hoverable" href="https://reallearn-info.vercel.app" target="_blank" rel="noopener">Launch <i>→</i></a></div>
+      <div class="card rv hoverable"><span class="em">🧠</span><h3>MindEase</h3><p>Emotional support chatbot. On-device only, 20 languages, voice output. Zero storage.</p><div class="chips"><span class="chip" data-info="Runs locally in browser">On-Device</span><span class="chip" data-info="Mental health focus">Wellness</span></div><a class="launch hoverable" href="https://me.esamz.info" target="_blank" rel="noopener">Launch <i>→</i></a></div>
+      <div class="card rv hoverable"><span class="em">📊</span><h3>Hissab</h3><p>Sales tracker for Indian small businesses. Mobile-first, 30-day analytics, profit margins.</p><div class="chips"><span class="chip" data-info="Bookkeeping for SMBs">Finance</span><span class="chip" data-info="Dashboard visualizations">Analytics</span></div><a class="launch hoverable" href="https://hisaab.esamz.info" target="_blank" rel="noopener">Launch <i>→</i></a></div>
+      <div class="card rv hoverable"><span class="em">🎤</span><h3>CiboCocinar</h3><p>Voice-first cooking assistant. &lt;200ms latency. Hands-free kitchen guidance.</p><div class="chips"><span class="chip" data-info="Speech recognition & synthesis">Voice AI</span><span class="chip" data-info="Recipe database">Cooking</span></div><a class="launch hoverable" href="https://cibo.esamz.info" target="_blank" rel="noopener">Launch <i>→</i></a></div>
+      <div class="card rv hoverable"><span class="em">📈</span><h3>SeeMarket</h3><p>Market intelligence. Live movers, watchlists, AI-powered symbol Q&amp;A for traders.</p><div class="chips"><span class="chip" data-info="Stock market data">Fintech</span><span class="chip" data-info="WebSocket updates">Real-time</span></div><a class="launch hoverable" href="#">Launch <i>→</i></a></div>
+      <div class="card rv hoverable"><span class="em">🎨</span><h3>Fit The Color</h3><p>Advanced color compatibility engine. Strategic design decisions with mathematical analysis.</p><div class="chips"><span class="chip" data-info="React 19 framework">Next.js 15</span><span class="chip" data-info="Color theory algorithms">Design QA</span></div><a class="launch hoverable" href="https://fit-the-color-info.vercel.app" target="_blank" rel="noopener">Launch <i>→</i></a></div>
     </div>
   </section>
 
@@ -286,8 +298,8 @@ footer .hb{display:inline-block;animation:heartbeat 1.6s ease-in-out infinite;co
     <p class="kicker rv">03 / Publications</p>
     <h2 class="h2 rv">The Library</h2>
     <div class="books">
-      <div class="book rv hoverable"><span class="badge">📘 Bestseller</span><h3>The AI Mastery Handbook</h3><p>Claude, Gemini, Llama, ChatGPT explained. AI history, LLM mechanics, and prompt engineering.</p><a class="launch hoverable" href="https://www.amazon.com/dp/B0GX2N6WTT">Amazon KDP <i>→</i></a></div>
-      <div class="book rv hoverable"><span class="badge">📗 New Release</span><h3>30 Days Mastering Claude Code</h3><p>30-day hands-on journey to mastering Claude Code. From the founder of eSAMz AI.</p><a class="launch hoverable" href="https://www.amazon.com/dp/B0GY1F3573">Amazon KDP <i>→</i></a></div>
+      <div class="book rv hoverable"><span class="badge">📘 Bestseller</span><h3>The AI Mastery Handbook</h3><p>Claude, Gemini, Llama, ChatGPT explained. AI history, LLM mechanics, and prompt engineering.</p><a class="launch hoverable" href="https://www.amazon.com/dp/B0GX2N6WTT" target="_blank" rel="noopener">Amazon KDP <i>→</i></a></div>
+      <div class="book rv hoverable"><span class="badge">📗 New Release</span><h3>30 Days Mastering Claude Code</h3><p>30-day hands-on journey to mastering Claude Code. From the founder of eSAMz AI.</p><a class="launch hoverable" href="https://www.amazon.com/dp/B0GY1F3573" target="_blank" rel="noopener">Amazon KDP <i>→</i></a></div>
     </div>
   </section>
 
@@ -296,10 +308,10 @@ footer .hb{display:inline-block;animation:heartbeat 1.6s ease-in-out infinite;co
     <h2 class="h2 rv">Let's Build <span class="grad">Together.</span></h2>
     <p class="lead rv" style="margin-left:auto;margin-right:auto">Have an idea? Want to collaborate? Let's create something meaningful together.</p>
     <div class="links rv">
-      <a class="linkpill hoverable" href="mailto:proman007power@gmail.com">📧 proman007power@gmail.com</a>
-      <a class="linkpill hoverable" href="https://github.com/alakmar344" target="_blank" rel="noopener">💻 GitHub / alakmar344</a>
-      <a class="linkpill hoverable" href="https://www.linkedin.com/in/alakmar-teenwala-054067393">💼 LinkedIn / Al-Aqmar Teenwala</a>
-      <a class="linkpill hoverable" href="https://instagram.com/its_alakmar7" target="_blank" rel="noopener">📸 @its_alakmar7</a>
+      <a class="linkpill hoverable" href="mailto:proman007power@gmail.com" aria-label="Send an email">📧 proman007power@gmail.com</a>
+      <a class="linkpill hoverable" href="https://github.com/alakmar344" target="_blank" rel="noopener" aria-label="GitHub profile">💻 GitHub / alakmar344</a>
+      <a class="linkpill hoverable" href="https://www.linkedin.com/in/alakmar-teenwala-054067393" target="_blank" rel="noopener" aria-label="LinkedIn profile">💼 LinkedIn / Al-Aqmar Teenwala</a>
+      <a class="linkpill hoverable" href="https://instagram.com/its_alakmar7" target="_blank" rel="noopener" aria-label="Instagram profile">📸 @its_alakmar7</a>
     </div>
     <p class="ps rv">P.S. — click anywhere on this page. Code can love you back. ♡</p>
   </section>
@@ -307,8 +319,18 @@ footer .hb{display:inline-block;animation:heartbeat 1.6s ease-in-out infinite;co
 
 <footer>© 2026 AL-AQMAR TINWALA · CRAFTED WITH <span class="hb">♥</span> AND PURPOSE · AGE IS JUST A VERSION NUMBER (v13)</footer>
 
+<div id="toast" class="toast"></div>
+
 <script>
-/* ---------- Preloader ---------- */
+/* ---------- TOAST SYSTEM ---------- */
+const toastEl = document.getElementById('toast');
+function showToast(msg, duration = 2000) {
+  toastEl.textContent = msg;
+  toastEl.classList.add('show');
+  setTimeout(() => toastEl.classList.remove('show'), duration);
+}
+
+/* ---------- PRELOADER ---------- */
 const fill=document.getElementById('loadFill'),sub=document.getElementById('bootSub'),pre=document.getElementById('preloader');
 const msgs=['INITIALIZING SYSTEMS…','LOADING NEURAL CORE…','WAKING UP THE MOON ☾','CALIBRATING ELEGANCE…','HEART FIRST. ALWAYS. ♥'];
 let p=0,mi=0;
@@ -319,14 +341,14 @@ const iv=setInterval(()=>{
   if(p>=100){clearInterval(iv);sub.textContent=msgs[msgs.length-1];setTimeout(()=>pre.classList.add('done'),520);}
 },220);
 
-/* ---------- Time-aware greeting ---------- */
+/* ---------- TIME-AWARE GREETING ---------- */
 const h=new Date().getHours(),greet=document.getElementById('greet');
 if(h<5)greet.textContent='The moon is up. So am I. Welcome to HQ ☾';
 else if(h<12)greet.textContent='Good morning. Building the future before lunch.';
 else if(h<18)greet.textContent='Building the Future. Architecting Elegance.';
 else greet.textContent='Good evening. The moon shift has begun ☾';
 
-/* ---------- Typewriter taglines ---------- */
+/* ---------- TYPEWRITER ---------- */
 const roles=['AI Architect','Full-Stack Developer','Published Author ×2','Privacy Advocate','Rust Enthusiast','13 & Unstoppable','القمر — The Moon'];
 const typed=document.getElementById('typed');
 let ri=0,ci=0,del=false;
@@ -339,7 +361,7 @@ let ri=0,ci=0,del=false;
   else{del=false;ri=(ri+1)%roles.length;setTimeout(type,350);}
 })();
 
-/* ---------- Custom cursor ---------- */
+/* ---------- CUSTOM CURSOR ---------- */
 const cur=document.getElementById('cursor'),dot=document.getElementById('cursorDot');
 let mx=innerWidth/2,my=innerHeight/2,cx=mx,cy=my;
 addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';});
@@ -347,7 +369,7 @@ addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px
 document.addEventListener('mouseover',e=>{if(e.target.closest('.hoverable'))cur.classList.add('grow');});
 document.addEventListener('mouseout',e=>{if(e.target.closest('.hoverable'))cur.classList.remove('grow');});
 
-/* ---------- Heart burst on click ♥ ---------- */
+/* ---------- HEART BURST ---------- */
 const heartChars=['♥','♡','✨','☾'];
 document.addEventListener('click',e=>{
   for(let i=0;i<5;i++){
@@ -364,20 +386,59 @@ document.addEventListener('click',e=>{
   }
 });
 
-/* ---------- Moon easter egg: click the moon 3x ---------- */
-let moonClicks=0;
-document.getElementById('moon').addEventListener('click',e=>{
-  e.stopPropagation();moonClicks++;
-  if(moonClicks>=3){moonClicks=0;
-    for(let i=0;i<22;i++)setTimeout(()=>spawnShooting(),i*90);
+/* ---------- MOON INTERACTIVITY (enhanced) ---------- */
+let moonClicks=0, moonTimeout;
+const moon = document.getElementById('moon');
+function shootFromMoon(burst=false) {
+  const rect = moon.getBoundingClientRect();
+  const moonX = rect.left + rect.width/2;
+  const moonY = rect.top + rect.height/2;
+  const count = burst ? 16 : 1;
+  for(let i=0;i<count;i++) {
+    setTimeout(() => {
+      shots.push({
+        x: moonX + (Math.random() - 0.5) * 30,
+        y: moonY + (Math.random() - 0.5) * 30,
+        vx: 6 + Math.random() * 9,
+        vy: 2 + Math.random() * 5,
+        life: 1
+      });
+    }, i * (burst ? 40 : 0));
+  }
+  if(!burst) showToast('🌠 A shooting star from the moon!', 1200);
+  else showToast('☄️ Meteor shower!', 1500);
+}
+moon.addEventListener('click', (e) => {
+  e.stopPropagation();
+  clearTimeout(moonTimeout);
+  moonClicks++;
+  if(moonClicks === 3) {
+    shootFromMoon(true);
+    moonClicks = 0;
+  } else {
+    moonTimeout = setTimeout(() => {
+      if(moonClicks === 1) shootFromMoon(false);
+      else if(moonClicks === 2) showToast('🌙 Almost there... one more click for a burst!', 1000);
+      moonClicks = 0;
+    }, 300);
   }
 });
 
-/* ---------- Particle constellation + shooting stars ---------- */
+/* ---------- CHIP CLICK TOAST (educational) ---------- */
+document.querySelectorAll('.chip').forEach(chip => {
+  chip.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const info = chip.getAttribute('data-info');
+    if(info) showToast(`🔧 ${chip.innerText}: ${info}`, 1800);
+    else showToast(`✨ ${chip.innerText} – core tech`, 1200);
+  });
+});
+
+/* ---------- PARTICLE CONSTELLATION + SHOOTING STARS ---------- */
 const cv=document.getElementById('stars'),ctx=cv.getContext('2d');
 let W,H,pts=[],shots=[];
 function resize(){W=cv.width=innerWidth;H=cv.height=innerHeight;
-  const n=Math.min(110,Math.floor(W*H/16000));
+  const n=Math.min(80, Math.floor(W*H/20000)); // reduced for performance
   pts=Array.from({length:n},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35,r:Math.random()*1.6+.4}));}
 resize();addEventListener('resize',resize);
 let mouse={x:-999,y:-999};
@@ -385,7 +446,7 @@ addEventListener('mousemove',e=>{mouse.x=e.clientX;mouse.y=e.clientY;});
 function spawnShooting(){
   shots.push({x:Math.random()*W*.8,y:Math.random()*H*.35,vx:7+Math.random()*5,vy:3+Math.random()*2,life:1});
 }
-setInterval(()=>{if(Math.random()<.4)spawnShooting();},4200);
+setInterval(()=>{if(Math.random()<.35)spawnShooting();},4200);
 (function draw(){
   ctx.clearRect(0,0,W,H);
   for(const a of pts){
@@ -411,11 +472,11 @@ setInterval(()=>{if(Math.random()<.4)spawnShooting();},4200);
   requestAnimationFrame(draw);
 })();
 
-/* ---------- Scroll reveal ---------- */
+/* ---------- SCROLL REVEAL ---------- */
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12});
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 
-/* ---------- Counters ---------- */
+/* ---------- COUNTERS ---------- */
 const co=new IntersectionObserver(es=>es.forEach(e=>{
   if(!e.isIntersecting)return;co.unobserve(e.target);
   const n=+e.target.dataset.n,t0=performance.now(),dur=1800;
@@ -425,22 +486,32 @@ const co=new IntersectionObserver(es=>es.forEach(e=>{
 }),{threshold:.5});
 document.querySelectorAll('.count').forEach(el=>co.observe(el));
 
-/* ---------- 3D tilt + glow on cards ---------- */
+/* ---------- 3D TILT + GLOW ON CARDS ---------- */
 document.querySelectorAll('.card').forEach(card=>{
   card.addEventListener('mousemove',e=>{
     const r=card.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;
     card.style.setProperty('--mx',x+'px');card.style.setProperty('--my',y+'px');
     const rx=((y/r.height)-.5)*-7,ry=((x/r.width)-.5)*7;
-    card.style.transform=`perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-4px)`;
+    card.style.transform=`perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-4px) scale(1.01)`;
   });
-  card.addEventListener('mouseleave',()=>{card.style.transform='';});
+  card.addEventListener('mouseleave',()=>{card.style.transform='';card.style.setProperty('--mx','50%');card.style.setProperty('--my','50%');});
 });
 
-/* ---------- Console easter egg ---------- */
+/* ---------- MARQUEE PAUSE WHEN OUT OF VIEW ---------- */
+const marquee = document.getElementById('marquee');
+const marqueeObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting) marquee.classList.remove('pause');
+    else marquee.classList.add('pause');
+  });
+}, { threshold: 0.1 });
+marqueeObserver.observe(marquee);
+
+/* ---------- CONSOLE EASTER EGG ---------- */
 console.log('%c☾  Welcome to AL-AQMAR HQ','color:#4ef0d2;font-size:20px;font-weight:bold;');
 console.log('%cAl-Aqmar (القمر) means "The Moon". I\'m 13 and just getting started.','color:#8b7bff;font-size:13px;');
 console.log('%cHeart First ♥ · Privacy First 🔒 · proman007power@gmail.com','color:#ff6ec7;font-size:12px;');
-console.log('%cPsst… try clicking the moon 3 times. 🌠','color:#ffc36e;font-size:12px;');
+console.log('%c✨ NEW: Click any chip to learn about the tech. Click the moon for shooting stars!','color:#ffc36e;font-size:12px;');
 </script>
 </body>
 </html>
