@@ -478,7 +478,7 @@ document.querySelectorAll('.chip').forEach(chip => {
 const cv=document.getElementById('stars'),ctx=cv.getContext('2d');
 let W,H,pts=[],shots=[];
 function resize(){W=cv.width=innerWidth;H=cv.height=innerHeight;
-  const n=Math.min(80, Math.floor(W*H/20000));
+  const n=Math.min(45, Math.floor(W*H/35000));
   pts=Array.from({length:n},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35,r:Math.random()*1.6+.4}));}
 resize();addEventListener('resize',resize);
 let mouse={x:-999,y:-999};
@@ -557,7 +557,7 @@ function spawnConstNodes() {
     const r = orbitR * (0.62 + Math.random() * 0.38);
     constNodes.push({x:cx+Math.cos(a)*r,y:cy+Math.sin(a)*r,vx:(Math.random()-0.5)*0.12,vy:(Math.random()-0.5)*0.12,r:2.4,baseR:2.4,color:SKILLS[i].color,phase:Math.random()*Math.PI*2,speed:0.005+Math.random()*0.01,homeX:cx+Math.cos(a)*r,homeY:cy+Math.sin(a)*r,core:false,skill:true,label:SKILLS[i].label,orbitAngle:a,orbitRadius:r});
   }
-  for (let i = 0; i < 38; i++) {
+  for (let i = 0; i < 18; i++) {
     const a = Math.random() * Math.PI * 2;
     const d = Math.random() * Math.min(cx, cy) * 0.88 + 30;
     constNodes.push({x:cx+Math.cos(a)*d,y:cy+Math.sin(a)*d,vx:(Math.random()-0.5)*0.18,vy:(Math.random()-0.5)*0.18,r:Math.random()*1.6+0.7,baseR:Math.random()*1.6+0.7,color:COLORS[Math.floor(Math.random()*COLORS.length)],phase:Math.random()*Math.PI*2,speed:0.004+Math.random()*0.014,homeX:cx+Math.cos(a)*d,homeY:cy+Math.sin(a)*d,core:false,skill:false,label:null});
@@ -568,7 +568,7 @@ function spawnFlowParticles() {
   flowParticles = [];
   const core = constNodes[0];
   for (let i = 1; i <= SKILLS.length; i++) {
-    for (let j = 0; j < 3; j++) {
+    for (let j = 0; j < 2; j++) {
       flowParticles.push({from:core,to:constNodes[i],progress:Math.random(),speed:0.0025+Math.random()*0.005,size:0.6+Math.random()*0.7});
     }
   }
@@ -786,269 +786,69 @@ console.log('%cHeart First ♥ · Privacy First 🔒 · proman007power@gmail.com
 console.log('%c✨ INTERACT: Click the moon · Click chips · Scroll · Click anywhere for hearts','color:#ffc36e;font-size:12px;');
 
 /* ================================================================
-   ████████╗██╗  ██╗██████╗ ███████╗███████╗      ██╗███████╗
-   ╚══██╔══╝██║  ██║██╔══██╗██╔════╝██╔════╝      ██║██╔════╝
-      ██║   ███████║██████╔╝█████╗  ███████╗      ██║███████╗
-      ██║   ██╔══██║██╔══██╗██╔══╝  ╚════██║ ██   ██║╚════██║
-      ██║   ██║  ██║██║  ██║███████╗███████║ ╚█████╔╝███████║
-      ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚══════╝  ╚════╝ ╚══════╝
-   3D SCENE — FLOATING GEOMETRIC OBJECTS ALL OVER THE PAGE
+   3D SCENE — SINGLE ELEGANT MOON WITH ORBITAL RINGS
    ================================================================ */
 (function(){
   const threeCanvas = document.getElementById('threeCanvas');
-  const renderer = new THREE.WebGLRenderer({ canvas: threeCanvas, alpha: true, antialias: true, powerPreference: 'high-performance' });
+  const renderer = new THREE.WebGLRenderer({ canvas: threeCanvas, alpha: true, antialias: false, powerPreference: 'low-power' });
   renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-  renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.1;
+  renderer.setPixelRatio(1);
 
   const scene = new THREE.Scene();
-  scene.fog = new THREE.FogExp2(0x05060a, 0.00015);
+  const camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.5, 60);
+  camera.position.set(0, 1.5, 16);
+  camera.lookAt(0, 0, 0);
 
-  const camera = new THREE.PerspectiveCamera(62, window.innerWidth / window.innerHeight, 0.1, 70);
-  camera.position.set(0, 1.2, 15);
-  camera.lookAt(0, 0.5, 0);
+  scene.add(new THREE.AmbientLight(0x222244, 0.9));
+  const sunLight = new THREE.DirectionalLight(0xf5ecd7, 2.0);
+  sunLight.position.set(5, 6, 10);
+  scene.add(sunLight);
 
-  scene.add(new THREE.AmbientLight(0x1a1a3a, 1.0));
+  const moonLight = new THREE.PointLight(0xf5ecd7, 12, 20);
+  moonLight.position.set(6, 5, -2);
+  scene.add(moonLight);
 
-  const keyLight = new THREE.DirectionalLight(0xf5ecd7, 2.2);
-  keyLight.position.set(5, 7, 10);
-  scene.add(keyLight);
-
-  const fillLight = new THREE.DirectionalLight(0x4ef0d2, 1.2);
-  fillLight.position.set(-4, -2, -3);
-  scene.add(fillLight);
-
-  const rimLight = new THREE.DirectionalLight(0x8b7bff, 1.5);
-  rimLight.position.set(0, -1, -7);
-  scene.add(rimLight);
-
-  const ptLights = [];
-  const ptColors = [0x4ef0d2, 0x8b7bff, 0xff6ec7, 0xffc36e, 0xf5ecd7];
-  const ptPositions = [[-5,3,-2],[3,-2,-3],[-3,-1,-5],[6,5,-2],[5,-4,-6]];
-  ptPositions.forEach((pos,i) => {
-    const pt = new THREE.PointLight(ptColors[i], 18, 14);
-    pt.position.set(...pos);
-    scene.add(pt);
-    ptLights.push(pt);
-  });
-
-  function makeGlow(geometry, colorHex, scale = 1.28) {
-    const mat = new THREE.ShaderMaterial({
-      uniforms: { uColor: { value: new THREE.Color(colorHex) } },
-      vertexShader: `
-        varying vec3 vNormal; varying vec3 vPosition;
-        void main() {
-          vec4 wp = modelMatrix * vec4(position, 1.0);
-          vPosition = wp.xyz;
-          vNormal = normalize(mat3(modelMatrix) * normal);
-          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-        }`,
-      fragmentShader: `
-        varying vec3 vNormal; varying vec3 vPosition;
-        uniform vec3 uColor;
-        void main() {
-          float f = 1.0 - abs(dot(normalize(cameraPosition - vPosition), vNormal));
-          float a = pow(f, 4.0) * 0.38;
-          gl_FragColor = vec4(uColor, a);
-        }`,
-      transparent: true, depthWrite: false,
-    });
-    const mesh = new THREE.Mesh(geometry, mat);
-    mesh.scale.setScalar(scale);
-    mesh.userData = { isGlow: true };
-    return mesh;
-  }
-
-  const allObjects = [];
-
-  // --- GRAND MOON (center-right hero area) ---
-  const moonGeo = new THREE.SphereGeometry(2.6, 72, 72);
-  const moonMat = new THREE.MeshStandardMaterial({
-    color: 0xf5ecd7, roughness: 0.32, metalness: 0.04,
-    emissive: 0xf5ecd7, emissiveIntensity: 0.18,
+  const moonGeo = new THREE.SphereGeometry(2.8, 36, 36);
+  const moonMat = new THREE.MeshPhongMaterial({
+    color: 0xf5ecd7, shininess: 15,
+    emissive: 0xf5ecd7, emissiveIntensity: 0.15,
+    specular: 0x444444,
   });
   const grandMoon = new THREE.Mesh(moonGeo, moonMat);
-  grandMoon.position.set(6.2, 4.5, -3.5);
-  grandMoon.userData = { rx: 0.08, ry: 0.1, rz: 0.03, floatA: 0.3, floatF: 1.1, baseY: 4.5, noFloat: false };
+  grandMoon.position.set(6, 4.5, -4);
   scene.add(grandMoon);
-  allObjects.push(grandMoon);
-  grandMoon.add(makeGlow(new THREE.SphereGeometry(2.6, 32, 32), 0xf5ecd7, 1.32));
-  grandMoon.add(makeGlow(new THREE.SphereGeometry(2.6, 24, 24), 0xffc36e, 1.5));
 
-  const ring1G = new THREE.TorusGeometry(3.3, 0.05, 32, 180);
-  const ring1M = new THREE.MeshStandardMaterial({ color: 0x4ef0d2, roughness: 0.15, metalness: 0.55, emissive: 0x4ef0d2, emissiveIntensity: 0.35 });
-  const ring1 = new THREE.Mesh(ring1G, ring1M);
-  ring1.rotation.x = Math.PI * 0.38; ring1.rotation.y = Math.PI * 0.18;
+  const glowGeo = new THREE.SphereGeometry(3.3, 24, 24);
+  const glowMat = new THREE.MeshBasicMaterial({ color: 0xf5ecd7, transparent: true, opacity: 0.1, depthWrite: false });
+  const glowShell = new THREE.Mesh(glowGeo, glowMat);
+  grandMoon.add(glowShell);
+
+  const ring1 = new THREE.Mesh(
+    new THREE.TorusGeometry(3.5, 0.06, 16, 80),
+    new THREE.MeshBasicMaterial({ color: 0x4ef0d2, transparent: true, opacity: 0.45 })
+  );
+  ring1.rotation.x = Math.PI * 0.38;
+  ring1.rotation.y = Math.PI * 0.15;
   grandMoon.add(ring1);
 
-  const ring2G = new THREE.TorusGeometry(3.7, 0.04, 32, 220);
-  const ring2M = new THREE.MeshStandardMaterial({ color: 0x8b7bff, roughness: 0.12, metalness: 0.5, emissive: 0x8b7bff, emissiveIntensity: 0.28 });
-  const ring2 = new THREE.Mesh(ring2G, ring2M);
-  ring2.rotation.x = Math.PI * 0.55; ring2.rotation.y = -Math.PI * 0.2;
+  const ring2 = new THREE.Mesh(
+    new THREE.TorusGeometry(3.9, 0.05, 16, 80),
+    new THREE.MeshBasicMaterial({ color: 0x8b7bff, transparent: true, opacity: 0.35 })
+  );
+  ring2.rotation.x = Math.PI * 0.55;
+  ring2.rotation.y = -Math.PI * 0.2;
   grandMoon.add(ring2);
 
   const orbDots = [];
-  for (let i = 0; i < 14; i++) {
-    const dg = new THREE.SphereGeometry(0.07, 8, 8);
-    const dm = new THREE.MeshBasicMaterial({ color: 0xf5ecd7 });
-    const dot = new THREE.Mesh(dg, dm);
-    dot.userData = { a: (i/14)*Math.PI*2, r: 3.3+Math.random()*0.4, s: 0.3+Math.random()*0.35, tx: Math.PI*0.38 };
+  for (let i = 0; i < 8; i++) {
+    const dot = new THREE.Mesh(
+      new THREE.SphereGeometry(0.08, 6, 6),
+      new THREE.MeshBasicMaterial({ color: 0xf5ecd7 })
+    );
+    dot.userData = { a: (i/8)*Math.PI*2, r: 3.3 + Math.random()*0.5, s: 0.25 + Math.random()*0.3 };
     grandMoon.add(dot);
     orbDots.push(dot);
   }
-
-  // --- ICOSAHEDRON CYAN (left mid) ---
-  const ico1G = new THREE.IcosahedronGeometry(1.15, 1);
-  const ico1M = new THREE.MeshStandardMaterial({ color: 0x4ef0d2, roughness: 0.16, metalness: 0.18, emissive: 0x4ef0d2, emissiveIntensity: 0.16 });
-  const ico1 = new THREE.Mesh(ico1G, ico1M);
-  ico1.position.set(-5.8, 3, -4.5);
-  ico1.userData = { rx: 0.45, ry: 0.62, rz: 0.2, floatA: 0.5, floatF: 1.5, baseY: 3, noFloat: false };
-  scene.add(ico1);
-  allObjects.push(ico1);
-  ico1.add(makeGlow(new THREE.IcosahedronGeometry(1.15, 1), 0x4ef0d2, 1.22));
-
-  // --- TORUS KNOT VIOLET WIREFRAME (left center) ---
-  const tk1G = new THREE.TorusKnotGeometry(0.95, 0.24, 140, 22);
-  const tk1M = new THREE.MeshBasicMaterial({ color: 0x8b7bff, wireframe: true, transparent: true, opacity: 0.72 });
-  const tk1 = new THREE.Mesh(tk1G, tk1M);
-  tk1.position.set(-4.2, 0, -4);
-  tk1.userData = { rx: 0.55, ry: 0.75, rz: 0.1, floatA: 0.4, floatF: 1.8, baseY: 0, noFloat: false };
-  scene.add(tk1);
-  allObjects.push(tk1);
-
-  // --- OCTAHEDRON PINK (mid-left upper) ---
-  const octG = new THREE.OctahedronGeometry(0.95);
-  const octM = new THREE.MeshStandardMaterial({ color: 0xff6ec7, roughness: 0.2, metalness: 0.65, emissive: 0xff6ec7, emissiveIntensity: 0.12 });
-  const oct = new THREE.Mesh(octG, octM);
-  oct.position.set(-2.2, 2.5, -5.5);
-  oct.userData = { rx: 0.58, ry: 0.48, rz: 0.35, floatA: 0.38, floatF: 2.1, baseY: 2.5, noFloat: false };
-  scene.add(oct);
-  allObjects.push(oct);
-
-  // --- DODECAHEDRON AMBER (lower left) ---
-  const dodG = new THREE.DodecahedronGeometry(0.85);
-  const dodM = new THREE.MeshStandardMaterial({ color: 0xffc36e, roughness: 0.22, metalness: 0.75, emissive: 0xffc36e, emissiveIntensity: 0.1 });
-  const dod = new THREE.Mesh(dodG, dodM);
-  dod.position.set(-5.8, -3, -4.5);
-  dod.userData = { rx: 0.38, ry: 0.52, rz: 0.22, floatA: 0.32, floatF: 1.4, baseY: -3, noFloat: false };
-  scene.add(dod);
-  allObjects.push(dod);
-
-  // --- ICOSAHEDRON VIOLET (right lower) ---
-  const ico2G = new THREE.IcosahedronGeometry(1.35, 1);
-  const ico2M = new THREE.MeshStandardMaterial({ color: 0x8b7bff, roughness: 0.18, metalness: 0.22, emissive: 0x8b7bff, emissiveIntensity: 0.14 });
-  const ico2 = new THREE.Mesh(ico2G, ico2M);
-  ico2.position.set(5.5, -1.5, -5.5);
-  ico2.userData = { rx: 0.32, ry: 0.58, rz: 0.15, floatA: 0.48, floatF: 1.6, baseY: -1.5, noFloat: false };
-  scene.add(ico2);
-  allObjects.push(ico2);
-  ico2.add(makeGlow(new THREE.IcosahedronGeometry(1.35, 1), 0x8b7bff, 1.18));
-
-  // --- TORUS KNOT CYAN WIREFRAME (right middle) ---
-  const tk2G = new THREE.TorusKnotGeometry(0.72, 0.19, 110, 18);
-  const tk2M = new THREE.MeshBasicMaterial({ color: 0x4ef0d2, wireframe: true, transparent: true, opacity: 0.68 });
-  const tk2 = new THREE.Mesh(tk2G, tk2M);
-  tk2.position.set(3.8, -2.8, -6);
-  tk2.userData = { rx: 0.72, ry: 0.42, rz: 0.28, floatA: 0.52, floatF: 1.3, baseY: -2.8, noFloat: false };
-  scene.add(tk2);
-  allObjects.push(tk2);
-
-  // --- TETRAHEDRON CRYSTALS scattered (10 pieces) ---
-  for (let i = 0; i < 10; i++) {
-    const sz = 0.3 + Math.random() * 0.55;
-    const tg = new THREE.TetrahedronGeometry(sz);
-    const col = [0x4ef0d2, 0x8b7bff, 0xff6ec7, 0xffc36e, 0xf5ecd7][Math.floor(Math.random()*5)];
-    const tm = new THREE.MeshStandardMaterial({ color: col, roughness: 0.14, metalness: 0.42, emissive: col, emissiveIntensity: 0.22 });
-    const t = new THREE.Mesh(tg, tm);
-    const pz = -3 - Math.random() * 6;
-    t.position.set((Math.random()-0.5)*14, (Math.random()-0.5)*10 - 1, pz);
-    t.userData = { rx: 0.4+Math.random()*0.9, ry: 0.3+Math.random()*1.0, rz: 0.15+Math.random()*0.5, floatA: 0.3+Math.random()*0.7, floatF: 1.2+Math.random()*2.2, baseY: t.position.y, noFloat: false };
-    scene.add(t);
-    allObjects.push(t);
-  }
-
-  // --- LARGE GEOMETRIC RING CROSS (bottom area) ---
-  const bigRG = new THREE.TorusGeometry(3.8, 0.08, 32, 220);
-  const bigRM = new THREE.MeshStandardMaterial({ color: 0x4ef0d2, roughness: 0.08, metalness: 0.5, emissive: 0x4ef0d2, emissiveIntensity: 0.28 });
-  const bigR = new THREE.Mesh(bigRG, bigRM);
-  bigR.position.set(0, -4.8, -7.5);
-  bigR.rotation.x = Math.PI*0.55; bigR.rotation.y = Math.PI*0.08;
-  bigR.userData = { rx: 0.04, ry: 0.06, rz: 0.12, floatA: 0.22, floatF: 0.75, baseY: -4.8, noFloat: false };
-  scene.add(bigR);
-  allObjects.push(bigR);
-
-  const crossRG = new THREE.TorusGeometry(4.1, 0.06, 32, 220);
-  const crossRM = new THREE.MeshStandardMaterial({ color: 0x8b7bff, roughness: 0.08, metalness: 0.5, emissive: 0x8b7bff, emissiveIntensity: 0.24 });
-  const crossR = new THREE.Mesh(crossRG, crossRM);
-  crossR.position.copy(bigR.position);
-  crossR.rotation.x = Math.PI*0.18; crossR.rotation.y = Math.PI*0.42;
-  crossR.userData = { rx: -0.03, ry: 0.05, rz: -0.1, floatA: 0.22, floatF: 0.75, baseY: -4.8, noFloat: false };
-  scene.add(crossR);
-  allObjects.push(crossR);
-
-  // --- CONE CRYSTAL SPIRE (bottom-right) ---
-  const spireG = new THREE.ConeGeometry(0.7, 2.4, 6);
-  const spireM = new THREE.MeshStandardMaterial({ color: 0xff6ec7, roughness: 0.12, metalness: 0.55, emissive: 0xff6ec7, emissiveIntensity: 0.18 });
-  const spire = new THREE.Mesh(spireG, spireM);
-  spire.position.set(6.5, -3.5, -6);
-  spire.userData = { rx: 0.25, ry: 0.4, rz: 0.08, floatA: 0.35, floatF: 1.9, baseY: -3.5, noFloat: false };
-  scene.add(spire);
-  allObjects.push(spire);
-
-  // --- GOLDEN CYLINDER PILLAR (bottom-left) ---
-  const cylG = new THREE.CylinderGeometry(0.35, 0.55, 2.0, 8);
-  const cylM = new THREE.MeshStandardMaterial({ color: 0xffc36e, roughness: 0.2, metalness: 0.7, emissive: 0xffc36e, emissiveIntensity: 0.08 });
-  const cyl = new THREE.Mesh(cylG, cylM);
-  cyl.position.set(-6.5, -4, -5.5);
-  cyl.userData = { rx: 0.3, ry: 0.55, rz: 0.12, floatA: 0.28, floatF: 1.6, baseY: -4, noFloat: false };
-  scene.add(cyl);
-  allObjects.push(cyl);
-
-  // --- TORUS cyan ring mid-right ---
-  const torG = new THREE.TorusGeometry(1.1, 0.12, 24, 80);
-  const torM = new THREE.MeshStandardMaterial({ color: 0x4ef0d2, roughness: 0.1, metalness: 0.45, emissive: 0x4ef0d2, emissiveIntensity: 0.2 });
-  const torF = new THREE.Mesh(torG, torM);
-  torF.position.set(2, 1.8, -3.8);
-  torF.rotation.x = Math.PI*0.35;
-  torF.userData = { rx: 0.15, ry: 0.22, rz: 0.3, floatA: 0.4, floatF: 1.4, baseY: 1.8, noFloat: false };
-  scene.add(torF);
-  allObjects.push(torF);
-
-  // --- GLOWING ORBS (8 small floating spheres) ---
-  for (let i = 0; i < 8; i++) {
-    const og = new THREE.SphereGeometry(0.14+Math.random()*0.28, 16, 16);
-    const om = new THREE.MeshBasicMaterial({ color: [0x4ef0d2,0x8b7bff,0xff6ec7,0xffc36e][i%4], transparent: true, opacity: 0.72 });
-    const o = new THREE.Mesh(og, om);
-    o.position.set((Math.random()-0.5)*12, (Math.random()-0.5)*9, -2-Math.random()*5);
-    o.userData = { rx: 0, ry: 0, rz: 0, floatA: 0.6+Math.random()*1.2, floatF: 1.0+Math.random()*2.8, baseY: o.position.y, noFloat: false };
-    scene.add(o);
-    allObjects.push(o);
-  }
-
-  // --- PARTICLE CLOUD (ambient floating sparkles) ---
-  const ptClG = new THREE.BufferGeometry();
-  const ptCount = 300;
-  const ptPos = new Float32Array(ptCount*3);
-  for (let i=0;i<ptCount;i++) {
-    ptPos[i*3]=(Math.random()-0.5)*22;
-    ptPos[i*3+1]=(Math.random()-0.5)*18;
-    ptPos[i*3+2]=-1-Math.random()*10;
-  }
-  ptClG.setAttribute('position',new THREE.BufferAttribute(ptPos,3));
-  const ptClM = new THREE.PointsMaterial({ size:0.04, color:0xf5ecd7, transparent:true, opacity:0.45, blending:THREE.AdditiveBlending, depthWrite:false });
-  const ptCloud = new THREE.Points(ptClG, ptClM);
-  scene.add(ptCloud);
-
-  // --- ANIMATION STATE ---
-  const mouse3D = { x: 0, y: 0 };
-  const target3D = { x: 0, y: 0 };
-  const clock = new THREE.Clock();
-
-  window.addEventListener('mousemove', (e) => {
-    target3D.x = (e.clientX / window.innerWidth) * 2 - 1;
-    target3D.y = -(e.clientY / window.innerHeight) * 2 + 1;
-  });
 
   window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight;
@@ -1056,60 +856,21 @@ console.log('%c✨ INTERACT: Click the moon · Click chips · Scroll · Click an
     renderer.setSize(window.innerWidth, window.innerHeight);
   });
 
+  const clock = new THREE.Clock();
   function animate3D() {
     requestAnimationFrame(animate3D);
     const dt = Math.min(clock.getDelta(), 0.1);
-    const t = performance.now() * 0.001;
-
-    mouse3D.x += (target3D.x - mouse3D.x) * 0.04;
-    mouse3D.y += (target3D.y - mouse3D.y) * 0.04;
-
-    camera.position.x += (mouse3D.x * 2.2 - camera.position.x) * 0.025;
-    camera.position.y += (1.2 + mouse3D.y * 1.8 - camera.position.y) * 0.025;
-    camera.lookAt(mouse3D.x * 0.6, 0.5 + mouse3D.y * 0.4, 0);
-
-    for (const obj of allObjects) {
-      if (obj.userData.rx) obj.rotation.x += obj.userData.rx * dt;
-      if (obj.userData.ry) obj.rotation.y += obj.userData.ry * dt;
-      if (obj.userData.rz) obj.rotation.z += obj.userData.rz * dt;
-      if (!obj.userData.noFloat) {
-        const fy = Math.sin(t * obj.userData.floatF + obj.userData.baseY) * obj.userData.floatA;
-        obj.position.y = obj.userData.baseY + fy;
-      }
-    }
-
-    grandMoon.rotation.y += 0.06 * dt;
-    ring1.rotation.z += 0.11 * dt;
-    ring2.rotation.z -= 0.08 * dt;
-    bigR.rotation.z += 0.05 * dt;
-    crossR.rotation.z -= 0.06 * dt;
-
+    grandMoon.rotation.y += 0.08 * dt;
+    ring1.rotation.z += 0.1 * dt;
+    ring2.rotation.z -= 0.07 * dt;
     for (const dot of orbDots) {
       dot.userData.a += dot.userData.s * dt;
-      const a = dot.userData.a;
-      const r = dot.userData.r;
+      const a = dot.userData.a, r = dot.userData.r;
       dot.position.x = Math.cos(a) * r;
       dot.position.z = Math.sin(a) * r;
-      dot.position.y = Math.sin(a * 2.3) * 0.35;
+      dot.position.y = Math.sin(a * 2) * 0.3;
     }
-
-    ptCloud.rotation.y += 0.015 * dt;
-    ptCloud.rotation.x += 0.008 * dt;
-
-    ptLights[0].intensity = 18 + Math.sin(t*1.4)*4;
-    ptLights[1].intensity = 18 + Math.cos(t*1.7)*4;
-    ptLights[2].intensity = 16 + Math.sin(t*2.0)*3;
-    ptLights[3].intensity = 20 + Math.cos(t*0.9)*3;
-    ptLights[4].intensity = 15 + Math.sin(t*1.3)*3;
-
-    for (const obj of allObjects) {
-      for (const child of obj.children) {
-        if (child.userData && child.userData.isGlow && child.material.uniforms) {
-          child.material.uniforms.uColor.value = new THREE.Color(child.material.uniforms.uColor.value);
-        }
-      }
-    }
-
+    moonLight.intensity = 12 + Math.sin(performance.now()*0.001) * 2;
     renderer.render(scene, camera);
   }
   animate3D();
