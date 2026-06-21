@@ -143,6 +143,34 @@ h1 .line:nth-child(2) span{animation-delay:.14s}
 .constellation-orb{position:absolute;pointer-events:none;z-index:1;border-radius:50%;background:radial-gradient(circle,rgba(78,240,210,.06) 0%,transparent 70%);width:300px;height:300px;transform:translate(-50%,-50%);transition:left .12s linear,top .12s linear}
 .constellation-ripple{position:absolute;pointer-events:none;z-index:1;border-radius:50%;border:1px solid rgba(78,240,210,.35);transform:translate(-50%,-50%) scale(0);animation:rip .9s ease-out forwards}
 @keyframes rip{to{transform:translate(-50%,-50%) scale(3);opacity:0}}
+.constellation-hover-label{position:absolute;pointer-events:none;z-index:3;font-family:'JetBrains Mono',monospace;font-size:.64rem;letter-spacing:.22em;color:var(--cy);white-space:nowrap;opacity:0;transform:translate(-50%,-120%);transition:opacity .2s;text-shadow:0 0 8px rgba(78,240,210,.35)}
+.constellation-hover-label.show{opacity:1}
+.constellation-hover-label::before{content:'· ';color:var(--am)}
+
+/* ---------- FLOATING 3D CRYSTAL SHARDS ---------- */
+.shards-container{position:fixed;inset:-10%;z-index:0;pointer-events:none;perspective:1200px;transition:transform .6s cubic-bezier(.2,.8,.2,1);will-change:transform}
+.shard-wrap{position:absolute}
+.shard{width:var(--sz);height:var(--sz);background:var(--sd-bg);border:1px solid var(--sd-border);border-radius:2px;opacity:var(--op);will-change:transform;backface-visibility:hidden;animation:shardFloat var(--dur) ease-in-out infinite;animation-delay:var(--delay)}
+.shard::after{content:'';position:absolute;inset:2px;border-radius:1px;border:1px solid rgba(255,255,255,.05)}
+@keyframes shardFloat{0%,100%{transform:rotate(45deg) rotateX(var(--rx)) rotateY(var(--ry)) translateY(0)}50%{transform:rotate(45deg) rotateX(calc(var(--rx) + 15deg)) rotateY(calc(var(--ry) + 22deg)) translateY(-16px)}}
+.shard-wrap:nth-child(1){top:11%;left:7%}
+.shard-wrap:nth-child(1) .shard{--sz:92px;--sd-bg:linear-gradient(135deg,rgba(78,240,210,.07),rgba(139,123,255,.03));--sd-border:rgba(78,240,210,.13);--rx:60deg;--ry:30deg;--dur:9s;--delay:0s;--op:.38}
+.shard-wrap:nth-child(2){top:20%;right:11%}
+.shard-wrap:nth-child(2) .shard{--sz:66px;--sd-bg:linear-gradient(135deg,rgba(139,123,255,.06),rgba(78,240,210,.02));--sd-border:rgba(139,123,255,.11);--rx:-40deg;--ry:72deg;--dur:11s;--delay:-2s;--op:.33}
+.shard-wrap:nth-child(3){top:52%;left:4%}
+.shard-wrap:nth-child(3) .shard{--sz:80px;--sd-bg:linear-gradient(135deg,rgba(255,110,199,.05),rgba(78,240,210,.02));--sd-border:rgba(255,110,199,.1);--rx:50deg;--ry:-30deg;--dur:10s;--delay:-4s;--op:.3}
+.shard-wrap:nth-child(4){top:62%;right:7%}
+.shard-wrap:nth-child(4) .shard{--sz:102px;--sd-bg:linear-gradient(135deg,rgba(255,195,110,.05),rgba(245,236,215,.03));--sd-border:rgba(255,195,110,.1);--rx:-52deg;--ry:-44deg;--dur:13s;--delay:-1s;--op:.33}
+.shard-wrap:nth-child(5){top:33%;left:45%}
+.shard-wrap:nth-child(5) .shard{--sz:58px;--sd-bg:linear-gradient(135deg,rgba(78,240,210,.08),rgba(139,123,255,.04));--sd-border:rgba(78,240,210,.14);--rx:30deg;--ry:90deg;--dur:8s;--delay:-3s;--op:.42}
+.shard-wrap:nth-child(6){top:75%;left:28%}
+.shard-wrap:nth-child(6) .shard{--sz:72px;--sd-bg:linear-gradient(135deg,rgba(139,123,255,.07),rgba(255,110,199,.03));--sd-border:rgba(139,123,255,.12);--rx:-68deg;--ry:22deg;--dur:10s;--delay:-5s;--op:.3}
+.shard-wrap:nth-child(7){top:14%;left:58%}
+.shard-wrap:nth-child(7) .shard{--sz:76px;--sd-bg:linear-gradient(135deg,rgba(245,236,215,.04),rgba(78,240,210,.03));--sd-border:rgba(245,236,215,.1);--rx:44deg;--ry:-58deg;--dur:12s;--delay:-6s;--op:.28}
+.shard-wrap:nth-child(8){top:44%;right:17%}
+.shard-wrap:nth-child(8) .shard{--sz:86px;--sd-bg:linear-gradient(135deg,rgba(255,110,199,.06),rgba(139,123,255,.03));--sd-border:rgba(255,110,199,.12);--rx:-34deg;--ry:52deg;--dur:9s;--delay:-3.5s;--op:.33}
+@media(prefers-reduced-motion:reduce){.shard{animation:none!important}}
+@media(max-width:760px){.shard-wrap:nth-child(3),.shard-wrap:nth-child(6),.shard-wrap:nth-child(7){display:none}}
 
 /* ---------- STATS ---------- */
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin:90px 0}
@@ -230,6 +258,16 @@ footer .hb{display:inline-block;animation:heartbeat 1.6s ease-in-out infinite;co
 <div class="cursor-dot" id="cursorDot"></div>
 <canvas id="stars"></canvas>
 <div class="aurora"><b></b><b></b><b></b></div>
+<div class="shards-container" id="shardsContainer">
+  <div class="shard-wrap"><div class="shard"></div></div>
+  <div class="shard-wrap"><div class="shard"></div></div>
+  <div class="shard-wrap"><div class="shard"></div></div>
+  <div class="shard-wrap"><div class="shard"></div></div>
+  <div class="shard-wrap"><div class="shard"></div></div>
+  <div class="shard-wrap"><div class="shard"></div></div>
+  <div class="shard-wrap"><div class="shard"></div></div>
+  <div class="shard-wrap"><div class="shard"></div></div>
+</div>
 
 <nav>
   <div class="navin">
@@ -275,9 +313,10 @@ footer .hb{display:inline-block;animation:heartbeat 1.6s ease-in-out infinite;co
     <canvas class="constellation-canvas" id="constCanvas" aria-label="Interactive constellation network representing Al-Aqmar's technology ecosystem"></canvas>
     <div class="constellation-orb" id="constOrb"></div>
     <div class="constellation-label" id="constLabel">
-      <h3>The Constellation</h3>
-      <p>Every dot · Every line · Connected</p>
+      <h3>Al-Aqmar's Constellation</h3>
+      <p>Everything connected · Heart at the center</p>
     </div>
+    <div class="constellation-hover-label" id="constHoverLabel"></div>
   </section>
 
   <div class="wrap">
@@ -397,6 +436,14 @@ let ri=0,ci=0,del=false;
 const cur=document.getElementById('cursor'),dot=document.getElementById('cursorDot');
 let mx=innerWidth/2,my=innerHeight/2,cx=mx,cy=my;
 addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';});
+// Shards 3D parallax — subtle depth effect
+const shardContainer = document.getElementById('shardsContainer');
+addEventListener('mousemove',e=>{
+  if(!shardContainer)return;
+  const px=(e.clientX/innerWidth-.5)*14;
+  const py=(e.clientY/innerHeight-.5)*14;
+  shardContainer.style.transform=`translate3d(${px}px,${py}px,0)`;
+});
 (function loop(){cx+=(mx-cx)*.16;cy+=(my-cy)*.16;cur.style.left=cx+'px';cur.style.top=cy+'px';requestAnimationFrame(loop);})();
 document.addEventListener('mouseover',e=>{if(e.target.closest('.hoverable'))cur.classList.add('grow');});
 document.addEventListener('mouseout',e=>{if(e.target.closest('.hoverable'))cur.classList.remove('grow');});
@@ -509,6 +556,7 @@ const constCanvas = document.getElementById('constCanvas');
 const constCtx = constCanvas.getContext('2d');
 const constOrb = document.getElementById('constOrb');
 const constLabel = document.getElementById('constLabel');
+const constHoverLabel = document.getElementById('constHoverLabel');
 let constNodes = [];
 let constMouse = { x: -200, y: -200 };
 let constW, constH;
@@ -516,41 +564,111 @@ let constRipples = [];
 let constLabelOpacity = 0.4;
 let constTargetOpacity = 0.4;
 let constInView = false;
+let flowParticles = [];
+let hoveredNode = null;
 
-const NODE_COUNT = 58;
 const CONNECT_DIST = 140;
 const REPEL_DIST = 58;
 const MOUSE_RANGE = 190;
 const COLORS = ['#4ef0d2','#8b7bff','#ff6ec7','#ffc36e','#f5ecd7','#58e8c9','#a78bfa'];
+const SKILLS = [
+  { label: 'Rust', color: '#4ef0d2' },
+  { label: 'Next.js 15', color: '#8b7bff' },
+  { label: 'Sarvam 105b', color: '#ffc36e' },
+  { label: 'Privacy-First', color: '#4ef0d2' },
+  { label: 'Heart First ♥', color: '#ff6ec7' },
+  { label: 'Gemini', color: '#8b7bff' },
+  { label: 'Vanilla JS', color: '#ffc36e' },
+  { label: 'Voice AI', color: '#4ef0d2' },
+  { label: 'Fintech', color: '#ff6ec7' },
+  { label: 'EdTech', color: '#8b7bff' },
+  { label: 'Wellness', color: '#ffc36e' },
+  { label: 'Design QA', color: '#4ef0d2' },
+  { label: 'Strategy', color: '#ff6ec7' },
+];
+
+function hexToRgba(hex, alpha) {
+  const r = parseInt(hex.slice(1,3), 16);
+  const g = parseInt(hex.slice(3,5), 16);
+  const b = parseInt(hex.slice(5,7), 16);
+  return `rgba(${r},${g},${b},${alpha})`;
+}
 
 function spawnConstNodes() {
   constNodes = [];
-  // Cluster seeds - create organic groupings
-  const seeds = [
-    { x: constW * 0.25, y: constH * 0.4, count: 14, spread: 160 },
-    { x: constW * 0.75, y: constH * 0.35, count: 14, spread: 160 },
-    { x: constW * 0.5, y: constH * 0.55, count: 10, spread: 180 },
-    { x: constW * 0.35, y: constH * 0.7, count: 10, spread: 140 },
-    { x: constW * 0.65, y: constH * 0.65, count: 10, spread: 140 },
-  ];
-  for (const seed of seeds) {
-    for (let i = 0; i < seed.count; i++) {
-      const angle = Math.random() * Math.PI * 2;
-      const dist = Math.random() * seed.spread;
-      constNodes.push({
-        x: seed.x + Math.cos(angle) * dist,
-        y: seed.y + Math.sin(angle) * dist,
-        vx: (Math.random() - 0.5) * 0.22,
-        vy: (Math.random() - 0.5) * 0.22,
-        r: Math.random() * 2.4 + 1,
-        baseR: Math.random() * 2.4 + 1,
-        color: COLORS[Math.floor(Math.random() * COLORS.length)],
-        glow: Math.random() * 0.5 + 0.5,
-        phase: Math.random() * Math.PI * 2,
-        speed: 0.004 + Math.random() * 0.018,
-        homeX: seed.x + Math.cos(angle) * dist,
-        homeY: seed.y + Math.sin(angle) * dist,
+  const cx = constW / 2;
+  const cy = constH / 2;
+
+  // Central Al-Aqmar core node — the heartbeat
+  constNodes.push({
+    x: cx, y: cy, vx: 0, vy: 0,
+    r: 5, baseR: 5,
+    color: '#f5ecd7',
+    phase: 0, speed: 0.014,
+    homeX: cx, homeY: cy,
+    core: true, skill: false, label: 'Al-Aqmar ☾'
+  });
+
+  // Skill nodes orbiting the core
+  const orbitR = Math.min(cx, cy) * 0.58;
+  for (let i = 0; i < SKILLS.length; i++) {
+    const a = (i / SKILLS.length) * Math.PI * 2 - Math.PI / 2;
+    const r = orbitR * (0.62 + Math.random() * 0.38);
+    constNodes.push({
+      x: cx + Math.cos(a) * r, y: cy + Math.sin(a) * r,
+      vx: (Math.random() - 0.5) * 0.12, vy: (Math.random() - 0.5) * 0.12,
+      r: 2.4, baseR: 2.4,
+      color: SKILLS[i].color,
+      phase: Math.random() * Math.PI * 2,
+      speed: 0.005 + Math.random() * 0.01,
+      homeX: cx + Math.cos(a) * r, homeY: cy + Math.sin(a) * r,
+      core: false, skill: true, label: SKILLS[i].label,
+      orbitAngle: a, orbitRadius: r,
+    });
+  }
+
+  // Ambient scattered nodes — fill the constellation
+  for (let i = 0; i < 38; i++) {
+    const a = Math.random() * Math.PI * 2;
+    const d = Math.random() * Math.min(cx, cy) * 0.88 + 30;
+    constNodes.push({
+      x: cx + Math.cos(a) * d, y: cy + Math.sin(a) * d,
+      vx: (Math.random() - 0.5) * 0.18, vy: (Math.random() - 0.5) * 0.18,
+      r: Math.random() * 1.6 + 0.7, baseR: Math.random() * 1.6 + 0.7,
+      color: COLORS[Math.floor(Math.random() * COLORS.length)],
+      phase: Math.random() * Math.PI * 2,
+      speed: 0.004 + Math.random() * 0.014,
+      homeX: cx + Math.cos(a) * d, homeY: cy + Math.sin(a) * d,
+      core: false, skill: false, label: null,
+    });
+  }
+}
+
+function spawnFlowParticles() {
+  flowParticles = [];
+  const core = constNodes[0];
+  // Core → skill connections — data streaming
+  for (let i = 1; i <= SKILLS.length; i++) {
+    for (let j = 0; j < 3; j++) {
+      flowParticles.push({
+        from: core, to: constNodes[i],
+        progress: Math.random(),
+        speed: 0.0025 + Math.random() * 0.005,
+        size: 0.6 + Math.random() * 0.7,
       });
+    }
+  }
+  // Some skill ↔ skill connections
+  for (let i = 1; i <= SKILLS.length; i++) {
+    for (let j = i + 1; j <= SKILLS.length; j++) {
+      if (Math.random() < 0.22) {
+        flowParticles.push({
+          from: constNodes[i], to: constNodes[j],
+          progress: Math.random(),
+          speed: 0.003 + Math.random() * 0.004,
+          size: 0.4 + Math.random() * 0.5,
+        });
+      }
     }
   }
 }
@@ -559,6 +677,7 @@ function resizeConst() {
   constW = constCanvas.width = constCanvas.offsetWidth;
   constH = constCanvas.height = constCanvas.offsetHeight;
   spawnConstNodes();
+  spawnFlowParticles();
 }
 resizeConst();
 window.addEventListener('resize', resizeConst);
@@ -575,12 +694,29 @@ constCanvas.addEventListener('mousemove', (e) => {
   constOrb.style.left = e.clientX + 'px';
   constOrb.style.top = e.clientY + 'px';
   constTargetOpacity = 0;
+
+  // Hover label for skill/core nodes
+  hoveredNode = null;
+  for (const node of constNodes) {
+    if (!node.label) continue;
+    const d = Math.hypot(constMouse.x - node.x, constMouse.y - node.y);
+    if (d < 36) { hoveredNode = node; break; }
+  }
+  if (hoveredNode) {
+    constHoverLabel.textContent = hoveredNode.label;
+    constHoverLabel.classList.add('show');
+    constHoverLabel.style.left = hoveredNode.x + 'px';
+    constHoverLabel.style.top = hoveredNode.y + 'px';
+  } else {
+    constHoverLabel.classList.remove('show');
+  }
 });
 
 constCanvas.addEventListener('mouseleave', () => {
-  constMouse.x = -200;
-  constMouse.y = -200;
+  constMouse.x = -200; constMouse.y = -200;
   constTargetOpacity = 0.4;
+  constHoverLabel.classList.remove('show');
+  hoveredNode = null;
 });
 
 constCanvas.addEventListener('click', (e) => {
@@ -588,10 +724,8 @@ constCanvas.addEventListener('click', (e) => {
   const cx = e.clientX - rect.left;
   const cy = e.clientY - rect.top;
   constRipples.push({ x: cx, y: cy, life: 1, maxR: 180 });
-  // Burst effect: push all nearby nodes
   for (const node of constNodes) {
-    const dx = node.x - cx;
-    const dy = node.y - cy;
+    const dx = node.x - cx, dy = node.y - cy;
     const dist = Math.hypot(dx, dy);
     if (dist < 200 && dist > 1) {
       const force = (200 - dist) / 200 * 6;
@@ -599,35 +733,34 @@ constCanvas.addEventListener('click', (e) => {
       node.vy += (dy / dist) * force;
     }
   }
-  showToast('☾ Constellation ripple — nodes awaken', 1400);
+  if (hoveredNode) showToast(`☾ ${hoveredNode.label} — connected to Al-Aqmar`, 1600);
+  else showToast('☾ Constellation ripple — nodes awaken', 1400);
 });
-
-function hexToRgba(hex, alpha) {
-  const r = parseInt(hex.slice(1,3), 16);
-  const g = parseInt(hex.slice(3,5), 16);
-  const b = parseInt(hex.slice(5,7), 16);
-  return `rgba(${r},${g},${b},${alpha})`;
-}
 
 (function animateConstellation() {
   if (!constInView) { requestAnimationFrame(animateConstellation); return; }
   constCtx.clearRect(0, 0, constW, constH);
-
-  // Smooth label fade
   constLabelOpacity += (constTargetOpacity - constLabelOpacity) * 0.06;
   constLabel.style.opacity = constLabelOpacity;
 
-  // Update nodes
+  const core = constNodes[0];
   for (const node of constNodes) {
-    // Pulse radius
-    node.r = node.baseR + Math.sin(node.phase) * 0.35;
+    // Pulse radius (core pulses stronger)
+    const pulseAmp = node.core ? 1.2 : 0.35;
+    node.r = node.baseR + Math.sin(node.phase) * pulseAmp;
     node.phase += node.speed;
 
-    // Gentle homeward pull
+    // Homeward pull (stronger anchor for core)
     const hdx = node.homeX - node.x;
     const hdy = node.homeY - node.y;
-    node.vx += hdx * 0.00008;
-    node.vy += hdy * 0.00008;
+    node.vx += hdx * (node.core ? 0.0006 : 0.00008);
+    node.vy += hdy * (node.core ? 0.0006 : 0.00008);
+
+    // Core stays firmly centered
+    if (node.core) {
+      node.vx += (core.homeX - node.x) * 0.002;
+      node.vy += (core.homeY - node.y) * 0.002;
+    }
 
     // Mouse attraction
     const mdx = constMouse.x - node.x;
@@ -652,98 +785,103 @@ function hexToRgba(hex, alpha) {
       }
     }
 
-    // Damping
-    node.vx *= 0.985;
-    node.vy *= 0.985;
-
-    // Speed clamp
+    // Damping + speed clamp
+    node.vx *= 0.985; node.vy *= 0.985;
     const speed = Math.hypot(node.vx, node.vy);
-    if (speed > 1.8) {
-      node.vx = (node.vx / speed) * 1.8;
-      node.vy = (node.vy / speed) * 1.8;
-    }
+    const maxSpd = node.core ? 1.2 : 1.8;
+    if (speed > maxSpd) { node.vx = (node.vx / speed) * maxSpd; node.vy = (node.vy / speed) * maxSpd; }
 
-    node.x += node.vx;
-    node.y += node.vy;
+    node.x += node.vx; node.y += node.vy;
 
     // Boundary bounce
-    const margin = 40;
-    if (node.x < margin) { node.x = margin; node.vx *= -0.5; }
-    if (node.x > constW - margin) { node.x = constW - margin; node.vx *= -0.5; }
-    if (node.y < margin) { node.y = margin; node.vy *= -0.5; }
-    if (node.y > constH - margin) { node.y = constH - margin; node.vy *= -0.5; }
+    const mrg = 40;
+    if (node.x < mrg) { node.x = mrg; node.vx *= -0.5; }
+    if (node.x > constW - mrg) { node.x = constW - mrg; node.vx *= -0.5; }
+    if (node.y < mrg) { node.y = mrg; node.vy *= -0.5; }
+    if (node.y > constH - mrg) { node.y = constH - mrg; node.vy *= -0.5; }
   }
 
   // Draw connections
   for (let i = 0; i < constNodes.length; i++) {
     for (let j = i + 1; j < constNodes.length; j++) {
       const a = constNodes[i], b = constNodes[j];
-      const dx = a.x - b.x, dy = a.y - b.y;
-      const dist = Math.hypot(dx, dy);
-      if (dist < CONNECT_DIST) {
-        const opacity = (1 - dist / CONNECT_DIST) * 0.28;
+      const d = Math.hypot(a.x - b.x, a.y - b.y);
+      if (d < CONNECT_DIST) {
+        const op = (1 - d / CONNECT_DIST) * 0.28;
         const grad = constCtx.createLinearGradient(a.x, a.y, b.x, b.y);
-        grad.addColorStop(0, hexToRgba(a.color, opacity));
-        grad.addColorStop(1, hexToRgba(b.color, opacity));
-        constCtx.beginPath();
-        constCtx.moveTo(a.x, a.y);
-        constCtx.lineTo(b.x, b.y);
-        constCtx.strokeStyle = grad;
-        constCtx.lineWidth = 0.55;
-        constCtx.stroke();
+        grad.addColorStop(0, hexToRgba(a.color, op));
+        grad.addColorStop(1, hexToRgba(b.color, op));
+        constCtx.beginPath(); constCtx.moveTo(a.x, a.y); constCtx.lineTo(b.x, b.y);
+        constCtx.strokeStyle = grad; constCtx.lineWidth = 0.55; constCtx.stroke();
       }
     }
   }
 
+  // Update & draw flow particles (data streaming along connections)
+  for (const fp of flowParticles) {
+    fp.progress += fp.speed;
+    if (fp.progress > 1) fp.progress -= 1;
+    const x = fp.from.x + (fp.to.x - fp.from.x) * fp.progress;
+    const y = fp.from.y + (fp.to.y - fp.from.y) * fp.progress;
+    const tx = x - (fp.to.x - fp.from.x) * fp.speed * 9;
+    const ty = y - (fp.to.y - fp.from.y) * fp.speed * 9;
+    const tg = constCtx.createLinearGradient(tx, ty, x, y);
+    tg.addColorStop(0, 'rgba(245,236,215,0)');
+    tg.addColorStop(1, 'rgba(245,236,215,0.75)');
+    constCtx.beginPath(); constCtx.moveTo(tx, ty); constCtx.lineTo(x, y);
+    constCtx.strokeStyle = tg; constCtx.lineWidth = fp.size; constCtx.stroke();
+    // Head dot
+    constCtx.beginPath(); constCtx.arc(x, y, fp.size * 0.7, 0, Math.PI * 2);
+    constCtx.fillStyle = 'rgba(245,236,215,0.9)'; constCtx.fill();
+  }
+
   // Draw nodes
   for (const node of constNodes) {
-    const mdx = constMouse.x - node.x;
-    const mdy = constMouse.y - node.y;
+    const mdx = constMouse.x - node.x, mdy = constMouse.y - node.y;
     const mdist = Math.hypot(mdx, mdy);
-    const highlight = mdist < MOUSE_RANGE ? (MOUSE_RANGE - mdist) / MOUSE_RANGE : 0;
-    const r = node.r + highlight * 1.8;
+    const hl = mdist < MOUSE_RANGE ? (MOUSE_RANGE - mdist) / MOUSE_RANGE : 0;
+    const r = node.r + hl * 1.8;
 
-    // Outer glow
-    const glowGrad = constCtx.createRadialGradient(node.x, node.y, 0, node.x, node.y, r * 3.2);
-    glowGrad.addColorStop(0, hexToRgba(node.color, 0.25 + highlight * 0.3));
+    // Outer glow (larger for core)
+    const glowR = node.core ? r * 5.5 : r * 3.2;
+    const glowAlpha = node.core ? 0.35 + hl * 0.3 : 0.25 + hl * 0.3;
+    const glowGrad = constCtx.createRadialGradient(node.x, node.y, 0, node.x, node.y, glowR);
+    glowGrad.addColorStop(0, hexToRgba(node.color, glowAlpha));
     glowGrad.addColorStop(1, hexToRgba(node.color, 0));
-    constCtx.beginPath();
-    constCtx.arc(node.x, node.y, r * 3.2, 0, Math.PI * 2);
-    constCtx.fillStyle = glowGrad;
-    constCtx.fill();
+    constCtx.beginPath(); constCtx.arc(node.x, node.y, glowR, 0, Math.PI * 2);
+    constCtx.fillStyle = glowGrad; constCtx.fill();
 
-    // Core
-    constCtx.beginPath();
-    constCtx.arc(node.x, node.y, r, 0, Math.PI * 2);
-    constCtx.fillStyle = hexToRgba(node.color, 0.9 + highlight * 0.1);
-    constCtx.fill();
+    // Core dot
+    constCtx.beginPath(); constCtx.arc(node.x, node.y, r, 0, Math.PI * 2);
+    constCtx.fillStyle = hexToRgba(node.color, 0.9 + hl * 0.1); constCtx.fill();
     constCtx.shadowColor = node.color;
-    constCtx.shadowBlur = 6 + highlight * 22;
-    constCtx.fill();
-    constCtx.shadowBlur = 0;
+    constCtx.shadowBlur = node.core ? 16 + hl * 28 : 6 + hl * 22;
+    constCtx.fill(); constCtx.shadowBlur = 0;
+
+    // Subtle indicator ring around skill nodes
+    if (node.skill && !node.core) {
+      constCtx.beginPath(); constCtx.arc(node.x, node.y, r + 3.5, 0, Math.PI * 2);
+      constCtx.strokeStyle = hexToRgba(node.color, 0.25 + hl * 0.2);
+      constCtx.lineWidth = 0.5; constCtx.stroke();
+    }
   }
 
   // Draw ripples
   constRipples = constRipples.filter(r => r.life > 0);
-  for (const ripple of constRipples) {
-    ripple.life -= 0.018;
-    const r = (1 - ripple.life) * ripple.maxR;
-    constCtx.beginPath();
-    constCtx.arc(ripple.x, ripple.y, r, 0, Math.PI * 2);
-    constCtx.strokeStyle = `rgba(78,240,210,${ripple.life * 0.5})`;
-    constCtx.lineWidth = 1.2;
-    constCtx.stroke();
+  for (const rp of constRipples) {
+    rp.life -= 0.018;
+    const cr = (1 - rp.life) * rp.maxR;
+    constCtx.beginPath(); constCtx.arc(rp.x, rp.y, cr, 0, Math.PI * 2);
+    constCtx.strokeStyle = `rgba(78,240,210,${rp.life * 0.5})`;
+    constCtx.lineWidth = 1.2; constCtx.stroke();
   }
 
-  // Mouse glow orb (subtle)
+  // Mouse glow orb
   if (constMouse.x > -100) {
     const mg = constCtx.createRadialGradient(constMouse.x, constMouse.y, 0, constMouse.x, constMouse.y, 70);
-    mg.addColorStop(0, 'rgba(139,123,255,0.06)');
-    mg.addColorStop(1, 'rgba(139,123,255,0)');
-    constCtx.beginPath();
-    constCtx.arc(constMouse.x, constMouse.y, 70, 0, Math.PI * 2);
-    constCtx.fillStyle = mg;
-    constCtx.fill();
+    mg.addColorStop(0, 'rgba(139,123,255,0.06)'); mg.addColorStop(1, 'rgba(139,123,255,0)');
+    constCtx.beginPath(); constCtx.arc(constMouse.x, constMouse.y, 70, 0, Math.PI * 2);
+    constCtx.fillStyle = mg; constCtx.fill();
   }
 
   requestAnimationFrame(animateConstellation);
