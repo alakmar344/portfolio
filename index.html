@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;600&family=Caveat:wght@500;700&family=Amiri:ital@0;1&display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
 <style>
 :root{
   --bg:#05060a;
@@ -42,7 +43,10 @@ body{background:var(--bg);color:var(--ink);font-family:'Space Grotesk',sans-seri
 .loadbar i{position:absolute;inset:0;background:linear-gradient(90deg,var(--cy),var(--vi));transform-origin:left;transform:scaleX(0);transition:transform .25s ease}
 .boot-sub{font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--muted);letter-spacing:.25em}
 
-/* ---------- TOAST NOTIFICATIONS ---------- */
+/* ---------- 3D CANVAS ---------- */
+#threeCanvas{position:fixed;inset:0;z-index:0;pointer-events:none}
+
+/* ---------- TOAST ---------- */
 .toast{position:fixed;bottom:30px;right:30px;background:rgba(10,12,20,.95);backdrop-filter:blur(12px);border:1px solid rgba(78,240,210,.3);border-radius:99px;padding:12px 24px;font-family:'JetBrains Mono',monospace;font-size:.8rem;color:var(--cy);z-index:1000;transform:translateX(120%);transition:transform .3s cubic-bezier(.2,.8,.2,1);pointer-events:none;box-shadow:0 8px 20px rgba(0,0,0,.3)}
 .toast.show{transform:translateX(0)}
 
@@ -55,7 +59,7 @@ body{background:var(--bg);color:var(--ink);font-family:'Space Grotesk',sans-seri
 .heart-pop{position:fixed;z-index:998;pointer-events:none;font-size:18px;animation:floatheart 1.2s ease-out forwards}
 @keyframes floatheart{0%{transform:translate(-50%,-50%) scale(.4);opacity:1}100%{transform:translate(calc(-50% + var(--dx)),calc(-50% - 90px)) scale(1.2) rotate(var(--rot));opacity:0}}
 
-/* ---------- CANVAS / SKY ---------- */
+/* ---------- STAR CANVAS ---------- */
 #stars{position:fixed;inset:0;z-index:0;pointer-events:none}
 .aurora{position:fixed;inset:-20%;z-index:0;pointer-events:none;filter:blur(110px);opacity:.5}
 .aurora b{position:absolute;border-radius:50%}
@@ -133,7 +137,7 @@ h1 .line:nth-child(2) span{animation-delay:.14s}
 .track span::after{content:'☾';color:var(--am);font-size:.8rem}
 @keyframes scroll{to{transform:translateX(-50%)}}
 
-/* ---------- CONSTELLATION NETWORK ---------- */
+/* ---------- CONSTELLATION ---------- */
 .constellation-section{position:relative;height:clamp(420px,62vh,620px);margin:0;overflow:hidden;background:linear-gradient(180deg,transparent 0%,rgba(10,12,20,.6) 30%,rgba(10,12,20,.8) 70%,var(--bg) 100%);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .constellation-canvas{position:absolute;inset:0;width:100%;height:100%}
 .constellation-label{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;text-align:center;z-index:2;transition:opacity .8s ease;opacity:.4}
@@ -146,31 +150,6 @@ h1 .line:nth-child(2) span{animation-delay:.14s}
 .constellation-hover-label{position:absolute;pointer-events:none;z-index:3;font-family:'JetBrains Mono',monospace;font-size:.64rem;letter-spacing:.22em;color:var(--cy);white-space:nowrap;opacity:0;transform:translate(-50%,-120%);transition:opacity .2s;text-shadow:0 0 8px rgba(78,240,210,.35)}
 .constellation-hover-label.show{opacity:1}
 .constellation-hover-label::before{content:'· ';color:var(--am)}
-
-/* ---------- FLOATING 3D CRYSTAL SHARDS ---------- */
-.shards-container{position:fixed;inset:-10%;z-index:0;pointer-events:none;perspective:1200px;transition:transform .6s cubic-bezier(.2,.8,.2,1);will-change:transform}
-.shard-wrap{position:absolute}
-.shard{width:var(--sz);height:var(--sz);background:var(--sd-bg);border:1px solid var(--sd-border);border-radius:2px;opacity:var(--op);will-change:transform;backface-visibility:hidden;animation:shardFloat var(--dur) ease-in-out infinite;animation-delay:var(--delay)}
-.shard::after{content:'';position:absolute;inset:2px;border-radius:1px;border:1px solid rgba(255,255,255,.05)}
-@keyframes shardFloat{0%,100%{transform:rotate(45deg) rotateX(var(--rx)) rotateY(var(--ry)) translateY(0)}50%{transform:rotate(45deg) rotateX(calc(var(--rx) + 15deg)) rotateY(calc(var(--ry) + 22deg)) translateY(-16px)}}
-.shard-wrap:nth-child(1){top:11%;left:7%}
-.shard-wrap:nth-child(1) .shard{--sz:92px;--sd-bg:linear-gradient(135deg,rgba(78,240,210,.07),rgba(139,123,255,.03));--sd-border:rgba(78,240,210,.13);--rx:60deg;--ry:30deg;--dur:9s;--delay:0s;--op:.38}
-.shard-wrap:nth-child(2){top:20%;right:11%}
-.shard-wrap:nth-child(2) .shard{--sz:66px;--sd-bg:linear-gradient(135deg,rgba(139,123,255,.06),rgba(78,240,210,.02));--sd-border:rgba(139,123,255,.11);--rx:-40deg;--ry:72deg;--dur:11s;--delay:-2s;--op:.33}
-.shard-wrap:nth-child(3){top:52%;left:4%}
-.shard-wrap:nth-child(3) .shard{--sz:80px;--sd-bg:linear-gradient(135deg,rgba(255,110,199,.05),rgba(78,240,210,.02));--sd-border:rgba(255,110,199,.1);--rx:50deg;--ry:-30deg;--dur:10s;--delay:-4s;--op:.3}
-.shard-wrap:nth-child(4){top:62%;right:7%}
-.shard-wrap:nth-child(4) .shard{--sz:102px;--sd-bg:linear-gradient(135deg,rgba(255,195,110,.05),rgba(245,236,215,.03));--sd-border:rgba(255,195,110,.1);--rx:-52deg;--ry:-44deg;--dur:13s;--delay:-1s;--op:.33}
-.shard-wrap:nth-child(5){top:33%;left:45%}
-.shard-wrap:nth-child(5) .shard{--sz:58px;--sd-bg:linear-gradient(135deg,rgba(78,240,210,.08),rgba(139,123,255,.04));--sd-border:rgba(78,240,210,.14);--rx:30deg;--ry:90deg;--dur:8s;--delay:-3s;--op:.42}
-.shard-wrap:nth-child(6){top:75%;left:28%}
-.shard-wrap:nth-child(6) .shard{--sz:72px;--sd-bg:linear-gradient(135deg,rgba(139,123,255,.07),rgba(255,110,199,.03));--sd-border:rgba(139,123,255,.12);--rx:-68deg;--ry:22deg;--dur:10s;--delay:-5s;--op:.3}
-.shard-wrap:nth-child(7){top:14%;left:58%}
-.shard-wrap:nth-child(7) .shard{--sz:76px;--sd-bg:linear-gradient(135deg,rgba(245,236,215,.04),rgba(78,240,210,.03));--sd-border:rgba(245,236,215,.1);--rx:44deg;--ry:-58deg;--dur:12s;--delay:-6s;--op:.28}
-.shard-wrap:nth-child(8){top:44%;right:17%}
-.shard-wrap:nth-child(8) .shard{--sz:86px;--sd-bg:linear-gradient(135deg,rgba(255,110,199,.06),rgba(139,123,255,.03));--sd-border:rgba(255,110,199,.12);--rx:-34deg;--ry:52deg;--dur:9s;--delay:-3.5s;--op:.33}
-@media(prefers-reduced-motion:reduce){.shard{animation:none!important}}
-@media(max-width:760px){.shard-wrap:nth-child(3),.shard-wrap:nth-child(6),.shard-wrap:nth-child(7){display:none}}
 
 /* ---------- STATS ---------- */
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin:90px 0}
@@ -199,7 +178,7 @@ section{padding:90px 0}
 .pillar h3{margin:14px 0 8px;font-size:1.15rem}
 .pillar p{color:var(--muted);line-height:1.6;font-size:.95rem}
 
-/* ---------- PROJECTS ---------- */
+/* ---------- PORTFOLIO ---------- */
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:54px}
 @media(max-width:980px){.grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:640px){.grid{grid-template-columns:1fr}}
@@ -251,23 +230,14 @@ footer .hb{display:inline-block;animation:heartbeat 1.6s ease-in-out infinite;co
   <div class="pre-moon"></div>
   <div class="boot" id="bootText">ARRIVING AT: AL-AQMAR HQ<span class="blink">_</span></div>
   <div class="loadbar"><i id="loadFill"></i></div>
-  <div class="boot-sub" id="bootSub">INITIALIZING SYSTEMS…</div>
+  <div class="boot-sub" id="bootSub">INITIALIZING 3D CORE…</div>
 </div>
 
 <div class="cursor" id="cursor"></div>
 <div class="cursor-dot" id="cursorDot"></div>
 <canvas id="stars"></canvas>
+<canvas id="threeCanvas"></canvas>
 <div class="aurora"><b></b><b></b><b></b></div>
-<div class="shards-container" id="shardsContainer">
-  <div class="shard-wrap"><div class="shard"></div></div>
-  <div class="shard-wrap"><div class="shard"></div></div>
-  <div class="shard-wrap"><div class="shard"></div></div>
-  <div class="shard-wrap"><div class="shard"></div></div>
-  <div class="shard-wrap"><div class="shard"></div></div>
-  <div class="shard-wrap"><div class="shard"></div></div>
-  <div class="shard-wrap"><div class="shard"></div></div>
-  <div class="shard-wrap"><div class="shard"></div></div>
-</div>
 
 <nav>
   <div class="navin">
@@ -347,7 +317,7 @@ footer .hb{display:inline-block;animation:heartbeat 1.6s ease-in-out infinite;co
       <div class="card rv hoverable"><span class="mvp">MVP</span><span class="em">🎮</span><h3>Neon Tic-Tac-Toe</h3><p>Minimalist, high-contrast gaming experience. Dark-mode first, responsive, and optimized for performance.</p><div class="chips"><span class="chip" data-info="Pure JavaScript, no frameworks">Vanilla JS</span><span class="chip" data-info="Semantic HTML5 + modern CSS">HTML5/CSS3</span></div><a class="launch hoverable" href="https://tic-info.vercel.app" target="_blank" rel="noopener">Launch <i>→</i></a></div>
       <div class="card rv hoverable"><span class="mvp">MVP</span><span class="em">🚀</span><h3>PivotIQ</h3><p>Startup idea validation. Helps founders test concepts with investor-style prompts and risk checks.</p><div class="chips"><span class="chip" data-info="Google's Gemini API for analysis">Gemini</span><span class="chip" data-info="Lean methodology">Strategy</span></div><a class="launch hoverable" href="https://pivot-iq.info.vercel.app" target="_blank" rel="noopener">Launch <i>→</i></a></div>
       <div class="card rv hoverable"><span class="mvp">MVP</span><span class="em">🎓</span><h3>RealLearn</h3><p>AI-powered adaptive learning. Transforms one question into a 3-part journey with real-world context.</p><div class="chips"><span class="chip" data-info="gemma 4 good hackathon project"> gemma 4 26b</span><span class="chip" data-info="Learning science">EdTech</span></div><a class="launch hoverable" href="https://reallearn-info.vercel.app" target="_blank" rel="noopener">Launch <i>→</i></a></div>
-      <div class="card rv hoverable"><span class="mvp">MVP</span><span class="em">🧠</span><h3>MindEase</h3><p>Emotional support chatbot.  20 languages, voice output. Zero storage.</p><div class="chips"><span class="chip" data-info="privacy focused">all data on device</span><span class="chip" data-info="Mental health focus">Wellness</span></div><a class="launch hoverable" href="https://me.esamz.info" target="_blank" rel="noopener">Launch <i>→</i></a></div>
+      <div class="card rv hoverable"><span class="mvp">MVP</span><span class="em">🧠</span><h3>MindEase</h3><p>Emotional support chatbot. 20 languages, voice output. Zero storage.</p><div class="chips"><span class="chip" data-info="privacy focused">all data on device</span><span class="chip" data-info="Mental health focus">Wellness</span></div><a class="launch hoverable" href="https://me.esamz.info" target="_blank" rel="noopener">Launch <i>→</i></a></div>
       <div class="card rv hoverable"><span class="mvp">MVP</span><span class="em">📊</span><h3>Hissab</h3><p>Sales tracker for Indian small businesses. Mobile-first, 30-day analytics, profit margins.</p><div class="chips"><span class="chip" data-info="Bookkeeping for SMBs">Finance</span><span class="chip" data-info="Dashboard visualizations">Analytics</span></div><a class="launch hoverable" href="https://hisaab.esamz.info" target="_blank" rel="noopener">Launch <i>→</i></a></div>
       <div class="card rv hoverable"><span class="mvp">MVP</span><span class="em">🎤</span><h3>CiboCocinar</h3><p>Voice-first cooking assistant. &lt;200ms latency. Hands-free kitchen guidance.</p><div class="chips"><span class="chip" data-info="Speech recognition & synthesis">Voice AI</span><span class="chip" data-info="Recipe database">Cooking</span></div><a class="launch hoverable" href="https://cibo.esamz.info" target="_blank" rel="noopener">Launch <i>→</i></a></div>
       <div class="card rv hoverable"><span class="mvp">MVP</span><span class="em">📈</span><h3>SeeMarket</h3><p>Market intelligence. Live movers, watchlists, AI-powered symbol Q&amp;A for traders.</p><div class="chips"><span class="chip" data-info="Stock market data">Fintech</span><span class="chip" data-info="WebSocket updates">Real-time</span></div><a class="launch hoverable" href="#">Launch <i>→</i></a></div>
@@ -393,7 +363,7 @@ footer .hb{display:inline-block;animation:heartbeat 1.6s ease-in-out infinite;co
 <div id="toast" class="toast"></div>
 
 <script>
-/* ---------- TOAST SYSTEM ---------- */
+/* ========== TOAST ========== */
 const toastEl = document.getElementById('toast');
 function showToast(msg, duration = 2000) {
   toastEl.textContent = msg;
@@ -401,9 +371,9 @@ function showToast(msg, duration = 2000) {
   setTimeout(() => toastEl.classList.remove('show'), duration);
 }
 
-/* ---------- PRELOADER ---------- */
+/* ========== PRELOADER ========== */
 const fill=document.getElementById('loadFill'),sub=document.getElementById('bootSub'),pre=document.getElementById('preloader');
-const msgs=['INITIALIZING SYSTEMS…','LOADING NEURAL CORE…','WAKING UP THE MOON ☾','CALIBRATING ELEGANCE…','HEART FIRST. ALWAYS. ♥'];
+const msgs=['INITIALIZING 3D CORE…','LOADING NEURAL WEBGL…','WAKING UP THE MOON ☾','CALIBRATING ELEGANCE…','HEART FIRST. ALWAYS. ♥'];
 let p=0,mi=0;
 const iv=setInterval(()=>{
   p=Math.min(100,p+Math.random()*22+8);
@@ -412,14 +382,14 @@ const iv=setInterval(()=>{
   if(p>=100){clearInterval(iv);sub.textContent=msgs[msgs.length-1];setTimeout(()=>pre.classList.add('done'),520);}
 },220);
 
-/* ---------- TIME-AWARE GREETING ---------- */
+/* ========== TIME GREETING ========== */
 const h=new Date().getHours(),greet=document.getElementById('greet');
 if(h<5)greet.textContent='The moon is up. So am I. Welcome to HQ ☾';
 else if(h<12)greet.textContent='Good morning. Building the future before lunch.';
 else if(h<18)greet.textContent='Building the Future. Architecting Elegance.';
 else greet.textContent='Good evening. The moon shift has begun ☾';
 
-/* ---------- TYPEWRITER ---------- */
+/* ========== TYPEWRITER ========== */
 const roles=['AI Architect','Full-Stack Developer','Published Author ×2','Privacy Advocate','Rust Enthusiast','13 & Unstoppable','القمر — The Moon'];
 const typed=document.getElementById('typed');
 let ri=0,ci=0,del=false;
@@ -432,28 +402,19 @@ let ri=0,ci=0,del=false;
   else{del=false;ri=(ri+1)%roles.length;setTimeout(type,350);}
 })();
 
-/* ---------- CUSTOM CURSOR ---------- */
+/* ========== CUSTOM CURSOR ========== */
 const cur=document.getElementById('cursor'),dot=document.getElementById('cursorDot');
 let mx=innerWidth/2,my=innerHeight/2,cx=mx,cy=my;
 addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';});
-// Shards 3D parallax — subtle depth effect
-const shardContainer = document.getElementById('shardsContainer');
-addEventListener('mousemove',e=>{
-  if(!shardContainer)return;
-  const px=(e.clientX/innerWidth-.5)*14;
-  const py=(e.clientY/innerHeight-.5)*14;
-  shardContainer.style.transform=`translate3d(${px}px,${py}px,0)`;
-});
 (function loop(){cx+=(mx-cx)*.16;cy+=(my-cy)*.16;cur.style.left=cx+'px';cur.style.top=cy+'px';requestAnimationFrame(loop);})();
 document.addEventListener('mouseover',e=>{if(e.target.closest('.hoverable'))cur.classList.add('grow');});
 document.addEventListener('mouseout',e=>{if(e.target.closest('.hoverable'))cur.classList.remove('grow');});
 
-/* ---------- HEART BURST ---------- */
+/* ========== HEART BURST ========== */
 const heartChars=['♥','♡','✨','☾'];
 document.addEventListener('click',e=>{
   for(let i=0;i<5;i++){
-    const hp=document.createElement('span');
-    hp.className='heart-pop';
+    const hp=document.createElement('span');hp.className='heart-pop';
     hp.textContent=heartChars[Math.floor(Math.random()*heartChars.length)];
     hp.style.left=e.clientX+'px';hp.style.top=e.clientY+'px';
     hp.style.color=['#ff6ec7','#4ef0d2','#8b7bff','#ffc36e'][i%4];
@@ -465,7 +426,7 @@ document.addEventListener('click',e=>{
   }
 });
 
-/* ---------- MOON INTERACTIVITY (enhanced) ---------- */
+/* ========== MOON CLICK SHOOTING STARS ========== */
 let moonClicks=0, moonTimeout;
 const moon = document.getElementById('moon');
 function shootFromMoon(burst=false) {
@@ -503,7 +464,7 @@ moon.addEventListener('click', (e) => {
   }
 });
 
-/* ---------- CHIP CLICK TOAST (educational) ---------- */
+/* ========== CHIP TOAST ========== */
 document.querySelectorAll('.chip').forEach(chip => {
   chip.addEventListener('click', (e) => {
     e.stopPropagation();
@@ -513,18 +474,16 @@ document.querySelectorAll('.chip').forEach(chip => {
   });
 });
 
-/* ---------- PARTICLE CONSTELLATION + SHOOTING STARS ---------- */
+/* ========== STARFIELD + SHOOTING STARS ========== */
 const cv=document.getElementById('stars'),ctx=cv.getContext('2d');
 let W,H,pts=[],shots=[];
 function resize(){W=cv.width=innerWidth;H=cv.height=innerHeight;
-  const n=Math.min(80, Math.floor(W*H/20000)); // reduced for performance
+  const n=Math.min(45, Math.floor(W*H/35000));
   pts=Array.from({length:n},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35,r:Math.random()*1.6+.4}));}
 resize();addEventListener('resize',resize);
 let mouse={x:-999,y:-999};
 addEventListener('mousemove',e=>{mouse.x=e.clientX;mouse.y=e.clientY;});
-function spawnShooting(){
-  shots.push({x:Math.random()*W*.8,y:Math.random()*H*.35,vx:7+Math.random()*5,vy:3+Math.random()*2,life:1});
-}
+function spawnShooting(){shots.push({x:Math.random()*W*.8,y:Math.random()*H*.35,vx:7+Math.random()*5,vy:3+Math.random()*2,life:1});}
 setInterval(()=>{if(Math.random()<.35)spawnShooting();},4200);
 (function draw(){
   ctx.clearRect(0,0,W,H);
@@ -551,7 +510,7 @@ setInterval(()=>{if(Math.random()<.35)spawnShooting();},4200);
   requestAnimationFrame(draw);
 })();
 
-/* ---------- CONSTELLATION NETWORK (Al-Aqmar Connected Dots) ---------- */
+/* ========== CONSTELLATION NETWORK ========== */
 const constCanvas = document.getElementById('constCanvas');
 const constCtx = constCanvas.getContext('2d');
 const constOrb = document.getElementById('constOrb');
@@ -572,18 +531,12 @@ const REPEL_DIST = 58;
 const MOUSE_RANGE = 190;
 const COLORS = ['#4ef0d2','#8b7bff','#ff6ec7','#ffc36e','#f5ecd7','#58e8c9','#a78bfa'];
 const SKILLS = [
-  { label: 'Rust', color: '#4ef0d2' },
-  { label: 'Next.js 15', color: '#8b7bff' },
-  { label: 'Sarvam 105b', color: '#ffc36e' },
-  { label: 'Privacy-First', color: '#4ef0d2' },
-  { label: 'Heart First ♥', color: '#ff6ec7' },
-  { label: 'Gemini', color: '#8b7bff' },
-  { label: 'Vanilla JS', color: '#ffc36e' },
-  { label: 'Voice AI', color: '#4ef0d2' },
-  { label: 'Fintech', color: '#ff6ec7' },
-  { label: 'EdTech', color: '#8b7bff' },
-  { label: 'Wellness', color: '#ffc36e' },
-  { label: 'Design QA', color: '#4ef0d2' },
+  { label: 'Rust', color: '#4ef0d2' },{ label: 'Next.js 15', color: '#8b7bff' },
+  { label: 'Sarvam 105b', color: '#ffc36e' },{ label: 'Privacy-First', color: '#4ef0d2' },
+  { label: 'Heart First ♥', color: '#ff6ec7' },{ label: 'Gemini', color: '#8b7bff' },
+  { label: 'Vanilla JS', color: '#ffc36e' },{ label: 'Voice AI', color: '#4ef0d2' },
+  { label: 'Fintech', color: '#ff6ec7' },{ label: 'EdTech', color: '#8b7bff' },
+  { label: 'Wellness', color: '#ffc36e' },{ label: 'Design QA', color: '#4ef0d2' },
   { label: 'Strategy', color: '#ff6ec7' },
 ];
 
@@ -596,78 +549,33 @@ function hexToRgba(hex, alpha) {
 
 function spawnConstNodes() {
   constNodes = [];
-  const cx = constW / 2;
-  const cy = constH / 2;
-
-  // Central Al-Aqmar core node — the heartbeat
-  constNodes.push({
-    x: cx, y: cy, vx: 0, vy: 0,
-    r: 5, baseR: 5,
-    color: '#f5ecd7',
-    phase: 0, speed: 0.014,
-    homeX: cx, homeY: cy,
-    core: true, skill: false, label: 'Al-Aqmar ☾'
-  });
-
-  // Skill nodes orbiting the core
+  const cx = constW / 2, cy = constH / 2;
+  constNodes.push({x:cx,y:cy,vx:0,vy:0,r:5,baseR:5,color:'#f5ecd7',phase:0,speed:0.014,homeX:cx,homeY:cy,core:true,skill:false,label:'Al-Aqmar ☾'});
   const orbitR = Math.min(cx, cy) * 0.58;
   for (let i = 0; i < SKILLS.length; i++) {
     const a = (i / SKILLS.length) * Math.PI * 2 - Math.PI / 2;
     const r = orbitR * (0.62 + Math.random() * 0.38);
-    constNodes.push({
-      x: cx + Math.cos(a) * r, y: cy + Math.sin(a) * r,
-      vx: (Math.random() - 0.5) * 0.12, vy: (Math.random() - 0.5) * 0.12,
-      r: 2.4, baseR: 2.4,
-      color: SKILLS[i].color,
-      phase: Math.random() * Math.PI * 2,
-      speed: 0.005 + Math.random() * 0.01,
-      homeX: cx + Math.cos(a) * r, homeY: cy + Math.sin(a) * r,
-      core: false, skill: true, label: SKILLS[i].label,
-      orbitAngle: a, orbitRadius: r,
-    });
+    constNodes.push({x:cx+Math.cos(a)*r,y:cy+Math.sin(a)*r,vx:(Math.random()-0.5)*0.12,vy:(Math.random()-0.5)*0.12,r:2.4,baseR:2.4,color:SKILLS[i].color,phase:Math.random()*Math.PI*2,speed:0.005+Math.random()*0.01,homeX:cx+Math.cos(a)*r,homeY:cy+Math.sin(a)*r,core:false,skill:true,label:SKILLS[i].label,orbitAngle:a,orbitRadius:r});
   }
-
-  // Ambient scattered nodes — fill the constellation
-  for (let i = 0; i < 38; i++) {
+  for (let i = 0; i < 18; i++) {
     const a = Math.random() * Math.PI * 2;
     const d = Math.random() * Math.min(cx, cy) * 0.88 + 30;
-    constNodes.push({
-      x: cx + Math.cos(a) * d, y: cy + Math.sin(a) * d,
-      vx: (Math.random() - 0.5) * 0.18, vy: (Math.random() - 0.5) * 0.18,
-      r: Math.random() * 1.6 + 0.7, baseR: Math.random() * 1.6 + 0.7,
-      color: COLORS[Math.floor(Math.random() * COLORS.length)],
-      phase: Math.random() * Math.PI * 2,
-      speed: 0.004 + Math.random() * 0.014,
-      homeX: cx + Math.cos(a) * d, homeY: cy + Math.sin(a) * d,
-      core: false, skill: false, label: null,
-    });
+    constNodes.push({x:cx+Math.cos(a)*d,y:cy+Math.sin(a)*d,vx:(Math.random()-0.5)*0.18,vy:(Math.random()-0.5)*0.18,r:Math.random()*1.6+0.7,baseR:Math.random()*1.6+0.7,color:COLORS[Math.floor(Math.random()*COLORS.length)],phase:Math.random()*Math.PI*2,speed:0.004+Math.random()*0.014,homeX:cx+Math.cos(a)*d,homeY:cy+Math.sin(a)*d,core:false,skill:false,label:null});
   }
 }
 
 function spawnFlowParticles() {
   flowParticles = [];
   const core = constNodes[0];
-  // Core → skill connections — data streaming
   for (let i = 1; i <= SKILLS.length; i++) {
-    for (let j = 0; j < 3; j++) {
-      flowParticles.push({
-        from: core, to: constNodes[i],
-        progress: Math.random(),
-        speed: 0.0025 + Math.random() * 0.005,
-        size: 0.6 + Math.random() * 0.7,
-      });
+    for (let j = 0; j < 2; j++) {
+      flowParticles.push({from:core,to:constNodes[i],progress:Math.random(),speed:0.0025+Math.random()*0.005,size:0.6+Math.random()*0.7});
     }
   }
-  // Some skill ↔ skill connections
   for (let i = 1; i <= SKILLS.length; i++) {
     for (let j = i + 1; j <= SKILLS.length; j++) {
       if (Math.random() < 0.22) {
-        flowParticles.push({
-          from: constNodes[i], to: constNodes[j],
-          progress: Math.random(),
-          speed: 0.003 + Math.random() * 0.004,
-          size: 0.4 + Math.random() * 0.5,
-        });
+        flowParticles.push({from:constNodes[i],to:constNodes[j],progress:Math.random(),speed:0.003+Math.random()*0.004,size:0.4+Math.random()*0.5});
       }
     }
   }
@@ -682,9 +590,7 @@ function resizeConst() {
 resizeConst();
 window.addEventListener('resize', resizeConst);
 
-const constellationObserver = new IntersectionObserver((entries) => {
-  constInView = entries[0].isIntersecting;
-}, { threshold: 0.1 });
+const constellationObserver = new IntersectionObserver((entries) => { constInView = entries[0].isIntersecting; }, { threshold: 0.1 });
 constellationObserver.observe(document.getElementById('constellation'));
 
 constCanvas.addEventListener('mousemove', (e) => {
@@ -694,8 +600,6 @@ constCanvas.addEventListener('mousemove', (e) => {
   constOrb.style.left = e.clientX + 'px';
   constOrb.style.top = e.clientY + 'px';
   constTargetOpacity = 0;
-
-  // Hover label for skill/core nodes
   hoveredNode = null;
   for (const node of constNodes) {
     if (!node.label) continue;
@@ -707,9 +611,7 @@ constCanvas.addEventListener('mousemove', (e) => {
     constHoverLabel.classList.add('show');
     constHoverLabel.style.left = hoveredNode.x + 'px';
     constHoverLabel.style.top = hoveredNode.y + 'px';
-  } else {
-    constHoverLabel.classList.remove('show');
-  }
+  } else { constHoverLabel.classList.remove('show'); }
 });
 
 constCanvas.addEventListener('mouseleave', () => {
@@ -721,11 +623,10 @@ constCanvas.addEventListener('mouseleave', () => {
 
 constCanvas.addEventListener('click', (e) => {
   const rect = constCanvas.getBoundingClientRect();
-  const cx = e.clientX - rect.left;
-  const cy = e.clientY - rect.top;
-  constRipples.push({ x: cx, y: cy, life: 1, maxR: 180 });
+  const cex = e.clientX - rect.left, cey = e.clientY - rect.top;
+  constRipples.push({ x: cex, y: cey, life: 1, maxR: 180 });
   for (const node of constNodes) {
-    const dx = node.x - cx, dy = node.y - cy;
+    const dx = node.x - cex, dy = node.y - cey;
     const dist = Math.hypot(dx, dy);
     if (dist < 200 && dist > 1) {
       const force = (200 - dist) / 200 * 6;
@@ -742,66 +643,41 @@ constCanvas.addEventListener('click', (e) => {
   constCtx.clearRect(0, 0, constW, constH);
   constLabelOpacity += (constTargetOpacity - constLabelOpacity) * 0.06;
   constLabel.style.opacity = constLabelOpacity;
-
   const core = constNodes[0];
   for (const node of constNodes) {
-    // Pulse radius (core pulses stronger)
     const pulseAmp = node.core ? 1.2 : 0.35;
     node.r = node.baseR + Math.sin(node.phase) * pulseAmp;
     node.phase += node.speed;
-
-    // Homeward pull (stronger anchor for core)
-    const hdx = node.homeX - node.x;
-    const hdy = node.homeY - node.y;
+    const hdx = node.homeX - node.x, hdy = node.homeY - node.y;
     node.vx += hdx * (node.core ? 0.0006 : 0.00008);
     node.vy += hdy * (node.core ? 0.0006 : 0.00008);
-
-    // Core stays firmly centered
-    if (node.core) {
-      node.vx += (core.homeX - node.x) * 0.002;
-      node.vy += (core.homeY - node.y) * 0.002;
-    }
-
-    // Mouse attraction
-    const mdx = constMouse.x - node.x;
-    const mdy = constMouse.y - node.y;
+    if (node.core) { node.vx += (core.homeX - node.x) * 0.002; node.vy += (core.homeY - node.y) * 0.002; }
+    const mdx = constMouse.x - node.x, mdy = constMouse.y - node.y;
     const mdist = Math.hypot(mdx, mdy);
     if (mdist < MOUSE_RANGE && mdist > 1) {
       const mforce = (MOUSE_RANGE - mdist) / MOUSE_RANGE * 0.11;
-      node.vx += (mdx / mdist) * mforce;
-      node.vy += (mdy / mdist) * mforce;
+      node.vx += (mdx / mdist) * mforce; node.vy += (mdy / mdist) * mforce;
     }
-
-    // Repel from other nodes
     for (const other of constNodes) {
       if (other === node) continue;
-      const dx = node.x - other.x;
-      const dy = node.y - other.y;
+      const dx = node.x - other.x, dy = node.y - other.y;
       const dist = Math.hypot(dx, dy);
       if (dist < REPEL_DIST && dist > 0.1) {
         const force = (REPEL_DIST - dist) / REPEL_DIST * 0.08;
-        node.vx += (dx / dist) * force;
-        node.vy += (dy / dist) * force;
+        node.vx += (dx / dist) * force; node.vy += (dy / dist) * force;
       }
     }
-
-    // Damping + speed clamp
     node.vx *= 0.985; node.vy *= 0.985;
     const speed = Math.hypot(node.vx, node.vy);
     const maxSpd = node.core ? 1.2 : 1.8;
     if (speed > maxSpd) { node.vx = (node.vx / speed) * maxSpd; node.vy = (node.vy / speed) * maxSpd; }
-
     node.x += node.vx; node.y += node.vy;
-
-    // Boundary bounce
     const mrg = 40;
     if (node.x < mrg) { node.x = mrg; node.vx *= -0.5; }
     if (node.x > constW - mrg) { node.x = constW - mrg; node.vx *= -0.5; }
     if (node.y < mrg) { node.y = mrg; node.vy *= -0.5; }
     if (node.y > constH - mrg) { node.y = constH - mrg; node.vy *= -0.5; }
   }
-
-  // Draw connections
   for (let i = 0; i < constNodes.length; i++) {
     for (let j = i + 1; j < constNodes.length; j++) {
       const a = constNodes[i], b = constNodes[j];
@@ -816,8 +692,6 @@ constCanvas.addEventListener('click', (e) => {
       }
     }
   }
-
-  // Update & draw flow particles (data streaming along connections)
   for (const fp of flowParticles) {
     fp.progress += fp.speed;
     if (fp.progress > 1) fp.progress -= 1;
@@ -830,19 +704,14 @@ constCanvas.addEventListener('click', (e) => {
     tg.addColorStop(1, 'rgba(245,236,215,0.75)');
     constCtx.beginPath(); constCtx.moveTo(tx, ty); constCtx.lineTo(x, y);
     constCtx.strokeStyle = tg; constCtx.lineWidth = fp.size; constCtx.stroke();
-    // Head dot
     constCtx.beginPath(); constCtx.arc(x, y, fp.size * 0.7, 0, Math.PI * 2);
     constCtx.fillStyle = 'rgba(245,236,215,0.9)'; constCtx.fill();
   }
-
-  // Draw nodes
   for (const node of constNodes) {
     const mdx = constMouse.x - node.x, mdy = constMouse.y - node.y;
     const mdist = Math.hypot(mdx, mdy);
     const hl = mdist < MOUSE_RANGE ? (MOUSE_RANGE - mdist) / MOUSE_RANGE : 0;
     const r = node.r + hl * 1.8;
-
-    // Outer glow (larger for core)
     const glowR = node.core ? r * 5.5 : r * 3.2;
     const glowAlpha = node.core ? 0.35 + hl * 0.3 : 0.25 + hl * 0.3;
     const glowGrad = constCtx.createRadialGradient(node.x, node.y, 0, node.x, node.y, glowR);
@@ -850,23 +719,17 @@ constCanvas.addEventListener('click', (e) => {
     glowGrad.addColorStop(1, hexToRgba(node.color, 0));
     constCtx.beginPath(); constCtx.arc(node.x, node.y, glowR, 0, Math.PI * 2);
     constCtx.fillStyle = glowGrad; constCtx.fill();
-
-    // Core dot
     constCtx.beginPath(); constCtx.arc(node.x, node.y, r, 0, Math.PI * 2);
     constCtx.fillStyle = hexToRgba(node.color, 0.9 + hl * 0.1); constCtx.fill();
     constCtx.shadowColor = node.color;
     constCtx.shadowBlur = node.core ? 16 + hl * 28 : 6 + hl * 22;
     constCtx.fill(); constCtx.shadowBlur = 0;
-
-    // Subtle indicator ring around skill nodes
     if (node.skill && !node.core) {
       constCtx.beginPath(); constCtx.arc(node.x, node.y, r + 3.5, 0, Math.PI * 2);
       constCtx.strokeStyle = hexToRgba(node.color, 0.25 + hl * 0.2);
       constCtx.lineWidth = 0.5; constCtx.stroke();
     }
   }
-
-  // Draw ripples
   constRipples = constRipples.filter(r => r.life > 0);
   for (const rp of constRipples) {
     rp.life -= 0.018;
@@ -875,23 +738,20 @@ constCanvas.addEventListener('click', (e) => {
     constCtx.strokeStyle = `rgba(78,240,210,${rp.life * 0.5})`;
     constCtx.lineWidth = 1.2; constCtx.stroke();
   }
-
-  // Mouse glow orb
   if (constMouse.x > -100) {
     const mg = constCtx.createRadialGradient(constMouse.x, constMouse.y, 0, constMouse.x, constMouse.y, 70);
     mg.addColorStop(0, 'rgba(139,123,255,0.06)'); mg.addColorStop(1, 'rgba(139,123,255,0)');
     constCtx.beginPath(); constCtx.arc(constMouse.x, constMouse.y, 70, 0, Math.PI * 2);
     constCtx.fillStyle = mg; constCtx.fill();
   }
-
   requestAnimationFrame(animateConstellation);
 })();
 
-/* ---------- SCROLL REVEAL ---------- */
+/* ========== SCROLL REVEAL ========== */
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12});
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 
-/* ---------- COUNTERS ---------- */
+/* ========== COUNTERS ========== */
 const co=new IntersectionObserver(es=>es.forEach(e=>{
   if(!e.isIntersecting)return;co.unobserve(e.target);
   const n=+e.target.dataset.n,t0=performance.now(),dur=1800;
@@ -901,7 +761,7 @@ const co=new IntersectionObserver(es=>es.forEach(e=>{
 }),{threshold:.5});
 document.querySelectorAll('.count').forEach(el=>co.observe(el));
 
-/* ---------- 3D TILT + GLOW ON CARDS ---------- */
+/* ========== 3D TILT CARDS ========== */
 document.querySelectorAll('.card').forEach(card=>{
   card.addEventListener('mousemove',e=>{
     const r=card.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;
@@ -912,21 +772,109 @@ document.querySelectorAll('.card').forEach(card=>{
   card.addEventListener('mouseleave',()=>{card.style.transform='';card.style.setProperty('--mx','50%');card.style.setProperty('--my','50%');});
 });
 
-/* ---------- MARQUEE PAUSE WHEN OUT OF VIEW ---------- */
+/* ========== MARQUEE PAUSE ========== */
 const marquee = document.getElementById('marquee');
 const marqueeObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting) marquee.classList.remove('pause');
-    else marquee.classList.add('pause');
-  });
+  entries.forEach(entry => { if(entry.isIntersecting) marquee.classList.remove('pause'); else marquee.classList.add('pause'); });
 }, { threshold: 0.1 });
 marqueeObserver.observe(marquee);
 
-/* ---------- CONSOLE EASTER EGG ---------- */
+/* ========== CONSOLE EASTER EGG ========== */
 console.log('%c☾  Welcome to AL-AQMAR HQ','color:#4ef0d2;font-size:20px;font-weight:bold;');
 console.log('%cAl-Aqmar (القمر) means "The Moon". I\'m 13 and just getting started.','color:#8b7bff;font-size:13px;');
 console.log('%cHeart First ♥ · Privacy First 🔒 · proman007power@gmail.com','color:#ff6ec7;font-size:12px;');
-console.log('%c✨ INTERACT: Click the moon · Click chips · Scroll to the Constellation · Click anywhere for hearts','color:#ffc36e;font-size:12px;');
+console.log('%c✨ INTERACT: Click the moon · Click chips · Scroll · Click anywhere for hearts','color:#ffc36e;font-size:12px;');
+
+/* ================================================================
+   3D SCENE — SINGLE ELEGANT MOON WITH ORBITAL RINGS
+   ================================================================ */
+(function(){
+  const threeCanvas = document.getElementById('threeCanvas');
+  const renderer = new THREE.WebGLRenderer({ canvas: threeCanvas, alpha: true, antialias: false, powerPreference: 'low-power' });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(1);
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.5, 60);
+  camera.position.set(0, 1.5, 16);
+  camera.lookAt(0, 0, 0);
+
+  scene.add(new THREE.AmbientLight(0x222244, 0.9));
+  const sunLight = new THREE.DirectionalLight(0xf5ecd7, 2.0);
+  sunLight.position.set(5, 6, 10);
+  scene.add(sunLight);
+
+  const moonLight = new THREE.PointLight(0xf5ecd7, 12, 20);
+  moonLight.position.set(6, 5, -2);
+  scene.add(moonLight);
+
+  const moonGeo = new THREE.SphereGeometry(2.8, 36, 36);
+  const moonMat = new THREE.MeshPhongMaterial({
+    color: 0xf5ecd7, shininess: 15,
+    emissive: 0xf5ecd7, emissiveIntensity: 0.15,
+    specular: 0x444444,
+  });
+  const grandMoon = new THREE.Mesh(moonGeo, moonMat);
+  grandMoon.position.set(6, 4.5, -4);
+  scene.add(grandMoon);
+
+  const glowGeo = new THREE.SphereGeometry(3.3, 24, 24);
+  const glowMat = new THREE.MeshBasicMaterial({ color: 0xf5ecd7, transparent: true, opacity: 0.1, depthWrite: false });
+  const glowShell = new THREE.Mesh(glowGeo, glowMat);
+  grandMoon.add(glowShell);
+
+  const ring1 = new THREE.Mesh(
+    new THREE.TorusGeometry(3.5, 0.06, 16, 80),
+    new THREE.MeshBasicMaterial({ color: 0x4ef0d2, transparent: true, opacity: 0.45 })
+  );
+  ring1.rotation.x = Math.PI * 0.38;
+  ring1.rotation.y = Math.PI * 0.15;
+  grandMoon.add(ring1);
+
+  const ring2 = new THREE.Mesh(
+    new THREE.TorusGeometry(3.9, 0.05, 16, 80),
+    new THREE.MeshBasicMaterial({ color: 0x8b7bff, transparent: true, opacity: 0.35 })
+  );
+  ring2.rotation.x = Math.PI * 0.55;
+  ring2.rotation.y = -Math.PI * 0.2;
+  grandMoon.add(ring2);
+
+  const orbDots = [];
+  for (let i = 0; i < 8; i++) {
+    const dot = new THREE.Mesh(
+      new THREE.SphereGeometry(0.08, 6, 6),
+      new THREE.MeshBasicMaterial({ color: 0xf5ecd7 })
+    );
+    dot.userData = { a: (i/8)*Math.PI*2, r: 3.3 + Math.random()*0.5, s: 0.25 + Math.random()*0.3 };
+    grandMoon.add(dot);
+    orbDots.push(dot);
+  }
+
+  window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+
+  const clock = new THREE.Clock();
+  function animate3D() {
+    requestAnimationFrame(animate3D);
+    const dt = Math.min(clock.getDelta(), 0.1);
+    grandMoon.rotation.y += 0.08 * dt;
+    ring1.rotation.z += 0.1 * dt;
+    ring2.rotation.z -= 0.07 * dt;
+    for (const dot of orbDots) {
+      dot.userData.a += dot.userData.s * dt;
+      const a = dot.userData.a, r = dot.userData.r;
+      dot.position.x = Math.cos(a) * r;
+      dot.position.z = Math.sin(a) * r;
+      dot.position.y = Math.sin(a * 2) * 0.3;
+    }
+    moonLight.intensity = 12 + Math.sin(performance.now()*0.001) * 2;
+    renderer.render(scene, camera);
+  }
+  animate3D();
+})();
 </script>
 </body>
 </html>
