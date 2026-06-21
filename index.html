@@ -133,6 +133,17 @@ h1 .line:nth-child(2) span{animation-delay:.14s}
 .track span::after{content:'☾';color:var(--am);font-size:.8rem}
 @keyframes scroll{to{transform:translateX(-50%)}}
 
+/* ---------- CONSTELLATION NETWORK ---------- */
+.constellation-section{position:relative;height:clamp(420px,62vh,620px);margin:0;overflow:hidden;background:linear-gradient(180deg,transparent 0%,rgba(10,12,20,.6) 30%,rgba(10,12,20,.8) 70%,var(--bg) 100%);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.constellation-canvas{position:absolute;inset:0;width:100%;height:100%}
+.constellation-label{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;text-align:center;z-index:2;transition:opacity .8s ease;opacity:.4}
+.constellation-label.fade{opacity:0}
+.constellation-label h3{font-family:'Caveat',cursive;font-size:clamp(2rem,4.5vw,3.4rem);font-weight:700;color:var(--moon);text-shadow:0 0 60px rgba(245,236,215,.25)}
+.constellation-label p{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.38em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+.constellation-orb{position:absolute;pointer-events:none;z-index:1;border-radius:50%;background:radial-gradient(circle,rgba(78,240,210,.06) 0%,transparent 70%);width:300px;height:300px;transform:translate(-50%,-50%);transition:left .12s linear,top .12s linear}
+.constellation-ripple{position:absolute;pointer-events:none;z-index:1;border-radius:50%;border:1px solid rgba(78,240,210,.35);transform:translate(-50%,-50%) scale(0);animation:rip .9s ease-out forwards}
+@keyframes rip{to{transform:translate(-50%,-50%) scale(3);opacity:0}}
+
 /* ---------- STATS ---------- */
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin:90px 0}
 .stat{background:var(--bg2);padding:42px 26px;text-align:center;transition:all .3s cubic-bezier(.2,.8,.2,1);cursor:default}
@@ -259,6 +270,15 @@ footer .hb{display:inline-block;animation:heartbeat 1.6s ease-in-out infinite;co
       <span>Rust</span><span>Next.js</span><span>Sarvam 105b</span><span>Privacy-First</span><span>3,000+ Active Users</span><span>20+ Open Source</span><span>2 Publications</span><span>9 Live Products</span>
     </div>
   </div>
+
+  <section class="constellation-section" id="constellation">
+    <canvas class="constellation-canvas" id="constCanvas" aria-label="Interactive constellation network representing Al-Aqmar's technology ecosystem"></canvas>
+    <div class="constellation-orb" id="constOrb"></div>
+    <div class="constellation-label" id="constLabel">
+      <h3>The Constellation</h3>
+      <p>Every dot · Every line · Connected</p>
+    </div>
+  </section>
 
   <div class="wrap">
     <div class="stats rv">
@@ -484,6 +504,251 @@ setInterval(()=>{if(Math.random()<.35)spawnShooting();},4200);
   requestAnimationFrame(draw);
 })();
 
+/* ---------- CONSTELLATION NETWORK (Al-Aqmar Connected Dots) ---------- */
+const constCanvas = document.getElementById('constCanvas');
+const constCtx = constCanvas.getContext('2d');
+const constOrb = document.getElementById('constOrb');
+const constLabel = document.getElementById('constLabel');
+let constNodes = [];
+let constMouse = { x: -200, y: -200 };
+let constW, constH;
+let constRipples = [];
+let constLabelOpacity = 0.4;
+let constTargetOpacity = 0.4;
+let constInView = false;
+
+const NODE_COUNT = 58;
+const CONNECT_DIST = 140;
+const REPEL_DIST = 58;
+const MOUSE_RANGE = 190;
+const COLORS = ['#4ef0d2','#8b7bff','#ff6ec7','#ffc36e','#f5ecd7','#58e8c9','#a78bfa'];
+
+function spawnConstNodes() {
+  constNodes = [];
+  // Cluster seeds - create organic groupings
+  const seeds = [
+    { x: constW * 0.25, y: constH * 0.4, count: 14, spread: 160 },
+    { x: constW * 0.75, y: constH * 0.35, count: 14, spread: 160 },
+    { x: constW * 0.5, y: constH * 0.55, count: 10, spread: 180 },
+    { x: constW * 0.35, y: constH * 0.7, count: 10, spread: 140 },
+    { x: constW * 0.65, y: constH * 0.65, count: 10, spread: 140 },
+  ];
+  for (const seed of seeds) {
+    for (let i = 0; i < seed.count; i++) {
+      const angle = Math.random() * Math.PI * 2;
+      const dist = Math.random() * seed.spread;
+      constNodes.push({
+        x: seed.x + Math.cos(angle) * dist,
+        y: seed.y + Math.sin(angle) * dist,
+        vx: (Math.random() - 0.5) * 0.22,
+        vy: (Math.random() - 0.5) * 0.22,
+        r: Math.random() * 2.4 + 1,
+        baseR: Math.random() * 2.4 + 1,
+        color: COLORS[Math.floor(Math.random() * COLORS.length)],
+        glow: Math.random() * 0.5 + 0.5,
+        phase: Math.random() * Math.PI * 2,
+        speed: 0.004 + Math.random() * 0.018,
+        homeX: seed.x + Math.cos(angle) * dist,
+        homeY: seed.y + Math.sin(angle) * dist,
+      });
+    }
+  }
+}
+
+function resizeConst() {
+  constW = constCanvas.width = constCanvas.offsetWidth;
+  constH = constCanvas.height = constCanvas.offsetHeight;
+  spawnConstNodes();
+}
+resizeConst();
+window.addEventListener('resize', resizeConst);
+
+const constellationObserver = new IntersectionObserver((entries) => {
+  constInView = entries[0].isIntersecting;
+}, { threshold: 0.1 });
+constellationObserver.observe(document.getElementById('constellation'));
+
+constCanvas.addEventListener('mousemove', (e) => {
+  const rect = constCanvas.getBoundingClientRect();
+  constMouse.x = e.clientX - rect.left;
+  constMouse.y = e.clientY - rect.top;
+  constOrb.style.left = e.clientX + 'px';
+  constOrb.style.top = e.clientY + 'px';
+  constTargetOpacity = 0;
+});
+
+constCanvas.addEventListener('mouseleave', () => {
+  constMouse.x = -200;
+  constMouse.y = -200;
+  constTargetOpacity = 0.4;
+});
+
+constCanvas.addEventListener('click', (e) => {
+  const rect = constCanvas.getBoundingClientRect();
+  const cx = e.clientX - rect.left;
+  const cy = e.clientY - rect.top;
+  constRipples.push({ x: cx, y: cy, life: 1, maxR: 180 });
+  // Burst effect: push all nearby nodes
+  for (const node of constNodes) {
+    const dx = node.x - cx;
+    const dy = node.y - cy;
+    const dist = Math.hypot(dx, dy);
+    if (dist < 200 && dist > 1) {
+      const force = (200 - dist) / 200 * 6;
+      node.vx += (dx / dist) * force;
+      node.vy += (dy / dist) * force;
+    }
+  }
+  showToast('☾ Constellation ripple — nodes awaken', 1400);
+});
+
+function hexToRgba(hex, alpha) {
+  const r = parseInt(hex.slice(1,3), 16);
+  const g = parseInt(hex.slice(3,5), 16);
+  const b = parseInt(hex.slice(5,7), 16);
+  return `rgba(${r},${g},${b},${alpha})`;
+}
+
+(function animateConstellation() {
+  if (!constInView) { requestAnimationFrame(animateConstellation); return; }
+  constCtx.clearRect(0, 0, constW, constH);
+
+  // Smooth label fade
+  constLabelOpacity += (constTargetOpacity - constLabelOpacity) * 0.06;
+  constLabel.style.opacity = constLabelOpacity;
+
+  // Update nodes
+  for (const node of constNodes) {
+    // Pulse radius
+    node.r = node.baseR + Math.sin(node.phase) * 0.35;
+    node.phase += node.speed;
+
+    // Gentle homeward pull
+    const hdx = node.homeX - node.x;
+    const hdy = node.homeY - node.y;
+    node.vx += hdx * 0.00008;
+    node.vy += hdy * 0.00008;
+
+    // Mouse attraction
+    const mdx = constMouse.x - node.x;
+    const mdy = constMouse.y - node.y;
+    const mdist = Math.hypot(mdx, mdy);
+    if (mdist < MOUSE_RANGE && mdist > 1) {
+      const mforce = (MOUSE_RANGE - mdist) / MOUSE_RANGE * 0.11;
+      node.vx += (mdx / mdist) * mforce;
+      node.vy += (mdy / mdist) * mforce;
+    }
+
+    // Repel from other nodes
+    for (const other of constNodes) {
+      if (other === node) continue;
+      const dx = node.x - other.x;
+      const dy = node.y - other.y;
+      const dist = Math.hypot(dx, dy);
+      if (dist < REPEL_DIST && dist > 0.1) {
+        const force = (REPEL_DIST - dist) / REPEL_DIST * 0.08;
+        node.vx += (dx / dist) * force;
+        node.vy += (dy / dist) * force;
+      }
+    }
+
+    // Damping
+    node.vx *= 0.985;
+    node.vy *= 0.985;
+
+    // Speed clamp
+    const speed = Math.hypot(node.vx, node.vy);
+    if (speed > 1.8) {
+      node.vx = (node.vx / speed) * 1.8;
+      node.vy = (node.vy / speed) * 1.8;
+    }
+
+    node.x += node.vx;
+    node.y += node.vy;
+
+    // Boundary bounce
+    const margin = 40;
+    if (node.x < margin) { node.x = margin; node.vx *= -0.5; }
+    if (node.x > constW - margin) { node.x = constW - margin; node.vx *= -0.5; }
+    if (node.y < margin) { node.y = margin; node.vy *= -0.5; }
+    if (node.y > constH - margin) { node.y = constH - margin; node.vy *= -0.5; }
+  }
+
+  // Draw connections
+  for (let i = 0; i < constNodes.length; i++) {
+    for (let j = i + 1; j < constNodes.length; j++) {
+      const a = constNodes[i], b = constNodes[j];
+      const dx = a.x - b.x, dy = a.y - b.y;
+      const dist = Math.hypot(dx, dy);
+      if (dist < CONNECT_DIST) {
+        const opacity = (1 - dist / CONNECT_DIST) * 0.28;
+        const grad = constCtx.createLinearGradient(a.x, a.y, b.x, b.y);
+        grad.addColorStop(0, hexToRgba(a.color, opacity));
+        grad.addColorStop(1, hexToRgba(b.color, opacity));
+        constCtx.beginPath();
+        constCtx.moveTo(a.x, a.y);
+        constCtx.lineTo(b.x, b.y);
+        constCtx.strokeStyle = grad;
+        constCtx.lineWidth = 0.55;
+        constCtx.stroke();
+      }
+    }
+  }
+
+  // Draw nodes
+  for (const node of constNodes) {
+    const mdx = constMouse.x - node.x;
+    const mdy = constMouse.y - node.y;
+    const mdist = Math.hypot(mdx, mdy);
+    const highlight = mdist < MOUSE_RANGE ? (MOUSE_RANGE - mdist) / MOUSE_RANGE : 0;
+    const r = node.r + highlight * 1.8;
+
+    // Outer glow
+    const glowGrad = constCtx.createRadialGradient(node.x, node.y, 0, node.x, node.y, r * 3.2);
+    glowGrad.addColorStop(0, hexToRgba(node.color, 0.25 + highlight * 0.3));
+    glowGrad.addColorStop(1, hexToRgba(node.color, 0));
+    constCtx.beginPath();
+    constCtx.arc(node.x, node.y, r * 3.2, 0, Math.PI * 2);
+    constCtx.fillStyle = glowGrad;
+    constCtx.fill();
+
+    // Core
+    constCtx.beginPath();
+    constCtx.arc(node.x, node.y, r, 0, Math.PI * 2);
+    constCtx.fillStyle = hexToRgba(node.color, 0.9 + highlight * 0.1);
+    constCtx.fill();
+    constCtx.shadowColor = node.color;
+    constCtx.shadowBlur = 6 + highlight * 22;
+    constCtx.fill();
+    constCtx.shadowBlur = 0;
+  }
+
+  // Draw ripples
+  constRipples = constRipples.filter(r => r.life > 0);
+  for (const ripple of constRipples) {
+    ripple.life -= 0.018;
+    const r = (1 - ripple.life) * ripple.maxR;
+    constCtx.beginPath();
+    constCtx.arc(ripple.x, ripple.y, r, 0, Math.PI * 2);
+    constCtx.strokeStyle = `rgba(78,240,210,${ripple.life * 0.5})`;
+    constCtx.lineWidth = 1.2;
+    constCtx.stroke();
+  }
+
+  // Mouse glow orb (subtle)
+  if (constMouse.x > -100) {
+    const mg = constCtx.createRadialGradient(constMouse.x, constMouse.y, 0, constMouse.x, constMouse.y, 70);
+    mg.addColorStop(0, 'rgba(139,123,255,0.06)');
+    mg.addColorStop(1, 'rgba(139,123,255,0)');
+    constCtx.beginPath();
+    constCtx.arc(constMouse.x, constMouse.y, 70, 0, Math.PI * 2);
+    constCtx.fillStyle = mg;
+    constCtx.fill();
+  }
+
+  requestAnimationFrame(animateConstellation);
+})();
+
 /* ---------- SCROLL REVEAL ---------- */
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12});
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
@@ -523,7 +788,7 @@ marqueeObserver.observe(marquee);
 console.log('%c☾  Welcome to AL-AQMAR HQ','color:#4ef0d2;font-size:20px;font-weight:bold;');
 console.log('%cAl-Aqmar (القمر) means "The Moon". I\'m 13 and just getting started.','color:#8b7bff;font-size:13px;');
 console.log('%cHeart First ♥ · Privacy First 🔒 · proman007power@gmail.com','color:#ff6ec7;font-size:12px;');
-console.log('%c✨ NEW: Click any chip to learn about the tech. Click the moon for shooting stars!','color:#ffc36e;font-size:12px;');
+console.log('%c✨ INTERACT: Click the moon · Click chips · Scroll to the Constellation · Click anywhere for hearts','color:#ffc36e;font-size:12px;');
 </script>
 </body>
 </html>
