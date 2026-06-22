@@ -65,18 +65,40 @@ body{background:var(--bg);color:var(--ink);font-family:'Space Grotesk',sans-seri
 @keyframes drift1{to{transform:translate(9vw,7vh) scale(1.15)}}
 @keyframes drift2{to{transform:translate(-8vw,-6vh) scale(1.1)}}
 
-/* ---------- SHARDS ---------- */
-.shard-css{position:fixed;width:var(--sz);height:var(--sz);z-index:0;pointer-events:none;background:rgba(245,236,215,var(--op));transform:rotate(45deg);border:1px solid rgba(245,236,215,calc(var(--op) * 1.4));border-radius:2px;transition:opacity 1.2s ease,transform .8s ease;opacity:0}
-.shard-css.visible{opacity:0.65;transform:rotate(45deg) scale(1)}
-.shard-css:hover{opacity:1}
-.shard-css:nth-child(1){top:12%;left:8%;--sz:90px;--op:0.12}
-.shard-css:nth-child(2){top:22%;right:10%;--sz:70px;--op:0.10}
-.shard-css:nth-child(3){top:48%;left:5%;--sz:82px;--op:0.11}
-.shard-css:nth-child(4){top:55%;right:8%;--sz:100px;--op:0.09}
-.shard-css:nth-child(5){top:32%;left:50%;--sz:60px;--op:0.13}
-.shard-css:nth-child(6){top:70%;left:25%;--sz:75px;--op:0.10}
-.shard-css:nth-child(7){top:15%;left:62%;--sz:78px;--op:0.11}
-.shard-css:nth-child(8){top:45%;right:20%;--sz:88px;--op:0.10}
+/* ---------- CRYSTALS (static glow, roaming the page in 2D) ---------- */
+.shard-css{position:fixed;z-index:0;pointer-events:none;top:var(--top);left:var(--left);width:var(--sz);height:var(--sz);
+  background:
+    linear-gradient(140deg,rgba(255,255,255,.6),rgba(255,255,255,0) 55%),
+    radial-gradient(circle at 34% 30%,rgba(255,255,255,.95),var(--c,rgba(245,236,215,.2)) 56%,transparent 74%);
+  border:1px solid rgba(255,255,255,.22);
+  border-radius:5px;
+  transform:rotate(var(--rot,45deg));
+  box-shadow:0 0 var(--g,22px) rgba(245,236,215,.55),0 0 var(--g2,52px) rgba(245,236,215,.18),inset 0 0 16px rgba(255,255,255,.25);
+  filter:drop-shadow(0 0 12px var(--cd,rgba(245,236,215,.45)));
+  will-change:transform;
+  animation:crystalRoam var(--dur,24s) ease-in-out var(--del,-2s) infinite}
+@keyframes crystalRoam{
+  0%  {transform:translate(0,0) rotate(var(--rot,45deg)) scale(1)}
+  25% {transform:translate(var(--x1),var(--y1)) rotate(calc(var(--rot,45deg) + 7deg)) scale(1.07)}
+  50% {transform:translate(var(--x2),var(--y2)) rotate(calc(var(--rot,45deg) - 6deg)) scale(.95)}
+  75% {transform:translate(var(--x3),var(--y3)) rotate(calc(var(--rot,45deg) + 4deg)) scale(1.04)}
+  100%{transform:translate(0,0) rotate(var(--rot,45deg)) scale(1)}}
+.shard-css:nth-child(1){--top:7%;--left:6%;--sz:92px;--rot:45deg;--dur:23s;--del:-2s;
+  --c:rgba(245,236,215,.2);--cd:rgba(245,236,215,.5);--x1:20vw;--y1:14vh;--x2:34vw;--y2:-10vh;--x3:14vw;--y3:24vh}
+.shard-css:nth-child(2){--top:14%;--left:66%;--sz:74px;--rot:35deg;--dur:27s;--del:-7s;
+  --c:rgba(78,240,210,.22);--cd:rgba(78,240,210,.5);--x1:-16vw;--y1:10vh;--x2:-30vw;--y2:16vh;--x3:-10vw;--y3:-14vh}
+.shard-css:nth-child(3){--top:42%;--left:4%;--sz:84px;--rot:55deg;--dur:25s;--del:-12s;
+  --c:rgba(139,123,255,.22);--cd:rgba(139,123,255,.5);--x1:22vw;--y1:-18vh;--x2:12vw;--y2:20vh;--x3:28vw;--y3:6vh}
+.shard-css:nth-child(4){--top:52%;--left:70%;--sz:100px;--rot:45deg;--dur:29s;--del:-4s;
+  --c:rgba(255,110,199,.2);--cd:rgba(255,110,199,.46);--x1:-18vw;--y1:16vh;--x2:-32vw;--y2:-10vh;--x3:-12vw;--y3:22vh}
+.shard-css:nth-child(5){--top:28%;--left:40%;--sz:64px;--rot:45deg;--dur:21s;--del:-15s;
+  --c:rgba(255,195,110,.22);--cd:rgba(255,195,110,.5);--x1:20vw;--y1:-12vh;--x2:-16vw;--y2:14vh;--x3:12vw;--y3:-22vh}
+.shard-css:nth-child(6){--top:64%;--left:20%;--sz:76px;--rot:50deg;--dur:26s;--del:-9s;
+  --c:rgba(245,236,215,.2);--cd:rgba(245,236,215,.46);--x1:24vw;--y1:-16vh;--x2:14vw;--y2:18vh;--x3:30vw;--y3:-8vh}
+.shard-css:nth-child(7){--top:9%;--left:52%;--sz:80px;--rot:40deg;--dur:24s;--del:-18s;
+  --c:rgba(78,240,210,.22);--cd:rgba(78,240,210,.46);--x1:-20vw;--y1:18vh;--x2:14vw;--y2:-14vh;--x3:-10vw;--y3:24vh}
+.shard-css:nth-child(8){--top:46%;--left:82%;--sz:88px;--rot:48deg;--dur:28s;--del:-6s;
+  --c:rgba(139,123,255,.22);--cd:rgba(139,123,255,.46);--x1:-24vw;--y1:-14vh;--x2:-14vw;--y2:20vh;--x3:-28vw;--y3:4vh}
 @media(max-width:760px){.shard-css:nth-child(3),.shard-css:nth-child(5),.shard-css:nth-child(7){display:none}}
 
 main{position:relative;z-index:1}
@@ -180,8 +202,10 @@ section{padding:90px 0}
 .quote::after{content:'— Al-Aqmar ☾';display:block;font-size:.55em;color:var(--muted);margin-top:4px;transform:rotate(.6deg)}
 .pillars{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:48px}
 @media(max-width:680px){.pillars{grid-template-columns:1fr}}
-.pillar{border:1px solid var(--line);border-radius:var(--r);padding:34px;background:var(--glass);backdrop-filter:blur(10px);transition:transform .4s cubic-bezier(.2,.8,.2,1),border-color .4s}
-.pillar:hover{transform:translateY(-6px);border-color:rgba(78,240,210,.35)}
+.pillar{position:relative;border:1px solid rgba(255,255,255,.1);border-radius:var(--r);padding:34px;background:linear-gradient(135deg,rgba(15,18,30,.42),rgba(20,26,44,.32) 60%,rgba(10,14,26,.5));backdrop-filter:blur(16px) saturate(150%);-webkit-backdrop-filter:blur(16px) saturate(150%);box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 4px 24px rgba(0,0,0,.28);overflow:hidden;transition:transform .4s cubic-bezier(.2,.8,.2,1),border-color .4s,box-shadow .4s}
+.pillar::before{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .5s;background:radial-gradient(ellipse at var(--mx,50%) var(--my,50%),rgba(78,240,210,.16),transparent 55%)}
+.pillar:hover{transform:translateY(-6px);border-color:rgba(78,240,210,.4);box-shadow:0 16px 44px rgba(78,240,210,.14),inset 0 1px 0 rgba(255,255,255,.2)}
+.pillar:hover::before{opacity:1}
 .pillar .em{font-size:1.7rem;display:inline-block}
 .pillar .beat{animation:heartbeat 1.6s ease-in-out infinite}
 @keyframes heartbeat{0%,100%{transform:scale(1)}14%{transform:scale(1.22)}28%{transform:scale(1)}42%{transform:scale(1.18)}56%{transform:scale(1)}}
@@ -193,12 +217,28 @@ section{padding:90px 0}
 @media(max-width:980px){.grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:640px){.grid{grid-template-columns:1fr}}
 @keyframes liquidFlow{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
-.card{position:relative;border:1px solid rgba(255,255,255,.07);border-radius:var(--r);padding:32px 28px;background:linear-gradient(135deg,rgba(10,12,20,.85),rgba(15,20,35,.75),rgba(10,12,20,.85));background-size:300% 300%;animation:liquidFlow 12s ease infinite;overflow:hidden;transition:border-color .6s cubic-bezier(.4,0,.2,1),transform .6s cubic-bezier(.4,0,.2,1),box-shadow .6s;display:flex;flex-direction:column;min-height:300px;box-shadow:0 2px 20px rgba(0,0,0,.25)}
-.card::before{content:'';position:absolute;inset:0;border-radius:inherit;background:radial-gradient(ellipse at var(--mx,50%) var(--my,50%),rgba(78,240,210,.1),transparent 55%);opacity:0;transition:opacity .6s;pointer-events:none;z-index:0}
-.card::after{content:'';position:absolute;inset:-1px;border-radius:inherit;padding:1px;background:linear-gradient(135deg,transparent 30%,rgba(78,240,210,.2) 50%,transparent 70%);background-size:200% 200%;animation:liquidFlow 8s ease infinite;-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;z-index:1;opacity:0;transition:opacity .8s}
-.card:hover::before{opacity:1}
+.card{position:relative;border:1px solid rgba(255,255,255,.09);border-radius:var(--r);padding:32px 28px;
+  background:
+    radial-gradient(ellipse at var(--mx,50%) var(--my,50%),rgba(78,240,210,.18),transparent 55%),
+    linear-gradient(135deg,rgba(15,18,30,.5),rgba(20,26,44,.38) 60%,rgba(10,14,26,.55));
+  backdrop-filter:blur(18px) saturate(160%);-webkit-backdrop-filter:blur(18px) saturate(160%);
+  box-shadow:0 4px 30px rgba(0,0,0,.34),inset 0 1px 0 rgba(255,255,255,.16),inset 0 0 0 1px rgba(255,255,255,.04);
+  overflow:hidden;transition:border-color .6s cubic-bezier(.2,.8,.2,1),transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .6s;
+  display:flex;flex-direction:column;min-height:300px}
+.card::before{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:0;
+  background:
+    linear-gradient(120deg,transparent 36%,rgba(255,255,255,.16) 49%,rgba(255,255,255,.16) 53%,transparent 68%),
+    linear-gradient(135deg,rgba(255,110,199,.08),rgba(139,123,255,.11) 45%,rgba(78,240,210,.09) 75%,rgba(255,195,110,.07) 100%);
+  background-size:260% 100%,280% 280%;animation:liquidFlow 11s ease infinite;mix-blend-mode:screen;opacity:.62;transition:opacity .6s,animation-duration .6s}
+.card::after{content:'';position:absolute;inset:-1px;border-radius:inherit;padding:1px;
+  background:linear-gradient(135deg,rgba(78,240,210,.55),rgba(139,123,255,.42) 35%,rgba(255,110,199,.42) 65%,rgba(255,195,110,.5) 100%);
+  background-size:280% 280%;animation:liquidFlow 7s ease infinite;
+  -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;z-index:2;opacity:.3;transition:opacity .8s}
+.card:hover::before{opacity:1;animation-duration:5s}
 .card:hover::after{opacity:1}
-.card:hover{border-color:rgba(78,240,210,.3);transform:translateY(-6px) scale(1.015);box-shadow:0 12px 48px rgba(78,240,210,.1),0 2px 12px rgba(139,123,255,.08)}
+.card:hover{border-color:rgba(78,240,210,.38);transform:translateY(-6px) scale(1.02);
+  box-shadow:0 22px 60px rgba(78,240,210,.2),0 4px 18px rgba(139,123,255,.14),inset 0 1px 0 rgba(255,255,255,.22),inset 0 0 30px rgba(78,240,210,.06)}
 .card .em{font-size:2rem;margin-bottom:18px;display:inline-block;transition:transform .4s;position:relative;z-index:2}
 .card:hover .em{transform:scale(1.18) rotate(-6deg)}
 .card h3{font-size:1.25rem;margin-bottom:10px;position:relative;z-index:2}
@@ -215,8 +255,9 @@ section{padding:90px 0}
 /* ---------- LIBRARY ---------- */
 .books{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:54px}
 @media(max-width:760px){.books{grid-template-columns:1fr}}
-.book{position:relative;border:1px solid var(--line);border-radius:var(--r);padding:40px 34px;overflow:hidden;background:linear-gradient(150deg,rgba(139,123,255,.08),rgba(5,6,10,0) 55%);transition:transform .4s cubic-bezier(.2,.8,.2,1),border-color .4s}
-.book:hover{transform:translateY(-6px);border-color:rgba(139,123,255,.4)}
+.book{position:relative;border:1px solid rgba(255,255,255,.1);border-radius:var(--r);padding:40px 34px;overflow:hidden;background:linear-gradient(150deg,rgba(139,123,255,.1),rgba(5,6,10,.2) 55%),linear-gradient(135deg,rgba(15,18,30,.42),rgba(20,26,44,.32));backdrop-filter:blur(16px) saturate(150%);-webkit-backdrop-filter:blur(16px) saturate(150%);box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 4px 24px rgba(0,0,0,.28);transition:transform .4s cubic-bezier(.2,.8,.2,1),border-color .4s,box-shadow .4s}
+.book::before{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(120deg,transparent 38%,rgba(255,255,255,.1) 50%,transparent 62%);background-size:260% 100%;animation:liquidFlow 10s ease infinite;mix-blend-mode:screen;opacity:.5}
+.book:hover{transform:translateY(-6px);border-color:rgba(139,123,255,.45);box-shadow:0 16px 44px rgba(139,123,255,.16),inset 0 1px 0 rgba(255,255,255,.2)}
 .book .badge{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.26em;text-transform:uppercase;color:var(--pk)}
 .book h3{font-size:1.4rem;margin:14px 0 12px}
 .book p{color:var(--muted);line-height:1.7;font-size:.95rem;margin-bottom:22px}
@@ -243,7 +284,7 @@ footer .hb{display:inline-block;animation:heartbeat 1.6s ease-in-out infinite;co
   <div class="pre-moon"></div>
   <div class="boot" id="bootText">ARRIVING AT: AL-AQMAR HQ<span class="blink">_</span></div>
   <div class="loadbar"><i id="loadFill"></i></div>
-  <div class="boot-sub" id="bootSub">INITIALIZING 3D CORE…</div>
+  <div class="boot-sub" id="bootSub">AWAKENING THE CRYSTALS…</div>
 </div>
 
 <div class="cursor" id="cursor"></div>
@@ -386,7 +427,7 @@ function showToast(msg, duration = 2000) {
 
 /* ========== PRELOADER ========== */
 const fill=document.getElementById('loadFill'),sub=document.getElementById('bootSub'),pre=document.getElementById('preloader');
-const msgs=['INITIALIZING 3D CORE…','LOADING NEURAL WEBGL…','WAKING UP THE MOON ☾','CALIBRATING ELEGANCE…','HEART FIRST. ALWAYS. ♥'];
+const msgs=['AWAKENING THE CRYSTALS…','POLISHING LIQUID GLASS…','WAKING UP THE MOON ☾','CALIBRATING ELEGANCE…','HEART FIRST. ALWAYS. ♥'];
 let p=0,mi=0;
 const iv=setInterval(()=>{
   p=Math.min(100,p+Math.random()*22+8);
@@ -774,15 +815,19 @@ const co=new IntersectionObserver(es=>es.forEach(e=>{
 }),{threshold:.5});
 document.querySelectorAll('.count').forEach(el=>co.observe(el));
 
-/* ========== 3D TILT CARDS ========== */
+/* ========== 2D PARALLAX CARDS ========== */
 document.querySelectorAll('.card').forEach(card=>{
   card.addEventListener('mousemove',e=>{
     const r=card.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;
     card.style.setProperty('--mx',x+'px');card.style.setProperty('--my',y+'px');
-    const rx=((y/r.height)-.5)*-7,ry=((x/r.width)-.5)*7;
-    card.style.transform=`rotateX(${rx}deg) rotateY(${ry}deg) translateY(-4px) scale(1.02)`;
+    const px=((x/r.width)-.5)*12,py=((y/r.height)-.5)*12;
+    card.style.transform=`translate(${px}px, ${py-5}px) scale(1.02)`;
   });
   card.addEventListener('mouseleave',()=>{card.style.transform='';card.style.setProperty('--mx','50%');card.style.setProperty('--my','50%');});
+});
+document.querySelectorAll('.pillar').forEach(p=>{
+  p.addEventListener('mousemove',e=>{const r=p.getBoundingClientRect();p.style.setProperty('--mx',(e.clientX-r.left)+'px');p.style.setProperty('--my',(e.clientY-r.top)+'px');});
+  p.addEventListener('mouseleave',()=>{p.style.setProperty('--mx','50%');p.style.setProperty('--my','50%');});
 });
 
 /* ========== MARQUEE PAUSE ========== */
@@ -798,17 +843,7 @@ console.log('%cAl-Aqmar (القمر) means "The Moon". I\'m 13 and just getting 
 console.log('%cHeart First ♥ · Privacy First 🔒 · proman007power@gmail.com','color:#ff6ec7;font-size:12px;');
 console.log('%c✨ INTERACT: Click the moon · Click chips · Scroll · Click anywhere for hearts','color:#ffc36e;font-size:12px;');
 
-/* ========== SHARD CYCLE — one visible at a time ========== */
-(function(){
-  const shards = document.querySelectorAll('.shard-css');
-  let current = 0;
-  shards[0].classList.add('visible');
-  setInterval(() => {
-    shards[current].classList.remove('visible');
-    current = (current + 1) % shards.length;
-    shards[current].classList.add('visible');
-  }, 3000);
-})();
+/* ========== CRYSTALS — static glow + roaming handled purely in CSS ========== */
 </script>
 </body>
 </html>
