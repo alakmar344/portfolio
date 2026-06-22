@@ -8,7 +8,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;600&family=Caveat:wght@500;700&family=Amiri:ital@0;1&display=swap" rel="stylesheet"/>
-<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
 <style>
 :root{
   --bg:#05060a;
@@ -43,9 +42,6 @@ body{background:var(--bg);color:var(--ink);font-family:'Space Grotesk',sans-seri
 .loadbar i{position:absolute;inset:0;background:linear-gradient(90deg,var(--cy),var(--vi));transform-origin:left;transform:scaleX(0);transition:transform .25s ease}
 .boot-sub{font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--muted);letter-spacing:.25em}
 
-/* ---------- 3D CANVAS ---------- */
-#threeCanvas{position:fixed;inset:0;z-index:0;pointer-events:none}
-
 /* ---------- TOAST ---------- */
 .toast{position:fixed;bottom:30px;right:30px;background:rgba(10,12,20,.95);backdrop-filter:blur(12px);border:1px solid rgba(78,240,210,.3);border-radius:99px;padding:12px 24px;font-family:'JetBrains Mono',monospace;font-size:.8rem;color:var(--cy);z-index:1000;transform:translateX(120%);transition:transform .3s cubic-bezier(.2,.8,.2,1);pointer-events:none;box-shadow:0 8px 20px rgba(0,0,0,.3)}
 .toast.show{transform:translateX(0)}
@@ -68,6 +64,20 @@ body{background:var(--bg);color:var(--ink);font-family:'Space Grotesk',sans-seri
 .aurora b:nth-child(3){width:30vw;height:30vw;background:radial-gradient(circle,rgba(255,110,199,.16),transparent 70%);top:40%;left:55%;animation:drift1 26s ease-in-out infinite alternate-reverse}
 @keyframes drift1{to{transform:translate(9vw,7vh) scale(1.15)}}
 @keyframes drift2{to{transform:translate(-8vw,-6vh) scale(1.1)}}
+
+/* ---------- SHARDS ---------- */
+.shard-css{position:fixed;width:var(--sz);height:var(--sz);z-index:0;pointer-events:none;background:rgba(245,236,215,var(--op));transform:rotate(45deg);border:1px solid rgba(245,236,215,calc(var(--op) * 1.4));border-radius:2px;transition:opacity 1.2s ease,transform .8s ease;opacity:0}
+.shard-css.visible{opacity:0.65;transform:rotate(45deg) scale(1)}
+.shard-css:hover{opacity:1}
+.shard-css:nth-child(1){top:12%;left:8%;--sz:90px;--op:0.12}
+.shard-css:nth-child(2){top:22%;right:10%;--sz:70px;--op:0.10}
+.shard-css:nth-child(3){top:48%;left:5%;--sz:82px;--op:0.11}
+.shard-css:nth-child(4){top:55%;right:8%;--sz:100px;--op:0.09}
+.shard-css:nth-child(5){top:32%;left:50%;--sz:60px;--op:0.13}
+.shard-css:nth-child(6){top:70%;left:25%;--sz:75px;--op:0.10}
+.shard-css:nth-child(7){top:15%;left:62%;--sz:78px;--op:0.11}
+.shard-css:nth-child(8){top:45%;right:20%;--sz:88px;--op:0.10}
+@media(max-width:760px){.shard-css:nth-child(3),.shard-css:nth-child(5),.shard-css:nth-child(7){display:none}}
 
 main{position:relative;z-index:1}
 .wrap{max-width:1160px;margin:0 auto;padding:0 24px}
@@ -182,22 +192,25 @@ section{padding:90px 0}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:54px}
 @media(max-width:980px){.grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:640px){.grid{grid-template-columns:1fr}}
-.card{position:relative;border:1px solid var(--line);border-radius:var(--r);padding:32px 28px;background:var(--bg2);overflow:hidden;transform-style:preserve-3d;transition:border-color .4s,transform .2s;display:flex;flex-direction:column;min-height:300px}
-.card::before{content:'';position:absolute;inset:0;background:radial-gradient(600px circle at var(--mx,50%) var(--my,50%),rgba(78,240,210,.12),transparent 70%);opacity:0;transition:opacity .4s;pointer-events:none}
+@keyframes liquidFlow{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.card{position:relative;border:1px solid rgba(255,255,255,.07);border-radius:var(--r);padding:32px 28px;background:linear-gradient(135deg,rgba(10,12,20,.85),rgba(15,20,35,.75),rgba(10,12,20,.85));background-size:300% 300%;animation:liquidFlow 12s ease infinite;overflow:hidden;transition:border-color .6s cubic-bezier(.4,0,.2,1),transform .6s cubic-bezier(.4,0,.2,1),box-shadow .6s;display:flex;flex-direction:column;min-height:300px;box-shadow:0 2px 20px rgba(0,0,0,.25)}
+.card::before{content:'';position:absolute;inset:0;border-radius:inherit;background:radial-gradient(ellipse at var(--mx,50%) var(--my,50%),rgba(78,240,210,.1),transparent 55%);opacity:0;transition:opacity .6s;pointer-events:none;z-index:0}
+.card::after{content:'';position:absolute;inset:-1px;border-radius:inherit;padding:1px;background:linear-gradient(135deg,transparent 30%,rgba(78,240,210,.2) 50%,transparent 70%);background-size:200% 200%;animation:liquidFlow 8s ease infinite;-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;z-index:1;opacity:0;transition:opacity .8s}
 .card:hover::before{opacity:1}
-.card:hover{border-color:rgba(78,240,210,.4);transform:scale(1.01)}
-.card .em{font-size:2rem;margin-bottom:18px;display:inline-block;transition:transform .4s}
+.card:hover::after{opacity:1}
+.card:hover{border-color:rgba(78,240,210,.3);transform:translateY(-6px) scale(1.015);box-shadow:0 12px 48px rgba(78,240,210,.1),0 2px 12px rgba(139,123,255,.08)}
+.card .em{font-size:2rem;margin-bottom:18px;display:inline-block;transition:transform .4s;position:relative;z-index:2}
 .card:hover .em{transform:scale(1.18) rotate(-6deg)}
-.card h3{font-size:1.25rem;margin-bottom:10px}
-.card p{color:var(--muted);font-size:.92rem;line-height:1.65;flex:1}
-.chips{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}
-.chip{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;padding:5px 12px;border-radius:99px;border:1px solid var(--line);color:var(--cy);background:rgba(78,240,210,.05);cursor:pointer;transition:all .2s}
-.chip:hover{background:rgba(78,240,210,.15);border-color:var(--cy);transform:translateY(-1px)}
-.launch{font-weight:600;font-size:.88rem;color:var(--ink);text-decoration:none;display:inline-flex;align-items:center;gap:8px;width:fit-content}
+.card h3{font-size:1.25rem;margin-bottom:10px;position:relative;z-index:2}
+.card p{color:var(--muted);font-size:.92rem;line-height:1.65;flex:1;position:relative;z-index:2}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0;position:relative;z-index:2}
+.chip{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;padding:5px 12px;border-radius:99px;border:1px solid rgba(255,255,255,.12);color:var(--cy);background:rgba(78,240,210,.06);cursor:pointer;transition:all .2s}
+.chip:hover{background:rgba(78,240,210,.18);border-color:var(--cy);transform:translateY(-1px)}
+.launch{font-weight:600;font-size:.88rem;color:var(--ink);text-decoration:none;display:inline-flex;align-items:center;gap:8px;width:fit-content;position:relative;z-index:2}
 .launch i{transition:transform .3s;font-style:normal;color:var(--cy)}
 .launch:hover i{transform:translateX(6px)}
-.flag{position:absolute;top:18px;right:18px;font-family:'JetBrains Mono',monospace;font-size:.56rem;letter-spacing:.2em;color:var(--am);border:1px solid rgba(255,195,110,.3);padding:4px 10px;border-radius:99px;background:rgba(255,195,110,.06)}
-.mvp{position:absolute;top:18px;right:18px;font-family:'JetBrains Mono',monospace;font-size:.56rem;letter-spacing:.2em;color:var(--cy);border:1px solid rgba(78,240,210,.3);padding:4px 10px;border-radius:99px;background:rgba(78,240,210,.06)}
+.flag{position:absolute;top:18px;right:18px;font-family:'JetBrains Mono',monospace;font-size:.56rem;letter-spacing:.2em;color:var(--am);border:1px solid rgba(255,195,110,.3);padding:4px 10px;border-radius:99px;background:rgba(255,195,110,.06);z-index:2}
+.mvp{position:absolute;top:18px;right:18px;font-family:'JetBrains Mono',monospace;font-size:.56rem;letter-spacing:.2em;color:var(--cy);border:1px solid rgba(78,240,210,.3);padding:4px 10px;border-radius:99px;background:rgba(78,240,210,.06);z-index:2}
 
 /* ---------- LIBRARY ---------- */
 .books{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:54px}
@@ -236,8 +249,8 @@ footer .hb{display:inline-block;animation:heartbeat 1.6s ease-in-out infinite;co
 <div class="cursor" id="cursor"></div>
 <div class="cursor-dot" id="cursorDot"></div>
 <canvas id="stars"></canvas>
-<canvas id="threeCanvas"></canvas>
 <div class="aurora"><b></b><b></b><b></b></div>
+<div class="shard-css"></div><div class="shard-css"></div><div class="shard-css"></div><div class="shard-css"></div><div class="shard-css"></div><div class="shard-css"></div><div class="shard-css"></div><div class="shard-css"></div>
 
 <nav>
   <div class="navin">
@@ -767,7 +780,7 @@ document.querySelectorAll('.card').forEach(card=>{
     const r=card.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;
     card.style.setProperty('--mx',x+'px');card.style.setProperty('--my',y+'px');
     const rx=((y/r.height)-.5)*-7,ry=((x/r.width)-.5)*7;
-    card.style.transform=`perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-4px) scale(1.01)`;
+    card.style.transform=`rotateX(${rx}deg) rotateY(${ry}deg) translateY(-4px) scale(1.02)`;
   });
   card.addEventListener('mouseleave',()=>{card.style.transform='';card.style.setProperty('--mx','50%');card.style.setProperty('--my','50%');});
 });
@@ -785,95 +798,16 @@ console.log('%cAl-Aqmar (القمر) means "The Moon". I\'m 13 and just getting 
 console.log('%cHeart First ♥ · Privacy First 🔒 · proman007power@gmail.com','color:#ff6ec7;font-size:12px;');
 console.log('%c✨ INTERACT: Click the moon · Click chips · Scroll · Click anywhere for hearts','color:#ffc36e;font-size:12px;');
 
-/* ================================================================
-   3D SCENE — SINGLE ELEGANT MOON WITH ORBITAL RINGS
-   ================================================================ */
+/* ========== SHARD CYCLE — one visible at a time ========== */
 (function(){
-  const threeCanvas = document.getElementById('threeCanvas');
-  const renderer = new THREE.WebGLRenderer({ canvas: threeCanvas, alpha: true, antialias: false, powerPreference: 'low-power' });
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setPixelRatio(1);
-
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.5, 60);
-  camera.position.set(0, 1.5, 16);
-  camera.lookAt(0, 0, 0);
-
-  scene.add(new THREE.AmbientLight(0x222244, 0.9));
-  const sunLight = new THREE.DirectionalLight(0xf5ecd7, 2.0);
-  sunLight.position.set(5, 6, 10);
-  scene.add(sunLight);
-
-  const moonLight = new THREE.PointLight(0xf5ecd7, 12, 20);
-  moonLight.position.set(6, 5, -2);
-  scene.add(moonLight);
-
-  const moonGeo = new THREE.SphereGeometry(2.8, 36, 36);
-  const moonMat = new THREE.MeshPhongMaterial({
-    color: 0xf5ecd7, shininess: 15,
-    emissive: 0xf5ecd7, emissiveIntensity: 0.15,
-    specular: 0x444444,
-  });
-  const grandMoon = new THREE.Mesh(moonGeo, moonMat);
-  grandMoon.position.set(6, 4.5, -4);
-  scene.add(grandMoon);
-
-  const glowGeo = new THREE.SphereGeometry(3.3, 24, 24);
-  const glowMat = new THREE.MeshBasicMaterial({ color: 0xf5ecd7, transparent: true, opacity: 0.1, depthWrite: false });
-  const glowShell = new THREE.Mesh(glowGeo, glowMat);
-  grandMoon.add(glowShell);
-
-  const ring1 = new THREE.Mesh(
-    new THREE.TorusGeometry(3.5, 0.06, 16, 80),
-    new THREE.MeshBasicMaterial({ color: 0x4ef0d2, transparent: true, opacity: 0.45 })
-  );
-  ring1.rotation.x = Math.PI * 0.38;
-  ring1.rotation.y = Math.PI * 0.15;
-  grandMoon.add(ring1);
-
-  const ring2 = new THREE.Mesh(
-    new THREE.TorusGeometry(3.9, 0.05, 16, 80),
-    new THREE.MeshBasicMaterial({ color: 0x8b7bff, transparent: true, opacity: 0.35 })
-  );
-  ring2.rotation.x = Math.PI * 0.55;
-  ring2.rotation.y = -Math.PI * 0.2;
-  grandMoon.add(ring2);
-
-  const orbDots = [];
-  for (let i = 0; i < 8; i++) {
-    const dot = new THREE.Mesh(
-      new THREE.SphereGeometry(0.08, 6, 6),
-      new THREE.MeshBasicMaterial({ color: 0xf5ecd7 })
-    );
-    dot.userData = { a: (i/8)*Math.PI*2, r: 3.3 + Math.random()*0.5, s: 0.25 + Math.random()*0.3 };
-    grandMoon.add(dot);
-    orbDots.push(dot);
-  }
-
-  window.addEventListener('resize', () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-  });
-
-  const clock = new THREE.Clock();
-  function animate3D() {
-    requestAnimationFrame(animate3D);
-    const dt = Math.min(clock.getDelta(), 0.1);
-    grandMoon.rotation.y += 0.08 * dt;
-    ring1.rotation.z += 0.1 * dt;
-    ring2.rotation.z -= 0.07 * dt;
-    for (const dot of orbDots) {
-      dot.userData.a += dot.userData.s * dt;
-      const a = dot.userData.a, r = dot.userData.r;
-      dot.position.x = Math.cos(a) * r;
-      dot.position.z = Math.sin(a) * r;
-      dot.position.y = Math.sin(a * 2) * 0.3;
-    }
-    moonLight.intensity = 12 + Math.sin(performance.now()*0.001) * 2;
-    renderer.render(scene, camera);
-  }
-  animate3D();
+  const shards = document.querySelectorAll('.shard-css');
+  let current = 0;
+  shards[0].classList.add('visible');
+  setInterval(() => {
+    shards[current].classList.remove('visible');
+    current = (current + 1) % shards.length;
+    shards[current].classList.add('visible');
+  }, 3000);
 })();
 </script>
 </body>
