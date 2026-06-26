@@ -1,0 +1,10 @@
+# robots.txt for Al-Aqmar Portfolio
+
+User-agent: *
+Allow: /
+
+Disallow: /private/
+Disallow: /.git/
+
+# Sitemap
+Sitemap: https://alakmar344.github.io/portfolio/sitemap.xml
