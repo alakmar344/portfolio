@@ -41,7 +41,6 @@
   --moon:#f5ecd7;
   --glass:rgba(255,255,255,.04);
   --r:14px;
-  --card-bg:linear-gradient(160deg,rgba(22,25,56,.7),rgba(16,18,40,.6));
   --accent:var(--indigo);
 }
 *{margin:0;padding:0;box-sizing:border-box}
@@ -91,7 +90,17 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;backdrop-filter:blur(16px);b
 .navlinks{display:flex;gap:6px}
 .navlinks a{color:var(--muted);text-decoration:none;font-size:.82rem;letter-spacing:.02em;padding:6px 14px;border-radius:8px;transition:all .2s;font-weight:500}
 .navlinks a:hover{color:var(--ink);background:rgba(108,92,231,.1)}
-@media(max-width:680px){.navlinks{display:none}}
+.hamburger{display:none;background:none;border:none;padding:6px;cursor:pointer;flex-direction:column;gap:5px}
+.hamburger span{display:block;width:22px;height:2px;background:var(--ink);border-radius:2px;transition:all .25s}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+@media(max-width:680px){
+  .navlinks{display:none;position:absolute;top:100%;left:0;right:0;background:rgba(10,11,26,.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);padding:12px 24px;flex-direction:column;gap:4px}
+  .navlinks.show{display:flex}
+  .navlinks a{padding:10px 14px;border-radius:8px}
+  .hamburger{display:flex}
+}
 
 .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:120px 0 50px;position:relative}
 .arabic-bg{position:absolute;right:-2%;top:50%;transform:translateY(-50%);font-family:'Amiri',serif;font-size:clamp(7rem,22vw,18rem);color:rgba(245,236,215,.03);pointer-events:none;user-select:none;line-height:1;z-index:-1}
@@ -245,13 +254,16 @@ footer .hb{display:inline-block;animation:heartbeat 1.6s ease-in-out infinite;co
 <nav role="navigation" aria-label="Main navigation">
   <div class="navin">
     <a class="logo hoverable" href="#top">☾ AL-AQMAR<span class="dot">.</span></a>
-    <div class="navlinks">
+    <div class="navlinks" id="navLinks">
       <a class="hoverable" href="#philosophy">Philosophy</a>
       <a class="hoverable" href="#portfolio">Portfolio</a>
       <a class="hoverable" href="#library">Library</a>
       <a class="hoverable" href="#downloads">Download</a>
       <a class="hoverable" href="#contact">Contact</a>
     </div>
+    <button class="hamburger hoverable" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
 
@@ -796,6 +808,21 @@ const marqueeObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => { if(entry.isIntersecting) marquee.classList.remove('pause'); else marquee.classList.add('pause'); });
 }, { threshold: 0.1 });
 marqueeObserver.observe(marquee);
+
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+hamburger.addEventListener('click', () => {
+  const open = navLinks.classList.toggle('show');
+  hamburger.classList.toggle('open');
+  hamburger.setAttribute('aria-expanded', open);
+});
+navLinks.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => {
+    navLinks.classList.remove('show');
+    hamburger.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+  });
+});
 
 console.log('%c☾  Welcome to AL-AQMAR HQ','color:#6c5ce7;font-size:18px;font-weight:bold;');
 console.log('%cAl-Aqmar (القمر) means "The Moon". I\'m 13 and just getting started.','color:#ff6b6b;font-size:12px;');
