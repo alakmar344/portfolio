@@ -1,522 +1,1304 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" class="dark">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Al-Aqmar Tinwala — AI Architect & Full-Stack Developer</title>
-<meta name="description" content="Al-Aqmar Tinwala is an AI architect and full-stack developer. 9 live products serving 3,000+ users. Published author. Privacy-first engineering. Explore the portfolio, projects, and publications."/>
-<meta name="keywords" content="Al-Aqmar Tinwala, AI architect, full-stack developer, eSAMz AI, privacy-first AI, Rust, Next.js, India AI"/>
-<meta name="author" content="Al-Aqmar Tinwala"/>
-<meta name="robots" content="index, follow"/>
-<link rel="canonical" href="https://esamz.info/"/>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='85'>☾</text></svg>"/>
-<meta property="og:type" content="website"/>
-<meta property="og:title" content="Al-Aqmar Tinwala — AI Architect & Full-Stack Developer"/>
-<meta property="og:description" content="AI architect and full-stack developer. 9 live products. 3,000+ users. Published author. Privacy-first engineering."/>
-<meta property="og:url" content="https://esamz.info/"/>
-<meta property="og:site_name" content="Al-Aqmar Tinwala"/>
-<meta property="og:locale" content="en_US"/>
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="Al-Aqmar Tinwala — AI Architect"/>
-<meta name="twitter:description" content="9 live products. 3,000+ users. Published author. Privacy-first engineering."/>
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Person","name":"Al-Aqmar Tinwala","url":"https://esamz.info/","email":"proman007power@gmail.com","jobTitle":"AI Architect & Full-Stack Developer","description":"AI architect and full-stack developer building privacy-first systems. 9 live products serving 3,000+ users.","sameAs":["https://github.com/alakmar344","https://www.linkedin.com/in/alakmar-teenwala-054067393","https://instagram.com/its_alakmar7"],"knowsAbout":["Artificial Intelligence","Rust","Next.js","Full-Stack Development","Privacy Engineering"]}
-</script>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
-<style>
-:root{
-  --bg:#08090f;
-  --bg2:#0d0f17;
-  --bg3:#11131d;
-  --ink:#e7e9f2;
-  --ink-soft:#b8bcd0;
-  --muted:#6b7088;
-  --line:rgba(255,255,255,.07);
-  --line-soft:rgba(255,255,255,.04);
-  --accent:#5b8cff;
-  --accent-2:#7c5cff;
-  --teal:#3ddc97;
-  --r:16px;
-  --maxw:1180px;
-}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{
-  background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;
-  overflow-x:hidden;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
-  line-height:1.6;
-}
-::selection{background:rgba(91,140,255,.3);color:#fff}
-a{color:inherit}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Al-Aqmar Tinwala — AI Architect & Developer</title>
+  <meta name="description" content="Al-Aqmar Tinwala is a 13-year-old AI architect and full-stack developer. Built 9 live products serving 3,000+ users. Published author ×2. Privacy-first." />
+  <meta name="keywords" content="Al-Aqmar Tinwala, AI architect, full-stack developer, eSAMz AI, privacy-first AI, Rust, Next.js, India AI" />
+  <meta name="author" content="Al-Aqmar Tinwala" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://esamz.info/" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='85'>☽</text></svg>" />
 
-/* Ambient background */
-.bg-grid{position:fixed;inset:0;z-index:0;pointer-events:none;
-  background-image:
-    linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
-  background-size:64px 64px;
-  mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,#000 30%,transparent 80%);
-  -webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,#000 30%,transparent 80%);
-}
-.bg-glow{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-.bg-glow::before,.bg-glow::after{content:'';position:absolute;border-radius:50%;filter:blur(120px);opacity:.35}
-.bg-glow::before{width:50vw;height:50vw;top:-15%;left:-10%;background:radial-gradient(circle,#5b8cff,transparent 70%);animation:drift 24s ease-in-out infinite alternate}
-.bg-glow::after{width:45vw;height:45vw;bottom:-15%;right:-10%;background:radial-gradient(circle,#7c5cff,transparent 70%);animation:drift 30s ease-in-out infinite alternate-reverse}
-@keyframes drift{to{transform:translate(6vw,4vh)}}
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Al-Aqmar Tinwala — AI Architect & Developer" />
+  <meta property="og:description" content="13-year-old AI architect. 9 live products serving 3,000+ users. Published author ×2." />
+  <meta property="og:url" content="https://esamz.info/" />
+  <meta property="og:site_name" content="Al-Aqmar Tinwala" />
+  <meta property="og:locale" content="en_US" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Al-Aqmar Tinwala — AI Architect" />
+  <meta name="twitter:description" content="9 live products. 3,000+ users. Published author. Privacy-first engineering." />
 
-main{position:relative;z-index:1}
-.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+  <!-- Structured Schema.org Metadata -->
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Person","name":"Al-Aqmar Tinwala","url":"https://esamz.info/","email":"proman007power@gmail.com","jobTitle":"AI Architect & Full-Stack Developer","description":"AI architect and full-stack developer building privacy-first systems. 9 live products serving 3,000+ users.","sameAs":["https://github.com/alakmar344","https://www.linkedin.com/in/alakmar-teenwala-054067393","https://instagram.com/its_alakmar7"],"knowsAbout":["Artificial Intelligence","Rust","Next.js","Full-Stack Development","Privacy Engineering"]}
+  </script>
 
-/* Nav */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
-  background:rgba(8,9,15,.65);border-bottom:1px solid var(--line-soft);transition:background .3s}
-.navin{max-width:var(--maxw);margin:0 auto;padding:16px 28px;display:flex;align-items:center;justify-content:space-between}
-.logo{font-family:'Space Grotesk',sans-serif;font-weight:600;letter-spacing:-.01em;font-size:1rem;color:var(--ink);text-decoration:none;display:inline-flex;align-items:center;gap:9px}
-.logo .mark{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:grid;place-items:center;font-size:.8rem;color:#fff;box-shadow:0 4px 14px rgba(91,140,255,.4)}
-.navlinks{display:flex;gap:2px}
-.navlinks a{color:var(--ink-soft);text-decoration:none;font-size:.86rem;padding:8px 14px;border-radius:8px;transition:all .2s;font-weight:450}
-.navlinks a:hover{color:var(--ink);background:rgba(255,255,255,.05)}
-.nav-cta{display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border-radius:9px;background:var(--ink);color:var(--bg);text-decoration:none;font-size:.84rem;font-weight:600;transition:transform .2s,box-shadow .2s}
-.nav-cta:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(231,233,242,.15)}
-.hamburger{display:none;background:none;border:none;padding:6px;cursor:pointer;flex-direction:column;gap:5px}
-.hamburger span{display:block;width:22px;height:2px;background:var(--ink);border-radius:2px;transition:all .25s}
-.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
-.hamburger.open span:nth-child(2){opacity:0}
-.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
-@media(max-width:820px){
-  .navlinks,.nav-cta{display:none;position:absolute;top:100%;left:0;right:0;background:rgba(8,9,15,.97);backdrop-filter:blur(18px);border-bottom:1px solid var(--line);padding:14px 28px;flex-direction:column;gap:2px;align-items:stretch}
-  .navlinks.show,.nav-cta.show{display:flex}
-  .navlinks a{padding:12px 14px;font-size:.95rem}
-  .nav-cta{margin-top:6px;justify-content:center}
-  .hamburger{display:flex}
-}
+  <!-- Google Fonts: Plus Jakarta Sans, Instrument Serif, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
-/* Hero */
-.hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:120px 0 80px;overflow:hidden}
-.hero-canvas{position:absolute;inset:0;z-index:0;pointer-events:none}
-.hero-inner{position:relative;z-index:2;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;width:100%}
-@media(max-width:900px){.hero-inner{grid-template-columns:1fr;gap:20px}.hero-canvas{opacity:.5}}
-.tag{display:inline-flex;align-items:center;gap:9px;font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);
-  border:1px solid rgba(91,140,255,.25);padding:7px 14px;border-radius:100px;background:rgba(91,140,255,.06);width:fit-content}
-.tag .dot{width:6px;height:6px;border-radius:50%;background:var(--teal);box-shadow:0 0 8px var(--teal);animation:pulse 2s ease infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(2.6rem,6.5vw,5rem);line-height:1.02;font-weight:700;letter-spacing:-.035em;margin:22px 0 18px}
-h1 .grad{background:linear-gradient(110deg,var(--accent) 0%,var(--accent-2) 50%,var(--teal) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
-.hero-sub{font-size:clamp(1rem,2vw,1.18rem);color:var(--ink-soft);max-width:540px;line-height:1.65;font-weight:400}
-.hero-sub strong{color:var(--ink);font-weight:600}
-.hero-meta{display:flex;gap:28px;margin-top:30px;flex-wrap:wrap}
-.hero-meta div{font-family:'JetBrains Mono',monospace}
-.hero-meta b{display:block;font-family:'Space Grotesk',sans-serif;font-size:1.5rem;font-weight:600;color:var(--ink)}
-.hero-meta span{font-size:.72rem;color:var(--muted);letter-spacing:.05em}
-.cta{display:flex;gap:12px;margin-top:36px;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:11px;text-decoration:none;font-weight:600;font-size:.9rem;transition:transform .2s,box-shadow .2s,border-color .2s;font-family:'Inter',sans-serif;cursor:pointer;border:none}
-.btn:hover{transform:translateY(-2px)}
-.btn-p{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff}
-.btn-p:hover{box-shadow:0 12px 32px rgba(91,140,255,.35)}
-.btn-g{border:1px solid var(--line);color:var(--ink);background:rgba(255,255,255,.02)}
-.btn-g:hover{border-color:rgba(91,140,255,.4);background:rgba(255,255,255,.05)}
+  <style>
+    :root {
+      --bg: #090a0d;
+      --surface: #111319;
+      --surface-elevated: #171a23;
+      --surface-border: rgba(255, 255, 255, 0.08);
+      --surface-border-hover: rgba(224, 122, 95, 0.35);
+      
+      --text: #f8fafc;
+      --text-muted: #8e99ac;
+      --text-dim: #5c667a;
+      
+      --accent: #e07a5f;
+      --accent-light: #f4a261;
+      --accent-glow: rgba(224, 122, 95, 0.12);
+      --success: #10b981;
+      --azure: #38bdf8;
 
-/* Marquee */
-.marquee{border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);padding:18px 0;overflow:hidden;white-space:nowrap;background:rgba(91,140,255,.015)}
-.track{display:inline-flex;gap:0;animation:scroll 32s linear infinite;padding-right:50px}
-.marquee.pause .track{animation-play-state:paused}
-.track span{font-family:'JetBrains Mono',monospace;font-size:.78rem;letter-spacing:.08em;color:var(--ink-soft);display:inline-flex;align-items:center;padding-right:50px}
-.track span::after{content:'';display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--accent);margin-left:50px;opacity:.5}
-@keyframes scroll{to{transform:translateX(-50%)}}
+      --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-serif: 'Instrument Serif', Georgia, serif;
+      --font-mono: 'JetBrains Mono', monospace;
 
-/* Stats */
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:80px 0}
-.stat{background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);padding:30px 24px;transition:border-color .3s,transform .3s,box-shadow .3s}
-.stat:hover{border-color:rgba(91,140,255,.3);transform:translateY(-3px);box-shadow:0 12px 32px rgba(91,140,255,.08)}
-.stat b{display:block;font-family:'Space Grotesk',sans-serif;font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:700;letter-spacing:-.02em;color:var(--ink)}
-.stat small{display:block;margin-top:8px;color:var(--muted);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;font-family:'JetBrains Mono',monospace}
-@media(max-width:760px){.stats{grid-template-columns:repeat(2,1fr);margin:60px 0}}
+      --max-w: 1200px;
+      --radius: 12px;
+      --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
 
-/* Sections */
-section{padding:90px 0}
-.section-head{margin-bottom:48px;max-width:680px}
-.kicker{font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;display:inline-flex;align-items:center;gap:10px}
-.kicker::before{content:'';width:24px;height:1px;background:var(--accent)}
-.h2{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.9rem,4.5vw,3rem);font-weight:700;letter-spacing:-.028em;line-height:1.1}
-.lead{margin-top:18px;color:var(--ink-soft);font-size:1.05rem;line-height:1.75;font-weight:400}
-.lead strong{color:var(--ink);font-weight:600}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-/* Philosophy */
-.pillars{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:36px}
-@media(max-width:680px){.pillars{grid-template-columns:1fr}}
-.pillar{position:relative;border:1px solid var(--line);border-radius:var(--r);padding:30px;background:var(--bg2);overflow:hidden;transition:transform .3s,border-color .3s}
-.pillar:hover{transform:translateY(-3px);border-color:rgba(91,140,255,.3)}
-.pillar .ic{width:42px;height:42px;border-radius:11px;background:rgba(91,140,255,.1);display:grid;place-items:center;margin-bottom:16px;color:var(--accent);font-size:1.2rem}
-.pillar h3{font-family:'Space Grotesk',sans-serif;margin-bottom:8px;font-size:1.15rem;font-weight:600}
-.pillar p{color:var(--ink-soft);line-height:1.65;font-size:.92rem}
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-main);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
 
-/* Portfolio — 3D tilt cards */
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px}
-@media(max-width:980px){.grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:640px){.grid{grid-template-columns:1fr}}
-.card{
-  position:relative;border:1px solid var(--line);border-radius:var(--r);padding:28px 24px;
-  background:linear-gradient(160deg,var(--bg2),var(--bg3));
-  overflow:hidden;display:flex;flex-direction:column;min-height:280px;
-  transform-style:preserve-3d;transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .3s,border-color .3s;
-  will-change:transform;
-}
-.card:hover{box-shadow:0 24px 60px rgba(0,0,0,.4);border-color:rgba(91,140,255,.3)}
-.card .card-shine{position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(circle at var(--mx,50%) var(--my,0%),rgba(91,140,255,.12),transparent 55%);opacity:0;transition:opacity .3s}
-.card:hover .card-shine{opacity:1}
-.card .ic{width:46px;height:46px;border-radius:12px;background:rgba(91,140,255,.1);display:grid;place-items:center;font-size:1.4rem;margin-bottom:16px;transform:translateZ(40px)}
-.card h3{font-family:'Space Grotesk',sans-serif;font-size:1.2rem;margin-bottom:9px;font-weight:600;transform:translateZ(28px)}
-.card p{color:var(--ink-soft);font-size:.88rem;line-height:1.6;flex:1;transform:translateZ(20px)}
-.chips{display:flex;gap:6px;flex-wrap:wrap;margin:16px 0 14px;transform:translateZ(18px)}
-.chip{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.06em;padding:4px 9px;border-radius:6px;border:1px solid rgba(91,140,255,.2);color:var(--accent);background:rgba(91,140,255,.05)}
-.launch{font-weight:600;font-size:.85rem;color:var(--ink);text-decoration:none;display:inline-flex;align-items:center;gap:6px;width:fit-content;transform:translateZ(30px);transition:gap .2s}
-.launch:hover{gap:11px}
-.launch i{font-style:normal;color:var(--accent)}
-.flag{position:absolute;top:16px;right:16px;font-family:'JetBrains Mono',monospace;font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);border:1px solid rgba(91,140,255,.25);padding:4px 9px;border-radius:6px;background:rgba(91,140,255,.08)}
-.tag-mvp{position:absolute;top:16px;right:16px;font-family:'JetBrains Mono',monospace;font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);border:1px solid rgba(61,220,151,.25);padding:4px 9px;border-radius:6px;background:rgba(61,220,151,.06)}
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.6;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(224, 122, 95, 0.05) 0%, transparent 60%),
+        linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 100% 100%, 64px 64px, 64px 64px;
+    }
 
-/* Library */
-.books{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:40px}
-@media(max-width:760px){.books{grid-template-columns:1fr}}
-.book{position:relative;border:1px solid var(--line);border-radius:var(--r);padding:32px 28px;overflow:hidden;background:var(--bg2);transition:transform .3s,border-color .3s}
-.book:hover{transform:translateY(-3px);border-color:rgba(91,140,255,.3)}
-.book .badge{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
-.book h3{font-family:'Space Grotesk',sans-serif;font-size:1.3rem;margin:12px 0 10px;font-weight:600}
-.book p{color:var(--ink-soft);line-height:1.7;font-size:.92rem;margin-bottom:20px}
+    /* Architectural Grid Layout Container */
+    .container {
+      width: 100%;
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
 
-/* Contact */
-.contact{text-align:center;padding:110px 0}
-.contact .h2{font-size:clamp(2.1rem,5.5vw,3.6rem)}
-.links{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:36px}
-.linkpill{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--line);border-radius:11px;padding:12px 20px;color:var(--ink);text-decoration:none;font-size:.88rem;background:var(--bg2);transition:transform .2s,border-color .2s,box-shadow .2s;font-weight:500}
-.linkpill:hover{transform:translateY(-2px);border-color:rgba(91,140,255,.35);box-shadow:0 10px 28px rgba(91,140,255,.1)}
+    /* Top Sticky Navigation */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(9, 10, 13, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--surface-border);
+    }
 
-footer{border-top:1px solid var(--line);padding:30px 28px;text-align:center;color:var(--muted);font-size:.78rem;font-family:'JetBrains Mono',monospace;letter-spacing:.04em}
-footer span{color:var(--ink-soft)}
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
 
-/* Reveal */
-.rv{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1)}
-.rv.in{opacity:1;transform:none}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
-</style>
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .brand-symbol {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      background: var(--surface-elevated);
+      border: 1px solid var(--surface-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      color: var(--accent);
+      transition: var(--transition);
+    }
+
+    .brand:hover .brand-symbol {
+      border-color: var(--accent);
+      transform: rotate(-6deg) scale(1.05);
+    }
+
+    .brand-text {
+      font-weight: 700;
+      font-size: 1.05rem;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-tag {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      padding: 2px 8px;
+      border-radius: 999px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .nav-status {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--success);
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid rgba(16, 185, 129, 0.2);
+      padding: 6px 14px;
+      border-radius: 999px;
+    }
+
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--success);
+      box-shadow: 0 0 8px var(--success);
+    }
+
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: 1px solid var(--surface-border);
+      color: var(--text);
+      padding: 8px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 100px 0 60px;
+      position: relative;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--accent);
+      background: var(--accent-glow);
+      border: 1px solid rgba(224, 122, 95, 0.25);
+      padding: 6px 16px;
+      border-radius: 999px;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 5vw, 4.2rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 .serif-accent {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-weight: 400;
+      color: var(--accent-light);
+    }
+
+    .hero-desc {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 580px;
+      margin-bottom: 36px;
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: var(--transition);
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
+      box-shadow: 0 4px 20px rgba(224, 122, 95, 0.25);
+    }
+
+    .btn-primary:hover {
+      background: #d0694e;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(224, 122, 95, 0.35);
+    }
+
+    .btn-secondary {
+      background: var(--surface-elevated);
+      color: var(--text);
+      border-color: var(--surface-border);
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+      background: #1e222e;
+    }
+
+    /* Terminal Card (Hero Right Side) */
+    .hero-terminal {
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+
+    .terminal-header {
+      background: var(--surface-elevated);
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--surface-border);
+    }
+
+    .terminal-dots {
+      display: flex;
+      gap: 8px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .terminal-title {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .terminal-body {
+      padding: 24px;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+
+    .terminal-line {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .terminal-prompt {
+      color: var(--accent);
+      user-select: none;
+    }
+
+    .terminal-val {
+      color: var(--text);
+    }
+
+    .terminal-highlight {
+      color: var(--azure);
+    }
+
+    /* Stats Bar */
+    .stats-bar {
+      border-top: 1px solid var(--surface-border);
+      border-bottom: 1px solid var(--surface-border);
+      background: rgba(17, 19, 25, 0.5);
+      margin: 40px 0 80px;
+      padding: 32px 0;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .stat-card {
+      text-align: center;
+      padding: 0 16px;
+      border-right: 1px solid var(--surface-border);
+    }
+
+    .stat-card:last-child {
+      border-right: none;
+    }
+
+    .stat-num {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stat-num span {
+      color: var(--accent);
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Section Header */
+    .section-header {
+      margin-bottom: 40px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .section-title-wrap {
+      max-width: 540px;
+    }
+
+    .section-tag {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .section-title .serif-accent {
+      font-family: var(--font-serif);
+      font-weight: 400;
+      font-style: italic;
+      color: var(--accent-light);
+    }
+
+    /* Filter Controls */
+    .filter-tabs {
+      display: flex;
+      gap: 8px;
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      padding: 4px;
+      border-radius: 8px;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    .filter-tab {
+      padding: 8px 18px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: none;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .filter-tab.active, .filter-tab:hover {
+      color: var(--text);
+      background: var(--surface-elevated);
+    }
+
+    .filter-tab.active {
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      border: 1px solid var(--surface-border);
+    }
+
+    /* Product Grid */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 100px;
+    }
+
+    .product-card {
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      border-radius: var(--radius);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .product-card:hover {
+      border-color: var(--surface-border-hover);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 32px rgba(0,0,0,0.3);
+    }
+
+    .product-card.flagship {
+      grid-column: span 2;
+      background: linear-gradient(135deg, var(--surface) 0%, rgba(224, 122, 95, 0.05) 100%);
+      border-color: rgba(224, 122, 95, 0.3);
+    }
+
+    .product-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .product-badge {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--accent);
+      background: var(--accent-glow);
+      border: 1px solid rgba(224, 122, 95, 0.2);
+      padding: 3px 10px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .product-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .product-desc {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+
+    .tech-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .tech-tag {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      background: var(--surface-elevated);
+      border: 1px solid var(--surface-border);
+      padding: 3px 9px;
+      border-radius: 4px;
+    }
+
+    .product-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text);
+      text-decoration: none;
+      transition: var(--transition);
+      margin-top: auto;
+    }
+
+    .product-link:hover {
+      color: var(--accent);
+      gap: 10px;
+    }
+
+    /* Library / Publications */
+    .publications-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+      margin-bottom: 100px;
+    }
+
+    .book-card {
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      border-radius: var(--radius);
+      padding: 36px;
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+      transition: var(--transition);
+    }
+
+    .book-card:hover {
+      border-color: var(--surface-border-hover);
+      transform: translateY(-4px);
+    }
+
+    .book-icon {
+      width: 64px;
+      height: 80px;
+      background: var(--surface-elevated);
+      border: 1px solid var(--surface-border);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      color: var(--accent);
+      flex-shrink: 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    .book-info h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .book-tag {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--azure);
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .book-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    /* Principles & Architecture Section */
+    .principles-section {
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      border-radius: var(--radius);
+      padding: 48px;
+      margin-bottom: 100px;
+    }
+
+    .principles-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px;
+    }
+
+    .principle-item {
+      display: flex;
+      gap: 20px;
+    }
+
+    .principle-num {
+      font-family: var(--font-serif);
+      font-size: 2.2rem;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .principle-content h4 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .principle-content p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+    }
+
+    /* Footer & Contact CTA */
+    footer {
+      border-top: 1px solid var(--surface-border);
+      background: var(--surface);
+      padding: 80px 0 40px;
+    }
+
+    .cta-box {
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto 60px;
+    }
+
+    .cta-box h2 {
+      font-size: 2.4rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .cta-box p {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+    }
+
+    .copy-email-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--surface-elevated);
+      border: 1px solid var(--surface-border);
+      padding: 14px 24px;
+      border-radius: 999px;
+      color: var(--text);
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .copy-email-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 32px;
+      border-top: 1px solid var(--surface-border);
+      font-size: 0.85rem;
+      color: var(--text-dim);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+    }
+
+    .social-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .social-links a:hover {
+      color: var(--accent);
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--surface-elevated);
+      border: 1px solid var(--accent);
+      color: var(--text);
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: var(--transition);
+      z-index: 1000;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 992px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .product-card.flagship {
+        grid-column: span 2;
+      }
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 32px;
+      }
+      .stat-card {
+        border-right: none;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .nav-links {
+        display: none;
+      }
+      .mobile-toggle {
+        display: block;
+      }
+      .product-grid, .publications-grid, .principles-grid {
+        grid-template-columns: 1fr;
+      }
+      .product-card.flagship {
+        grid-column: span 1;
+      }
+      .book-card {
+        flex-direction: column;
+      }
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<div class="bg-grid" aria-hidden="true"></div>
-<div class="bg-glow" aria-hidden="true"></div>
+  <!-- Sticky Top Header -->
+  <header>
+    <div class="container">
+      <nav class="nav-inner">
+        <a href="#" class="brand">
+          <div class="brand-symbol">☾</div>
+          <div>
+            <span class="brand-text">Al-Aqmar Tinwala</span>
+            <span class="brand-tag">v13</span>
+          </div>
+        </a>
 
-<nav role="navigation" aria-label="Main navigation">
-  <div class="navin">
-    <a class="logo" href="#top"><span class="mark">☾</span> Al-Aqmar Tinwala</a>
-    <div class="navlinks" id="navLinks">
-      <a href="#philosophy">Philosophy</a>
-      <a href="#portfolio">Portfolio</a>
-      <a href="#library">Publications</a>
-      <a href="#contact">Contact</a>
-    </div>
-    <a class="nav-cta" href="#contact">Let's build</a>
-    <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</nav>
+        <ul class="nav-links">
+          <li><a href="#products">Products</a></li>
+          <li><a href="#library">Publications</a></li>
+          <li><a href="#architecture">Architecture</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
 
-<main id="top">
-  <header class="hero">
-    <canvas class="hero-canvas" id="heroCanvas" aria-hidden="true"></canvas>
-    <div class="wrap hero-inner">
-      <div>
-        <div class="tag"><span class="dot"></span> Available for collaboration</div>
-        <h1>Building<br><span class="grad">intelligent systems</span><br>with intent.</h1>
-        <p class="hero-sub"><strong>Al-Aqmar Tinwala</strong> — AI architect and full-stack developer crafting high-performance, privacy-first software. 9 live products, 3,000+ users served.</p>
-        <div class="cta">
-          <a class="btn btn-p" href="#portfolio">View Portfolio <i>→</i></a>
-          <a class="btn btn-g" href="#contact">Get in touch</a>
+        <div class="nav-status">
+          <span class="status-dot"></span>
+          <span>Available for Projects</span>
         </div>
-      </div>
-      <div class="hero-meta">
-        <div><b>3,000+</b><span>Active users</span></div>
-        <div><b>9</b><span>Live products</span></div>
-        <div><b>2</b><span>Publications</span></div>
-      </div>
+      </nav>
     </div>
   </header>
 
-  <div class="marquee" id="marquee" aria-label="Skills ticker">
-    <div class="track">
-      <span>Rust</span><span>Next.js 15</span><span>Sarvam 105b</span><span>Privacy-First Architecture</span><span>Real-time Systems</span><span>Voice AI</span><span>Fintech</span><span>EdTech</span><span>20+ Open Source</span>
-      <span>Rust</span><span>Next.js 15</span><span>Sarvam 105b</span><span>Privacy-First Architecture</span><span>Real-time Systems</span><span>Voice AI</span><span>Fintech</span><span>EdTech</span><span>20+ Open Source</span>
-    </div>
-  </div>
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div>
+            <div class="hero-badge">
+              <span>✦</span> 13yo AI Architect &amp; Developer
+            </div>
+            <h1>
+              Building high-performance intelligence with a <span class="serif-accent">human soul</span>.
+            </h1>
+            <p class="hero-desc">
+              I'm <strong>Al-Aqmar Tinwala</strong>. I build zero-retention, privacy-first AI tools and high-velocity applications. 9 live products serving 3,000+ users worldwide.
+            </p>
+            <div class="hero-actions">
+              <a href="#products" class="btn btn-primary">
+                Explore Live Products &rarr;
+              </a>
+              <a href="#contact" class="btn btn-secondary">
+                Get in Touch
+              </a>
+            </div>
+          </div>
 
-  <div class="wrap">
-    <div class="stats rv">
-      <div class="stat"><b><span class="count" data-n="3000">0</span>+</b><small>Active users</small></div>
-      <div class="stat"><b><span class="count" data-n="20">0</span>+</b><small>Open source</small></div>
-      <div class="stat"><b><span class="count" data-n="9">0</span></b><small>Live products</small></div>
-      <div class="stat"><b><span class="count" data-n="2">0</span></b><small>Publications</small></div>
-    </div>
-  </div>
+          <!-- Hero Right: Interactive System Spec Terminal -->
+          <div class="hero-terminal">
+            <div class="terminal-header">
+              <div class="terminal-dots">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+              </div>
+              <div class="terminal-title">al-aqmar-hq // architecture-spec.json</div>
+            </div>
+            <div class="terminal-body">
+              <div class="terminal-line">
+                <span class="terminal-prompt">$</span>
+                <span>cat engineer_profile.json</span>
+              </div>
+              <div class="terminal-line">
+                <span>{</span>
+              </div>
+              <div class="terminal-line" style="padding-left: 16px;">
+                <span>"architect":</span> <span class="terminal-val">"Al-Aqmar Tinwala"</span>,
+              </div>
+              <div class="terminal-line" style="padding-left: 16px;">
+                <span>"age":</span> <span class="terminal-highlight">13</span>,
+              </div>
+              <div class="terminal-line" style="padding-left: 16px;">
+                <span>"flagship":</span> <span class="terminal-val">"eSAMz AI (Sarvam 105b)"</span>,
+              </div>
+              <div class="terminal-line" style="padding-left: 16px;">
+                <span>"stack":</span> <span class="terminal-val">["Rust", "Next.js", "Gemini", "On-Device"]</span>,
+              </div>
+              <div class="terminal-line" style="padding-left: 16px;">
+                <span>"philosophy":</span> <span class="terminal-highlight">"Heart First & Zero Retention"</span>
+              </div>
+              <div class="terminal-line">
+                <span>}</span>
+              </div>
+              <div class="terminal-line" style="margin-top: 12px;">
+                <span class="terminal-prompt">$</span>
+                <span style="color: var(--success)">System ready. 9 products active.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <section id="philosophy" class="wrap">
-    <div class="section-head rv">
-      <p class="kicker">Philosophy</p>
-      <h2 class="h2">Engineering with intent.</h2>
-      <p class="lead">I build production systems that serve thousands of users — fast, reliable, and respectful of the people who use them. My work is guided by two principles: <strong>technology should create genuine impact</strong>, and <strong>privacy is a default, not a feature</strong>.</p>
-    </div>
-    <div class="pillars">
-      <article class="pillar rv">
-        <div class="ic">◆</div>
-        <h3>Impact First</h3>
-        <p>Every system I build solves a real problem for real users — measured by outcomes, not by complexity.</p>
-      </article>
-      <article class="pillar rv">
-        <div class="ic">⬡</div>
-        <h3>Privacy by Design</h3>
-        <p>Zero-retention architecture and on-device processing as the default. User trust is non-negotiable.</p>
-      </article>
-    </div>
-  </section>
+    <!-- Stats Bar -->
+    <section class="stats-bar">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-num">3,000<span>+</span></div>
+            <div class="stat-label">Active Users</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">9</div>
+            <div class="stat-label">Live Products</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">20<span>+</span></div>
+            <div class="stat-label">Open Source Projects</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">2</div>
+            <div class="stat-label">Published Books</div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <section id="portfolio" class="wrap">
-    <div class="section-head rv">
-      <p class="kicker">Selected Work</p>
-      <h2 class="h2">Live products, in production.</h2>
-      <p class="lead">A selection of shipped systems across AI, fintech, education, and developer tooling — collectively serving over 3,000 active users.</p>
-    </div>
-    <div class="grid">
-      <article class="card rv tilt"><span class="flag">Flagship</span><div class="card-shine"></div><div class="ic">◆</div><h3>eSAMz AI</h3><p>Flagship privacy-first AI assistant. 128k context window, web search, powered by Sarvam 105b. Serving 3,000+ users with minimal data retention.</p><div class="chips"><span class="chip">Rust</span><span class="chip">Sarvam 105b</span><span class="chip">Privacy-First</span></div><a class="launch" href="https://esamz.info" target="_blank" rel="noopener">Visit <i>→</i></a></article>
-      <article class="card rv tilt"><span class="tag-mvp">Live</span><div class="card-shine"></div><div class="ic">▦</div><h3>SeeMarket</h3><p>Market intelligence platform. Live movers, watchlists, and AI-powered symbol Q&amp;A for traders — backed by real-time data.</p><div class="chips"><span class="chip">Fintech</span><span class="chip">Real-time</span><span class="chip">AI Q&amp;A</span></div><a class="launch" href="https://seemarket.vercel.app/" target="_blank" rel="noopener">Visit <i>→</i></a></article>
-      <article class="card rv tilt"><div class="card-shine"></div><div class="ic">◈</div><h3>PivotIQ</h3><p>Startup idea validation. Helps founders pressure-test concepts with investor-style prompts and structured risk analysis.</p><div class="chips"><span class="chip">Gemini</span><span class="chip">Strategy</span></div><a class="launch" href="https://pivot-iq.info.vercel.app" target="_blank" rel="noopener">Visit <i>→</i></a></article>
-      <article class="card rv tilt"><div class="card-shine"></div><div class="ic">◑</div><h3>RealLearn</h3><p>AI-powered adaptive learning. Transforms a single question into a guided multi-step journey grounded in real-world context.</p><div class="chips"><span class="chip">Gemma 4 26b</span><span class="chip">EdTech</span></div><a class="launch" href="https://reallearn-info.vercel.app" target="_blank" rel="noopener">Visit <i>→</i></a></article>
-      <article class="card rv tilt"><div class="card-shine"></div><div class="ic">◉</div><h3>MindEase</h3><p>Emotional support companion. On-device only, 20 languages, voice output. Zero data storage by design.</p><div class="chips"><span class="chip">On-Device</span><span class="chip">Wellness</span></div><a class="launch" href="https://me.esamz.info" target="_blank" rel="noopener">Visit <i>→</i></a></article>
-      <article class="card rv tilt"><div class="card-shine"></div><div class="ic">▤</div><h3>Hissab</h3><p>Sales tracker for Indian small businesses. Mobile-first, 30-day analytics, profit-margin tracking — built for daily use.</p><div class="chips"><span class="chip">Finance</span><span class="chip">Analytics</span></div><a class="launch" href="https://hisaab.esamz.info" target="_blank" rel="noopener">Visit <i>→</i></a></article>
-      <article class="card rv tilt"><div class="card-shine"></div><div class="ic">◐</div><h3>CiboCocinar</h3><p>Voice-first cooking assistant. Under 200ms latency for hands-free kitchen guidance through any recipe.</p><div class="chips"><span class="chip">Voice AI</span><span class="chip">&lt;200ms</span></div><a class="launch" href="https://cibo.esamz.info" target="_blank" rel="noopener">Visit <i>→</i></a></article>
-      <article class="card rv tilt"><div class="card-shine"></div><div class="ic">▲</div><h3>Fit The Color</h3><p>Color compatibility engine. Translates color theory into quantitative analysis for strategic design decisions.</p><div class="chips"><span class="chip">Next.js 15</span><span class="chip">Design QA</span></div><a class="launch" href="https://fit-the-color-info.vercel.app" target="_blank" rel="noopener">Visit <i>→</i></a></article>
-      <article class="card rv tilt"><div class="card-shine"></div><div class="ic">⛶</div><h3>Neon Tic-Tac-Toe</h3><p>Minimalist high-contrast game. Dark-mode first, fully responsive, performance-optimized — a study in constraint.</p><div class="chips"><span class="chip">Vanilla JS</span><span class="chip">HTML5/CSS3</span></div><a class="launch" href="https://tic-info.vercel.app" target="_blank" rel="noopener">Visit <i>→</i></a></article>
-    </div>
-  </section>
+    <!-- Live Products Section -->
+    <section id="products" style="padding: 40px 0;">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <span class="section-tag">Portfolio</span>
+            <h2 class="section-title">Live <span class="serif-accent">Products</span></h2>
+          </div>
 
-  <section id="library" class="wrap">
-    <div class="section-head rv">
-      <p class="kicker">Publications</p>
-      <h2 class="h2">Books on AI & engineering.</h2>
-    </div>
-    <div class="books">
-      <article class="book rv"><span class="badge">Bestseller</span><h3>The AI Mastery Handbook</h3><p>A practical guide to Claude, Gemini, Llama, and ChatGPT — covering AI history, LLM mechanics, and applied prompt engineering.</p><a class="launch" href="https://www.amazon.com/dp/B0GX2N6WTT" target="_blank" rel="noopener">Amazon KDP <i>→</i></a></article>
-      <article class="book rv"><span class="badge">New Release</span><h3>30 Days Mastering Claude Code</h3><p>A 30-day hands-on journey to mastering Claude Code, written by the founder of eSAMz AI.</p><a class="launch" href="https://www.amazon.com/dp/B0GY1F3573" target="_blank" rel="noopener">Amazon KDP <i>→</i></a></article>
-    </div>
-  </section>
+          <div class="filter-tabs">
+            <button class="filter-tab active" onclick="filterProducts('all', this)">All (9)</button>
+            <button class="filter-tab" onclick="filterProducts('ai', this)">AI &amp; Intelligence</button>
+            <button class="filter-tab" onclick="filterProducts('tools', this)">Tools &amp; Finance</button>
+            <button class="filter-tab" onclick="filterProducts('voice', this)">Voice &amp; EdTech</button>
+          </div>
+        </div>
 
-  <section id="contact" class="contact wrap">
-    <div class="rv">
-      <p class="kicker" style="justify-content:center">Contact</p>
-      <h2 class="h2">Let's build something<br>meaningful.</h2>
-      <p class="lead" style="margin-left:auto;margin-right:auto">Have a project, a problem, or a collaboration in mind? I'd like to hear about it.</p>
-      <div class="links">
-        <a class="linkpill" href="mailto:proman007power@gmail.com">✉ Email</a>
-        <a class="linkpill" href="https://github.com/alakmar344" target="_blank" rel="noopener">GitHub</a>
-        <a class="linkpill" href="https://www.linkedin.com/in/alakmar-teenwala-054067393" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="linkpill" href="https://instagram.com/its_alakmar7" target="_blank" rel="noopener">Instagram</a>
+        <div class="product-grid" id="productGrid">
+          
+          <!-- Product 1: eSAMz AI (Flagship) -->
+          <div class="product-card flagship" data-category="ai">
+            <div>
+              <div class="product-meta">
+                <span class="product-badge">Flagship Product</span>
+                <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--success)">● 3,000+ Users</span>
+              </div>
+              <h3 class="product-title">eSAMz AI</h3>
+              <p class="product-desc">
+                Flagship privacy-first AI platform. 128k context, live web search capabilities, powered by Sarvam 105b engine with absolute zero data retention architecture.
+              </p>
+              <div class="tech-tags">
+                <span class="tech-tag">Rust</span>
+                <span class="tech-tag">Sarvam 105b</span>
+                <span class="tech-tag">Privacy-First</span>
+                <span class="tech-tag">128k Context</span>
+              </div>
+            </div>
+            <a href="https://esamz.info" target="_blank" rel="noopener" class="product-link">
+              Launch eSAMz AI &rarr;
+            </a>
+          </div>
+
+          <!-- Product 2: PivotIQ -->
+          <div class="product-card" data-category="tools">
+            <div>
+              <div class="product-meta">
+                <span class="product-badge">Startup Tool</span>
+              </div>
+              <h3 class="product-title">PivotIQ</h3>
+              <p class="product-desc">
+                Startup concept validator. Evaluates business ideas using investor-style prompts, risk matrices, and market positioning.
+              </p>
+              <div class="tech-tags">
+                <span class="tech-tag">Gemini AI</span>
+                <span class="tech-tag">Strategy</span>
+                <span class="tech-tag">Analytics</span>
+              </div>
+            </div>
+            <a href="https://pivot-iq.info.vercel.app" target="_blank" rel="noopener" class="product-link">
+              Launch PivotIQ &rarr;
+            </a>
+          </div>
+
+          <!-- Product 3: RealLearn -->
+          <div class="product-card" data-category="voice">
+            <div>
+              <div class="product-meta">
+                <span class="product-badge">EdTech</span>
+              </div>
+              <h3 class="product-title">RealLearn</h3>
+              <p class="product-desc">
+                Adaptive AI learning platform that converts single questions into 3-part structured educational journeys with real-world context.
+              </p>
+              <div class="tech-tags">
+                <span class="tech-tag">Sarvam 105b</span>
+                <span class="tech-tag">Adaptive Learning</span>
+              </div>
+            </div>
+            <a href="https://reallearn-info.vercel.app" target="_blank" rel="noopener" class="product-link">
+              Launch RealLearn &rarr;
+            </a>
+          </div>
+
+          <!-- Product 4: MindEase -->
+          <div class="product-card" data-category="ai">
+            <div>
+              <div class="product-meta">
+                <span class="product-badge">Wellness</span>
+              </div>
+              <h3 class="product-title">MindEase</h3>
+              <p class="product-desc">
+                On-device emotional support chatbot supporting 20 languages with voice output. Completely client-side with zero data storage.
+              </p>
+              <div class="tech-tags">
+                <span class="tech-tag">On-Device LLM</span>
+                <span class="tech-tag">Voice Output</span>
+                <span class="tech-tag">20 Languages</span>
+              </div>
+            </div>
+            <a href="https://me.esamz.info" target="_blank" rel="noopener" class="product-link">
+              Launch MindEase &rarr;
+            </a>
+          </div>
+
+          <!-- Product 5: Hissab -->
+          <div class="product-card" data-category="tools">
+            <div>
+              <div class="product-meta">
+                <span class="product-badge">Fintech</span>
+              </div>
+              <h3 class="product-title">Hissab</h3>
+              <p class="product-desc">
+                Mobile-first sales tracker tailored for small businesses in India. Features 30-day analytics and automated profit calculation.
+              </p>
+              <div class="tech-tags">
+                <span class="tech-tag">Finance</span>
+                <span class="tech-tag">Analytics</span>
+                <span class="tech-tag">Mobile-First</span>
+              </div>
+            </div>
+            <a href="https://hisaab.esamz.info" target="_blank" rel="noopener" class="product-link">
+              Launch Hissab &rarr;
+            </a>
+          </div>
+
+          <!-- Product 6: CiboCocinar -->
+          <div class="product-card" data-category="voice">
+            <div>
+              <div class="product-meta">
+                <span class="product-badge">Voice AI</span>
+              </div>
+              <h3 class="product-title">CiboCocinar</h3>
+              <p class="product-desc">
+                Hands-free, voice-first cooking assistant with under 200ms latency for seamless step-by-step guidance in the kitchen.
+              </p>
+              <div class="tech-tags">
+                <span class="tech-tag">Voice AI</span>
+                <span class="tech-tag">&lt;200ms Latency</span>
+              </div>
+            </div>
+            <a href="https://cibo.esamz.info" target="_blank" rel="noopener" class="product-link">
+              Launch CiboCocinar &rarr;
+            </a>
+          </div>
+
+          <!-- Product 7: Fit The Color -->
+          <div class="product-card" data-category="tools">
+            <div>
+              <div class="product-meta">
+                <span class="product-badge">Design Engineering</span>
+              </div>
+              <h3 class="product-title">Fit The Color</h3>
+              <p class="product-desc">
+                Advanced color compatibility engine for designers and developers, utilizing mathematical analysis for visual harmony.
+              </p>
+              <div class="tech-tags">
+                <span class="tech-tag">Next.js 15</span>
+                <span class="tech-tag">Color Math</span>
+                <span class="tech-tag">Design QA</span>
+              </div>
+            </div>
+            <a href="https://fit-the-color-info.vercel.app" target="_blank" rel="noopener" class="product-link">
+              Launch Fit The Color &rarr;
+            </a>
+          </div>
+
+          <!-- Product 8: Neon Tic-Tac-Toe -->
+          <div class="product-card" data-category="tools">
+            <div>
+              <div class="product-meta">
+                <span class="product-badge">Interactive App</span>
+              </div>
+              <h3 class="product-title">Neon Tic-Tac-Toe</h3>
+              <p class="product-desc">
+                Minimalist, high-contrast gaming experience with zero dependencies. Fast, dark-mode first, and responsive.
+              </p>
+              <div class="tech-tags">
+                <span class="tech-tag">Vanilla JS</span>
+                <span class="tech-tag">HTML5/CSS3</span>
+              </div>
+            </div>
+            <a href="https://tic-info.vercel.app" target="_blank" rel="noopener" class="product-link">
+              Launch Game &rarr;
+            </a>
+          </div>
+
+          <!-- Product 9: SeeMarket -->
+          <div class="product-card" data-category="tools">
+            <div>
+              <div class="product-meta">
+                <span class="product-badge" style="color: var(--azure); border-color: rgba(56, 189, 248, 0.3)">Coming Soon</span>
+              </div>
+              <h3 class="product-title">SeeMarket</h3>
+              <p class="product-desc">
+                Real-time market intelligence dashboard with live movers, custom watchlists, and AI-powered symbol analysis for traders.
+              </p>
+              <div class="tech-tags">
+                <span class="tech-tag">Real-time</span>
+                <span class="tech-tag">Fintech</span>
+                <span class="tech-tag">Market AI</span>
+              </div>
+            </div>
+            <span class="product-link" style="color: var(--text-dim); cursor: default;">
+              In Active Development ✦
+            </span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Library Section -->
+    <section id="library" style="padding: 40px 0;">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <span class="section-tag">Publications</span>
+            <h2 class="section-title">The <span class="serif-accent">Library</span></h2>
+          </div>
+        </div>
+
+        <div class="publications-grid">
+          <!-- Book 1 -->
+          <div class="book-card">
+            <div class="book-icon">📘</div>
+            <div class="book-info">
+              <span class="book-tag">Bestseller on Amazon KDP</span>
+              <h3>The AI Mastery Handbook</h3>
+              <p class="book-desc">
+                Comprehensive guide breaking down Claude, Gemini, Llama, and ChatGPT. Covers AI history, LLM architecture mechanics, and prompt engineering.
+              </p>
+              <a href="https://www.amazon.com/dp/B0GX2N6WTT" target="_blank" rel="noopener" class="btn btn-secondary" style="padding: 8px 16px; font-size: 0.82rem;">
+                View on Amazon &rarr;
+              </a>
+            </div>
+          </div>
+
+          <!-- Book 2 -->
+          <div class="book-card">
+            <div class="book-icon">📗</div>
+            <div class="book-info">
+              <span class="book-tag">New Release on Amazon KDP</span>
+              <h3>30 Days Mastering Claude Code</h3>
+              <p class="book-desc">
+                A 30-day hands-on practical journey into agentic workflows and coding automation with Claude Code, written from direct builder experience.
+              </p>
+              <a href="https://www.amazon.com/dp/B0GY1F3573" target="_blank" rel="noopener" class="btn btn-secondary" style="padding: 8px 16px; font-size: 0.82rem;">
+                View on Amazon &rarr;
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Architecture & Core Principles -->
+    <section id="architecture" style="padding: 40px 0 80px;">
+      <div class="container">
+        <div class="principles-section">
+          <div class="section-header" style="margin-bottom: 32px;">
+            <div>
+              <span class="section-tag">Engineering Philosophy</span>
+              <h2 class="section-title">Core <span class="serif-accent">Principles</span></h2>
+            </div>
+          </div>
+
+          <div class="principles-grid">
+            <div class="principle-item">
+              <div class="principle-num">01</div>
+              <div class="principle-content">
+                <h4>Heart First</h4>
+                <p>
+                  Technology should serve human beings with dignity, not extract attention or data. Every product is crafted with genuine purpose and empathy.
+                </p>
+              </div>
+            </div>
+
+            <div class="principle-item">
+              <div class="principle-num">02</div>
+              <div class="principle-content">
+                <h4>Privacy-First Architecture</h4>
+                <p>
+                  Zero data retention by design. On-device processing wherever possible, client-side isolation, and transparent privacy controls.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer & Contact CTA -->
+  <footer id="contact">
+    <div class="container">
+      <div class="cta-box">
+        <h2>Let's Build Something <span class="serif-accent">Exceptional</span></h2>
+        <p>Open for collaborations, architectural consulting, and high-impact AI projects.</p>
+        <button class="copy-email-btn" onclick="copyEmail()">
+          <span>proman007power@gmail.com</span>
+          <span style="color: var(--accent)">📋 Copy Email</span>
+        </button>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          © 2026 Al-Aqmar Tinwala · Crafted with purpose &amp; heart. 
+          <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent); margin-left: 8px;">"Age is just a version number (v13)"</span>
+        </div>
+        <ul class="social-links">
+          <li><a href="https://github.com/alakmar344" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/alakmar-teenwala-054067393" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://instagram.com/its_alakmar7" target="_blank" rel="noopener">Instagram</a></li>
+        </ul>
       </div>
     </div>
-  </section>
-</main>
+  </footer>
 
-<footer>© 2026 Al-Aqmar Tinwala · <span>Designed &amp; built with intent.</span></footer>
+  <!-- Toast Notification -->
+  <div class="toast" id="toast">Copied email to clipboard!</div>
 
-<script type="importmap">
-{ "imports": { "three": "https://unpkg.com/three@0.160.0/build/three.module.js" } }
-</script>
-<script type="module">
-import * as THREE from 'three';
+  <script>
+    // Category Filtering for Product Grid
+    function filterProducts(category, btnElement) {
+      const tabs = document.querySelectorAll('.filter-tab');
+      tabs.forEach(tab => tab.classList.remove('active'));
+      btnElement.classList.add('active');
 
-// ---------- 3D particle globe ----------
-const canvas = document.getElementById('heroCanvas');
-const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const cards = document.querySelectorAll('#productGrid .product-card');
+      cards.forEach(card => {
+        const cardCat = card.getAttribute('data-category');
+        if (category === 'all' || cardCat === category) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
 
-let renderer, scene, camera, points, group;
-let pointer = { x: 0, y: 0 };
-let target = { x: 0, y: 0 };
-let inView = true;
-
-function initHero() {
-  const w = canvas.clientWidth, h = canvas.clientHeight;
-  renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-  renderer.setSize(w, h, false);
-
-  scene = new THREE.Scene();
-  camera = new THREE.PerspectiveCamera(45, w / h, 0.1, 100);
-  camera.position.z = 7.5;
-
-  group = new THREE.Group();
-  scene.add(group);
-
-  // Distribute particles on a sphere (fibonacci sphere)
-  const N = window.innerWidth < 768 ? 2600 : 4200;
-  const radius = 2.6;
-  const positions = new Float32Array(N * 3);
-  const colors = new Float32Array(N * 3);
-  const c1 = new THREE.Color('#5b8cff');
-  const c2 = new THREE.Color('#7c5cff');
-  const c3 = new THREE.Color('#3ddc97');
-  const golden = Math.PI * (3 - Math.sqrt(5));
-
-  for (let i = 0; i < N; i++) {
-    const y = 1 - (i / (N - 1)) * 2;
-    const r = Math.sqrt(1 - y * y);
-    const theta = golden * i;
-    const x = Math.cos(theta) * r;
-    const z = Math.sin(theta) * r;
-    positions[i * 3]     = x * radius;
-    positions[i * 3 + 1] = y * radius;
-    positions[i * 3 + 2] = z * radius;
-
-    // blend colors by latitude for a subtle gradient
-    const t = (y + 1) / 2;
-    const tmp = c1.clone().lerp(c2, t).lerp(c3, Math.max(0, 1 - t * 1.6) * 0.25);
-    colors[i * 3] = tmp.r; colors[i * 3 + 1] = tmp.g; colors[i * 3 + 2] = tmp.b;
-  }
-
-  const geo = new THREE.BufferGeometry();
-  geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-  geo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-
-  // round sprite texture
-  const tex = (() => {
-    const c = document.createElement('canvas'); c.width = c.height = 64;
-    const g = c.getContext('2d');
-    const grad = g.createRadialGradient(32, 32, 0, 32, 32, 32);
-    grad.addColorStop(0, 'rgba(255,255,255,1)');
-    grad.addColorStop(0.4, 'rgba(255,255,255,0.85)');
-    grad.addColorStop(1, 'rgba(255,255,255,0)');
-    g.fillStyle = grad; g.fillRect(0, 0, 64, 64);
-    const t = new THREE.CanvasTexture(c); return t;
-  })();
-
-  const mat = new THREE.PointsMaterial({
-    size: 0.045, vertexColors: true, map: tex, transparent: true,
-    depthWrite: false, blending: THREE.AdditiveBlending, sizeAttenuation: true
-  });
-  points = new THREE.Points(geo, mat);
-  group.add(points);
-
-  // inner subtle wireframe sphere for depth
-  const wire = new THREE.Mesh(
-    new THREE.IcosahedronGeometry(radius * 0.96, 2),
-    new THREE.MeshBasicMaterial({ color: 0x5b8cff, wireframe: true, transparent: true, opacity: 0.06 })
-  );
-  group.add(wire);
-
-  window.addEventListener('resize', onResize);
-  addEventListener('mousemove', e => {
-    pointer.x = (e.clientX / window.innerWidth - 0.5);
-    pointer.y = (e.clientY / window.innerHeight - 0.5);
-  }, { passive: true });
-
-  const io = new IntersectionObserver(es => { inView = es[0].isIntersecting; }, { threshold: 0.05 });
-  io.observe(canvas);
-
-  animate();
-}
-
-function onResize() {
-  const w = canvas.clientWidth, h = canvas.clientHeight;
-  if (!renderer) return;
-  renderer.setSize(w, h, false);
-  camera.aspect = w / h;
-  camera.updateProjectionMatrix();
-}
-
-function animate() {
-  requestAnimationFrame(animate);
-  if (!inView) return;
-  target.x += (pointer.x - target.x) * 0.04;
-  target.y += (pointer.y - target.y) * 0.04;
-  if (!reduceMotion) {
-    group.rotation.y += 0.0016;
-    group.rotation.x += 0.0004;
-  }
-  group.rotation.y += (target.x * 0.6 - (group.rotation.y - (group.rotation.y % (Math.PI*2)))) * 0; // keep
-  // gentle parallax tilt toward pointer
-  group.rotation.y += target.x * 0.0008;
-  group.rotation.x += target.y * 0.0008;
-  renderer.render(scene, camera);
-}
-
-initHero();
-</script>
-
-<script>
-// ---------- Reveal on scroll ----------
-const io = new IntersectionObserver(es => es.forEach(e => {
-  if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-}), { threshold: 0.12 });
-document.querySelectorAll('.rv').forEach(el => io.observe(el));
-
-// ---------- Count up ----------
-const co = new IntersectionObserver(es => es.forEach(e => {
-  if (!e.isIntersecting) return; co.unobserve(e.target);
-  const n = +e.target.dataset.n, t0 = performance.now(), dur = 1600;
-  (function tick(t) {
-    const k = Math.min(1, (t - t0) / dur), ease = 1 - Math.pow(1 - k, 4);
-    e.target.textContent = Math.floor(n * ease).toLocaleString();
-    if (k < 1) requestAnimationFrame(tick); else e.target.textContent = n.toLocaleString();
-  })(t0);
-}), { threshold: 0.5 });
-document.querySelectorAll('.count').forEach(el => co.observe(el));
-
-// ---------- 3D tilt cards ----------
-const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const isCoarse = window.matchMedia('(pointer: coarse)').matches;
-if (!reduce && !isCoarse) {
-  document.querySelectorAll('.tilt').forEach(card => {
-    const MAX = 8;
-    card.addEventListener('mousemove', e => {
-      const r = card.getBoundingClientRect();
-      const px = (e.clientX - r.left) / r.width;
-      const py = (e.clientY - r.top) / r.height;
-      const rx = (0.5 - py) * MAX;
-      const ry = (px - 0.5) * MAX;
-      card.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-3px)`;
-      card.style.setProperty('--mx', (px * 100) + '%');
-      card.style.setProperty('--my', (py * 100) + '%');
-    });
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = 'perspective(900px) rotateX(0) rotateY(0)';
-    });
-  });
-}
-
-// ---------- Marquee pause ----------
-const marquee = document.getElementById('marquee');
-const mo = new IntersectionObserver(es => es.forEach(en => {
-  marquee.classList.toggle('pause', !en.isIntersecting);
-}), { threshold: 0.1 });
-mo.observe(marquee);
-
-// ---------- Mobile nav ----------
-const hamburger = document.getElementById('hamburger');
-const navLinks = document.getElementById('navLinks');
-hamburger.addEventListener('click', () => {
-  const open = navLinks.classList.toggle('show');
-  hamburger.classList.toggle('open');
-  hamburger.setAttribute('aria-expanded', open);
-});
-navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-  navLinks.classList.remove('show');
-  hamburger.classList.remove('open');
-  hamburger.setAttribute('aria-expanded', 'false');
-}));
-
-// ---------- Nav background on scroll ----------
-addEventListener('scroll', () => {
-  document.querySelector('nav').style.background =
-    scrollY > 40 ? 'rgba(8,9,15,.85)' : 'rgba(8,9,15,.65)';
-}, { passive: true });
-</script>
+    // Copy Email Functionality
+    function copyEmail() {
+      const email = 'proman007power@gmail.com';
+      navigator.clipboard.writeText(email).then(() => {
+        const toast = document.getElementById('toast');
+        toast.classList.add('show');
+        setTimeout(() => {
+          toast.classList.remove('show');
+        }, 2500);
+      });
+    }
+  </script>
 </body>
 </html>
