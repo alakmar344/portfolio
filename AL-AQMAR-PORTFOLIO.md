@@ -1,4 +1,4 @@
-# Al-Aqmar Tinwala — Portfolio
+# Al-Aqmar Tinwala — Portfolio ✦ Heart First
 
 > **AI Architect | Full-Stack Developer | Published Author ×2 | Privacy Advocate | Rust Enthusiast | 13 & Unstoppable**
 
@@ -21,7 +21,7 @@ Al-Aqmar Tinwala is a 13-year-old AI Architect crafting high-performance intelli
 | Active Users | 3,000+ |
 | Open Source Projects | 20+ |
 | Publications | 2 |
-| Live Products | 9 |
+| Live Products | 11 |
 
 ---
 
@@ -33,6 +33,9 @@ Technology for genuine impact.
 ### 🔒 Privacy-First
 Zero-retention by design.
 
+### 🧪 Curiosity-First
+Build for wonder — atoms, molecules, motion.
+
 ---
 
 ## Live Products (Portfolio)
@@ -41,6 +44,16 @@ Zero-retention by design.
 Flagship privacy-first AI. 128k context, web search, powered by Sarvam 105b. Serving 3,000+ users with zero data retention.
 - **Tech:** Rust, Sarvam 105b
 - **Launch:** [esamz.info](https://esamz.info)
+
+### 🧪 π — Pi — *Atom & Molecule Explainer*
+A playful, visual science playground. Atoms and molecules come alive — tap, swipe and explore covalent bonds, electron shells and molecular geometry with buttery-smooth 60fps animations built for curious minds.
+- **Tech:** Interactive 3D, WebGL, EdTech, Chemistry
+- **Launch:** [science-project-pi.vercel.app](https://science-project-pi.vercel.app)
+
+### 🛺 गति — Gati — *Indian Mobility, Reimagined*
+गति means motion. A reimagined Indian mobility service blending autos, metros, buses and last-mile bikes into one seamless, hyperlocal journey planner with live ETAs and soulful UX.
+- **Tech:** Mobility, Hyperlocal, Real-time ETA, India-first
+- **Launch:** [gati-rho.vercel.app](https://gati-rho.vercel.app)
 
 ### 🎮 Neon Tic-Tac-Toe
 Minimalist, high-contrast gaming experience. Dark-mode first, responsive, and optimized for performance.
@@ -98,9 +111,9 @@ Claude, Gemini, Llama, ChatGPT explained. AI history, LLM mechanics, and prompt 
 
 ## Tech Stack & Highlights
 
-- **Languages & Frameworks:** Rust, Next.js, Vanilla JS, HTML5/CSS3
+- **Languages & Frameworks:** Rust, Next.js, Vanilla JS, HTML5/CSS3, WebGL
 - **AI & ML:** Sarvam 105b, Gemini, On-Device LLMs
-- **Specialties:** Privacy-First Architecture, Voice AI, Real-time Systems, EdTech, Fintech
+- **Specialties:** Privacy-First Architecture, Voice AI, Real-time Systems, EdTech, Fintech, Interactive Science, Mobility
 - **Platforms:** Vercel, Web
 
 ---
