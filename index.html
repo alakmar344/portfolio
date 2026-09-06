@@ -1,1780 +1,860 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Al-Aqmar Tinwala — 13yo AI Architect & Developer</title>
-  <meta name="description" content="Al-Aqmar Tinwala is a 13-year-old AI architect building privacy-first intelligence with a soul. 11 live products serving 3,000+ users — including Pi (atom & molecule explainer) and Gati (Indian mobility, reimagined). Published author ×2." />
-  <meta name="keywords" content="Al-Aqmar Tinwala, AI architect, eSAMz AI, privacy-first AI, Rust, Sarvam 105b, Next.js, teen developer, Pi science project, Gati Indian mobility" />
-  <meta name="author" content="Al-Aqmar Tinwala" />
-  <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://esamz.info/" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='85'>☽</text></svg>" />
-
-  <!-- Open Graph / Twitter -->
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Al-Aqmar Tinwala — 13yo AI Architect · 11 Live Products" />
-  <meta property="og:description" content="Building privacy-first intelligence with a human soul. 11 live products, 3,000+ users — including Pi (atom & molecule explainer) and Gati (Indian mobility, reimagined)." />
-  <meta property="og:url" content="https://esamz.info/" />
-  <meta property="og:site_name" content="Al-Aqmar HQ" />
-  <meta property="og:locale" content="en_US" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Al-Aqmar Tinwala — 13yo AI Architect · 11 Live Products" />
-  <meta name="twitter:description" content="11 live products. 3,000+ users. Published author ×2. Privacy-first. Heart-first." />
-
-  <!-- Structured Schema.org Metadata -->
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"Person","name":"Al-Aqmar Tinwala","url":"https://esamz.info/","email":"proman007power@gmail.com","jobTitle":"AI Architect & Full-Stack Developer","description":"13-year-old AI architect crafting high-performance intelligence with a soul. 11 live products serving 3,000+ users, including Pi (atom & molecule explainer) and Gati (Indian mobility, reimagined).","sameAs":["https://github.com/alakmar344","https://www.linkedin.com/in/alakmar-teenwala-054067393","https://instagram.com/its_alakmar7"],"knowsAbout":["Artificial Intelligence","Rust","Next.js","Full-Stack Development","Privacy Engineering","Interactive Science","Mobility"]}
-  </script>
-
-  <!-- Google Fonts: Instrument Serif, Newsreader, Plus Jakarta Sans, JetBrains Mono -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-
-  <style>
-    :root {
-      --bg: #0f1115;
-      --bg-deep: #0a0c10;
-      --surface: #181b22;
-      --surface-elevated: #21252e;
-      --surface-border: rgba(255, 255, 255, 0.08);
-      --surface-border-hover: rgba(255, 87, 87, 0.45);
-
-      --text: #f6f7fa;
-      --text-muted: #a8b0bd;
-      --text-dim: #6b7280;
-
-      --coral: #ff6b5b;
-      --coral-deep: #ef4444;
-      --pink: #ec4899;
-      --rose: #f43f5e;
-      --orange: #f97316;
-      --yellow: #facc15;
-      --amber: #f59e0b;
-      --lime: #84cc16;
-      --emerald: #10b981;
-      --teal: #14b8a6;
-      --cyan: #06b6d4;
-      --sky: #0ea5e9;
-      --blue: #3b82f6;
-      --crimson: #dc2626;
-
-      --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-      --font-serif: 'Instrument Serif', Georgia, serif;
-      --font-hand: 'Caveat', cursive;
-      --font-mono: 'JetBrains Mono', monospace;
-
-      --max-w: 1240px;
-      --radius: 18px;
-      --transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      background-color: var(--bg);
-      color: var(--text);
-      font-family: var(--font-main);
-      -webkit-font-smoothing: antialiased;
-    }
-
-    body {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      line-height: 1.6;
-      overflow-x: hidden;
-      background-color: var(--bg-deep);
-      background-image:
-        radial-gradient(circle at 12% 8%, rgba(255, 107, 91, 0.14) 0%, transparent 42%),
-        radial-gradient(circle at 88% 18%, rgba(14, 165, 233, 0.12) 0%, transparent 40%),
-        radial-gradient(circle at 78% 78%, rgba(236, 72, 153, 0.10) 0%, transparent 42%),
-        radial-gradient(circle at 18% 88%, rgba(20, 184, 166, 0.10) 0%, transparent 40%),
-        linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
-      background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 64px 64px, 64px 64px;
-      position: relative;
-    }
-
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background:
-        radial-gradient(800px circle at 20% 30%, rgba(255, 107, 91, 0.06), transparent 60%),
-        radial-gradient(700px circle at 80% 70%, rgba(14, 165, 233, 0.05), transparent 60%);
-      z-index: 0;
-      animation: float-bg 22s ease-in-out infinite alternate;
-    }
-
-    @keyframes float-bg {
-      0% { transform: translate(0, 0); }
-      100% { transform: translate(40px, -30px); }
-    }
-
-    .container {
-      width: 100%;
-      max-width: var(--max-w);
-      margin: 0 auto;
-      padding: 0 24px;
-      position: relative;
-      z-index: 1;
-    }
-
-    /* Floating particles (no glow) */
-    .particles {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      overflow: hidden;
-    }
-    .particle {
-      position: absolute;
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: var(--coral);
-      opacity: 0.4;
-      animation: float-up 24s linear infinite;
-    }
-    .particle:nth-child(2) { left: 18%; background: var(--pink); animation-duration: 30s; animation-delay: -4s; }
-    .particle:nth-child(3) { left: 32%; background: var(--yellow); animation-duration: 28s; animation-delay: -10s; }
-    .particle:nth-child(4) { left: 48%; background: var(--teal); animation-duration: 32s; animation-delay: -2s; }
-    .particle:nth-child(5) { left: 62%; background: var(--rose); animation-duration: 26s; animation-delay: -8s; }
-    .particle:nth-child(6) { left: 78%; background: var(--cyan); animation-duration: 34s; animation-delay: -14s; }
-    .particle:nth-child(7) { left: 90%; background: var(--orange); animation-duration: 29s; animation-delay: -6s; }
-
-    @keyframes float-up {
-      0% { transform: translateY(110vh) scale(0.6); opacity: 0; }
-      10% { opacity: 0.45; }
-      90% { opacity: 0.45; }
-      100% { transform: translateY(-10vh) scale(1); opacity: 0; }
-    }
-
-    /* Ambient Header */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(10, 12, 16, 0.82);
-      backdrop-filter: blur(20px) saturate(180%);
-      -webkit-backdrop-filter: blur(20px) saturate(180%);
-      border-bottom: 1px solid var(--surface-border);
-      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
-    }
-
-    .nav-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 80px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      text-decoration: none;
-      color: var(--text);
-    }
-
-    .brand-symbol {
-      width: 46px;
-      height: 46px;
-      border-radius: 14px;
-      background: linear-gradient(135deg, var(--coral) 0%, var(--pink) 100%);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-serif);
-      font-size: 1.65rem;
-      color: #ffffff;
-      box-shadow: 0 6px 20px rgba(255, 107, 91, 0.45);
-      transition: var(--transition);
-    }
-
-    .brand:hover .brand-symbol {
-      transform: rotate(-12deg) scale(1.1);
-      box-shadow: 0 10px 26px rgba(255, 107, 91, 0.55);
-    }
-
-    .brand-title {
-      font-weight: 800;
-      font-size: 1.12rem;
-      letter-spacing: -0.02em;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .brand-sub {
-      font-family: var(--font-hand);
-      font-size: 1.35rem;
-      color: var(--coral);
-      font-weight: 700;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 32px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      color: var(--text-muted);
-      text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 600;
-      transition: var(--transition);
-      position: relative;
-      padding: 6px 0;
-    }
-
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      width: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--coral), var(--pink));
-      transition: var(--transition);
-      transform: translateX(-50%);
-      border-radius: 2px;
-    }
-
-    .nav-links a:hover {
-      color: var(--text);
-    }
-
-    .nav-links a:hover::after {
-      width: 100%;
-    }
-
-    .nav-status {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-family: var(--font-mono);
-      font-size: 0.74rem;
-      color: var(--emerald);
-      background: rgba(16, 185, 129, 0.1);
-      border: 1px solid rgba(16, 185, 129, 0.32);
-      padding: 7px 14px;
-      border-radius: 999px;
-    }
-
-    .status-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--emerald);
-      animation: pulse-dot 2s infinite ease-in-out;
-    }
-
-    @keyframes pulse-dot {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.45); opacity: 0.6; }
-    }
-
-    /* Hero Section */
-    .hero {
-      padding: 100px 0 70px;
-      position: relative;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -100px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 720px;
-      height: 720px;
-      background: radial-gradient(circle, rgba(255, 107, 91, 0.18) 0%, transparent 60%);
-      filter: blur(40px);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 56px;
-      align-items: center;
-      position: relative;
-      z-index: 1;
-    }
-
-    .personal-stamp {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      color: var(--coral);
-      background: rgba(255, 107, 91, 0.1);
-      border: 1px solid rgba(255, 107, 91, 0.35);
-      padding: 7px 16px;
-      border-radius: 999px;
-      margin-bottom: 26px;
-      font-weight: 700;
-    }
-
-    .hero h1 {
-      font-size: clamp(2.8rem, 6vw, 4.8rem);
-      font-weight: 800;
-      line-height: 1.05;
-      letter-spacing: -0.035em;
-      margin-bottom: 28px;
-      color: var(--text);
-    }
-
-    .hero h1 .serif-accent {
-      font-family: var(--font-serif);
-      font-style: italic;
-      font-weight: 400;
-      background: linear-gradient(135deg, var(--coral) 0%, var(--pink) 50%, var(--orange) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      border-bottom: 2px dashed rgba(255, 107, 91, 0.45);
-      padding-bottom: 4px;
-    }
-
-    .hero-story {
-      font-size: 1.16rem;
-      color: var(--text-muted);
-      max-width: 600px;
-      margin-bottom: 30px;
-      line-height: 1.75;
-    }
-
-    .hero-story strong {
-      color: var(--text);
-      font-weight: 700;
-    }
-
-    .hero-story strong.accent {
-      color: var(--coral);
-    }
-
-    .hero-quote {
-      font-family: var(--font-hand);
-      font-size: 1.85rem;
-      color: var(--coral);
-      margin-bottom: 36px;
-      line-height: 1.3;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      transform: rotate(-1.5deg);
-      font-weight: 700;
-    }
-
-    .hero-actions {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 16px 32px;
-      border-radius: 12px;
-      font-size: 0.95rem;
-      font-weight: 700;
-      text-decoration: none;
-      cursor: pointer;
-      transition: var(--transition);
-      border: 1px solid transparent;
-      letter-spacing: 0.01em;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--coral) 0%, var(--pink) 100%);
-      color: #ffffff;
-      border-color: rgba(255, 255, 255, 0.12);
-      box-shadow: 0 10px 28px rgba(255, 107, 91, 0.42);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .btn-primary::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
-      transition: left 0.6s;
-    }
-
-    .btn-primary:hover::before { left: 100%; }
-
-    .btn-primary:hover {
-      transform: translateY(-4px) scale(1.02);
-      box-shadow: 0 14px 36px rgba(255, 107, 91, 0.55);
-    }
-
-    .btn-secondary {
-      background: var(--surface);
-      color: var(--text);
-      border-color: var(--surface-border);
-      backdrop-filter: blur(10px);
-    }
-
-    .btn-secondary:hover {
-      border-color: var(--coral);
-      transform: translateY(-4px);
-      background: var(--surface-elevated);
-      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.45);
-    }
-
-    /* Interactive Live AI Architecture Playground (Hero Right) */
-    .playground-card {
-      background: linear-gradient(145deg, rgba(33, 37, 46, 0.85), rgba(24, 27, 34, 0.92));
-      border: 1px solid rgba(255, 107, 91, 0.28);
-      border-radius: var(--radius);
-      overflow: hidden;
-      box-shadow: 0 28px 56px rgba(0, 0, 0, 0.5);
-      backdrop-filter: blur(12px);
-      transition: var(--transition);
-      position: relative;
-    }
-
-    .playground-card:hover {
-      border-color: rgba(255, 107, 91, 0.55);
-      transform: translateY(-4px);
-      box-shadow: 0 32px 60px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 107, 91, 0.18);
-    }
-
-    .playground-header {
-      background: rgba(15, 17, 21, 0.7);
-      padding: 14px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid var(--surface-border);
-    }
-
-    .playground-title {
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      color: var(--coral);
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .playground-body {
-      padding: 26px;
-    }
-
-    .demo-selector {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 20px;
-    }
-
-    .demo-btn {
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      padding: 7px 14px;
-      border-radius: 8px;
-      border: 1px solid var(--surface-border);
-      background: var(--surface);
-      color: var(--text-muted);
-      cursor: pointer;
-      transition: var(--transition);
-      font-weight: 600;
-    }
-
-    .demo-btn.active, .demo-btn:hover {
-      background: rgba(255, 107, 91, 0.16);
-      border-color: var(--coral);
-      color: var(--text);
-    }
-
-    .terminal-window {
-      background: rgba(10, 12, 16, 0.95);
-      border: 1px solid var(--surface-border);
-      border-radius: 10px;
-      padding: 20px;
-      font-family: var(--font-mono);
-      font-size: 0.82rem;
-      min-height: 190px;
-      line-height: 1.8;
-    }
-
-    .log-prompt { color: var(--coral); }
-    .log-key { color: var(--cyan); }
-    .log-val { color: #f6f7fa; }
-    .log-success { color: var(--emerald); }
-
-    /* Stats Bar */
-    .stats-bar {
-      border-top: 1px solid var(--surface-border);
-      border-bottom: 1px solid var(--surface-border);
-      background: linear-gradient(180deg, rgba(33, 37, 46, 0.6), rgba(24, 27, 34, 0.75));
-      margin: 50px 0 90px;
-      padding: 44px 0;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .stats-bar::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at 0% 50%, rgba(255, 107, 91, 0.1), transparent 50%),
-        radial-gradient(circle at 100% 50%, rgba(14, 165, 233, 0.08), transparent 50%);
-      pointer-events: none;
-    }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 24px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .stat-card {
-      text-align: center;
-      padding: 0 16px;
-      border-right: 1px solid var(--surface-border);
-      position: relative;
-      transition: var(--transition);
-    }
-
-    .stat-card:hover { transform: translateY(-3px); }
-
-    .stat-card:last-child { border-right: none; }
-
-    .stat-num {
-      font-size: 3rem;
-      font-weight: 800;
-      letter-spacing: -0.04em;
-      line-height: 1;
-      margin-bottom: 10px;
-      color: var(--text);
-    }
-
-    .stat-num span { color: var(--coral); }
-
-    .stat-label {
-      font-family: var(--font-hand);
-      font-size: 1.35rem;
-      color: var(--text-muted);
-      font-weight: 600;
-      letter-spacing: 0.02em;
-    }
-
-    /* Section Header */
-    .section-header {
-      margin-bottom: 50px;
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-
-    .section-tag {
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      color: var(--coral);
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      margin-bottom: 10px;
-      display: block;
-      font-weight: 700;
-    }
-
-    .section-title {
-      font-size: 2.6rem;
-      font-weight: 800;
-      letter-spacing: -0.025em;
-      color: var(--text);
-    }
-
-    .section-title .serif-accent {
-      font-family: var(--font-serif);
-      font-weight: 400;
-      font-style: italic;
-      background: linear-gradient(135deg, var(--coral), var(--pink));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    /* Filter Tabs */
-    .filter-tabs {
-      display: flex;
-      gap: 8px;
-      background: var(--surface);
-      border: 1px solid var(--surface-border);
-      padding: 6px;
-      border-radius: 12px;
-      list-style: none;
-      flex-wrap: wrap;
-      backdrop-filter: blur(10px);
-    }
-
-    .filter-tab {
-      padding: 10px 22px;
-      font-size: 0.84rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      background: none;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: var(--transition);
-      font-family: var(--font-main);
-    }
-
-    .filter-tab.active, .filter-tab:hover {
-      color: var(--text);
-      background: var(--surface-elevated);
-    }
-
-    .filter-tab.active {
-      background: linear-gradient(135deg, var(--coral), var(--pink));
-      color: #ffffff;
-    }
-
-    /* Product Grid */
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 30px;
-      margin-bottom: 110px;
-    }
-
-    .product-card {
-      background: linear-gradient(160deg, rgba(33, 37, 46, 0.85), rgba(24, 27, 34, 0.92));
-      border: 1px solid var(--surface-border);
-      border-radius: var(--radius);
-      padding: 34px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: var(--transition);
-      position: relative;
-      overflow: hidden;
-      backdrop-filter: blur(8px);
-    }
-
-    .product-card::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: conic-gradient(from 0deg, transparent, rgba(255, 107, 91, 0.18), transparent 30%);
-      opacity: 0;
-      transition: opacity 0.5s;
-      animation: spin-slow 10s linear infinite;
-      pointer-events: none;
-    }
-
-    .product-card:hover::before { opacity: 1; }
-
-    @keyframes spin-slow {
-      to { transform: rotate(360deg); }
-    }
-
-    .product-card:hover {
-      border-color: rgba(255, 107, 91, 0.5);
-      transform: translateY(-8px);
-      box-shadow: 0 24px 50px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 107, 91, 0.18);
-    }
-
-    .product-card.flagship {
-      grid-column: span 2;
-      background:
-        radial-gradient(circle at 90% 10%, rgba(255, 107, 91, 0.14), transparent 50%),
-        radial-gradient(circle at 10% 90%, rgba(236, 72, 153, 0.12), transparent 50%),
-        linear-gradient(145deg, rgba(45, 30, 40, 0.85), rgba(33, 37, 46, 0.95));
-      border-color: rgba(255, 107, 91, 0.4);
-      box-shadow: 0 0 0 1px rgba(255, 107, 91, 0.14), 0 24px 50px rgba(0, 0, 0, 0.4);
-    }
-
-    .product-card.flagship::after {
-      content: '✦ FLAGSHIP ✦';
-      position: absolute;
-      top: 18px;
-      right: -40px;
-      transform: rotate(35deg);
-      font-family: var(--font-hand);
-      font-size: 1.05rem;
-      color: var(--coral);
-      letter-spacing: 0.08em;
-      opacity: 0.85;
-      font-weight: 700;
-    }
-
-    .product-meta {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 20px;
-    }
-
-    .product-badge {
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      font-weight: 700;
-      color: var(--coral);
-      background: rgba(255, 107, 91, 0.14);
-      border: 1px solid rgba(255, 107, 91, 0.4);
-      padding: 5px 12px;
-      border-radius: 999px;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-    }
-
-    .product-badge.pink {
-      color: var(--pink);
-      background: rgba(236, 72, 153, 0.14);
-      border-color: rgba(236, 72, 153, 0.4);
-    }
-
-    .product-badge.cyan {
-      color: var(--cyan);
-      background: rgba(6, 182, 212, 0.14);
-      border-color: rgba(6, 182, 212, 0.4);
-    }
-
-    .product-badge.teal {
-      color: var(--teal);
-      background: rgba(20, 184, 166, 0.14);
-      border-color: rgba(20, 184, 166, 0.4);
-    }
-
-    .product-badge.orange {
-      color: var(--orange);
-      background: rgba(249, 115, 22, 0.14);
-      border-color: rgba(249, 115, 22, 0.4);
-    }
-
-    .product-badge.yellow {
-      color: var(--yellow);
-      background: rgba(250, 204, 21, 0.14);
-      border-color: rgba(250, 204, 21, 0.4);
-    }
-
-    .product-badge.rose {
-      color: var(--rose);
-      background: rgba(244, 63, 94, 0.14);
-      border-color: rgba(244, 63, 94, 0.4);
-    }
-
-    .product-badge.emerald {
-      color: var(--emerald);
-      background: rgba(16, 185, 129, 0.14);
-      border-color: rgba(16, 185, 129, 0.4);
-    }
-
-    .product-title {
-      font-size: 1.55rem;
-      font-weight: 800;
-      margin-bottom: 12px;
-      letter-spacing: -0.015em;
-      color: var(--text);
-      font-family: var(--font-serif);
-      font-style: italic;
-    }
-
-    .product-desc {
-      font-size: 0.96rem;
-      color: var(--text-muted);
-      margin-bottom: 26px;
-      line-height: 1.7;
-    }
-
-    .tech-tags {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-bottom: 30px;
-    }
-
-    .tech-tag {
-      font-family: var(--font-mono);
-      font-size: 0.74rem;
-      color: var(--cyan);
-      background: rgba(6, 182, 212, 0.08);
-      border: 1px solid rgba(6, 182, 212, 0.28);
-      padding: 5px 11px;
-      border-radius: 6px;
-      font-weight: 600;
-    }
-
-    .product-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-family: var(--font-hand);
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: var(--coral);
-      text-decoration: none;
-      transition: var(--transition);
-      margin-top: auto;
-    }
-
-    .product-link:hover {
-      color: var(--pink);
-      gap: 14px;
-    }
-
-    /* Human Story Section */
-    .story-section {
-      background:
-        radial-gradient(circle at 0% 100%, rgba(236, 72, 153, 0.10), transparent 50%),
-        radial-gradient(circle at 100% 0%, rgba(14, 165, 233, 0.08), transparent 50%),
-        linear-gradient(160deg, rgba(33, 37, 46, 0.9), rgba(24, 27, 34, 0.95));
-      border: 1px solid var(--surface-border);
-      border-radius: var(--radius);
-      padding: 60px;
-      margin-bottom: 110px;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
-    }
-
-    .story-section::before {
-      content: '✦';
-      position: absolute;
-      top: 30px;
-      right: 50px;
-      font-size: 12rem;
-      color: rgba(255, 107, 91, 0.06);
-      font-family: var(--font-serif);
-      line-height: 1;
-    }
-
-    .story-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 56px;
-      align-items: center;
-      position: relative;
-      z-index: 1;
-    }
-
-    .story-content h3 {
-      font-size: 2.2rem;
-      font-weight: 800;
-      margin-bottom: 18px;
-      line-height: 1.2;
-      color: var(--text);
-    }
-
-    .story-content p {
-      font-size: 1.07rem;
-      color: var(--text-muted);
-      margin-bottom: 26px;
-      line-height: 1.75;
-    }
-
-    .story-content strong {
-      color: var(--coral);
-      font-weight: 700;
-    }
-
-    .story-quote-card {
-      background: linear-gradient(145deg, rgba(40, 30, 38, 0.7), rgba(33, 37, 46, 0.85));
-      border: 1px solid rgba(255, 107, 91, 0.35);
-      border-radius: 14px;
-      padding: 36px;
-      position: relative;
-      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
-    }
-
-    .story-quote-card::before {
-      content: '“';
-      font-family: var(--font-serif);
-      font-size: 6rem;
-      color: var(--coral);
-      opacity: 0.45;
-      position: absolute;
-      top: -10px;
-      left: 20px;
-      line-height: 1;
-    }
-
-    .quote-text {
-      font-family: var(--font-serif);
-      font-size: 1.25rem;
-      font-style: italic;
-      color: #f6f7fa;
-      margin-bottom: 18px;
-      position: relative;
-      z-index: 1;
-      line-height: 1.55;
-    }
-
-    .quote-author {
-      font-family: var(--font-hand);
-      font-size: 1.6rem;
-      color: var(--coral);
-      font-weight: 700;
-    }
-
-    /* Library / Publications */
-    .publications-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 32px;
-      margin-bottom: 110px;
-    }
-
-    .book-card {
-      background:
-        radial-gradient(circle at 100% 0%, rgba(14, 165, 233, 0.10), transparent 50%),
-        linear-gradient(145deg, rgba(33, 37, 46, 0.85), rgba(24, 27, 34, 0.95));
-      border: 1px solid var(--surface-border);
-      border-radius: var(--radius);
-      padding: 42px;
-      display: flex;
-      gap: 28px;
-      align-items: flex-start;
-      transition: var(--transition);
-      position: relative;
-      overflow: hidden;
-      backdrop-filter: blur(8px);
-    }
-
-    .book-card:hover {
-      border-color: rgba(14, 165, 233, 0.45);
-      transform: translateY(-6px);
-      box-shadow: 0 24px 50px rgba(0, 0, 0, 0.45);
-    }
-
-    .book-cover {
-      width: 84px;
-      height: 112px;
-      background: linear-gradient(135deg, var(--coral), var(--pink));
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.4rem;
-      flex-shrink: 0;
-      box-shadow: 0 12px 26px rgba(255, 107, 91, 0.35);
-      color: #ffffff;
-    }
-
-    .book-info h3 {
-      font-size: 1.4rem;
-      font-weight: 700;
-      margin-bottom: 10px;
-      color: var(--text);
-      font-family: var(--font-serif);
-      font-style: italic;
-    }
-
-    .book-tag {
-      font-family: var(--font-mono);
-      font-size: 0.74rem;
-      color: var(--sky);
-      margin-bottom: 14px;
-      display: block;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      font-weight: 700;
-    }
-
-    .book-desc {
-      font-size: 0.96rem;
-      color: var(--text-muted);
-      margin-bottom: 22px;
-      line-height: 1.65;
-    }
-
-    /* Footer & Heart Interactive Counter */
-    footer {
-      border-top: 1px solid var(--surface-border);
-      background:
-        radial-gradient(circle at 50% 0%, rgba(255, 107, 91, 0.12), transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(14, 165, 233, 0.08), transparent 50%),
-        linear-gradient(180deg, rgba(24, 27, 34, 0.85), rgba(10, 12, 16, 1));
-      padding: 100px 0 40px;
-      position: relative;
-    }
-
-    .cta-box {
-      text-align: center;
-      max-width: 740px;
-      margin: 0 auto 72px;
-      position: relative;
-    }
-
-    .cta-box h2 {
-      font-size: 2.8rem;
-      font-weight: 800;
-      margin-bottom: 18px;
-      letter-spacing: -0.025em;
-      color: var(--text);
-      line-height: 1.15;
-    }
-
-    .cta-box h2 .serif-accent {
-      font-family: var(--font-serif);
-      font-style: italic;
-      background: linear-gradient(135deg, var(--coral), var(--pink));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .cta-box p {
-      color: var(--text-muted);
-      margin-bottom: 38px;
-      font-family: var(--font-hand);
-      font-size: 1.55rem;
-      line-height: 1.4;
-      font-weight: 600;
-    }
-
-    .cta-actions {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 18px;
-      flex-wrap: wrap;
-    }
-
-    .copy-email-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      background: var(--surface-elevated);
-      border: 1px solid var(--surface-border);
-      padding: 16px 28px;
-      border-radius: 999px;
-      color: var(--text);
-      font-family: var(--font-mono);
-      font-size: 0.92rem;
-      cursor: pointer;
-      transition: var(--transition);
-      font-weight: 600;
-    }
-
-    .copy-email-btn:hover {
-      border-color: var(--coral);
-      color: var(--coral);
-      transform: translateY(-3px);
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
-    }
-
-    .heart-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: rgba(244, 63, 94, 0.12);
-      border: 1px solid rgba(244, 63, 94, 0.45);
-      color: var(--rose);
-      padding: 16px 26px;
-      border-radius: 999px;
-      font-family: var(--font-hand);
-      font-size: 1.35rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-
-    .heart-btn:hover {
-      background: rgba(244, 63, 94, 0.22);
-      transform: scale(1.06);
-      box-shadow: 0 12px 26px rgba(244, 63, 94, 0.3);
-    }
-
-    .footer-bottom {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-top: 40px;
-      border-top: 1px solid var(--surface-border);
-      font-size: 0.9rem;
-      color: var(--text-dim);
-      flex-wrap: wrap;
-      gap: 16px;
-    }
-
-    .footer-bottom > div {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 4px;
-    }
-
-    .footer-bottom .footer-signature {
-      font-family: var(--font-hand);
-      font-size: 1.4rem;
-      color: var(--coral);
-      margin-left: 8px;
-      font-weight: 700;
-    }
-
-    .social-links {
-      display: flex;
-      gap: 24px;
-      list-style: none;
-    }
-
-    .social-links a {
-      color: var(--text-muted);
-      text-decoration: none;
-      transition: var(--transition);
-      font-weight: 600;
-      padding: 6px 0;
-      position: relative;
-    }
-
-    .social-links a::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--coral), var(--pink));
-      transition: var(--transition);
-      border-radius: 2px;
-    }
-
-    .social-links a:hover {
-      color: var(--coral);
-    }
-
-    .social-links a:hover::after {
-      width: 100%;
-    }
-
-    /* Toast Notification */
-    .toast {
-      position: fixed;
-      bottom: 28px;
-      right: 28px;
-      background: var(--surface-elevated);
-      border: 1px solid var(--coral);
-      padding: 16px 30px;
-      border-radius: 12px;
-      font-family: var(--font-hand);
-      font-size: 1.3rem;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
-      transform: translateY(120px);
-      opacity: 0;
-      transition: var(--transition);
-      z-index: 1000;
-      font-weight: 700;
-      color: var(--coral);
-    }
-
-    .toast.show {
-      transform: translateY(0);
-      opacity: 1;
-    }
-
-    @media (max-width: 992px) {
-      .hero-grid, .story-grid { grid-template-columns: 1fr; gap: 40px; }
-      .product-grid { grid-template-columns: repeat(2, 1fr); }
-      .product-card.flagship { grid-column: span 2; }
-      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
-      .stat-card { border-right: none; }
-    }
-
-    @media (max-width: 680px) {
-      .nav-links { display: none; }
-      .product-grid, .publications-grid { grid-template-columns: 1fr; }
-      .product-card.flagship { grid-column: span 1; }
-      .book-card { flex-direction: column; }
-      .stats-grid { grid-template-columns: 1fr; }
-      .footer-bottom { flex-direction: column; gap: 20px; text-align: center; }
-      .story-section { padding: 32px 24px; }
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Al-Aqmar Tinwala — 13yo Heart-First AI Architect · 11 Live Worlds</title>
+<meta name="description" content="Al-Aqmar Tinwala is a 13-year-old AI architect building privacy-first intelligence with a soul. 11 live products serving 3,000+ users — Pi (atoms & molecules), Gati (Indian mobility), eSAMz AI flagship. Published author ×2." />
+<meta name="keywords" content="Al-Aqmar Tinwala, AI architect, eSAMz AI, privacy-first AI, Rust, Sarvam 105b, Next.js, teen developer, Pi science, Gati mobility" />
+<meta name="author" content="Al-Aqmar Tinwala" />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://esamz.info/" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='85'>☽</text></svg>" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Al-Aqmar Tinwala — 13yo AI Architect · 11 Live Worlds" />
+<meta property="og:description" content="Heart-first, privacy-first intelligence with a soul. 11 live products, 3,000+ users, 2 books. Enter the workshop." />
+<meta property="og:url" content="https://esamz.info/" />
+<meta property="og:site_name" content="Al-Aqmar HQ" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Al-Aqmar Tinwala","url":"https://esamz.info/","email":"proman007power@gmail.com","jobTitle":"AI Architect & Full-Stack Developer","description":"13-year-old AI architect crafting high-performance intelligence with a soul. 11 live products serving 3,000+ users.","sameAs":["https://github.com/alakmar344","https://www.linkedin.com/in/alakmar-teenwala-054067393","https://instagram.com/its_alakmar7"]}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700;1,9..144,900&family=JetBrains+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --paper:#FFF2D2;
+  --paper-2:#FFFBEB;
+  --card:#FFFDF6;
+  --ink:#221310;
+  --ink-soft:#6B5A52;
+  --moon:#FFC700;
+  --tangerine:#FF4D00;
+  --hibiscus:#FF2E63;
+  --leaf:#0C7A5F;
+  --leaf-pale:#D9F1E3;
+  --night:#14132B;
+  --night-2:#211F4A;
+  --marigold:#FFB800;
+  --sky:#1E9BFF;
+  --shadow:7px 7px 0 var(--ink);
+  --shadow-sm:4px 4px 0 var(--ink);
+  --shadow-lg:10px 10px 0 var(--ink);
+  --r:20px;
+  --font-display:'Fraunces',Georgia,serif;
+  --font-body:'Plus Jakarta Sans',system-ui,sans-serif;
+  --font-hand:'Caveat',cursive;
+  --font-mono:'JetBrains Mono',monospace;
+  --max:1280px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--ink)}
+body{
+  font-family:var(--font-body);
+  color:var(--ink);
+  background:var(--paper);
+  background-image:
+    linear-gradient(to right, rgba(34,19,16,.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(34,19,16,.07) 1px, transparent 1px),
+    radial-gradient(circle at 15% 10%, rgba(255,77,0,.10), transparent 42%),
+    radial-gradient(circle at 88% 12%, rgba(255,199,0,.22), transparent 40%),
+    radial-gradient(circle at 85% 85%, rgba(12,122,95,.12), transparent 44%);
+  background-size:44px 44px,44px 44px,100% 100%,100% 100%,100% 100%;
+  overflow-x:hidden;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+/* paper grain */
+body::after{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:2000;opacity:.5;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+::selection{background:var(--ink);color:var(--moon)}
+.container{width:100%;max-width:var(--max);margin:0 auto;padding:0 28px;position:relative;z-index:2}
+a{color:inherit}
+/* ---------- NAV ---------- */
+.site-nav{
+  position:sticky;top:14px;z-index:1000;margin:14px 14px 0;
+  background:var(--paper-2);border:2.5px solid var(--ink);border-radius:18px;
+  box-shadow:var(--shadow-sm);
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 18px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand-moon{
+  width:48px;height:48px;border-radius:50%;background:var(--moon);
+  border:2.5px solid var(--ink);display:grid;place-items:center;
+  font-size:1.5rem;box-shadow:3px 3px 0 var(--ink);flex-shrink:0;
+  transition:transform .3s cubic-bezier(.34,1.56,.64,1);
+}
+.brand:hover .brand-moon{transform:rotate(-18deg) scale(1.08)}
+.brand-name{font-family:var(--font-display);font-weight:900;line-height:1;letter-spacing:-.02em;font-size:1.15rem}
+.brand-name small{display:block;font-family:var(--font-mono);font-weight:700;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-top:3px}
+.nav-links{display:flex;align-items:center;gap:6px;list-style:none}
+.nav-links a{
+  text-decoration:none;font-weight:800;font-size:.88rem;padding:9px 16px;border-radius:999px;
+  border:2px solid transparent;transition:all .22s ease;white-space:nowrap;
+}
+.nav-links a:hover{background:#fff;border-color:var(--ink);box-shadow:3px 3px 0 var(--ink);transform:translate(-1px,-1px) rotate(-1deg)}
+.nav-cta{
+  font-family:var(--font-mono);font-size:.76rem;font-weight:700;text-decoration:none;
+  background:var(--ink);color:var(--paper-2);padding:11px 18px;border-radius:999px;
+  border:2.5px solid var(--ink);display:inline-flex;align-items:center;gap:8px;white-space:nowrap;
+  box-shadow:3px 3px 0 rgba(34,19,16,.25);transition:all .22s ease;
+}
+.nav-cta i{width:8px;height:8px;border-radius:50%;background:#22E584;display:inline-block;animation:blink 1.8s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.35}}
+.nav-cta:hover{background:var(--tangerine);color:#fff;transform:translateY(-2px)}
+.hamburger{display:none;background:#fff;border:2.5px solid var(--ink);border-radius:12px;width:48px;height:48px;font-size:1.4rem;cursor:pointer;box-shadow:3px 3px 0 var(--ink)}
+.mobile-menu{
+  display:none;margin:10px 14px 0;background:var(--paper-2);border:2.5px solid var(--ink);
+  border-radius:16px;box-shadow:var(--shadow-sm);padding:12px;position:sticky;top:92px;z-index:999;
+}
+.mobile-menu.open{display:block}
+.mobile-menu a{display:block;text-decoration:none;font-weight:800;padding:14px 16px;border-radius:12px;border:2px solid transparent}
+.mobile-menu a:hover{background:#fff;border-color:var(--ink)}
+/* ---------- HERO ---------- */
+.hero{position:relative;padding:56px 0 0;overflow:clip}
+.hero-inner{position:relative}
+.eyebrow-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:22px}
+.stamp{
+  font-family:var(--font-mono);font-size:.74rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  background:var(--ink);color:var(--paper-2);padding:9px 16px;border-radius:999px;border:2.5px solid var(--ink);
+  display:inline-flex;align-items:center;gap:8px;transform:rotate(-1.5deg);
+}
+.stamp.alt{background:var(--moon);color:var(--ink);transform:rotate(1.2deg)}
+.stamp .dot{width:8px;height:8px;border-radius:50%;background:#22E584}
+.hero-title{
+  font-family:var(--font-display);font-weight:900;letter-spacing:-.04em;line-height:.92;
+  font-size:clamp(3.2rem,10.5vw,8.8rem);text-transform:uppercase;position:relative;z-index:3;
+}
+.hero-title .line{display:block;overflow:hidden}
+.hero-title .line > span{display:inline-block;animation:rise .9s cubic-bezier(.16,1,.3,1) both}
+.hero-title .line:nth-child(2) > span{animation-delay:.12s}
+.hero-title .line:nth-child(3) > span{animation-delay:.22s}
+@keyframes rise{from{transform:translateY(110%) rotate(2deg)}to{transform:translateY(0) rotate(0)}}
+.hero-title em{font-style:italic;font-weight:400;text-transform:none;letter-spacing:-.03em}
+.u-squiggle{
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='14' viewBox='0 0 120 14'%3E%3Cpath d='M2 9 Q 12 2 22 8 T 42 8 T 62 8 T 82 8 T 102 8 T 118 8' fill='none' stroke='%23FF4D00' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E") bottom / 100% .32em no-repeat;
+  padding-bottom:.12em;
+}
+.u-marker{background:linear-gradient(transparent 62%, var(--moon) 62%, var(--moon) 94%, transparent 94%)}
+.hero-sub{
+  display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:start;margin-top:30px;
+}
+.hero-copy p.lead{font-size:1.18rem;line-height:1.7;color:#3A2D28;max-width:560px}
+.hero-copy p.lead strong{color:var(--ink)}
+.hand-note{
+  font-family:var(--font-hand);font-size:1.7rem;line-height:1.2;color:var(--tangerine);
+  transform:rotate(-2deg);margin:18px 0 24px;display:inline-block;font-weight:700;
+}
+.hand-arrow{font-size:1.3em;vertical-align:middle}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:800;font-size:.98rem;
+  padding:16px 28px;border-radius:14px;border:2.5px solid var(--ink);transition:all .22s cubic-bezier(.34,1.56,.64,1);
+  cursor:pointer;
+}
+.btn-primary{background:var(--tangerine);color:#fff;box-shadow:var(--shadow)}
+.btn-primary:hover{transform:translate(-2px,-2px) rotate(-1deg);box-shadow:var(--shadow-lg);background:var(--ink)}
+.btn-ghost{background:#fff;color:var(--ink);box-shadow:var(--shadow-sm)}
+.btn-ghost:hover{transform:translate(-2px,-2px) rotate(1deg);box-shadow:var(--shadow);background:var(--moon)}
+.mini-proof{display:flex;gap:18px;margin-top:26px;flex-wrap:wrap}
+.mini-proof div{font-family:var(--font-mono);font-size:.76rem;font-weight:700}
+.mini-proof b{display:block;font-family:var(--font-display);font-size:1.5rem;line-height:1}
+/* moon workshop illustration */
+.workshop{
+  position:relative;background:var(--card);border:3px solid var(--ink);border-radius:28px;
+  box-shadow:var(--shadow-lg);padding:26px;transform:rotate(1.2deg);overflow:hidden;
+}
+.workshop:hover{transform:rotate(0deg) translateY(-4px)}
+.workshop-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.workshop-top .dots{display:flex;gap:7px}
+.workshop-top .dots i{width:13px;height:13px;border-radius:50%;border:2px solid var(--ink);display:block}
+.workshop-top span{font-family:var(--font-mono);font-size:.7rem;font-weight:700;letter-spacing:.12em}
+.moon-stage{
+  position:relative;background:var(--night);border:2.5px solid var(--ink);border-radius:18px;
+  min-height:360px;overflow:hidden;display:grid;place-items:center;padding:30px;
+}
+.moon-stage::before{
+  content:'';position:absolute;inset:0;
+  background-image:radial-gradient(#fff 1.2px, transparent 1.3px);
+  background-size:26px 26px;opacity:.35;
+}
+.moon-core{
+  position:relative;width:190px;height:190px;border-radius:50%;background:var(--moon);
+  border:3px solid #221310;display:grid;place-items:center;z-index:2;
+  box-shadow:0 0 0 14px rgba(255,199,0,.18), 0 0 80px rgba(255,199,0,.55);
+  animation:moonbreathe 5s ease-in-out infinite;
+}
+@keyframes moonbreathe{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+.moon-core b{font-family:var(--font-display);font-size:3.2rem;line-height:1}
+.orbit{position:absolute;inset:18px;border:2px dashed rgba(255,251,235,.35);border-radius:50%;animation:spin 22s linear infinite}
+.orbit.o2{inset:52px;animation-duration:16s;animation-direction:reverse;border-color:rgba(255,199,0,.4)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.orbit-chip{
+  position:absolute;top:-14px;left:50%;transform:translateX(-50%);
+  background:var(--paper-2);border:2.5px solid var(--ink);border-radius:999px;
+  font-family:var(--font-mono);font-size:.68rem;font-weight:700;padding:6px 12px;white-space:nowrap;
+}
+.o2 .orbit-chip{top:auto;bottom:-14px;background:var(--tangerine);color:#fff}
+.console{
+  margin-top:18px;background:#120F0E;border:2.5px solid var(--ink);border-radius:14px;
+  padding:18px;font-family:var(--font-mono);font-size:.8rem;line-height:1.8;color:#FFE9B8;min-height:168px;
+}
+.console .p{color:var(--moon)} .console .k{color:#7DD8FF} .console .ok{color:#22E584}
+.demo-row{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.demo-btn{
+  font-family:var(--font-mono);font-size:.7rem;font-weight:700;padding:7px 13px;border-radius:999px;
+  border:2px solid var(--ink);background:#fff;cursor:pointer;transition:all .2s;
+}
+.demo-btn.active,.demo-btn:hover{background:var(--ink);color:var(--moon)}
+/* floating doodles */
+.doodle{position:absolute;z-index:4;pointer-events:none;animation:drift 6s ease-in-out infinite;filter:drop-shadow(2px 2px 0 rgba(34,19,16,.9))}
+.doodle.s1{top:6%;left:2%}.doodle.s2{top:10%;right:4%;animation-delay:-2s}.doodle.s3{bottom:18%;left:1%;animation-delay:-4s}
+.doodle.s4{bottom:8%;right:2%;animation-delay:-1s}.doodle.s5{top:44%;left:46%;animation-delay:-3s}
+.sticker-chip{
+  background:#fff;border:2.5px solid var(--ink);border-radius:999px;padding:8px 14px;
+  font-family:var(--font-mono);font-size:.72rem;font-weight:700;box-shadow:3px 3px 0 var(--ink);
+  display:inline-flex;align-items:center;gap:6px;white-space:nowrap;
+}
+@keyframes drift{0%,100%{transform:translateY(0) rotate(var(--rot,0deg))}50%{transform:translateY(-14px) rotate(var(--rot,0deg))}}
+/* ticker */
+.ticker{
+  margin-top:48px;background:var(--ink);color:var(--paper-2);border-top:3px solid var(--ink);
+  border-bottom:3px solid var(--ink);overflow:hidden;transform:rotate(-1deg) scale(1.02);
+}
+.ticker-track{display:flex;gap:0;white-space:nowrap;animation:marquee 26s linear infinite;width:max-content;padding:14px 0}
+.ticker-track span{font-family:var(--font-display);font-weight:900;font-size:1.05rem;letter-spacing:.02em;padding:0 22px;text-transform:uppercase}
+.ticker-track span i{color:var(--moon);font-style:normal;margin-right:22px}
+@keyframes marquee{to{transform:translateX(-50%)}}
+/* ---------- STATS tickets ---------- */
+.stats{padding:70px 0 10px;position:relative}
+.tickets{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.ticket{
+  background:var(--card);border:2.5px solid var(--ink);border-radius:16px;padding:22px 20px;
+  box-shadow:var(--shadow-sm);position:relative;transition:all .22s ease;
+}
+.ticket:nth-child(1){transform:rotate(-1.6deg)} .ticket:nth-child(2){transform:rotate(1.2deg);background:var(--moon)}
+.ticket:nth-child(3){transform:rotate(-1deg)} .ticket:nth-child(4){transform:rotate(1.5deg);background:var(--ink);color:var(--paper-2)}
+.ticket:hover{transform:rotate(0) translateY(-6px);box-shadow:var(--shadow)}
+.ticket::after{
+  content:'';position:absolute;top:12px;bottom:12px;left:-2px;width:0;
+  border-left:3px dashed rgba(34,19,16,.25);
+}
+.ticket b{font-family:var(--font-display);font-size:2.9rem;line-height:1;letter-spacing:-.04em;display:block}
+.ticket small{font-family:var(--font-mono);font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;opacity:.75}
+.ticket em{font-family:var(--font-hand);font-size:1.25rem;display:block;margin-top:4px}
+/* ---------- WORLDS ---------- */
+.worlds{padding:80px 0 30px}
+.kicker{font-family:var(--font-mono);font-size:.76rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.kicker::before{content:'';width:34px;height:3px;background:var(--tangerine);display:inline-block;border-radius:2px}
+.section-title{font-family:var(--font-display);font-weight:900;letter-spacing:-.035em;line-height:.95;font-size:clamp(2.6rem,6.5vw,5.2rem);text-transform:uppercase}
+.section-title em{font-style:italic;font-weight:400;text-transform:none}
+.section-sub{max-width:640px;margin-top:16px;color:#4A3B35;font-size:1.06rem}
+.filter-row{display:flex;align-items:center;justify-content:space-between;gap:18px;margin:30px 0;flex-wrap:wrap}
+.filters{display:flex;gap:8px;flex-wrap:wrap;background:var(--paper-2);border:2.5px solid var(--ink);border-radius:999px;padding:6px}
+.filter-tab{border:2px solid transparent;background:transparent;border-radius:999px;padding:10px 18px;font-weight:800;font-size:.84rem;cursor:pointer;font-family:var(--font-body);transition:all .2s}
+.filter-tab.active{background:var(--ink);color:var(--moon)}
+.filter-tab:hover:not(.active){background:#fff;border-color:var(--ink)}
+.count-note{font-family:var(--font-hand);font-size:1.4rem;transform:rotate(-2deg);color:var(--leaf);font-weight:700}
+.worlds-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:22px;align-items:start}
+.world-card{
+  background:var(--card);border:3px solid var(--ink);border-radius:var(--r);
+  box-shadow:var(--shadow);padding:28px;position:relative;transition:all .25s cubic-bezier(.34,1.3,.64,1);
+  display:flex;flex-direction:column;overflow:hidden;
+}
+.world-card:hover{transform:translate(-3px,-6px) rotate(0deg)!important;box-shadow:var(--shadow-lg)}
+.world-card .card-top-bar{position:absolute;top:0;left:0;right:0;height:10px;border-bottom:2.5px solid var(--ink)}
+.world-card .idx{
+  font-family:var(--font-mono);font-size:.7rem;font-weight:700;letter-spacing:.14em;
+  display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;margin-top:6px;
+}
+.idx .pill{border:2px solid var(--ink);border-radius:999px;padding:4px 11px;background:#fff;font-size:.68rem}
+.world-card h3{font-family:var(--font-display);font-size:1.9rem;line-height:1;letter-spacing:-.02em;margin-bottom:12px}
+.world-card h3 small{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.1em;display:block;margin-top:6px;color:var(--ink-soft)}
+.world-card p{color:#4A3B35;font-size:.97rem;margin-bottom:18px}
+.tags{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:22px}
+.tags span{font-family:var(--font-mono);font-size:.68rem;font-weight:700;border:2px solid var(--ink);border-radius:8px;padding:4px 9px;background:#fff}
+.card-link{
+  margin-top:auto;display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:800;
+  background:var(--ink);color:var(--paper-2);padding:13px 20px;border-radius:12px;border:2.5px solid var(--ink);
+  align-self:flex-start;transition:all .2s;
+}
+.card-link:hover{background:var(--tangerine);color:#fff;gap:14px}
+.card-link.disabled{background:transparent;color:var(--ink-soft);border-style:dashed;cursor:default}
+.card-art{position:absolute;right:-10px;top:34px;font-size:3.4rem;transform:rotate(10deg);opacity:.9;pointer-events:none;filter:drop-shadow(2px 2px 0 rgba(34,19,16,.2))}
+/* asymmetric placement */
+.w-flag{grid-column:span 7;transform:rotate(-.8deg);background:var(--ink);color:var(--paper-2);border-color:var(--ink);box-shadow:7px 7px 0 var(--tangerine)}
+.w-flag p{color:#D8CFC8}.w-flag .idx .pill{background:var(--moon);color:var(--ink)}
+.w-flag .tags span{background:transparent;color:var(--moon);border-color:var(--moon)}
+.w-flag .card-link{background:var(--moon);color:var(--ink);border-color:var(--moon)}
+.w-flag .card-link:hover{background:var(--tangerine);color:#fff;border-color:#fff}
+.w-a{grid-column:span 5;transform:rotate(.9deg)}
+.w-b{grid-column:span 5;transform:rotate(-1deg);margin-top:-10px}
+.w-c{grid-column:span 7;transform:rotate(.7deg);margin-top:10px}
+.w-d{grid-column:span 4;transform:rotate(-.9deg)}
+.w-e{grid-column:span 4;transform:rotate(.8deg)}
+.w-f{grid-column:span 4;transform:rotate(-.7deg)}
+/* interlude */
+.interlude{background:var(--night);color:var(--paper-2);border-top:3px solid var(--ink);border-bottom:3px solid var(--ink);padding:64px 0;position:relative;overflow:hidden;margin-top:70px}
+.interlude::before{content:'';position:absolute;inset:0;background-image:radial-gradient(#fff 1.3px, transparent 1.4px);background-size:30px 30px;opacity:.28}
+.interlude blockquote{position:relative;text-align:center;font-family:var(--font-display);font-size:clamp(1.7rem,4.5vw,3.2rem);line-height:1.1;letter-spacing:-.02em;max-width:900px;margin:0 auto}
+.interlude blockquote em{color:var(--moon)}
+.interlude cite{display:block;margin-top:16px;font-family:var(--font-hand);font-style:normal;font-size:1.5rem;color:var(--moon)}
+/* story - night chapter */
+.story{background:var(--night);color:var(--paper-2);padding:30px 0 90px;position:relative;overflow:hidden}
+.story-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:stretch;margin-top:34px}
+.story-main{background:var(--paper-2);color:var(--ink);border:3px solid #000;border-radius:24px;box-shadow:8px 8px 0 var(--tangerine);padding:40px;transform:rotate(-.6deg)}
+.story-main h3{font-family:var(--font-display);font-size:2.1rem;line-height:1.05;letter-spacing:-.02em;margin:12px 0 16px}
+.story-main p{color:#4A3B35;margin-bottom:16px}
+.principles{display:grid;gap:14px;margin-top:22px}
+.principle{border:2.5px solid var(--ink);border-radius:14px;padding:16px 18px;background:#fff;display:flex;gap:14px;align-items:flex-start;box-shadow:4px 4px 0 var(--ink)}
+.principle b{font-size:1.6rem}
+.principle strong{display:block;font-size:.95rem}
+.principle small{color:var(--ink-soft);font-size:.86rem}
+.story-side{display:flex;flex-direction:column;gap:18px}
+.quote-card{background:var(--night-2);border:2.5px solid rgba(255,251,235,.25);border-radius:20px;padding:32px;position:relative}
+.quote-card::before{content:'“';font-family:var(--font-display);font-size:5rem;color:var(--moon);line-height:1;display:block;margin-bottom:6px}
+.quote-card p{font-family:var(--font-display);font-style:italic;font-size:1.35rem;line-height:1.45}
+.quote-card footer{font-family:var(--font-hand);font-size:1.5rem;color:var(--moon);margin-top:12px}
+.moon-phases{background:var(--moon);color:var(--ink);border:3px solid #000;border-radius:20px;padding:24px;box-shadow:6px 6px 0 #000;transform:rotate(.7deg)}
+.moon-phases h4{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.14em;margin-bottom:12px}
+.phases{display:flex;justify-content:space-between;font-size:1.9rem}
+/* library */
+.library{background:var(--marigold);border-top:3px solid var(--ink);border-bottom:3px solid var(--ink);padding:80px 0;position:relative;overflow:hidden}
+.library::before{content:'';position:absolute;inset:0;background-image:linear-gradient(to right, rgba(34,19,16,.08) 1px, transparent 1px);background-size:34px 100%}
+.books{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:34px;position:relative}
+.book{
+  background:var(--paper-2);border:3px solid var(--ink);border-radius:20px;box-shadow:var(--shadow);
+  padding:28px;display:flex;gap:22px;transition:all .25s ease;position:relative;
+}
+.book:first-child{transform:rotate(-1deg)} .book:last-child{transform:rotate(1deg)}
+.book:hover{transform:rotate(0) translateY(-6px);box-shadow:var(--shadow-lg)}
+.book-spine{
+  width:110px;flex-shrink:0;border:2.5px solid var(--ink);border-radius:12px;min-height:160px;
+  display:flex;flex-direction:column;justify-content:space-between;padding:14px 12px;color:#fff;font-weight:900;
+  box-shadow:4px 4px 0 var(--ink);
+}
+.book-spine.s1{background:var(--tangerine)} .book-spine.s2{background:var(--leaf)}
+.book-spine b{font-family:var(--font-display);font-size:2rem;line-height:1}
+.book-spine small{font-family:var(--font-mono);font-size:.62rem;letter-spacing:.12em}
+.book h3{font-family:var(--font-display);font-size:1.6rem;line-height:1.05;margin-bottom:8px}
+.book .tag{font-family:var(--font-mono);font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--tangerine)}
+.book p{font-size:.93rem;color:#4A3B35;margin:10px 0 18px}
+/* stack strip */
+.stack{padding:70px 0}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+.chips span{
+  background:#fff;border:2.5px solid var(--ink);border-radius:999px;padding:10px 18px;
+  font-family:var(--font-mono);font-size:.78rem;font-weight:700;box-shadow:3px 3px 0 var(--ink);
+  transition:all .2s;
+}
+.chips span:hover{transform:translateY(-3px) rotate(-1.5deg);background:var(--ink);color:var(--moon)}
+/* contact / footer */
+.contact-wrap{background:var(--paper-2);border:3px solid var(--ink);border-radius:28px;box-shadow:var(--shadow-lg);padding:56px 48px;text-align:center;position:relative;overflow:hidden;transform:rotate(-.5deg)}
+.contact-wrap::before{content:'✦ ✦ ✦';position:absolute;top:18px;left:0;right:0;font-size:.9rem;letter-spacing:.5em;color:var(--tangerine);opacity:.6}
+.contact-wrap h2{font-family:var(--font-display);font-weight:900;font-size:clamp(2.2rem,5.5vw,4rem);line-height:.95;letter-spacing:-.03em;text-transform:uppercase;margin-bottom:14px}
+.contact-wrap h2 em{font-style:italic;font-weight:400;text-transform:none}
+.contact-wrap > p{font-family:var(--font-hand);font-size:1.6rem;color:#5A4A42;max-width:620px;margin:0 auto 28px}
+.cta-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.email-pill{
+  display:inline-flex;align-items:center;gap:12px;background:#fff;border:2.5px solid var(--ink);border-radius:999px;
+  padding:8px 8px 8px 22px;font-family:var(--font-mono);font-size:.88rem;font-weight:700;box-shadow:var(--shadow-sm);
+}
+.email-pill button{background:var(--ink);color:var(--moon);border:none;border-radius:999px;padding:12px 20px;font-family:var(--font-mono);font-weight:700;font-size:.8rem;cursor:pointer}
+.email-pill button:hover{background:var(--tangerine);color:#fff}
+.heart-btn{
+  display:inline-flex;align-items:center;gap:10px;background:var(--hibiscus);color:#fff;border:2.5px solid var(--ink);
+  border-radius:999px;padding:14px 26px;font-family:var(--font-hand);font-size:1.4rem;font-weight:700;cursor:pointer;
+  box-shadow:var(--shadow-sm);transition:all .2s cubic-bezier(.34,1.56,.64,1);
+}
+.heart-btn:hover{transform:scale(1.06) rotate(-2deg)}
+.heart-btn:active{transform:scale(.96)}
+footer.site-footer{background:var(--ink);color:var(--paper-2);margin-top:70px;border-top:3px solid var(--ink);padding:34px 0 30px}
+.footer-inner{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.footer-inner p{font-size:.88rem;color:#B9AFA8}
+.footer-inner .sig{font-family:var(--font-hand);font-size:1.4rem;color:var(--moon)}
+.socials{display:flex;gap:10px;list-style:none}
+.socials a{color:var(--paper-2);text-decoration:none;font-weight:700;font-size:.86rem;border:2px solid rgba(255,251,235,.25);border-radius:999px;padding:9px 18px;transition:all .2s}
+.socials a:hover{background:var(--moon);color:var(--ink);border-color:var(--moon);transform:translateY(-2px)}
+.toast{
+  position:fixed;bottom:26px;right:26px;z-index:3000;background:var(--ink);color:var(--moon);
+  border:2.5px solid var(--moon);padding:14px 22px;border-radius:14px;font-family:var(--font-hand);
+  font-size:1.3rem;box-shadow:6px 6px 0 rgba(0,0,0,.4);transform:translateY(140px);opacity:0;transition:all .35s cubic-bezier(.34,1.56,.64,1);
+}
+.toast.show{transform:translateY(0);opacity:1}
+/* reveal */
+.reveal{opacity:0;transform:translateY(28px) rotate(.4deg);transition:opacity .7s ease, transform .7s cubic-bezier(.16,1,.3,1)}
+.reveal.in{opacity:1;transform:none}
+/* responsive */
+@media(max-width:1020px){
+  .hero-sub{grid-template-columns:1fr}
+  .tickets{grid-template-columns:repeat(2,1fr)}
+  .w-flag,.w-a,.w-b,.w-c{grid-column:span 12;margin-top:0}
+  .w-d,.w-e,.w-f{grid-column:span 6}
+  .story-grid{grid-template-columns:1fr}
+  .books{grid-template-columns:1fr}
+  .doodle.s5{display:none}
+}
+@media(max-width:680px){
+  .nav-links,.nav-cta{display:none}
+  .hamburger{display:block}
+  .container{padding:0 18px}
+  .hero{padding-top:34px}
+  .tickets{grid-template-columns:1fr}
+  .w-d,.w-e,.w-f{grid-column:span 12}
+  .contact-wrap{padding:40px 22px}
+  .world-card{padding:22px}
+  .story-main{padding:26px}
+  .doodle.s1,.doodle.s3{display:none}
+  .ticker-track span{font-size:.9rem}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+  html{scroll-behavior:auto}
+}
+</style>
 </head>
 <body>
 
-  <!-- Floating particles -->
-  <div class="particles">
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
+<header class="site-nav">
+  <div class="nav-inner">
+    <a href="#top" class="brand" aria-label="Al-Aqmar home">
+      <span class="brand-moon">☽</span>
+      <span class="brand-name">Al-Aqmar<small>القمر · THE MOON · V13</small></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#products">Worlds</a></li>
+      <li><a href="#story">Story</a></li>
+      <li><a href="#library">Library</a></li>
+      <li><a href="#toolbox">Toolbox</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a class="nav-cta" href="#contact"><i></i> Building with soul</a>
+    <button class="hamburger" id="hamburger" aria-label="Open menu">☰</button>
+  </div>
+</header>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#products">✦ Worlds — 11 live products</a>
+  <a href="#story">☽ Story — Heart First</a>
+  <a href="#library">📚 Library — 2 books</a>
+  <a href="#toolbox">🧰 Toolbox</a>
+  <a href="#contact">♥ Contact</a>
+</div>
+
+<main id="top">
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="doodle s1" data-speed="0.12" style="--rot:-8deg"><span class="sticker-chip">✏️ architect turned storyteller</span></div>
+  <div class="doodle s2" data-speed="0.2" style="--rot:6deg"><span class="sticker-chip">🔒 zero retention by design</span></div>
+  <div class="doodle s3" data-speed="0.16" style="--rot:-5deg"><span class="sticker-chip">📚 author ×2</span></div>
+  <div class="doodle s4" data-speed="0.1" style="--rot:4deg"><span class="sticker-chip">🛺 गति · motion</span></div>
+  <div class="doodle s5" data-speed="0.25" style="--rot:-3deg"><span class="sticker-chip">⚛ π · atoms alive</span></div>
+
+  <div class="container hero-inner">
+    <div class="eyebrow-row reveal in">
+      <span class="stamp"><span class="dot"></span> 13yo AI architect &amp; developer</span>
+      <span class="stamp alt">♥ Heart First · Privacy First</span>
+      <span class="stamp" style="background:#fff;color:var(--ink)">✦ 11 live worlds · 3,000+ users</span>
+    </div>
+
+    <h1 class="hero-title" aria-label="Heart-first AI architect">
+      <span class="line"><span>HEART-FIRST</span></span>
+      <span class="line"><span><em>AI</em> ARCHITECT<span style="color:var(--tangerine)">.</span></span></span>
+      <span class="line"><span class="u-squiggle">MOONSHOT</span> <em style="font-size:.55em;vertical-align:middle">at 13</em></span></span>
+    </h1>
+
+    <div class="hero-sub">
+      <div class="hero-copy reveal in">
+        <p class="lead">
+          I&rsquo;m <strong>Al-Aqmar Tinwala</strong> — القمر, <em>The Moon</em>.
+          I build <strong>privacy-first intelligence with a soul</strong>: flagship
+          <strong>eSAMz AI</strong> (128k context, Sarvam&nbsp;105b, zero data retention),
+          playful science playground <strong>π&nbsp;Pi</strong>, and reimagined Indian mobility
+          <strong>गति&nbsp;Gati</strong> — plus 8 more live tools people actually use.
+        </p>
+        <span class="hand-note">“code can love you back ♡” <span class="hand-arrow">⤵</span> come inside the workshop</span>
+        <div class="hero-ctas">
+          <a href="#products" class="btn btn-primary">Enter the 11 worlds →</a>
+          <a href="#story" class="btn btn-ghost">Read my story</a>
+        </div>
+        <div class="mini-proof">
+          <div><b>3,000+</b>active users</div>
+          <div><b>11</b>live products</div>
+          <div><b>20+</b>open-source repos</div>
+          <div><b>2</b>published books</div>
+        </div>
+      </div>
+
+      <div class="workshop reveal in" data-speed="0.04">
+        <div class="workshop-top">
+          <div class="dots"><i style="background:#FF5C5C"></i><i style="background:var(--moon)"></i><i style="background:#22E584"></i></div>
+          <span>AL-AQMAR MISSION CONTROL · V13.0 ● ACTIVE</span>
+        </div>
+        <div class="moon-stage" aria-hidden="true">
+          <div class="orbit"><span class="orbit-chip">🛰 eSAMz · 128k ctx</span></div>
+          <div class="orbit o2"><span class="orbit-chip">♥ heart-first routing</span></div>
+          <div class="moon-core"><b>☽</b></div>
+        </div>
+        <div class="console">
+          <div class="demo-row">
+            <button class="demo-btn active" onclick="switchDemo('privacy', this)">Privacy Spec</button>
+            <button class="demo-btn" onclick="switchDemo('sarvam', this)">Sarvam 105b</button>
+            <button class="demo-btn" onclick="switchDemo('rust', this)">Rust Engine</button>
+          </div>
+          <div id="terminalWindow">
+            <div class="p">$ inspect --protocol privacy-first</div>
+            <div><span class="k">Data Retention:</span> 0% (Zero Retention by Design)</div>
+            <div><span class="k">Context Window:</span> 128,000 tokens</div>
+            <div><span class="k">On-Device LLM:</span> Enabled for MindEase</div>
+            <div><span class="k">Active Users:</span> 3,000+ Worldwide</div>
+            <div class="ok" style="margin-top:8px">✓ Zero surveillance. 100% human dignity.</div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <!-- Sticky Ambient Navigation -->
-  <header>
-    <div class="container">
-      <nav class="nav-inner">
-        <a href="#" class="brand">
-          <div class="brand-symbol">☾</div>
-          <div>
-            <div class="brand-title">Al-Aqmar Tinwala</div>
-            <div class="brand-sub">القمر — The Moon ✦</div>
-          </div>
-        </a>
-
-        <ul class="nav-links">
-          <li><a href="#products">Products</a></li>
-          <li><a href="#story">The Story</a></li>
-          <li><a href="#library">Publications</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-
-        <div class="nav-status">
-          <span class="status-dot"></span>
-          <span>Building AI with a Soul</span>
-        </div>
-      </nav>
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track" id="tickerTrack">
+      <span><i>✦</i>Heart First</span><span><i>☽</i>Privacy-First</span><span><i>✦</i>eSAMz AI · 3,000+ users</span><span><i>⚛</i>π — atoms alive</span><span><i>✦</i>गति — Indian mobility</span><span><i>♥</i>Code can love you back</span><span><i>✦</i>Author ×2</span><span><i>☽</i>Rust · Sarvam 105b · Next.js</span>
     </div>
-  </header>
+  </div>
+</section>
 
-  <main>
-    <!-- Hero Section -->
-    <section class="hero">
-      <div class="container">
-        <div class="hero-grid">
-          <div>
-            <div class="personal-stamp">
-              <span>✦</span> 13yo AI Architect &amp; Developer
-            </div>
-            <h1>
-              I'm <span class="serif-accent">Alakmar</span>
-            </h1>
-            <p class="hero-story">
-              I'm <strong>Al-Aqmar Tinwala</strong>. Every line of code I write is guided by one principle: <strong>Heart First</strong>. Technology should serve people with dignity, not extract value or attention from them.
-            </p>
-            <div class="hero-quote">
-              <span>"Code can love you back. ♡"</span>
-            </div>
-            <div class="hero-actions">
-              <a href="#products" class="btn btn-primary">
-                Explore 11 Live Products &rarr;
-              </a>
-              <a href="#story" class="btn btn-secondary">
-                Read My Story
-              </a>
-            </div>
-          </div>
+<!-- ============ STAT TICKETS ============ -->
+<section class="stats">
+  <div class="container">
+    <div class="tickets">
+      <div class="ticket reveal"><small>Ticket № 01 — humans</small><b>3,000+</b><em>active users, worldwide ♥</em></div>
+      <div class="ticket reveal"><small>Ticket № 02 — worlds</small><b>11</b><em>live products, zero vaporware</em></div>
+      <div class="ticket reveal"><small>Ticket № 03 — open source</small><b>20+</b><em>repos &amp; experiments</em></div>
+      <div class="ticket reveal"><small>Ticket № 04 — library</small><b style="color:var(--moon)">2</b><em style="color:#D8CFC8">books on Amazon KDP</em></div>
+    </div>
+  </div>
+</section>
 
-          <!-- Hero Right: Interactive Architecture Sandbox -->
-          <div class="playground-card">
-            <div class="playground-header">
-              <div class="playground-title">
-                <span>✦</span> AL-AQMAR ARCHITECTURE ENGINE
-              </div>
-              <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--emerald);">v13.0 ACTIVE</span>
-            </div>
-            <div class="playground-body">
-              <div class="demo-selector">
-                <button class="demo-btn active" onclick="switchDemo('privacy', this)">Privacy Spec</button>
-                <button class="demo-btn" onclick="switchDemo('sarvam', this)">Sarvam 105b</button>
-                <button class="demo-btn" onclick="switchDemo('rust', this)">Rust Engine</button>
-              </div>
-              <div class="terminal-window" id="terminalWindow">
-                <div class="log-prompt">$ inspect --protocol privacy-first</div>
-                <div><span class="log-key">Data Retention:</span> <span class="log-val">0% (Zero Retention by Design)</span></div>
-                <div><span class="log-key">Context Window:</span> <span class="log-val">128,000 tokens</span></div>
-                <div><span class="log-key">On-Device LLM:</span> <span class="log-val">Enabled for MindEase</span></div>
-                <div><span class="log-key">Active Users:</span> <span class="log-val">3,000+ Worldwide</span></div>
-                <div style="margin-top: 10px;" class="log-success">✓ Zero surveillance. 100% human dignity.</div>
-              </div>
-            </div>
-          </div>
+<!-- ============ WORLDS / PRODUCTS ============ -->
+<section class="worlds" id="products">
+  <div class="container">
+    <div class="kicker reveal">Chapter 01 — The workshop floor</div>
+    <h2 class="section-title reveal">11 live <em>worlds,</em><br/>not mockups.</h2>
+    <p class="section-sub reveal">Every card below is a real, clickable product with real users. Flagship first, then science &amp; mobility, then AI tools, then everyday utilities. No case-study fiction — go break things.</p>
+
+    <div class="filter-row reveal">
+      <div class="filters" role="tablist" aria-label="Filter products">
+        <button class="filter-tab active" onclick="filterProducts('all', this)">All (11)</button>
+        <button class="filter-tab" onclick="filterProducts('ai', this)">AI &amp; Intelligence</button>
+        <button class="filter-tab" onclick="filterProducts('tools', this)">Tools &amp; Finance</button>
+        <button class="filter-tab" onclick="filterProducts('science', this)">Science &amp; Mobility</button>
+      </div>
+      <span class="count-note">← pick a shelf, any shelf ✎ <span id="visibleCount">11 / 11 showing</span></span>
+    </div>
+
+    <div class="worlds-grid" id="productGrid">
+
+      <article class="world-card w-flag reveal" data-category="ai">
+        <span class="card-top-bar" style="background:var(--moon)"></span>
+        <span class="card-art">🌙</span>
+        <div class="idx"><span>01 / 11 · FLAGSHIP</span><span class="pill">● 3,000+ active users</span></div>
+        <h3>eSAMz AI <small>FLAGSHIP · PRIVACY-FIRST AI · esamz.info</small></h3>
+        <p>Flagship privacy-first AI. 128k context, live web search, powered by the Sarvam 105b engine — with absolute zero data-retention architecture. The moon of this whole universe.</p>
+        <div class="tags"><span>Rust</span><span>Sarvam 105b</span><span>128k ctx</span><span>Zero retention</span></div>
+        <a class="card-link" href="https://esamz.info" target="_blank" rel="noopener">Launch eSAMz AI →</a>
+      </article>
+
+      <article class="world-card w-a reveal" data-category="science">
+        <span class="card-top-bar" style="background:var(--sky)"></span>
+        <span class="card-art">⚛️</span>
+        <div class="idx"><span>02 / 11</span><span class="pill">ATOMS &amp; MOLECULES</span></div>
+        <h3>π — Pi <small>SCIENCE PLAYGROUND · 60FPS</small></h3>
+        <p>A playful visual science playground where atoms and molecules come alive. Tap, swipe, explore covalent bonds, electron shells and molecular geometry.</p>
+        <div class="tags"><span>Interactive 3D</span><span>WebGL</span><span>Chemistry</span><span>EdTech</span></div>
+        <a class="card-link" href="https://science-project-pi.vercel.app" target="_blank" rel="noopener">Explore Pi →</a>
+      </article>
+
+      <article class="world-card w-b reveal" data-category="science">
+        <span class="card-top-bar" style="background:var(--tangerine)"></span>
+        <span class="card-art">🛺</span>
+        <div class="idx"><span>03 / 11</span><span class="pill">INDIAN MOBILITY</span></div>
+        <h3>गति — Gati <small>गति MEANS MOTION</small></h3>
+        <p>Reimagined Indian mobility: autos, metros, buses and last-mile bikes fused into one seamless hyperlocal journey planner with live ETAs and soulful UX.</p>
+        <div class="tags"><span>Hyperlocal</span><span>Live ETA</span><span>India-first</span></div>
+        <a class="card-link" href="https://gati-rho.vercel.app" target="_blank" rel="noopener">Hop on Gati →</a>
+      </article>
+
+      <article class="world-card w-c reveal" data-category="tools">
+        <span class="card-top-bar" style="background:var(--leaf)"></span>
+        <span class="card-art">🧭</span>
+        <div class="idx"><span>04 / 11</span><span class="pill">STARTUP VALIDATION</span></div>
+        <h3>PivotIQ <small>INVESTOR-STYLE PROMPTS · RISK CHECKS</small></h3>
+        <p>Startup concept validator. Helps founders test concepts using investor-style prompts, risk checks and positioning analysis — kill bad ideas fast, keep good ones.</p>
+        <div class="tags"><span>Gemini AI</span><span>Strategy</span></div>
+        <a class="card-link" href="https://pivot-iq.info.vercel.app" target="_blank" rel="noopener">Launch PivotIQ →</a>
+      </article>
+
+      <article class="world-card w-d reveal" data-category="ai">
+        <span class="card-top-bar" style="background:var(--moon)"></span>
+        <div class="idx"><span>05 / 11</span><span class="pill">ADAPTIVE EDTECH</span></div>
+        <h3>RealLearn</h3>
+        <p>AI-powered adaptive learning engine. Turns a single question into a 3-part structured journey with real-world context.</p>
+        <div class="tags"><span>Sarvam 105b</span><span>EdTech</span></div>
+        <a class="card-link" href="https://reallearn-info.vercel.app" target="_blank" rel="noopener">Launch RealLearn →</a>
+      </article>
+
+      <article class="world-card w-e reveal" data-category="ai">
+        <span class="card-top-bar" style="background:var(--hibiscus)"></span>
+        <div class="idx"><span>06 / 11</span><span class="pill">WELLNESS AI</span></div>
+        <h3>MindEase</h3>
+        <p>On-device emotional-support chatbot. 20 languages, voice output, 100% on-device processing — zero data storage, maximum gentleness.</p>
+        <div class="tags"><span>On-Device</span><span>20 langs</span><span>Voice</span></div>
+        <a class="card-link" href="https://me.esamz.info" target="_blank" rel="noopener">Launch MindEase →</a>
+      </article>
+
+      <article class="world-card w-f reveal" data-category="tools">
+        <span class="card-top-bar" style="background:var(--marigold)"></span>
+        <div class="idx"><span>07 / 11</span><span class="pill">SMALL-BIZ FINTECH</span></div>
+        <h3>Hissab</h3>
+        <p>Sales tracker for Indian small businesses. Mobile-first, 30-day analytics, profit-margin tracking, clean insights.</p>
+        <div class="tags"><span>Fintech</span><span>Analytics</span></div>
+        <a class="card-link" href="https://hisaab.esamz.info" target="_blank" rel="noopener">Launch Hissab →</a>
+      </article>
+
+      <article class="world-card w-d reveal" data-category="ai">
+        <span class="card-top-bar" style="background:var(--hibiscus)"></span>
+        <div class="idx"><span>08 / 11</span><span class="pill">VOICE AI · &lt;200MS</span></div>
+        <h3>CiboCocinar</h3>
+        <p>Voice-first cooking assistant with under 200ms latency. Hands-free kitchen guidance for multi-tasking chefs.</p>
+        <div class="tags"><span>Voice AI</span><span>Cooking</span></div>
+        <a class="card-link" href="https://cibo.esamz.info" target="_blank" rel="noopener">Launch Cibo →</a>
+      </article>
+
+      <article class="world-card w-e reveal" data-category="tools">
+        <span class="card-top-bar" style="background:var(--sky)"></span>
+        <div class="idx"><span>09 / 11</span><span class="pill">DESIGN QA</span></div>
+        <h3>Fit The Color</h3>
+        <p>Advanced color-compatibility engine. Powers strategic UI decisions with mathematical color-space analysis.</p>
+        <div class="tags"><span>Next.js 15</span><span>Design math</span></div>
+        <a class="card-link" href="https://fit-the-color-info.vercel.app" target="_blank" rel="noopener">Launch tool →</a>
+      </article>
+
+      <article class="world-card w-f reveal" data-category="tools">
+        <span class="card-top-bar" style="background:var(--ink)"></span>
+        <div class="idx"><span>10 / 11</span><span class="pill">INTERACTIVE APP</span></div>
+        <h3>Neon Tic-Tac-Toe</h3>
+        <p>Minimalist, high-contrast game. Dark-mode first, ultra-responsive, zero dependencies — small, sharp, fun.</p>
+        <div class="tags"><span>Vanilla JS</span><span>HTML/CSS</span></div>
+        <a class="card-link" href="https://tic-info.vercel.app" target="_blank" rel="noopener">Play game →</a>
+      </article>
+
+      <article class="world-card w-c reveal" data-category="tools" style="background:repeating-linear-gradient(-45deg,#FFFDF6,#FFFDF6 14px,#FFF6DE 14px,#FFF6DE 28px)">
+        <span class="card-top-bar" style="background:var(--ink)"></span>
+        <span class="card-art">📈</span>
+        <div class="idx"><span>11 / 11</span><span class="pill">COMING SOON</span></div>
+        <h3>SeeMarket <small>MARKET INTELLIGENCE · IN ACTIVE DEV</small></h3>
+        <p>Market-intelligence platform: live movers, custom watchlists and AI symbol analysis for active traders. Currently on the workbench.</p>
+        <div class="tags"><span>Real-time</span><span>Fintech</span></div>
+        <span class="card-link disabled">In active development ✦</span>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ INTERLUDE ============ -->
+<section class="interlude">
+  <div class="container">
+    <blockquote class="reveal">“Technology should serve people <em>with dignity,</em> not extract value from them.”<cite>— field note from the workshop, age 13 ✦</cite></blockquote>
+  </div>
+</section>
+
+<!-- ============ STORY ============ -->
+<section class="story" id="story">
+  <div class="container">
+    <div class="kicker reveal" style="color:var(--moon)">Chapter 02 — Night shift · the human behind the code</div>
+    <h2 class="section-title reveal" style="color:var(--paper-2)">I&rsquo;m 13 and <em style="color:var(--moon)">just warming up.</em></h2>
+    <div class="story-grid">
+      <div class="story-main reveal">
+        <span class="stamp">☽ القمر — “The Moon”</span>
+        <h3>Architect turned <span class="u-marker">visual storyteller.</span></h3>
+        <p>My name is <strong>Al-Aqmar Tinwala</strong>. I didn&rsquo;t start building AI for hype — I started because tools should give people <strong>privacy, speed and real utility</strong>.</p>
+        <p>Whether it&rsquo;s a flagship privacy engine in <strong>Rust</strong>, atoms that dance in <strong>Pi</strong>, or autos that finally connect in <strong>Gati</strong> — I believe great software is crafted with soul.</p>
+        <div class="principles">
+          <div class="principle"><b>♥</b><div><strong>Heart First</strong><small>Technology for genuine impact, not attention extraction.</small></div></div>
+          <div class="principle"><b>🔒</b><div><strong>Privacy-First</strong><small>Zero-retention by design. Your data never leaves your hands.</small></div></div>
+          <div class="principle"><b>🧪</b><div><strong>Curiosity-First</strong><small>Build for wonder — atoms, molecules, motion, masalas of ideas.</small></div></div>
+        </div>
+        <p style="font-family:var(--font-hand);font-size:1.5rem;color:var(--tangerine);margin-top:18px;transform:rotate(-1deg)">— yes, I&rsquo;m thirteen. and yes, I ship. ♡</p>
+      </div>
+      <div class="story-side">
+        <div class="quote-card reveal">
+          <p>Every line of code I write is guided by one principle: Heart First. If it doesn&rsquo;t serve people with dignity, it doesn&rsquo;t ship.</p>
+          <footer>— Al-Aqmar Tinwala, v13 ✦</footer>
+        </div>
+        <div class="moon-phases reveal">
+          <h4>● CURRENT PHASE — WAXING BUILDER</h4>
+          <div class="phases"><span>🌑</span><span>🌒</span><span>🌓</span><span style="background:#fff;border:2px solid var(--ink);border-radius:50%;line-height:1">🌕</span><span>🌖</span></div>
+          <p style="font-family:var(--font-mono);font-size:.74rem;font-weight:700;margin-top:12px">SPECIALTIES — PRIVACY ARCH · VOICE AI · REAL-TIME SYSTEMS · EDTECH · FINTECH · INTERACTIVE SCIENCE · MOBILITY</p>
+        </div>
+        <div class="quote-card reveal" style="background:var(--moon);color:var(--ink);border-color:#000">
+          <p style="font-size:1.15rem">“I enjoy designing tools that make life easier!” — especially for India-first users, curious students &amp; small businesses.</p>
+          <footer style="color:var(--ink)">— from the original field notes ✎</footer>
         </div>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
-    <!-- Stats Bar -->
-    <section class="stats-bar">
-      <div class="container">
-        <div class="stats-grid">
-          <div class="stat-card">
-            <div class="stat-num">3,000<span>+</span></div>
-            <div class="stat-label">Active Users</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-num">11</div>
-            <div class="stat-label">Live Products</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-num">20<span>+</span></div>
-            <div class="stat-label">Open Source Repos</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-num">2</div>
-            <div class="stat-label">Published Books</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Live Products Matrix -->
-    <section id="products" style="padding: 40px 0;">
-      <div class="container">
-        <div class="section-header">
-          <div>
-            <span class="section-tag">Interactive Portfolio</span>
-            <h2 class="section-title">Live <span class="serif-accent">Products</span></h2>
-          </div>
-
-          <div class="filter-tabs">
-            <button class="filter-tab active" onclick="filterProducts('all', this)">All (11)</button>
-            <button class="filter-tab" onclick="filterProducts('ai', this)">AI &amp; Intelligence</button>
-            <button class="filter-tab" onclick="filterProducts('tools', this)">Tools &amp; Finance</button>
-            <button class="filter-tab" onclick="filterProducts('science', this)">Science &amp; Mobility</button>
-          </div>
-        </div>
-
-        <div class="product-grid" id="productGrid">
-
-          <!-- Flagship: eSAMz AI -->
-          <div class="product-card flagship" data-category="ai">
-            <div>
-              <div class="product-meta">
-                <span class="product-badge">Flagship AI Product</span>
-                <span style="font-family: var(--font-mono); font-size: 0.76rem; color: var(--emerald)">● 3,000+ Active Users</span>
-              </div>
-              <h3 class="product-title">eSAMz AI</h3>
-              <p class="product-desc">
-                Flagship privacy-first AI. 128k context, live web search capabilities, powered by Sarvam 105b engine with absolute zero data retention architecture.
-              </p>
-              <div class="tech-tags">
-                <span class="tech-tag">Rust</span>
-                <span class="tech-tag">Sarvam 105b</span>
-                <span class="tech-tag">Privacy-First</span>
-                <span class="tech-tag">128k Context</span>
-              </div>
-            </div>
-            <a href="https://esamz.info" target="_blank" rel="noopener" class="product-link">
-              Launch eSAMz AI &rarr;
-            </a>
-          </div>
-
-          <!-- Product 2: Pi — Science Explainer -->
-          <div class="product-card" data-category="science">
-            <div>
-              <div class="product-meta">
-                <span class="product-badge cyan">Atom &amp; Molecule Explainer</span>
-              </div>
-              <h3 class="product-title">π — Pi</h3>
-              <p class="product-desc">
-                A playful, visual science playground where atoms and molecules come alive. Tap, swipe and explore covalent bonds, electron shells and molecular geometry with buttery-smooth 60fps animations built for curious minds.
-              </p>
-              <div class="tech-tags">
-                <span class="tech-tag">Interactive 3D</span>
-                <span class="tech-tag">EdTech</span>
-                <span class="tech-tag">Chemistry</span>
-                <span class="tech-tag">WebGL</span>
-              </div>
-            </div>
-            <a href="https://science-project-pi.vercel.app" target="_blank" rel="noopener" class="product-link">
-              Explore Pi &rarr;
-            </a>
-          </div>
-
-          <!-- Product 3: Gati — Indian Mobility -->
-          <div class="product-card" data-category="science">
-            <div>
-              <div class="product-meta">
-                <span class="product-badge orange">Indian Mobility, Reimagined</span>
-              </div>
-              <h3 class="product-title">गति — Gati</h3>
-              <p class="product-desc">
-                गति means motion — and that's exactly what this is. A reimagined Indian mobility service blending autos, metros, buses and last-mile bikes into one seamless, hyperlocal journey planner with live ETAs and soulful UX.
-              </p>
-              <div class="tech-tags">
-                <span class="tech-tag">Mobility</span>
-                <span class="tech-tag">Hyperlocal</span>
-                <span class="tech-tag">Real-time ETA</span>
-                <span class="tech-tag">India-first</span>
-              </div>
-            </div>
-            <a href="https://gati-rho.vercel.app" target="_blank" rel="noopener" class="product-link">
-              Hop on Gati &rarr;
-            </a>
-          </div>
-
-          <!-- Product 4: PivotIQ -->
-          <div class="product-card" data-category="tools">
-            <div>
-              <div class="product-meta">
-                <span class="product-badge">Startup Validation</span>
-              </div>
-              <h3 class="product-title">PivotIQ</h3>
-              <p class="product-desc">
-                Startup concept validator. Helps founders test concepts using investor-style prompts, risk checks, and positioning analysis.
-              </p>
-              <div class="tech-tags">
-                <span class="tech-tag">Gemini AI</span>
-                <span class="tech-tag">Strategy</span>
-              </div>
-            </div>
-            <a href="https://pivot-iq.info.vercel.app" target="_blank" rel="noopener" class="product-link">
-              Launch PivotIQ &rarr;
-            </a>
-          </div>
-
-          <!-- Product 5: RealLearn -->
-          <div class="product-card" data-category="ai">
-            <div>
-              <div class="product-meta">
-                <span class="product-badge teal">Adaptive EdTech</span>
-              </div>
-              <h3 class="product-title">RealLearn</h3>
-              <p class="product-desc">
-                AI-powered adaptive learning engine. Transforms single questions into 3-part structured learning journeys with real-world context.
-              </p>
-              <div class="tech-tags">
-                <span class="tech-tag">Sarvam 105b</span>
-                <span class="tech-tag">EdTech</span>
-              </div>
-            </div>
-            <a href="https://reallearn-info.vercel.app" target="_blank" rel="noopener" class="product-link">
-              Launch RealLearn &rarr;
-            </a>
-          </div>
-
-          <!-- Product 6: MindEase -->
-          <div class="product-card" data-category="ai">
-            <div>
-              <div class="product-meta">
-                <span class="product-badge teal">Wellness AI</span>
-              </div>
-              <h3 class="product-title">MindEase</h3>
-              <p class="product-desc">
-                On-device emotional support chatbot. Supports 20 languages with voice output. 100% on-device processing with zero data storage.
-              </p>
-              <div class="tech-tags">
-                <span class="tech-tag">On-Device</span>
-                <span class="tech-tag">20 Languages</span>
-                <span class="tech-tag">Voice AI</span>
-              </div>
-            </div>
-            <a href="https://me.esamz.info" target="_blank" rel="noopener" class="product-link">
-              Launch MindEase &rarr;
-            </a>
-          </div>
-
-          <!-- Product 7: Hissab -->
-          <div class="product-card" data-category="tools">
-            <div>
-              <div class="product-meta">
-                <span class="product-badge yellow">Small Biz Fintech</span>
-              </div>
-              <h3 class="product-title">Hissab</h3>
-              <p class="product-desc">
-                Sales tracker for Indian small businesses. Mobile-first design, 30-day analytics, profit margin tracking, and clean insights.
-              </p>
-              <div class="tech-tags">
-                <span class="tech-tag">Fintech</span>
-                <span class="tech-tag">Analytics</span>
-              </div>
-            </div>
-            <a href="https://hisaab.esamz.info" target="_blank" rel="noopener" class="product-link">
-              Launch Hissab &rarr;
-            </a>
-          </div>
-
-          <!-- Product 8: CiboCocinar -->
-          <div class="product-card" data-category="ai">
-            <div>
-              <div class="product-meta">
-                <span class="product-badge rose">Voice AI</span>
-              </div>
-              <h3 class="product-title">CiboCocinar</h3>
-              <p class="product-desc">
-                Voice-first cooking assistant operating with under 200ms latency. Hands-free kitchen guidance for multi-tasking chefs.
-              </p>
-              <div class="tech-tags">
-                <span class="tech-tag">Voice AI</span>
-                <span class="tech-tag">&lt;200ms Latency</span>
-              </div>
-            </div>
-            <a href="https://cibo.esamz.info" target="_blank" rel="noopener" class="product-link">
-              Launch CiboCocinar &rarr;
-            </a>
-          </div>
-
-          <!-- Product 9: Fit The Color -->
-          <div class="product-card" data-category="tools">
-            <div>
-              <div class="product-meta">
-                <span class="product-badge">Design QA</span>
-              </div>
-              <h3 class="product-title">Fit The Color</h3>
-              <p class="product-desc">
-                Advanced color compatibility engine. Powers strategic UI design decisions with mathematical color space analysis.
-              </p>
-              <div class="tech-tags">
-                <span class="tech-tag">Next.js 15</span>
-                <span class="tech-tag">Design Math</span>
-              </div>
-            </div>
-            <a href="https://fit-the-color-info.vercel.app" target="_blank" rel="noopener" class="product-link">
-              Launch Fit The Color &rarr;
-            </a>
-          </div>
-
-          <!-- Product 10: Neon Tic-Tac-Toe -->
-          <div class="product-card" data-category="tools">
-            <div>
-              <div class="product-meta">
-                <span class="product-badge rose">Interactive App</span>
-              </div>
-              <h3 class="product-title">Neon Tic-Tac-Toe</h3>
-              <p class="product-desc">
-                Minimalist, high-contrast gaming experience. Dark-mode first, ultra-responsive, zero dependencies.
-              </p>
-              <div class="tech-tags">
-                <span class="tech-tag">Vanilla JS</span>
-                <span class="tech-tag">HTML5/CSS3</span>
-              </div>
-            </div>
-            <a href="https://tic-info.vercel.app" target="_blank" rel="noopener" class="product-link">
-              Launch Game &rarr;
-            </a>
-          </div>
-
-          <!-- Product 11: SeeMarket -->
-          <div class="product-card" data-category="tools">
-            <div>
-              <div class="product-meta">
-                <span class="product-badge cyan">Coming Soon</span>
-              </div>
-              <h3 class="product-title">SeeMarket</h3>
-              <p class="product-desc">
-                Market intelligence platform featuring live movers, custom watchlists, and AI symbol analysis for active traders.
-              </p>
-              <div class="tech-tags">
-                <span class="tech-tag">Real-time</span>
-                <span class="tech-tag">Fintech</span>
-              </div>
-            </div>
-            <span class="product-link" style="color: var(--text-dim); cursor: default;">
-              In Active Development ✦
-            </span>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- The Human Story Behind the Code -->
-    <section id="story" style="padding: 40px 0;">
-      <div class="container">
-        <div class="story-section">
-          <div class="story-grid">
-            <div class="story-content">
-              <span class="section-tag">About The Architect</span>
-              <h3>"I'm 13 and just getting started."</h3>
-              <p>
-                My name is <strong>Al-Aqmar Tinwala</strong> (القمر means <em>The Moon</em>). I started building AI software not to create flashy hype, but to create tools that give people privacy, speed, and real utility.
-              </p>
-              <p>
-                Whether it's building flagship privacy engines in Rust, exploring atoms and molecules in <strong>Pi</strong>, or reimagining Indian mobility with <strong>Gati</strong> — I believe great software is crafted with soul.
-              </p>
-              <p style="font-family: var(--font-hand); font-size: 1.45rem; color: var(--coral); margin-top: 12px;">
-                — yes, I'm thirteen. and yes, I'm just warming up. ♡
-              </p>
-            </div>
-
-            <div class="story-quote-card">
-              <div class="quote-text">
-                "Technology should serve people with dignity, not extract value from them. Every line of code is written Heart First."
-              </div>
-              <div class="quote-author">
-                — Al-Aqmar Tinwala, v13 ✦
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Library Section -->
-    <section id="library" style="padding: 40px 0;">
-      <div class="container">
-        <div class="section-header">
-          <div>
-            <span class="section-tag">Publications</span>
-            <h2 class="section-title">The <span class="serif-accent">Library</span></h2>
-          </div>
-        </div>
-
-        <div class="publications-grid">
-          <!-- Book 1 -->
-          <div class="book-card">
-            <div class="book-cover">📘</div>
-            <div class="book-info">
-              <span class="book-tag">Bestseller on Amazon KDP</span>
-              <h3>The AI Mastery Handbook</h3>
-              <p class="book-desc">
-                Claude, Gemini, Llama, and ChatGPT explained. AI history, LLM architecture mechanics, and practical prompt engineering.
-              </p>
-              <a href="https://www.amazon.com/dp/B0GX2N6WTT" target="_blank" rel="noopener" class="btn btn-secondary" style="padding: 10px 20px; font-size: 0.85rem;">
-                View on Amazon KDP &rarr;
-              </a>
-            </div>
-          </div>
-
-          <!-- Book 2 -->
-          <div class="book-card">
-            <div class="book-cover">📗</div>
-            <div class="book-info">
-              <span class="book-tag">New Release on Amazon KDP</span>
-              <h3>30 Days Mastering Claude Code</h3>
-              <p class="book-desc">
-                A 30-day hands-on journey into agentic workflows and coding automation with Claude Code, written from direct builder experience.
-              </p>
-              <a href="https://www.amazon.com/dp/B0GY1F3573" target="_blank" rel="noopener" class="btn btn-secondary" style="padding: 10px 20px; font-size: 0.85rem;">
-                View on Amazon KDP &rarr;
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- Footer & Interactive Heart Counter -->
-  <footer id="contact">
-    <div class="container">
-      <div class="cta-box">
-        <h2>Let's Build Something <span class="serif-accent">Exceptional</span></h2>
-        <p>open for AI consulting, fast engineering &amp; soulful collaborations — let's make something the internet actually needs ✦</p>
-        <div class="cta-actions">
-          <button class="copy-email-btn" onclick="copyEmail()">
-            <span>proman007power@gmail.com</span>
-            <span style="color: var(--coral)">📋 Copy Email</span>
-          </button>
-          <button class="heart-btn" onclick="sendHeart()">
-            <span>♥ Send Love</span>
-            <span id="heartCount">(142)</span>
-          </button>
-        </div>
-      </div>
-
-      <div class="footer-bottom">
+<!-- ============ LIBRARY ============ -->
+<section class="library" id="library">
+  <div class="container">
+    <div class="kicker reveal">Chapter 03 — The library shelf</div>
+    <h2 class="section-title reveal">Two books.<br/><em>Zero fluff.</em></h2>
+    <p class="section-sub reveal">Written from the workbench, not the sidelines — AI history, LLM mechanics, prompt engineering and 30 days of hard-won Claude Code workflows.</p>
+    <div class="books">
+      <article class="book reveal">
+        <div class="book-spine s1"><small>BEST-SELLER</small><b>📘</b><small>AI · VOL.1</small></div>
         <div>
-          © 2026 Al-Aqmar Tinwala · Crafted with purpose &amp; heart.
-          <span class="footer-signature">P.S. — Code can love you back. ♡</span>
+          <span class="tag">★ Bestseller on Amazon KDP</span>
+          <h3>The AI Mastery Handbook</h3>
+          <p>Claude, Gemini, Llama and ChatGPT explained. AI history, LLM architecture mechanics and practical prompt engineering.</p>
+          <a class="btn btn-ghost" style="padding:12px 22px;font-size:.86rem" href="https://www.amazon.com/dp/B0GX2N6WTT" target="_blank" rel="noopener">View on Amazon →</a>
         </div>
-        <ul class="social-links">
-          <li><a href="https://github.com/alakmar344" target="_blank" rel="noopener">GitHub</a></li>
-          <li><a href="https://www.linkedin.com/in/alakmar-teenwala-054067393" target="_blank" rel="noopener">LinkedIn</a></li>
-          <li><a href="https://instagram.com/its_alakmar7" target="_blank" rel="noopener">Instagram</a></li>
-        </ul>
-      </div>
+      </article>
+      <article class="book reveal">
+        <div class="book-spine s2"><small>NEW RELEASE</small><b>📗</b><small>30 DAYS</small></div>
+        <div>
+          <span class="tag">✦ New release on Amazon KDP</span>
+          <h3>30 Days Mastering Claude Code</h3>
+          <p>A 30-day hands-on journey into agentic workflows and coding automation — written from direct builder experience.</p>
+          <a class="btn btn-ghost" style="padding:12px 22px;font-size:.86rem" href="https://www.amazon.com/dp/B0GY1F3573" target="_blank" rel="noopener">View on Amazon →</a>
+        </div>
+      </article>
     </div>
-  </footer>
+  </div>
+</section>
 
-  <!-- Toast Notification -->
-  <div class="toast" id="toast">Copied email to clipboard!</div>
+<!-- ============ TOOLBOX ============ -->
+<section class="stack" id="toolbox">
+  <div class="container">
+    <div class="kicker reveal">Chapter 04 — What&rsquo;s on the bench</div>
+    <h2 class="section-title reveal" style="font-size:clamp(2rem,5vw,3.6rem)">Rust bones, <em>velvet</em> UX.</h2>
+    <div class="chips reveal">
+      <span>🦀 Rust</span><span>▲ Next.js</span><span>✦ Sarvam 105b</span><span>◆ Gemini</span><span>◉ On-Device LLMs</span><span>≋ WebGL</span><span>♪ Voice AI</span><span>▦ Vanilla JS</span><span>◈ Vercel</span><span>◎ Privacy Engineering</span><span>✎ Interactive Science</span><span>🛺 Mobility</span>
+    </div>
+  </div>
+</section>
 
-  <script>
-    // Category Filtering
-    function filterProducts(category, btnElement) {
-      const tabs = document.querySelectorAll('.filter-tab');
-      tabs.forEach(tab => tab.classList.remove('active'));
-      btnElement.classList.add('active');
+<!-- ============ CONTACT ============ -->
+<section id="contact" style="padding:10px 0 10px">
+  <div class="container">
+    <div class="contact-wrap reveal">
+      <h2>Let&rsquo;s build<br/>something <em>exceptional.</em></h2>
+      <p>open for AI consulting, fast engineering &amp; soulful collabs — let&rsquo;s make something the internet actually needs ✦</p>
+      <div class="cta-row">
+        <span class="email-pill"><span>proman007power@gmail.com</span><button onclick="copyEmail()">⧉ Copy email</button></span>
+        <button class="heart-btn" onclick="sendHeart()">♥ Send love <span id="heartCount">(142)</span></button>
+      </div>
+      <p style="font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.12em;margin-top:22px;color:var(--ink-soft)">P.S. — AGE IS JUST A VERSION NUMBER (V13) · RESPONSE TIME: FASTER THAN YOUR BUILD STEP</p>
+    </div>
+  </div>
+</section>
+</main>
 
-      const cards = document.querySelectorAll('#productGrid .product-card');
-      cards.forEach(card => {
-        const cardCat = card.getAttribute('data-category');
-        if (category === 'all' || cardCat === category) {
-          card.style.display = 'flex';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-    }
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p>© 2026 Al-Aqmar Tinwala · Crafted with purpose &amp; heart. <span class="sig">P.S. — Code can love you back. ♡</span></p>
+    <ul class="socials">
+      <li><a href="https://github.com/alakmar344" target="_blank" rel="noopener">GitHub</a></li>
+      <li><a href="https://www.linkedin.com/in/alakmar-teenwala-054067393" target="_blank" rel="noopener">LinkedIn</a></li>
+      <li><a href="https://instagram.com/its_alakmar7" target="_blank" rel="noopener">Instagram</a></li>
+    </ul>
+  </div>
+</footer>
 
-    // Interactive Demo Selector
-    function switchDemo(type, btn) {
-      document.querySelectorAll('.demo-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const win = document.getElementById('terminalWindow');
+<div class="toast" id="toast">Copied!</div>
 
-      if (type === 'privacy') {
-        win.innerHTML = `
-          <div class="log-prompt">$ inspect --protocol privacy-first</div>
-          <div><span class="log-key">Data Retention:</span> <span class="log-val">0% (Zero Retention by Design)</span></div>
-          <div><span class="log-key">Context Window:</span> <span class="log-val">128,000 tokens</span></div>
-          <div><span class="log-key">On-Device LLM:</span> <span class="log-val">Enabled for MindEase</span></div>
-          <div><span class="log-key">Active Users:</span> <span class="log-val">3,000+ Worldwide</span></div>
-          <div style="margin-top: 10px;" class="log-success">✓ Zero surveillance. 100% human dignity.</div>
-        `;
-      } else if (type === 'sarvam') {
-        win.innerHTML = `
-          <div class="log-prompt">$ query --engine sarvam-105b</div>
-          <div><span class="log-key">Model:</span> <span class="log-val">Sarvam 105B Parameter LLM</span></div>
-          <div><span class="log-key">Web Search:</span> <span class="log-val">Live Web Index Connected</span></div>
-          <div><span class="log-key">Language Support:</span> <span class="log-val">20+ Indian & Global Languages</span></div>
-          <div><span class="log-key">Flagship App:</span> <span class="log-val">eSAMz AI (esamz.info)</span></div>
-          <div style="margin-top: 10px;" class="log-success">✓ High-speed inference operational.</div>
-        `;
-      } else if (type === 'rust') {
-        win.innerHTML = `
-          <div class="log-prompt">$ cargo build --release --bin esamz-core</div>
-          <div><span class="log-key">Compiler:</span> <span class="log-val">rustc 1.82.0 (Zero Overhead)</span></div>
-          <div><span class="log-key">Memory Safety:</span> <span class="log-val">Guaranteed at Compile Time</span></div>
-          <div><span class="log-key">Latency Target:</span> <span class="log-val">&lt; 15ms Core Router</span></div>
-          <div style="margin-top: 10px;" class="log-success">✓ Finished release [optimized] target(s) in 0.42s</div>
-        `;
-      }
-    }
+<script>
+// mobile menu
+const ham = document.getElementById('hamburger');
+const mm = document.getElementById('mobileMenu');
+ham.addEventListener('click', () => mm.classList.toggle('open'));
+mm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mm.classList.remove('open')));
 
-    // Copy Email
-    function copyEmail() {
-      navigator.clipboard.writeText('proman007power@gmail.com').then(() => {
-        showToast('Copied email to clipboard!');
-      });
-    }
+// duplicate ticker for seamless loop
+const track = document.getElementById('tickerTrack');
+track.innerHTML += track.innerHTML;
 
-    // Heart Counter
-    let hearts = 142;
-    function sendHeart() {
-      hearts++;
-      document.getElementById('heartCount').textContent = `(${hearts})`;
-      showToast('♥ Thank you! Code loves you back!');
-    }
+// filtering
+function filterProducts(category, btn){
+  document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  const cards = document.querySelectorAll('#productGrid .world-card');
+  let shown = 0;
+  cards.forEach(card => {
+    const ok = category === 'all' || card.getAttribute('data-category') === category;
+    card.style.display = ok ? 'flex' : 'none';
+    if(ok){ shown++; card.classList.remove('in'); requestAnimationFrame(()=>requestAnimationFrame(()=>card.classList.add('in'))); }
+  });
+  document.getElementById('visibleCount').textContent = shown + ' / 11 showing';
+}
 
-    function showToast(msg) {
-      const toast = document.getElementById('toast');
-      toast.textContent = msg;
-      toast.classList.add('show');
-      setTimeout(() => toast.classList.remove('show'), 2500);
-    }
-  </script>
+// demo switcher
+function switchDemo(type, btn){
+  document.querySelectorAll('.demo-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const win = document.getElementById('terminalWindow');
+  if(type === 'privacy'){
+    win.innerHTML = '<div class="p">$ inspect --protocol privacy-first</div><div><span class="k">Data Retention:</span> 0% (Zero Retention by Design)</div><div><span class="k">Context Window:</span> 128,000 tokens</div><div><span class="k">On-Device LLM:</span> Enabled for MindEase</div><div><span class="k">Active Users:</span> 3,000+ Worldwide</div><div class="ok" style="margin-top:8px">✓ Zero surveillance. 100% human dignity.</div>';
+  } else if(type === 'sarvam'){
+    win.innerHTML = '<div class="p">$ query --engine sarvam-105b</div><div><span class="k">Model:</span> Sarvam 105B Parameter LLM</div><div><span class="k">Web Search:</span> Live Web Index Connected</div><div><span class="k">Languages:</span> 20+ Indian & Global</div><div><span class="k">Flagship App:</span> eSAMz AI (esamz.info)</div><div class="ok" style="margin-top:8px">✓ High-speed inference operational.</div>';
+  } else {
+    win.innerHTML = '<div class="p">$ cargo build --release --bin esamz-core</div><div><span class="k">Compiler:</span> rustc 1.82.0 (Zero Overhead)</div><div><span class="k">Memory Safety:</span> Guaranteed at Compile Time</div><div><span class="k">Latency Target:</span> &lt; 15ms Core Router</div><div class="ok" style="margin-top:8px">✓ Finished release [optimized] in 0.42s</div>';
+  }
+}
+
+function copyEmail(){
+  const email = 'proman007power@gmail.com';
+  if(navigator.clipboard){ navigator.clipboard.writeText(email).then(()=>showToast('Copied email — talk soon! ✦')); }
+  else { showToast(email); }
+}
+let hearts = 142;
+function sendHeart(){
+  hearts++;
+  document.getElementById('heartCount').textContent = '(' + hearts + ')';
+  const b = document.querySelector('.heart-btn');
+  b.style.transform = 'scale(1.15) rotate(-4deg)';
+  setTimeout(()=>b.style.transform='',180);
+  showToast('♥ Thank you! Code loves you back!');
+}
+let toastTimer;
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(toastTimer); toastTimer = setTimeout(()=>t.classList.remove('show'),2600);
+}
+
+// reveal on scroll
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// subtle parallax for floating + workshop
+const px = document.querySelectorAll('[data-speed]');
+let ticking = false;
+function parallax(){
+  const vh = window.innerHeight;
+  px.forEach(el => {
+    const r = el.getBoundingClientRect();
+    const center = r.top + r.height/2 - vh/2;
+    const s = parseFloat(el.getAttribute('data-speed')) || .1;
+    el.style.translate = '0 ' + (-center * s * .35) + 'px';
+  });
+  ticking = false;
+}
+window.addEventListener('scroll', () => { if(!ticking){ requestAnimationFrame(parallax); ticking = true; } }, {passive:true});
+parallax();
+</script>
 </body>
 </html>
