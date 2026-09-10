@@ -295,6 +295,35 @@ a{color:inherit}
 .w-d{grid-column:span 4;transform:rotate(-.9deg)}
 .w-e{grid-column:span 4;transform:rotate(.8deg)}
 .w-f{grid-column:span 4;transform:rotate(-.7deg)}
+/* ---------- GIT GEMS (gem vault) ---------- */
+.gem-row{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px;margin-top:6px;font-family:var(--font-mono);font-size:.7rem;font-weight:700;letter-spacing:.12em}
+.gem-row .carat{border:2px solid var(--ink);border-radius:999px;padding:3px 10px;background:#fff;white-space:nowrap;font-size:.66rem;display:inline-flex;align-items:center;gap:5px}
+.gem-row .carat .spark{font-size:.6rem;line-height:1}
+.gem-row .kind{color:var(--ink-soft);white-space:nowrap}
+.world-card h3.gem-name{margin-bottom:8px}
+.world-card h3.gem-name .gem{
+  display:inline-block;font-size:1.1em;margin-right:8px;vertical-align:-.08em;
+  filter:drop-shadow(2px 2px 0 rgba(34,19,16,.25));
+}
+.crown-gem{grid-column:span 12;transform:rotate(-.4deg)}
+.crown-gem .gem-lid{
+  display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  font-family:var(--font-mono);font-size:.7rem;font-weight:700;letter-spacing:.14em;
+  background:linear-gradient(90deg,var(--moon),#FFE58A);border:2.5px solid var(--ink);border-radius:999px;
+  padding:7px 16px;margin-bottom:18px;width:fit-content;max-width:100%;
+}
+.crown-gem .gem-lid .ct{background:var(--ink);color:var(--moon);border-radius:999px;padding:3px 10px;font-size:.66rem}
+.gem-facets{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:18px 0 4px}
+.gem-facets .facet{border:2px solid var(--ink);border-radius:12px;background:rgba(255,255,255,.07);padding:10px 12px}
+.gem-facets .facet b{display:block;font-family:var(--font-mono);font-size:.62rem;letter-spacing:.12em;color:var(--moon);margin-bottom:4px}
+.gem-facets .facet span{font-size:.86rem;font-weight:600;color:var(--paper-2)}
+.gem-note{display:flex;align-items:center;gap:8px;margin-top:14px;font-family:var(--font-mono);font-size:.68rem;color:#D8CFC8;flex-wrap:wrap}
+.gem-note .dot{width:7px;height:7px;border-radius:50%;background:#22E584;flex:none}
+@media(max-width:680px){
+  .gem-facets .facet{padding:8px 10px}
+  .gem-row{font-size:.66rem}
+  .idx,.gem-row{flex-wrap:wrap;justify-content:flex-start}
+}
 /* interlude */
 .interlude{background:var(--night);color:var(--paper-2);border-top:3px solid var(--ink);border-bottom:3px solid var(--ink);padding:64px 0;position:relative;overflow:hidden;margin-top:70px}
 .interlude::before{content:'';position:absolute;inset:0;background-image:radial-gradient(#fff 1.3px, transparent 1.4px);background-size:30px 30px;opacity:.28}
@@ -426,6 +455,7 @@ footer.site-footer{background:var(--ink);color:var(--paper-2);margin-top:70px;bo
     <ul class="nav-links">
       <li><a href="#products">Worlds</a></li>
       <li><a href="#story">Story</a></li>
+      <li><a href="#github">Git Gems</a></li>
       <li><a href="#library">Library</a></li>
       <li><a href="#toolbox">Toolbox</a></li>
       <li><a href="#contact">Contact</a></li>
@@ -437,6 +467,7 @@ footer.site-footer{background:var(--ink);color:var(--paper-2);margin-top:70px;bo
 <div class="mobile-menu" id="mobileMenu">
   <a href="#products">✦ Worlds — 11 live products</a>
   <a href="#story">☽ Story — Heart First</a>
+  <a href="#github">💎 Git Gems — 11 curated repos</a>
   <a href="#library">📚 Library — 2 books</a>
   <a href="#toolbox">🧰 Toolbox</a>
   <a href="#contact">♥ Contact</a>
@@ -708,127 +739,134 @@ footer.site-footer{background:var(--ink);color:var(--paper-2);margin-top:70px;bo
 <!-- ============ MY GITHUB ============ -->
 <section class="stack" id="github">
   <div class="container">
-    <div class="kicker reveal">Chapter 02.5 — The workshop behind the worlds</div>
-    <h2 class="section-title reveal">My GitHub.<br/><em>The receipts.</em></h2>
-    <p class="section-sub reveal">Every world above is real code. These are the repositories behind them — picked for evidence, not stars. <strong>43 public repos · 11 featured below · the rest is history, experiments, and a lot of learning.</strong></p>
+    <div class="kicker reveal">Chapter 02.5 &mdash; The vault beneath the worlds</div>
+    <h2 class="section-title reveal">Git Gems.<br/><em>Carats of code, cut from the dark.</em></h2>
+    <p class="section-sub reveal">Forty-three repositories, mined raw. Most stayed below &mdash; history, experiments, hard lessons. Eleven were cut, polished and set into this vault. Every carat is a measured score from a full curation audit &mdash; tech, originality, engineering, evidence &mdash; never a star count. <strong>The mine is public. The vault is curated.</strong></p>
 
-    <div class="worlds-grid" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
+    <div class="worlds-grid">
 
-      <article class="world-card w-flag reveal" data-category="ai">
+      <article class="world-card w-flag crown-gem reveal" data-category="ai">
         <span class="card-top-bar" style="background:var(--moon)"></span>
-        <span class="card-art">🧠</span>
-        <div class="idx"><span>01 / 11 · DEEP TECH</span><span class="pill">● FROM-SCRATCH TRANSFORMER</span></div>
-        <h3>youAI-2B <small>LOAD · TRAIN · ALIGN · MERGE · SERVE</small></h3>
-        <p>A complete end-to-end framework for training a 2B-parameter transformer from scratch — RoPE, RMSNorm, SwiGLU, GQA attention, KV-cache — grown into a pip-installable toolkit: 15 model families, DPO/ORPO alignment, LoRA/QLoRA, model merging, eval, inference server. 20 modules, 14 test files.</p>
+        <span class="card-art">&#128142;</span>
+        <div class="gem-lid"><span>&#128081; THE CROWN GEM</span><span class="ct">&#10022; 90 CARATS</span></div>
+        <h3 class="gem-name">youAI-2B <small>LOAD &middot; TRAIN &middot; ALIGN &middot; MERGE &middot; SERVE</small></h3>
+        <p>The deepest stone in the mine: a complete framework for training a 2B-parameter transformer from scratch &mdash; then growing it into a pip-installable toolkit with 15 model families, alignment, merging, eval and a streaming inference server. Cut from raw math, not wrappers.</p>
+        <div class="gem-facets">
+          <div class="facet"><b>ARCHITECTURE</b><span>RoPE &middot; RMSNorm &middot; SwiGLU &middot; GQA &middot; KV-cache</span></div>
+          <div class="facet"><b>ALIGNMENT</b><span>DPO &middot; ORPO &middot; SimPO</span></div>
+          <div class="facet"><b>TUNING &amp; MERGE</b><span>LoRA &middot; QLoRA &middot; DARE &middot; TIES &middot; SLERP</span></div>
+          <div class="facet"><b>PROOF</b><span>20 modules &middot; 14 test files &middot; pip-installable</span></div>
+        </div>
         <div class="tags"><span>Python</span><span>PyTorch</span><span>DPO</span><span>LoRA</span><span>pip-installable</span></div>
-        <a class="card-link" href="https://github.com/alakmar344/youAI-2B-From-Scratch-Transformer-Implementation" target="_blank" rel="noopener">Read the code →</a>
+        <a class="card-link" href="https://github.com/alakmar344/youAI-2B-From-Scratch-Transformer-Implementation" target="_blank" rel="noopener">Hold the crown gem &rarr;</a>
       </article>
 
-      <article class="world-card w-b reveal" data-category="tools">
+      <article class="world-card w-c reveal" data-category="tools">
         <span class="card-top-bar" style="background:var(--tangerine)"></span>
-        <span class="card-art">🛺</span>
-        <div class="idx"><span>02 / 11 · PRODUCT</span><span class="pill">● LIVE</span></div>
-        <h3>Gati <small>THE REPO BEHIND THE WORLD</small></h3>
-        <p>The repository behind the Gati world above — intent-driven mobility OS with the Autopilot feed, ⌘K command bar, bilingual EN/हिंदी voice. TypeScript, actively pushed.</p>
+        <span class="card-art">&#128666;</span>
+        <div class="gem-row"><span class="kind">GEM 02 &middot; DEEP PRODUCT</span><span class="carat"><span class="spark">&#10022;</span> 87 CARATS</span></div>
+        <h3 class="gem-name">Gati <small>THE REPO BEHIND THE WORLD</small></h3>
+        <p>The biggest stone ever pulled from this mine &mdash; the Gati world&rsquo;s own codebase: an intent-driven mobility OS with the Autopilot feed, &#8984;K command bar, bilingual EN/&#2361;&#2367;&#2306;&#2342;&#2368; voice. 14.1k lines, 57 commits, 14 merged PRs.</p>
         <div class="tags"><span>TypeScript</span><span>Voice AI</span><span>Bilingual</span><span>Mobility</span></div>
-        <a class="card-link" href="https://github.com/alakmar344/gati" target="_blank" rel="noopener">Open the repo →</a>
+        <a class="card-link" href="https://github.com/alakmar344/gati" target="_blank" rel="noopener">Open the repo &rarr;</a>
       </article>
 
       <article class="world-card w-a reveal" data-category="science">
         <span class="card-top-bar" style="background:var(--sky)"></span>
-        <span class="card-art">⛏️</span>
-        <div class="idx"><span>03 / 11 · DEEP TECH</span><span class="pill">● VOXEL ENGINE</span></div>
-        <h3>Vinecraft <small>46 BLOCKS · 10 BIOMES · SHADOWS</small></h3>
-        <p>A browser voxel engine in vanilla JS + Three.js: infinite procedural terrain, ambient occlusion, real-time shadow mapping, weather, caves, 2×2 crafting, mobile touch controls.</p>
-        <div class="tags"><span>JavaScript</span><span>Three.js</span><span>WebGL</span><span>MIT</span></div>
-        <a class="card-link" href="https://github.com/alakmar344/vinecraft" target="_blank" rel="noopener">Open the repo →</a>
+        <span class="card-art">&#9935;&#65039;</span>
+        <div class="gem-row"><span class="kind">GEM 03 &middot; DEEP TECH</span><span class="carat"><span class="spark">&#10022;</span> 82 CARATS</span></div>
+        <h3 class="gem-name">Vinecraft <small>46 BLOCKS &middot; 10 BIOMES &middot; SHADOWS</small></h3>
+        <p>A browser voxel engine cut from vanilla JS + Three.js: infinite procedural terrain, ambient occlusion, real-time shadow mapping, weather, caves, 2&times;2 crafting, mobile touch controls. It runs locally &mdash; no hosted demo, no server, no tracking. Clone it, <code style="font-family:var(--font-mono);font-size:.8em">npx serve .</code>, and the world is yours, offline forever.</p>
+        <div class="tags"><span>JavaScript</span><span>Three.js</span><span>WebGL</span><span>Local-first</span><span>MIT</span></div>
+        <a class="card-link" href="https://github.com/alakmar344/vinecraft" target="_blank" rel="noopener">Mine it yourself &rarr;</a>
       </article>
 
-      <article class="world-card w-a reveal" data-category="science">
+      <article class="world-card w-b reveal" data-category="science">
         <span class="card-top-bar" style="background:var(--sky)"></span>
-        <span class="card-art">⚛️</span>
-        <div class="idx"><span>04 / 11 · PRODUCT</span><span class="pill">● LIVE</span></div>
-        <h3>π science-project <small>THE CODE BEHIND π</small></h3>
-        <p>The repository behind the π world above — the interactive atoms-and-molecules playground, 60fps, WebGL.</p>
+        <span class="card-art">&#9883;&#65039;</span>
+        <div class="gem-row"><span class="kind">GEM 04 &middot; PRODUCT</span><span class="carat"><span class="spark">&#10022;</span> 82 CARATS</span></div>
+        <h3 class="gem-name">&pi; science-project <small>THE CODE BEHIND &pi;</small></h3>
+        <p>The gem behind the &pi; world above &mdash; ATOMVERSE, the interactive atoms-and-molecules playground. A custom no-WebGL 3D renderer engineered for low-spec school laptops, 60fps, with verified chemistry data.</p>
         <div class="tags"><span>JavaScript</span><span>WebGL</span><span>EdTech</span></div>
-        <a class="card-link" href="https://github.com/alakmar344/science-project" target="_blank" rel="noopener">Open the repo →</a>
+        <a class="card-link" href="https://github.com/alakmar344/science-project" target="_blank" rel="noopener">Open the repo &rarr;</a>
       </article>
 
       <article class="world-card w-flag reveal" data-category="ai">
         <span class="card-top-bar" style="background:var(--moon)"></span>
-        <span class="card-art">🌙</span>
-        <div class="idx"><span>05 / 11 · FLAGSHIP</span><span class="pill">● CONSENT-FIRST</span></div>
-        <h3>esamz.a <small>PRIVACY AS ARCHITECTURE</small></h3>
-        <p>The flagship's own codebase — Next.js PWA with a chat proxy, consent-tier system, privacy-policy acceptance & revocation endpoints. The world's privacy promises, implemented.</p>
+        <span class="card-art">&#127769;</span>
+        <div class="gem-row"><span class="kind">GEM 05 &middot; FLAGSHIP</span><span class="carat"><span class="spark">&#10022;</span> 81 CARATS</span></div>
+        <h3 class="gem-name">esamz.a <small>PRIVACY AS ARCHITECTURE</small></h3>
+        <p>The flagship&rsquo;s own codebase &mdash; 112 commits of iteration, a Next.js PWA with chat proxy, consent-tier system, privacy-policy acceptance &amp; revocation endpoints. The world&rsquo;s privacy promises, set in code.</p>
         <div class="tags"><span>TypeScript</span><span>Next.js</span><span>PWA</span><span>Privacy</span></div>
-        <a class="card-link" href="https://github.com/alakmar344/esamz.a" target="_blank" rel="noopener">Read the architecture →</a>
+        <a class="card-link" href="https://github.com/alakmar344/esamz.a" target="_blank" rel="noopener">Read the architecture &rarr;</a>
       </article>
 
       <article class="world-card w-c reveal" data-category="tools">
         <span class="card-top-bar" style="background:var(--leaf)"></span>
-        <span class="card-art">📈</span>
-        <div class="idx"><span>06 / 11 · PRODUCT</span><span class="pill">● IN DEVELOPMENT</span></div>
-        <h3>See-market <small>MARKET INTELLIGENCE</small></h3>
-        <p>The repository behind the SeeMarket world — market observer, live preview. TypeScript.</p>
+        <span class="card-art">&#128200;</span>
+        <div class="gem-row"><span class="kind">GEM 06 &middot; IN DEVELOPMENT</span><span class="carat"><span class="spark">&#10022;</span> 79 CARATS</span></div>
+        <h3 class="gem-name">See-market <small>MARKET INTELLIGENCE</small></h3>
+        <p>A two-service market-intelligence platform computing real RSI, MACD and support-resistance server-side, with strict CORS and an architecture.md. Live preview, actively pushed.</p>
         <div class="tags"><span>TypeScript</span><span>FinTech</span></div>
-        <a class="card-link" href="https://github.com/alakmar344/See-market" target="_blank" rel="noopener">Open the repo →</a>
+        <a class="card-link" href="https://github.com/alakmar344/See-market" target="_blank" rel="noopener">Open the repo &rarr;</a>
       </article>
 
-      <article class="world-card w-d reveal" data-category="ai">
+      <article class="world-card w-a reveal" data-category="ai">
         <span class="card-top-bar" style="background:var(--moon)"></span>
-        <span class="card-art">🔒</span>
-        <div class="idx"><span>07 / 11 · OPEN SOURCE</span><span class="pill">● PRIVACY PROVEN</span></div>
-        <h3>analytics-hub <small>ANALYTICS THAT CAN&rsquo;T SPY ON YOU</small></h3>
-        <p>Self-hosted analytics where visitor IPs are HMAC-SHA256 hashed in tested middleware — the raw IP is never stored. Provable in code, not promised in copy.</p>
+        <span class="card-art">&#128274;</span>
+        <div class="gem-row"><span class="kind">GEM 07 &middot; OPEN SOURCE</span><span class="carat"><span class="spark">&#10022;</span> 79 CARATS</span></div>
+        <h3 class="gem-name">analytics-hub <small>ANALYTICS THAT CAN&rsquo;T SPY ON YOU</small></h3>
+        <p>Self-hosted analytics where visitor IPs are HMAC-SHA256 hashed in tested middleware &mdash; the raw IP is never stored. The most literal &ldquo;zero surveillance&rdquo; stone in the vault: proven in code, not promised in copy.</p>
         <div class="tags"><span>JavaScript</span><span>Node.js</span><span>MongoDB</span><span>Tested</span></div>
-        <a class="card-link" href="https://github.com/alakmar344/analytics-hub" target="_blank" rel="noopener">Read the proof →</a>
+        <a class="card-link" href="https://github.com/alakmar344/analytics-hub" target="_blank" rel="noopener">Read the proof &rarr;</a>
       </article>
 
-      <article class="world-card w-d reveal" data-category="tools">
-        <span class="card-top-bar" style="background:var(--leaf)"></span>
-        <span class="card-art">🦀</span>
-        <div class="idx"><span>08 / 11 · OPEN SOURCE</span><span class="pill">● RUST · LOCAL-ONLY</span></div>
-        <h3>revive-me <small>FILE REVIVAL, NO CLOUD</small></h3>
-        <p>A tool for reviving old unsupported files — local-only, nothing leaves your machine.</p>
-        <div class="tags"><span>Rust</span><span>Local-first</span></div>
-        <a class="card-link" href="https://github.com/alakmar344/revive-me" target="_blank" rel="noopener">Open the repo →</a>
-      </article>
-
-      <article class="world-card w-c reveal" data-category="ai">
+      <article class="world-card w-b reveal" data-category="ai">
         <span class="card-top-bar" style="background:var(--tangerine)"></span>
-        <span class="card-art">📟</span>
-        <div class="idx"><span>09 / 11 · EXPERIMENT</span><span class="pill">● DOCKER-SANDBOXED</span></div>
-        <h3>My-code / eSAMz Code <small>AN AGENT THAT CODES</small></h3>
-        <p>A browser-first AI coding workspace: plan→execute→observe→retry agent loop, virtual FS, Docker-sandboxed execution with resource caps, mobile IDE UX.</p>
+        <span class="card-art">&#128601;</span>
+        <div class="gem-row"><span class="kind">GEM 08 &middot; EXPERIMENT</span><span class="carat"><span class="spark">&#10022;</span> 74 CARATS</span></div>
+        <h3 class="gem-name">My-code / eSAMz Code <small>AN AGENT THAT CODES</small></h3>
+        <p>A browser-first AI coding workspace: plan&rarr;execute&rarr;observe&rarr;retry agent loop, virtual FS, Docker-sandboxed execution with resource caps, mobile IDE UX.</p>
         <div class="tags"><span>JavaScript</span><span>React</span><span>Docker</span><span>Agent</span></div>
-        <a class="card-link" href="https://github.com/alakmar344/My-code" target="_blank" rel="noopener">Open the repo →</a>
+        <a class="card-link" href="https://github.com/alakmar344/My-code" target="_blank" rel="noopener">Open the repo &rarr;</a>
       </article>
 
-      <article class="world-card w-b reveal" data-category="tools">
+      <article class="world-card w-c reveal" data-category="tools">
         <span class="card-top-bar" style="background:var(--tangerine)"></span>
-        <span class="card-art">🚀</span>
-        <div class="idx"><span>10 / 11 · RELEASED</span><span class="pill">● 3 APK RELEASES</span></div>
-        <h3>Not-a-thing-launcher <small>3 TAGGED RELEASES · CI BUILDS</small></h3>
-        <p>A Nothing-style Android launcher in Kotlin — dot-matrix clock, gestures, widgets, boot persistence — shipped as v2/v3/v4 tagged releases with debug+release APKs from CI.</p>
+        <span class="card-art">&#128640;</span>
+        <div class="gem-row"><span class="kind">GEM 09 &middot; RELEASED</span><span class="carat"><span class="spark">&#10022;</span> 73 CARATS</span></div>
+        <h3 class="gem-name">Not-a-thing-launcher <small>3 TAGGED RELEASES &middot; CI BUILDS</small></h3>
+        <p>A Nothing-style Android launcher in Kotlin &mdash; dot-matrix clock, gestures, widgets, boot persistence &mdash; shipped as v2/v3/v4 tagged releases with debug+release APKs from CI. The only stone with real distribution.</p>
         <div class="tags"><span>Kotlin</span><span>Android</span><span>CI</span><span>Releases</span></div>
-        <a class="card-link" href="https://github.com/alakmar344/Not-a-thing-launcher" target="_blank" rel="noopener">Get the APKs →</a>
+        <a class="card-link" href="https://github.com/alakmar344/Not-a-thing-launcher" target="_blank" rel="noopener">Get the APKs &rarr;</a>
       </article>
 
-      <article class="world-card w-d reveal" data-category="tools">
+      <article class="world-card w-a reveal" data-category="tools">
         <span class="card-top-bar" style="background:var(--leaf)"></span>
-        <span class="card-art">🌬️</span>
-        <div class="idx"><span>11 / 11 · FUTURE</span><span class="pill">○ INTENT ANNOUNCED</span></div>
-        <h3>breeze-framework <small>ON THE WORKBENCH</small></h3>
-        <p>A lightweight framework intent — announced, early. Watch this space.</p>
+        <span class="card-art">&#129408;</span>
+        <div class="gem-row"><span class="kind">GEM 10 &middot; OPEN SOURCE</span><span class="carat"><span class="spark">&#10022;</span> 72 CARATS</span></div>
+        <h3 class="gem-name">revive-me <small>FILE REVIVAL, NO CLOUD</small></h3>
+        <p>The only Rust in the vault: a focused, local-only bridge that revives old unsupported files (.dbf/.xls/.xlsx &rarr; clean JSON/xlsx). Nothing leaves your machine.</p>
+        <div class="tags"><span>Rust</span><span>Local-first</span></div>
+        <a class="card-link" href="https://github.com/alakmar344/revive-me" target="_blank" rel="noopener">Open the repo &rarr;</a>
+      </article>
+
+      <article class="world-card w-c reveal" data-category="tools">
+        <span class="card-top-bar" style="background:var(--leaf)"></span>
+        <span class="card-art">&#127788;&#65039;</span>
+        <div class="gem-row"><span class="kind">ROUGH STONE &middot; ON THE BENCH</span><span class="carat"><span class="spark">&#9675;</span> UNCUT</span></div>
+        <h3 class="gem-name">breeze-framework <small>NOT YET GRADED</small></h3>
+        <p>A lightweight framework intent, announced early &mdash; a rough stone still on the lapidary&rsquo;s bench. No carats yet; the cutting has just begun. Watch this facet.</p>
         <div class="tags"><span>Early</span><span>Framework</span></div>
-        <a class="card-link" href="https://github.com/alakmar344/breeze-framework" target="_blank" rel="noopener">Watch it grow →</a>
+        <a class="card-link" href="https://github.com/alakmar344/breeze-framework" target="_blank" rel="noopener">Watch it grow &rarr;</a>
       </article>
 
     </div>
 
     <div class="chips reveal" style="margin-top:26px">
-      <a class="btn btn-ghost" style="padding:12px 22px;font-size:.86rem" href="https://github.com/alakmar344" target="_blank" rel="noopener">View all 43 on GitHub →</a>
+      <a class="btn btn-ghost" style="padding:12px 22px;font-size:.86rem" href="https://github.com/alakmar344" target="_blank" rel="noopener">View all 43 in the mine &rarr;</a>
     </div>
+    <p class="gem-note reveal"><span class="dot"></span> Carats are weighted curation scores &mdash; tech &middot; originality &middot; engineering &middot; evidence &mdash; from a full audit of every public repository. Never stars. Never guesses.</p>
   </div>
 </section>
 
