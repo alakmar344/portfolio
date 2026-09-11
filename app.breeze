@@ -28,7 +28,7 @@
 }
 
 @theme {
-  primary: #EF4444
+  primary: #2563EB
   secondary: #1E293B
   accent: #22C55E
   bg: #FAF8F5
@@ -134,7 +134,7 @@
       h3 "Source and docs"
       p "Read the code, the spec and the full benchmark report on the live site."
   h3 "Measured, not promised" [mt-lg]
-  p "Krausest DOM benchmark in headless Chrome. Lower is better. Breeze in tomato, React in slate."
+  p "Krausest DOM benchmark in headless Chrome. Lower is better. Breeze in blue, React in slate."
   div [grid-2, gap-md, mt-md]
     @each bench in benchRows
       card [shadow]

@@ -1,17 +1,19 @@
 /*!
  * ALAKMAR Museum — static editorial system
- * Washed Tomato #EF4444 · Vintage Cream #FAF8F5
- * Slime Green #22C55E · Threepenny Navy #1E293B
+ * Vivid Blue #2563EB (primary) · Washed Tomato #EF4444 (graphic accent only)
+ * Vintage Cream #FAF8F5 · Threepenny Navy #1E293B
  *
  * Deliberately static: no 3D, no parallax, no reveal animations.
  * Hierarchy is carried by type scale, weight, color and whitespace.
+ * Tomato is never used for text — only for graphic fills and ticks.
  * Breeze maps bare modifiers to bz-* classes, so custom hooks below use
  * the .bz- prefix (e.g. [bar-track] renders as .bz-bar-track).
  */
 
 :root {
+  --blue: #2563EB;
+  --blue-ink: #1E40AF;
   --tomato: #EF4444;
-  --tomato-ink: #DC2626;
   --cream: #FAF8F5;
   --card: #FFFFFF;
   --slime: #22C55E;
@@ -56,6 +58,46 @@ body {
   line-height: 0.95;
   letter-spacing: -0.02em;
   margin: 0.3em 0 0.35em;
+  /* Breeze paints hero titles as gradient-clipped text; we want solid ink. */
+  background: none;
+  -webkit-text-fill-color: currentColor;
+  color: var(--navy);
+}
+
+/* Breeze gives hero copy a washed-out gray; body text must stay readable. */
+#app .bz-hero p { color: var(--body); }
+
+/* Breeze hero/center rules force direct-child divs into centered flex rows,
+   which crushes our stacks and grids into a left-hugging strip.
+   Restore vertical stacks and even grids. */
+#entrance > div.bz-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+
+#app .bz-each,
+#app .bz-grid-2,
+#app .bz-grid-3,
+#app .bz-grid-4 { width: 100%; }
+
+#app .bz-section.bz-center > div.bz-each { display: block; }
+
+#app .bz-section.bz-center > div.bz-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+#app .bz-section.bz-center > div.bz-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+#app .bz-section.bz-center > div.bz-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
 }
 
 #app .bz-section > h2 {
@@ -81,7 +123,18 @@ body {
 
 #app .bz-section > p.bz-small,
 #app p.bz-small.bz-muted {
-  color: var(--tomato-ink);
+  color: var(--blue-ink);
+}
+
+#app .bz-section > p.bz-small::before {
+  content: "";
+  display: inline-block;
+  width: 22px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--tomato);
+  margin-right: 10px;
+  vertical-align: middle;
 }
 
 #app .bz-muted { color: var(--soft); }
@@ -154,8 +207,8 @@ body {
 
 #app .bz-btn:hover { transform: none; box-shadow: var(--shadow); }
 
-#app .bz-btn.bz-primary { background: var(--tomato); border-color: var(--tomato); color: #fff; }
-#app .bz-btn.bz-primary:hover { background: var(--tomato-ink); border-color: var(--tomato-ink); }
+#app .bz-btn.bz-primary { background: var(--blue); border-color: var(--blue); color: #fff; }
+#app .bz-btn.bz-primary:hover { background: var(--blue-ink); border-color: var(--blue-ink); }
 
 /* ── benchmark bars: static data graphics ── */
 .bz-bar-track {
@@ -166,7 +219,7 @@ body {
 }
 
 .bz-bar-breeze, .bz-bar-react { height: 100%; border-radius: 999px; }
-.bz-bar-breeze { background: var(--tomato); }
+.bz-bar-breeze { background: var(--blue); }
 .bz-bar-react { background: #94A3B8; }
 
 /* ── archive search ── */
@@ -205,19 +258,19 @@ body.museum-dossier-open #exhibit .bz-card {
   padding: 2rem;
 }
 
-/* ── content links ── */
+/* ── content links: navy text, blue underline ── */
 #app a:not(.bz-nav-link):not(.bz-btn) {
-  color: var(--navy);
+  color: var(--blue-ink);
   font-weight: 700;
   text-decoration: underline;
-  text-decoration-color: var(--tomato);
+  text-decoration-color: var(--blue);
   text-decoration-thickness: 2px;
   text-underline-offset: 3px;
 }
 
 /* ── focus: always visible ── */
 #app :focus-visible, .bz-nav :focus-visible {
-  outline: 3px solid var(--tomato);
+  outline: 3px solid var(--blue);
   outline-offset: 3px;
   border-radius: 6px;
 }
@@ -250,7 +303,12 @@ body.museum-dossier-open #exhibit .bz-card {
 /* ── mobile: single column editorial ── */
 @media (max-width: 760px) {
   body { font-size: 1rem; }
-  #app .bz-grid-2, #app .bz-grid-3, #app .bz-grid-4 { grid-template-columns: 1fr; }
+  #app .bz-grid-2,
+  #app .bz-grid-3,
+  #app .bz-grid-4,
+  #app .bz-section.bz-center > div.bz-grid-2,
+  #app .bz-section.bz-center > div.bz-grid-3,
+  #app .bz-section.bz-center > div.bz-grid-4 { grid-template-columns: 1fr; }
   #entrance h1 { font-size: clamp(3rem, 17vw, 4.5rem); }
   #app .bz-section > h2 { font-size: 2rem; }
   .bz-btn, #app button { min-height: 48px; }

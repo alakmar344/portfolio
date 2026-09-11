@@ -118,10 +118,10 @@ describe('Museum app.breeze (real Breeze syntax, no invented APIs)', () => {
     assert.ok(ast.some((n) => n.type === 'nav'), 'missing @nav');
   });
 
-  it('uses the vintage-modern palette as its theme', () => {
+  it('uses vivid blue as its primary with a vintage-modern palette', () => {
     const ast = Breeze.parse(appBreeze);
     const theme = ast.find((n) => n.type === 'theme');
-    assert.equal(theme.props.primary, '#EF4444');
+    assert.equal(theme.props.primary, '#2563EB');
     assert.equal(theme.props.bg, '#FAF8F5');
     assert.equal(theme.props.text, '#1E293B');
   });
@@ -245,7 +245,13 @@ describe('Museum budgets (performance is a feature)', () => {
     assert.ok(css.includes('prefers-reduced-motion'), 'reduced-motion query kept');
     assert.ok(js.includes("key === 'Escape'"), 'Esc closes the dossier');
     assert.ok(css.includes('min-height: 48px'), 'touch-sized targets');
-    // Readable text colors: no washed-out small text.
+    // Readable text colors: tomato is never used for text, only graphics.
     assert.ok(css.includes('--soft: #475569'), 'secondary text stays contrast-safe');
+    assert.ok(!css.includes('tomato-ink'), 'no washed-tomato text anywhere');
+    assert.ok(!/color:\s*var\(--tomato\)/.test(css), 'tomato never colors text');
+    // Layout overrides: hero title is solid ink, grids spread evenly.
+    assert.ok(css.includes('-webkit-text-fill-color: currentColor'), 'hero gradient text killed');
+    assert.ok(css.includes('bz-center > div.bz-grid-3'), 'center-section grids restored');
+    assert.ok(css.includes('#entrance > div.bz-center'), 'hero stack restored');
   });
 });
