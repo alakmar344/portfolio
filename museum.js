@@ -4,13 +4,12 @@
  * How the pieces fit:
  *   museum-data.js  → structured project data (single source of truth)
  *   app.breeze      → declarative rooms, keyed lists, UI state (Breeze)
- *   museum.css      → rooms, frames, light, motion
- *   museum.js       → this file: Breeze methods, 3D walk, dossier morph,
- *                     archive filtering, keyboard, a11y, performance guards
+ *   museum.css      → static editorial system (no motion, no 3D)
+ *   museum.js       → this file: Breeze methods, dossier panel,
+ *                     archive filtering, keyboard, a11y
  *
  * Breeze owns: room lists, filters, text bindings, nav state, overlay flag.
- * Direct DOM owns: per-frame camera (rAF), FLIP morph, href wiring, observers.
- * Scroll pixels never flow through reactive state — only room changes do.
+ * Direct DOM owns: href wiring, room highlight, focus management.
  */
 (function (global) {
   'use strict';
@@ -163,22 +162,6 @@
     return true;
   }
 
-  function markDossierOrigin() {
-    var card = null;
-    var active = document.activeElement;
-    if (active && active.closest) card = active.closest('.bz-card');
-    var root = qs('#app');
-    if (card && root) {
-      var r = card.getBoundingClientRect();
-      var dx = (r.left + r.width / 2) - (global.innerWidth / 2);
-      var dy = (r.top + r.height / 2) - (global.innerHeight / 2);
-      root.style.setProperty('--dossier-dx', Math.round(dx) + 'px');
-      root.style.setProperty('--dossier-dy', Math.round(dy) + 'px');
-      root.style.setProperty('--dossier-ox', '50%');
-      root.style.setProperty('--dossier-oy', '50%');
-    }
-  }
-
   function focusDossier() {
     var h = qs('#exhibit h2');
     if (h) {
@@ -187,127 +170,14 @@
     }
   }
 
-  // Single rAF walk driver: scroll camera + pointer light. Stops when idle.
-  function createWalk() {
-    var reduceMotion = function () {
-      return document.body.classList.contains('calm-motion');
-    };
-    var coarse = function () {
-      return typeof global.matchMedia === 'function' && global.matchMedia('(pointer: coarse)').matches;
-    };
-    var narrow = function () {
-      return typeof global.matchMedia === 'function' && global.matchMedia('(max-width: 760px)').matches;
-    };
-    var tiltX = 0, tiltY = 0, targetX = 0, targetY = 0;
-    var running = false, raf = 0;
-    var sections = [];
-
-    function snapshot() {
-      // The dossier overlay is fixed; the walk camera must never move it.
-      sections = qsa('#app .bz-section[id]').filter(function (s) { return s.id !== 'exhibit'; });
-    }
-
-    function frame() {
-      var vh = global.innerHeight || 800;
-      if (!reduceMotion() && !narrow()) {
-        tiltX += (targetX - tiltX) * 0.06;
-        tiltY += (targetY - tiltY) * 0.06;
-        for (var i = 0; i < sections.length; i++) {
-          var s = sections[i];
-          if (!s.isConnected) continue;
-          var r = s.getBoundingClientRect();
-          if (r.bottom < -vh || r.top > vh * 2) continue;
-          var d = (r.top + r.height / 2 - vh / 2) / vh;
-          var clamped = Math.max(-1, Math.min(1, d));
-          s.style.transform =
-            'rotateX(' + (-clamped * 3.5 + tiltX).toFixed(3) + 'deg)' +
-            ' rotateY(' + tiltY.toFixed(3) + 'deg)' +
-            ' translateZ(' + (-Math.abs(clamped) * 55).toFixed(1) + 'px)';
-        }
-      }
-      if (document.body.classList.contains('museum-walk-dirty')) {
-        document.body.classList.remove('museum-walk-dirty');
-        raf = requestAnimationFrame(frame);
-      } else if (Math.abs(targetX - tiltX) > 0.01 || Math.abs(targetY - tiltY) > 0.01) {
-        raf = requestAnimationFrame(frame);
-      } else {
-        running = false;
-      }
-    }
-
-    function kick() {
-      document.body.classList.add('museum-walk-dirty');
-      if (!running) {
-        running = true;
-        raf = requestAnimationFrame(frame);
-      }
-    }
-
-    function onScroll() { kick(); }
-
-    function onPointer(e) {
-      if (reduceMotion() || coarse() || narrow()) return;
-      var nx = (e.clientX / (global.innerWidth || 1)) - 0.5;
-      var ny = (e.clientY / (global.innerHeight || 1)) - 0.5;
-      targetY = (nx * 2.2).toFixed(3) * 1;
-      targetX = (-ny * 1.6).toFixed(3) * 1;
-      kick();
-    }
-
-    return {
-      start: function () {
-        snapshot();
-        global.addEventListener('scroll', onScroll, { passive: true });
-        global.addEventListener('pointermove', onPointer, { passive: true });
-        kick();
-        global.setTimeout(kick, 600);
-      },
-      refresh: snapshot,
-      stop: function () {
-        running = false;
-        if (raf) cancelAnimationFrame(raf);
-        global.removeEventListener('scroll', onScroll);
-        global.removeEventListener('pointermove', onPointer);
-      }
-    };
-  }
-
   function initScene(B) {
     // Search lives in a real <form>: Enter must filter, never reload.
     qsa('#app form').forEach(function (f) {
       f.addEventListener('submit', function (e) { e.preventDefault(); });
     });
-    // Calm motion: OS preference first, user toggle wins afterwards.
-    var mq = global.matchMedia ? global.matchMedia('(prefers-reduced-motion: reduce)') : null;
-    if (mq && mq.matches && !B.getState('reducedMotion')) {
-      B.setState('reducedMotion', true);
-    }
-    var syncCalm = function () {
-      document.body.classList.toggle('calm-motion', !!B.getState('reducedMotion'));
-    };
-    syncCalm();
-    B.watch('reducedMotion', syncCalm);
-    if (mq && mq.addEventListener) {
-      mq.addEventListener('change', function (e) {
-        B.setState('reducedMotion', !!e.matches);
-      });
-    }
 
-    // Reveal cards without punishing no-JS visitors (they never get the class).
+    // Room tracking → Breeze state (discrete) + nav highlight.
     if ('IntersectionObserver' in global) {
-      var revealBits = qsa('#app .bz-card, #app .bz-section > h2');
-      revealBits.forEach(function (el) { el.classList.add('museum-reveal'); });
-      var ro = new IntersectionObserver(function (entries) {
-        entries.forEach(function (en) {
-          if (en.isIntersecting) {
-            en.target.classList.add('in');
-            ro.unobserve(en.target);
-          }
-        });
-      }, { threshold: 0.12 });
-      revealBits.forEach(function (el) { ro.observe(el); });
-
-      // Room tracking → Breeze state (discrete) + signage highlight.
       var roomObs = new IntersectionObserver(function (entries) {
         entries.forEach(function (en) {
           if (!en.isIntersecting) return;
@@ -322,17 +192,9 @@
       }, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
       qsa('#app .bz-section[id]').forEach(function (s) { roomObs.observe(s); });
       global.addEventListener('pagehide', function () {
-        ro.disconnect();
         roomObs.disconnect();
       });
     }
-
-    var walk = createWalk();
-    walk.start();
-    B.watch('archiveList', function () {
-      // New shelf cards appear instantly (tool, not cinema) + camera re-sync.
-      walk.refresh();
-    });
 
     // Keyboard: Esc steps back, N/P walk rooms. Never hijack typing.
     document.addEventListener('keydown', function (e) {
@@ -357,7 +219,6 @@
   function registerMethods(B) {
     B.method('selectExhibit', function (slug) {
       dossierReturnFocus = document.activeElement;
-      markDossierOrigin();
       if (fillDossier(B, String(slug || '').trim())) {
         global.setTimeout(focusDossier, 60);
       } else {
@@ -448,7 +309,6 @@
       var m = hash.match(/^#exhibit-([\w-]+)$/);
       if (m) {
         dossierReturnFocus = null;
-        markDossierOrigin();
         if (fillDossier(B, m[1])) global.setTimeout(focusDossier, 120);
       }
       B.emit('museum:ready', { rooms: ROOMS.length, artifacts: shelf.archiveBase.length });

@@ -1,7 +1,7 @@
-@app "ALAKMAR — A 3D Museum of Work and Experiments"
+@app "ALAKMAR — A Museum of Work and Experiments"
 
 @seo {
-  title: "ALAKMAR — A 3D Museum of Work and Experiments"
+  title: "ALAKMAR — A Museum of Work and Experiments"
   description: "Walk through the work of Al-Aqmar Tinwala: flagship privacy-first AI, the Breeze framework, playful science, mobility and a laboratory of experiments."
   keywords: "Al-Aqmar Tinwala, eSAMz AI, Breeze Framework, privacy-first AI, Rust, Sarvam, teen developer"
   author: "Al-Aqmar Tinwala"
@@ -17,7 +17,7 @@
 }
 
 @aeo {
-  summary: "ALAKMAR is a 3D digital museum of Al-Aqmar Tinwala's work, built with the Breeze Framework. Flagship eSAMz AI serves 3,000 plus users with zero data retention."
+  summary: "ALAKMAR is a museum of Al-Aqmar Tinwala's work, built with the Breeze Framework. Flagship eSAMz AI serves 3,000 plus users with zero data retention."
   topics: "portfolio museum, privacy-first AI, Breeze Framework, eSAMz AI, science playground, Indian mobility"
   speakable: ["h1", ".bz-hero p", "#gallery h2"]
 }
@@ -52,7 +52,6 @@
 @state archiveQuery = ""
 @state archiveEmpty = false
 @state archiveCount = 0
-@state reducedMotion = false
 @state gallery = []
 @state labBenches = []
 @state labScreens = []
@@ -77,19 +76,13 @@
 // ── Entrance ──
 @section #entrance [hero, center, pad-xl]
   div [center]
-    p "A DIGITAL MUSEUM IN ONE CONTINUOUS SPACE" [small, muted]
-    h1 "ALAKMAR" [fade-in]
-    p "Privacy-first intelligence, playful science and honest tools. You are entering an archive of work, not a page of links." [fade-in]
-    p "Now entering the {currentRoom} wing. Scroll to walk forward. Select any artifact to step closer." [small, muted]
+    p "A DIGITAL MUSEUM OF WORK AND EXPERIMENTS" [small, muted]
+    h1 "ALAKMAR"
+    p "Privacy-first intelligence, playful science and honest tools. You are entering an archive of work, not a page of links."
+    p "Now showing the {currentRoom} room. Browse the shelves below, or search everything in the archive." [small, muted]
     div [flex, gap-md, mt-md]
       button "Enter the gallery" [primary, @click -> navigate(#gallery)]
       button "Meet the builder" [outline, @click -> navigate(#about)]
-    div [flex, gap-sm, mt-sm]
-      button "Prefer calm motion" [ghost, @click -> toggle(reducedMotion)]
-    @if reducedMotion
-      p "Calm motion is on. The museum will stay still." [small]
-    @if !reducedMotion
-      p "Tip: your pointer gently lights the room." [small, muted]
   div [grid-4, gap-md, mt-lg]
     @each stat in stats
       card [shadow]
@@ -100,11 +93,11 @@
 @section #gallery [pad-xl]
   p "WING ONE · THE MAIN CORRIDOR" [small, muted]
   h2 "Major works, given room to breathe"
-  p "Seven artifacts earned a pedestal here. Everything else lives in the lab or the archive. Scroll slowly. The camera walks with you."
+  p "Seven artifacts earned a shelf here. Everything else lives in the lab or the archive."
   button "How is this built" [outline, @click -> navigate(#breeze)]
   div [grid-2, gap-lg, mt-lg]
     @each exhibit in gallery
-      card [shadow, hover-lift]
+      card [shadow]
         p "ARTIFACT {exhibit.index} · {exhibit.category}" [small, muted]
         h3 "{exhibit.title}"
         p "{exhibit.tagline}"
@@ -117,7 +110,7 @@
           button "Source" [ghost, @click -> openRepo({exhibit.slug})]
 
 // ── Breeze centerpiece ──
-@section #breeze [pad-xl, dark]
+@section #breeze [pad-xl]
   p "THE FLAGSHIP ARTIFACT" [small]
   h2 "Breeze, the medium of this museum"
   p "Tiny runtime, fine-grained reactivity, native DOM architecture. This wing reads like the framework itself: small, exact, honest."
@@ -175,7 +168,7 @@
   h3 "Workbenches" [mt-md]
   div [grid-3, gap-md, mt-sm]
     @each bench in labBenches
-      card [shadow, hover-lift]
+      card [shadow]
         p "BENCH {bench.index} · {bench.category}" [small, muted]
         h3 "{bench.title}"
         p "{bench.tagline}"
@@ -188,7 +181,7 @@
   p "Small tools people actually use. Modest frames, honest labels." [small, muted]
   div [grid-3, gap-md, mt-sm]
     @each screen in labScreens
-      card [shadow, hover-scale]
+      card [shadow]
         h3 "{screen.title}"
         p "{screen.tagline}"
         p "{screen.techLine}" [small]
@@ -233,7 +226,7 @@
   p "Written from the workbench. History, mechanics and thirty days of agent workflows."
   div [grid-2, gap-lg, mt-lg]
     @each book in books
-      card [shadow, hover-lift]
+      card [shadow]
         p "{book.tagline}" [small, muted]
         h3 "{book.title}"
         p "{book.description}"

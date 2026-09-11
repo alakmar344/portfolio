@@ -1,9 +1,9 @@
-# ALAKMAR — a 3D museum of work and experiments
+# ALAKMAR — a museum of work and experiments
 
-A Breeze-powered immersive portfolio. One continuous scroll-driven museum:
-entrance, main gallery, Breeze centerpiece, laboratory, archive, library,
+A static Breeze-powered portfolio. One calm, readable page:
+entrance, gallery, Breeze exhibit, laboratory, archive, library,
 about and exit. No React, Vue, Next or Svelte — the UI is `app.breeze`,
-state and keyed lists are Breeze, the walk camera is a tiny rAF driver.
+state and keyed lists are Breeze. No 3D, no animation, no effects.
 
 ## Run it
 

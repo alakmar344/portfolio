@@ -232,14 +232,20 @@ describe('Museum budgets (performance is a feature)', () => {
     assert.ok(html.includes('This website was made with my own framework Breeze.'));
   });
 
-  it('honors reduced motion, keyboard and touch in code and CSS', () => {
+  it('stays static, readable and accessible in code and CSS', () => {
     const css = fs.readFileSync(path.join(root, 'museum.css'), 'utf8');
     const js = fs.readFileSync(path.join(root, 'museum.js'), 'utf8');
-    assert.ok(css.includes('prefers-reduced-motion'), 'OS reduced-motion query');
-    assert.ok(css.includes('body.calm-motion'), 'user calm-motion toggle');
+    // No 3D / motion machinery anywhere in the shipped code.
+    ['perspective', 'preserve-3d', 'rotateX', 'rotateY', 'translateZ', 'requestAnimationFrame', 'pointermove'].forEach((w) => {
+      assert.ok(!css.includes(w), `CSS must not contain ${w}`);
+      assert.ok(!js.includes(w), `JS must not contain ${w}`);
+    });
+    assert.ok(!/hover-lift|hover-scale|fade-in|slide-up/.test(appBreeze), 'no motion modifiers in app.breeze');
     assert.ok(css.includes(':focus-visible'), 'visible focus states');
-    assert.ok(js.includes("matchMedia('(prefers-reduced-motion: reduce)')"), 'JS respects OS setting');
+    assert.ok(css.includes('prefers-reduced-motion'), 'reduced-motion query kept');
     assert.ok(js.includes("key === 'Escape'"), 'Esc closes the dossier');
-    assert.ok(js.includes('min-height: 48px') || css.includes('min-height: 48px'), 'touch-sized targets');
+    assert.ok(css.includes('min-height: 48px'), 'touch-sized targets');
+    // Readable text colors: no washed-out small text.
+    assert.ok(css.includes('--soft: #475569'), 'secondary text stays contrast-safe');
   });
 });
