@@ -1,0 +1,320 @@
+/*!
+ * ALAKMAR Museum — static editorial system
+ * Vivid Blue #2563EB (primary) · Washed Tomato #EF4444 (graphic accent only)
+ * Vintage Cream #FAF8F5 · Threepenny Navy #1E293B
+ *
+ * Deliberately static: no 3D, no parallax, no reveal animations.
+ * Hierarchy is carried by type scale, weight, color and whitespace.
+ * Tomato is never used for text — only for graphic fills and ticks.
+ * Breeze maps bare modifiers to bz-* classes, so custom hooks below use
+ * the .bz- prefix (e.g. [bar-track] renders as .bz-bar-track).
+ */
+
+:root {
+  --blue: #2563EB;
+  --blue-ink: #1E40AF;
+  --tomato: #EF4444;
+  --cream: #FAF8F5;
+  --card: #FFFFFF;
+  --slime: #22C55E;
+  --slime-ink: #15803D;
+  --navy: #1E293B;
+  --body: #334155;
+  --soft: #475569;
+  --line: #E3E8F0;
+  --track: #E8EDF0;
+  --shadow: 0 1px 2px rgba(30, 41, 59, 0.06), 0 10px 28px rgba(30, 41, 59, 0.08);
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  background: var(--cream);
+  color: var(--body);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── sections: generous air, one hairline between rooms ── */
+#app .bz-section {
+  padding-top: 4.5rem;
+  padding-bottom: 4.5rem;
+  border-top: 1px solid var(--line);
+}
+
+#app .bz-section:first-child { border-top: none; }
+
+/* ── type hierarchy ── */
+#app h1, #app h2, #app h3 { font-family: var(--font-display); color: var(--navy); }
+
+#entrance h1 {
+  font-size: clamp(3.4rem, 11vw, 8rem);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  margin: 0.3em 0 0.35em;
+  /* Breeze paints hero titles as gradient-clipped text; we want solid ink. */
+  background: none;
+  -webkit-text-fill-color: currentColor;
+  color: var(--navy);
+}
+
+/* Breeze gives hero copy a washed-out gray; body text must stay readable. */
+#app .bz-hero p { color: var(--body); }
+
+/* Breeze hero/center rules force direct-child divs into centered flex rows,
+   which crushes our stacks and grids into a left-hugging strip.
+   Restore vertical stacks and even grids. */
+#entrance > div.bz-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+
+#app .bz-each,
+#app .bz-grid-2,
+#app .bz-grid-3,
+#app .bz-grid-4 { width: 100%; }
+
+#app .bz-section.bz-center > div.bz-each { display: block; }
+
+#app .bz-section.bz-center > div.bz-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+#app .bz-section.bz-center > div.bz-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+#app .bz-section.bz-center > div.bz-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+#app .bz-section > h2 {
+  font-size: clamp(2.1rem, 5vw, 3.5rem);
+  font-weight: 900;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  max-width: 20ch;
+  margin: 0.25em 0 0.4em;
+}
+
+#app .bz-section > p { max-width: 66ch; }
+
+/* kicker labels: small but high-contrast, never washed out */
+#app .bz-small {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+#app .bz-section > p.bz-small,
+#app p.bz-small.bz-muted {
+  color: var(--blue-ink);
+}
+
+#app .bz-section > p.bz-small::before {
+  content: "";
+  display: inline-block;
+  width: 22px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--tomato);
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+#app .bz-muted { color: var(--soft); }
+#app .bz-italic { font-style: italic; }
+
+/* ── nav: plain sticky signage ── */
+.bz-nav {
+  background: rgba(250, 248, 245, 0.96);
+  border-bottom: 2px solid var(--navy);
+}
+
+.bz-nav-brand:empty { display: none; }
+
+.bz-nav .bz-nav-link {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--navy);
+  border: 2px solid transparent;
+  border-radius: 999px;
+  padding: 0.5rem 0.9rem;
+}
+
+.bz-nav .bz-nav-link:hover { border-color: var(--navy); background: #fff; }
+.bz-nav .bz-nav-link.active { background: var(--navy); color: #fff; }
+
+/* ── normal cards: white, hairline border, soft shadow, zero motion ── */
+#app .bz-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  padding: 1.6rem;
+}
+
+#app .bz-card h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1.15;
+  margin: 0.3em 0 0.35em;
+}
+
+#app .bz-card p { margin: 0 0 0.7em; }
+#app .bz-card p:last-child { margin-bottom: 0; }
+
+/* exhibit captions read like wall plaques: mono, visible, ruled off */
+#app .bz-card .bz-small {
+  display: block;
+  color: var(--soft);
+  border-top: 1px solid var(--line);
+  padding-top: 0.7em;
+  margin-top: 0.9em;
+}
+
+#app .bz-card p.bz-small:first-child { border-top: none; padding-top: 0; margin-top: 0; }
+
+/* stats: oversized readable numbers */
+#entrance .bz-card h2 {
+  font-size: 2.75rem;
+  font-weight: 900;
+  line-height: 1;
+  color: var(--navy);
+  margin: 0 0 0.15em;
+}
+
+/* ── buttons: flat, instant, high-contrast ── */
+#app .bz-btn { transition: none; }
+
+#app .bz-btn:hover { transform: none; box-shadow: var(--shadow); }
+
+#app .bz-btn.bz-primary { background: var(--blue); border-color: var(--blue); color: #fff; }
+#app .bz-btn.bz-primary:hover { background: var(--blue-ink); border-color: var(--blue-ink); }
+
+/* ── benchmark bars: static data graphics ── */
+.bz-bar-track {
+  height: 12px;
+  border-radius: 999px;
+  background: var(--track);
+  overflow: hidden;
+}
+
+.bz-bar-breeze, .bz-bar-react { height: 100%; border-radius: 999px; }
+.bz-bar-breeze { background: var(--blue); }
+.bz-bar-react { background: #94A3B8; }
+
+/* ── archive search ── */
+#archive input[type="search"] {
+  width: min(560px, 100%);
+  font: inherit;
+  color: var(--navy);
+  padding: 0.8rem 1.1rem;
+  border: 2px solid var(--navy);
+  border-radius: 999px;
+  background: #fff;
+}
+
+/* ── dossier overlay: instant, readable, dismissible ── */
+#exhibit { border: none; }
+#exhibit .bz-if { display: contents; }
+
+body.museum-dossier-open { overflow: hidden; }
+
+body.museum-dossier-open #exhibit {
+  position: fixed;
+  inset: 0;
+  z-index: 1500;
+  display: grid;
+  place-items: center;
+  padding: 1.2rem;
+  background: rgba(30, 41, 59, 0.62);
+  overflow: auto;
+}
+
+body.museum-dossier-open #exhibit .bz-card {
+  width: min(680px, 100%);
+  max-height: min(86vh, 900px);
+  overflow: auto;
+  border: 2px solid var(--navy);
+  padding: 2rem;
+}
+
+/* ── content links: navy text, blue underline ── */
+#app a:not(.bz-nav-link):not(.bz-btn) {
+  color: var(--blue-ink);
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: var(--blue);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+/* ── focus: always visible ── */
+#app :focus-visible, .bz-nav :focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* ── toast: plain status note ── */
+#museum-toast {
+  position: fixed;
+  bottom: 1.4rem;
+  right: 1.4rem;
+  z-index: 2000;
+  max-width: min(360px, 90vw);
+  background: var(--navy);
+  color: #fff;
+  border-radius: 12px;
+  padding: 0.8rem 1.1rem;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  box-shadow: var(--shadow);
+  transform: translateY(140%);
+  opacity: 0;
+}
+
+#museum-toast.show { transform: none; opacity: 1; }
+
+/* ── footer: bright text on navy, credit set like a wall label ── */
+.bz-footer { background: var(--navy); color: #F1F5F9; }
+.bz-footer p { color: #E2E8F0; max-width: 70ch; }
+.bz-footer a { color: #fff; }
+
+/* ── mobile: single column editorial ── */
+@media (max-width: 760px) {
+  body { font-size: 1rem; }
+  #app .bz-grid-2,
+  #app .bz-grid-3,
+  #app .bz-grid-4,
+  #app .bz-section.bz-center > div.bz-grid-2,
+  #app .bz-section.bz-center > div.bz-grid-3,
+  #app .bz-section.bz-center > div.bz-grid-4 { grid-template-columns: 1fr; }
+  #entrance h1 { font-size: clamp(3rem, 17vw, 4.5rem); }
+  #app .bz-section > h2 { font-size: 2rem; }
+  .bz-btn, #app button { min-height: 48px; }
+  #app .bz-section { padding-top: 3rem; padding-bottom: 3rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
