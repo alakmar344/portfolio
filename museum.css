@@ -1,0 +1,323 @@
+/*!
+ * ALAKMAR Museum — visual system
+ * Vintage-modern palette: Washed Tomato #EF4444 · Vintage Cream #FAF8F5
+ * Slime Green #22C55E · Threepenny Navy #1E293B
+ *
+ * Breeze maps bare modifiers to bz-* classes, so custom hooks below use
+ * the .bz- prefix (e.g. [museum-room] renders as .bz-museum-room).
+ * Breeze utilities (grid-2, flex, shadow, dark, light …) do the layout;
+ * this file adds the museum world: rooms, frames, light and motion.
+ */
+
+:root {
+  --tomato: #EF4444;
+  --cream: #FAF8F5;
+  --paper-2: #FFFDF8;
+  --slime: #22C55E;
+  --navy: #1E293B;
+  --ink-soft: #55607A;
+  --line: rgba(30, 41, 59, 0.16);
+  --line-soft: rgba(30, 41, 59, 0.09);
+  --shadow-sm: 3px 3px 0 rgba(30, 41, 59, 0.9);
+  --shadow: 6px 6px 0 rgba(30, 41, 59, 0.9);
+  --shadow-lg: 10px 10px 0 rgba(30, 41, 59, 0.9);
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --room-light: rgba(239, 68, 68, 0.06);
+  --walk: 0;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background:
+    radial-gradient(circle at 12% 6%, rgba(239, 68, 68, 0.07), transparent 42%),
+    radial-gradient(circle at 88% 10%, rgba(34, 197, 94, 0.06), transparent 40%),
+    radial-gradient(circle at 50% 110%, rgba(30, 41, 59, 0.10), transparent 55%),
+    var(--cream);
+  color: var(--navy);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* paper grain over everything, pointer-transparent */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  pointer-events: none;
+  opacity: 0.5;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* 3D walk context. JS drives per-room transforms; CSS owns the stage. */
+#app { perspective: 1500px; perspective-origin: 50% 0%; }
+
+#app .bz-section {
+  position: relative;
+  transform-style: preserve-3d;
+  will-change: transform;
+  border-top: 1px solid var(--line-soft);
+  overflow: clip;
+}
+
+/* wall wash + floor plane per room */
+#app .bz-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(to bottom, rgba(30, 41, 59, 0.05), transparent 22%),
+    var(--room-light, transparent);
+}
+
+#app .bz-section::after {
+  content: "";
+  position: absolute;
+  left: -5%;
+  right: -5%;
+  bottom: -12%;
+  height: 34%;
+  pointer-events: none;
+  transform: rotateX(62deg);
+  transform-origin: bottom center;
+  background:
+    repeating-linear-gradient(to right, rgba(30, 41, 59, 0.10) 0 1px, transparent 1px 72px),
+    linear-gradient(to bottom, rgba(30, 41, 59, 0.14), rgba(30, 41, 59, 0.02));
+  opacity: 0.55;
+}
+
+/* room lighting shifts as the camera walks */
+#entrance { --room-light: rgba(239, 68, 68, 0.07); }
+#gallery { --room-light: rgba(239, 68, 68, 0.05); }
+#breeze { --room-light: rgba(34, 197, 94, 0.08); }
+#lab { --room-light: rgba(30, 41, 59, 0.08); }
+#archive { --room-light: rgba(34, 197, 94, 0.05); }
+#library { --room-light: rgba(239, 68, 68, 0.06); }
+#about { --room-light: rgba(30, 41, 59, 0.05); }
+#exit { --room-light: rgba(34, 197, 94, 0.07); }
+
+/* ── typography: display, body, archival labels ── */
+#app h1, #app h2, #app h3 { font-family: var(--font-display); letter-spacing: -0.02em; }
+
+#entrance h1 {
+  font-size: clamp(3.4rem, 11vw, 8.5rem);
+  font-weight: 900;
+  line-height: 0.95;
+  margin: 0.35em 0 0.15em;
+}
+
+#app .bz-section > h2 {
+  font-size: clamp(2rem, 5.4vw, 3.6rem);
+  font-weight: 900;
+  line-height: 1;
+  text-transform: uppercase;
+  max-width: 20ch;
+}
+
+#app p { max-width: 68ch; }
+
+/* archival micro-labels: any [small] + [muted] Breeze text */
+#app .bz-small { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; }
+#app .bz-muted { color: var(--ink-soft); }
+#app .bz-italic { font-style: italic; }
+
+/* ── museum signage nav ── */
+.bz-nav {
+  background: rgba(250, 248, 245, 0.9);
+  backdrop-filter: blur(10px);
+  border-bottom: 2px solid var(--navy);
+}
+
+.bz-nav-brand:empty { display: none; }
+
+.bz-nav .bz-nav-link {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  padding: 0.5rem 0.9rem;
+}
+
+.bz-nav .bz-nav-link:hover { border-color: var(--navy); background: #fff; }
+.bz-nav .bz-nav-link.active { background: var(--navy); color: var(--cream); }
+
+/* ── gallery frames: pedestals, not cards ── */
+#gallery .bz-card {
+  background: var(--paper-2);
+  border: 2.5px solid var(--navy);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 1.6rem;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+#gallery .bz-card:hover { transform: translate(-2px, -5px); box-shadow: var(--shadow-lg); }
+
+/* exhibit plaque: thin rule + mono caption above each title */
+#gallery .bz-card h3, #lab .bz-card h3, #library .bz-card h3 { font-size: 1.6rem; line-height: 1.05; }
+
+/* dark machine room */
+#breeze.bz-dark, #breeze .bz-dark { background: var(--navy); }
+
+#breeze .bz-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(250, 248, 245, 0.28);
+  border-radius: 14px;
+  color: var(--cream);
+}
+
+#breeze .bz-card h3 { color: #fff; }
+#breeze .bz-card p { color: #CBD5E1; }
+#breeze h2, #breeze > p { color: var(--cream); }
+
+/* benchmark bars: honest little data-viz */
+.bz-bar-track {
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(148, 163, 184, 0.35);
+  overflow: hidden;
+}
+
+.bz-bar-breeze, .bz-bar-react { height: 100%; border-radius: 999px; transition: width 0.8s ease; }
+.bz-bar-breeze { background: var(--tomato); }
+.bz-bar-react { background: #64748B; }
+
+/* laboratory: workbench grid, dashed honesty */
+#lab { background-image: linear-gradient(rgba(30, 41, 59, 0.05) 1px, transparent 1px), linear-gradient(to right, rgba(30, 41, 59, 0.05) 1px, transparent 1px); background-size: 36px 36px; }
+
+#lab .bz-card { border-style: solid; border-radius: 14px; background: #fff; }
+#lab .bz-card .bz-muted { color: var(--ink-soft); }
+
+/* archive: dense shelves */
+#archive .bz-card { padding: 1.1rem 1.2rem; border-radius: 12px; }
+#archive input[type="search"] {
+  width: min(560px, 100%);
+  font: inherit;
+  padding: 0.8rem 1.1rem;
+  border: 2.5px solid var(--navy);
+  border-radius: 999px;
+  background: #fff;
+}
+
+/* ── exhibit dossier overlay: morph target ── */
+#exhibit { border: none; }
+
+#exhibit .bz-if { display: contents; }
+
+body.museum-dossier-open { overflow: hidden; }
+
+/* perspective makes #app a containing block; drop it while the fixed
+   dossier is open so the overlay truly covers the viewport. */
+body.museum-dossier-open #app { perspective: none; }
+
+body.museum-dossier-open #exhibit {
+  position: fixed;
+  inset: 0;
+  z-index: 1500;
+  display: grid;
+  place-items: center;
+  padding: 1.2rem;
+  background: rgba(30, 41, 59, 0.55);
+  backdrop-filter: blur(6px);
+  overflow: auto;
+}
+
+body.museum-dossier-open #exhibit .bz-card {
+  width: min(680px, 100%);
+  max-height: min(86vh, 900px);
+  overflow: auto;
+  background: var(--paper-2);
+  border: 3px solid var(--navy);
+  border-radius: 20px;
+  box-shadow: var(--shadow-lg);
+  padding: 2rem;
+  transform-origin: var(--dossier-ox, 50%) var(--dossier-oy, 50%);
+  animation: dossier-in 0.32s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes dossier-in {
+  from { opacity: 0; transform: translate(var(--dossier-dx, 0), var(--dossier-dy, 0)) scale(0.92); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ── links that are really links ── */
+#app a:not(.bz-nav-link):not(.bz-btn) {
+  color: var(--navy);
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: var(--tomato);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+#breeze a:not(.bz-nav-link):not(.bz-btn) { color: #fff; }
+
+/* ── focus: always visible ── */
+#app :focus-visible, .bz-nav :focus-visible {
+  outline: 3px solid var(--tomato);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* ── footer: the required credit, set like a wall label ── */
+.bz-footer { background: var(--navy); color: var(--cream); }
+.bz-footer a { color: #fff; }
+.bz-footer p { color: #CBD5E1; max-width: 70ch; }
+
+/* ── reveal on scroll (JS adds .in) ── */
+#app .bz-section .bz-card, #app .bz-section h2, #app .bz-section > p { opacity: 1; }
+#app .museum-reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
+#app .museum-reveal.in { opacity: 1; transform: none; }
+
+/* ── toast: polite, tiny, out of the way ── */
+#museum-toast {
+  position: fixed;
+  bottom: 1.4rem;
+  right: 1.4rem;
+  z-index: 2000;
+  max-width: min(360px, 90vw);
+  background: var(--navy);
+  color: var(--cream);
+  border: 2px solid var(--cream);
+  border-radius: 12px;
+  padding: 0.8rem 1.1rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  box-shadow: var(--shadow);
+  transform: translateY(140%);
+  opacity: 0;
+  transition: transform 0.3s cubic-bezier(0.34, 1.4, 0.64, 1), opacity 0.3s ease;
+}
+
+#museum-toast.show { transform: none; opacity: 1; }
+
+/* ── mobile: the museum becomes vertical and editorial ── */
+@media (max-width: 760px) {
+  #app { perspective: none; }
+  #app .bz-section::after { display: none; }
+  #app .bz-grid-2, #app .bz-grid-3, #app .bz-grid-4 { grid-template-columns: 1fr; }
+  #entrance h1 { font-size: clamp(3rem, 17vw, 4.5rem); }
+  #app .bz-section > h2 { font-size: 2rem; }
+  .bz-btn, #app button { min-height: 48px; }
+}
+
+/* ── calm motion: user toggle + OS preference ── */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  #app { perspective: none; }
+  #app .bz-section::after { display: none; }
+}
+
+body.calm-motion #app { perspective: none; }
+body.calm-motion #app .bz-section { transform: none !important; }
+body.calm-motion #app .bz-section::after { display: none; }
+body.calm-motion * { animation-duration: 0.01ms !important; }

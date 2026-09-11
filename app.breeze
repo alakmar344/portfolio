@@ -1,0 +1,298 @@
+@app "ALAKMAR — A 3D Museum of Work and Experiments"
+
+@seo {
+  title: "ALAKMAR — A 3D Museum of Work and Experiments"
+  description: "Walk through the work of Al-Aqmar Tinwala: flagship privacy-first AI, the Breeze framework, playful science, mobility and a laboratory of experiments."
+  keywords: "Al-Aqmar Tinwala, eSAMz AI, Breeze Framework, privacy-first AI, Rust, Sarvam, teen developer"
+  author: "Al-Aqmar Tinwala"
+  canonical: "https://esamz.info/"
+  image: "https://esamz.info/preview.png"
+}
+
+@schema {
+  type: "Person"
+  name: "Al-Aqmar Tinwala"
+  jobTitle: "AI Architect and Full-Stack Developer"
+  email: "proman007power@gmail.com"
+}
+
+@aeo {
+  summary: "ALAKMAR is a 3D digital museum of Al-Aqmar Tinwala's work, built with the Breeze Framework. Flagship eSAMz AI serves 3,000 plus users with zero data retention."
+  topics: "portfolio museum, privacy-first AI, Breeze Framework, eSAMz AI, science playground, Indian mobility"
+  speakable: ["h1", ".bz-hero p", "#gallery h2"]
+}
+
+@geo {
+  entities: "Al-Aqmar Tinwala, eSAMz AI, Breeze Framework, RealLearn, MindEase"
+  facts: "eSAMz AI serves 3,000 plus users with zero data retention. Breeze core is about 8 KB gzipped with zero dependencies."
+}
+
+@theme {
+  primary: #EF4444
+  secondary: #1E293B
+  accent: #22C55E
+  bg: #FAF8F5
+  text: #1E293B
+  radius: 14px
+  font: "Plus Jakarta Sans, system-ui, sans-serif"
+}
+
+// ── Reactive UI state (small surface, populated from museum-data.js) ──
+@state currentRoom = "entrance"
+@state selectedExhibit = ""
+@state detailOpen = false
+@state detailTitle = ""
+@state detailTagline = ""
+@state detailDescription = ""
+@state detailWhy = ""
+@state detailTech = ""
+@state detailMetrics = ""
+@state detailStatus = ""
+@state archiveFilter = "all"
+@state archiveQuery = ""
+@state archiveEmpty = false
+@state archiveCount = 0
+@state reducedMotion = false
+@state gallery = []
+@state labBenches = []
+@state labScreens = []
+@state archiveList = []
+@state books = []
+@state benchRows = []
+@state stats = []
+@state principles = []
+@state stackChips = []
+
+// ── Museum signage ──
+@nav [sticky]
+  link "ALAKMAR · The Moon" -> #entrance
+  link "Gallery" -> #gallery
+  link "Breeze" -> #breeze
+  link "Lab" -> #lab
+  link "Archive" -> #archive
+  link "Library" -> #library
+  link "About" -> #about
+  link "Exit" -> #exit
+
+// ── Entrance ──
+@section #entrance [hero, center, pad-xl]
+  div [center]
+    p "A DIGITAL MUSEUM IN ONE CONTINUOUS SPACE" [small, muted]
+    h1 "ALAKMAR" [fade-in]
+    p "Privacy-first intelligence, playful science and honest tools. You are entering an archive of work, not a page of links." [fade-in]
+    p "Now entering the {currentRoom} wing. Scroll to walk forward. Select any artifact to step closer." [small, muted]
+    div [flex, gap-md, mt-md]
+      button "Enter the gallery" [primary, @click -> navigate(#gallery)]
+      button "Meet the builder" [outline, @click -> navigate(#about)]
+    div [flex, gap-sm, mt-sm]
+      button "Prefer calm motion" [ghost, @click -> toggle(reducedMotion)]
+    @if reducedMotion
+      p "Calm motion is on. The museum will stay still." [small]
+    @if !reducedMotion
+      p "Tip: your pointer gently lights the room." [small, muted]
+  div [grid-4, gap-md, mt-lg]
+    @each stat in stats
+      card [shadow]
+        h2 "{stat.value}"
+        p "{stat.label}"
+
+// ── Main gallery ──
+@section #gallery [pad-xl]
+  p "WING ONE · THE MAIN CORRIDOR" [small, muted]
+  h2 "Major works, given room to breathe"
+  p "Seven artifacts earned a pedestal here. Everything else lives in the lab or the archive. Scroll slowly. The camera walks with you."
+  button "How is this built" [outline, @click -> navigate(#breeze)]
+  div [grid-2, gap-lg, mt-lg]
+    @each exhibit in gallery
+      card [shadow, hover-lift]
+        p "ARTIFACT {exhibit.index} · {exhibit.category}" [small, muted]
+        h3 "{exhibit.title}"
+        p "{exhibit.tagline}"
+        p "{exhibit.description}"
+        p "{exhibit.techLine}" [small]
+        p "{exhibit.metricLine}" [small, muted]
+        div [flex, gap-sm, mt-sm]
+          button "Step closer" [primary, @click -> selectExhibit({exhibit.slug})]
+          button "Visit live" [outline, @click -> openLive({exhibit.slug})]
+          button "Source" [ghost, @click -> openRepo({exhibit.slug})]
+
+// ── Breeze centerpiece ──
+@section #breeze [pad-xl, dark]
+  p "THE FLAGSHIP ARTIFACT" [small]
+  h2 "Breeze, the medium of this museum"
+  p "Tiny runtime, fine-grained reactivity, native DOM architecture. This wing reads like the framework itself: small, exact, honest."
+  div [grid-3, gap-md, mt-md]
+    card [shadow]
+      h3 "Tiny runtime"
+      p "About 8 KB gzipped. Zero dependencies. Compiles in about 0.16 ms in V8."
+    card [shadow]
+      h3 "Fine-grained reactivity"
+      p "Signals, computed values, effects and batches. About two million signal ops per second."
+    card [shadow]
+      h3 "Native DOM architecture"
+      p "Template-cloned nodes with keyed reconciliation. No virtual tree to diff."
+    card [shadow]
+      h3 "Real application"
+      p "This museum renders from structured data with keyed lists and localized text updates."
+    card [shadow]
+      h3 "Honest trade-offs"
+      p "Row appends and raw SSR throughput favor heavier engines. Breeze wins on updates, deletes, frames and memory."
+    card [shadow]
+      h3 "Source and docs"
+      p "Read the code, the spec and the full benchmark report on the live site."
+  h3 "Measured, not promised" [mt-lg]
+  p "Krausest DOM benchmark in headless Chrome. Lower is better. Breeze in tomato, React in slate."
+  div [grid-2, gap-md, mt-md]
+    @each bench in benchRows
+      card [shadow]
+        h3 "{bench.op}"
+        p "Breeze {bench.bMs} ms · React {bench.rMs} ms" [small]
+        div [bar-track, mt-sm]
+          div [bar-breeze, style=width:{bench.bPct}]
+        div [bar-track, mt-sm]
+          div [bar-react, style=width:{bench.rPct}]
+        p "{bench.note}" [small, muted]
+  div [grid-3, gap-md, mt-lg]
+    card [shadow]
+      h3 "58.3 FPS"
+      p "Sustained DBMonster animation. React and Preact held near 20 FPS in the same run."
+    card [shadow]
+      h3 "2,425 KB"
+      p "Retained heap after table stress. React retained 19,622 KB. About 8.1 times leaner."
+    card [shadow]
+      h3 "1.10 ms"
+      p "Surgical single-row delete. React took 71.10 ms in the same suite."
+  p "Full numbers live in benchmark.md beside the framework source. Nothing here is rounded into a myth." [small, muted, mt-md]
+  div [flex, gap-md, mt-md]
+    button "Open the Breeze site" [primary, @click -> openLive(breeze)]
+    button "Read the source" [outline, @click -> openRepo(breeze)]
+
+// ── Laboratory ──
+@section #lab [pad-xl]
+  p "WING TWO · THE WORKSHOP BEHIND THE GLASS" [small, muted]
+  h2 "The laboratory"
+  p "Unfinished, odd and instructive. Benches for deep experiments, small screens for everyday utilities. This room is allowed to smell faintly of solder."
+  h3 "Workbenches" [mt-md]
+  div [grid-3, gap-md, mt-sm]
+    @each bench in labBenches
+      card [shadow, hover-lift]
+        p "BENCH {bench.index} · {bench.category}" [small, muted]
+        h3 "{bench.title}"
+        p "{bench.tagline}"
+        p "{bench.description}"
+        p "{bench.techLine}" [small]
+        div [flex, gap-sm, mt-sm]
+          button "Inspect" [primary, @click -> selectExhibit({bench.slug})]
+          button "Source" [outline, @click -> openRepo({bench.slug})]
+  h3 "Utility shelf" [mt-lg]
+  p "Small tools people actually use. Modest frames, honest labels." [small, muted]
+  div [grid-3, gap-md, mt-sm]
+    @each screen in labScreens
+      card [shadow, hover-scale]
+        h3 "{screen.title}"
+        p "{screen.tagline}"
+        p "{screen.techLine}" [small]
+        div [flex, gap-sm, mt-sm]
+          button "Inspect" [ghost, @click -> selectExhibit({screen.slug})]
+          button "Open" [outline, @click -> openLive({screen.slug})]
+
+// ── Archive ──
+@section #archive [pad-xl, light]
+  p "THE PRACTICAL ESCAPE HATCH" [small, muted]
+  h2 "The archive"
+  p "Every artifact, shelfed densely. Search or filter. This is the fastest way through the building."
+  div [flex, gap-sm, mt-md]
+    button "All" [outline, @click -> setState(archiveFilter, all)]
+    button "Gallery" [outline, @click -> setState(archiveFilter, gallery)]
+    button "Lab" [outline, @click -> setState(archiveFilter, lab)]
+    button "Library" [outline, @click -> setState(archiveFilter, library)]
+    button "Reset" [ghost, @click -> resetArchive()]
+  form [mt-md]
+    input [type=search, bind=archiveQuery, placeholder="Search titles techs and tags"]
+  p "{archiveCount} artifacts on the shelf." [small, muted, mt-sm]
+  div [grid-3, gap-md, mt-md]
+    @each row in archiveList
+      card [shadow]
+        p "{row.category} · {row.status}" [small, muted]
+        h3 "{row.title}"
+        p "{row.tagline}"
+        p "{row.techLine}" [small]
+        div [flex, gap-sm, mt-sm]
+          button "Dossier" [primary, @click -> selectExhibit({row.slug})]
+          button "Open" [outline, @click -> openLive({row.slug})]
+  @if archiveEmpty
+    card [shadow, pad-lg, mt-md]
+      h3 "Nothing on this shelf matches."
+      p "Clear the search or reset the filter to keep walking."
+      button "Reset the archive" [primary, @click -> resetArchive()]
+
+// ── Library ──
+@section #library [pad-xl]
+  p "THE QUIET ROOM" [small, muted]
+  h2 "Two books. Zero fluff."
+  p "Written from the workbench. History, mechanics and thirty days of agent workflows."
+  div [grid-2, gap-lg, mt-lg]
+    @each book in books
+      card [shadow, hover-lift]
+        p "{book.tagline}" [small, muted]
+        h3 "{book.title}"
+        p "{book.description}"
+        div [flex, gap-sm, mt-sm]
+          button "Dossier" [outline, @click -> selectExhibit({book.slug})]
+          button "View on Amazon" [primary, @click -> openLive({book.slug})]
+
+// ── About ──
+@section #about [pad-xl, center]
+  p "THE HUMAN BEHIND THE GLASS" [small, muted]
+  h2 "Thirteen, and just warming up"
+  p "I am Al-Aqmar Tinwala. Al-Aqmar means The Moon. I build privacy-first intelligence with a soul, and I ship."
+  div [grid-3, gap-md, mt-lg]
+    @each principle in principles
+      card [shadow]
+        h3 "{principle.title}"
+        p "{principle.text}"
+  h3 "On the bench" [mt-lg]
+  div [flex, gap-sm, mt-sm]
+    @each chip in stackChips
+      card [shadow]
+        p "{chip}" [small]
+  div [flex, gap-md, mt-lg]
+    button "Walk to the exit" [primary, @click -> navigate(#exit)]
+    button "Back to the entrance" [ghost, @click -> navigate(#entrance)]
+
+// ── Exit ──
+@section #exit [pad-xl, center]
+  p "THE MUSEUM EXIT" [small, muted]
+  h2 "Take something with you."
+  p "Open for AI consulting, fast engineering and soulful collaborations."
+  div [flex, gap-md, mt-md]
+    a "Write by email" [href=mailto:proman007power@gmail.com]
+    a "GitHub" [href=https://github.com/alakmar344, target=_blank, rel=noopener]
+    a "LinkedIn" [href=https://www.linkedin.com/in/alakmar-teenwala-054067393, target=_blank, rel=noopener]
+    a "Instagram" [href=https://instagram.com/its_alakmar7, target=_blank, rel=noopener]
+  div [flex, gap-md, mt-md]
+    button "Back to the entrance" [ghost, @click -> navigate(#entrance)]
+
+// ── Exhibit dossier overlay ──
+@section #exhibit [pad-lg]
+  @if detailOpen
+    card [shadow, pad-lg]
+      p "EXHIBIT DOSSIER · {detailStatus}" [small, muted]
+      h2 "{detailTitle}"
+      p "{detailTagline}"
+      p "{detailDescription}"
+      p "{detailWhy}" [italic]
+      p "{detailTech}" [small]
+      p "{detailMetrics}" [small, muted]
+      div [flex, gap-sm, mt-md]
+        a "Visit live site" #detail-live [href=https://esamz.info, target=_blank, rel=noopener]
+        a "Read the source" #detail-repo [href=https://github.com/alakmar344, target=_blank, rel=noopener]
+      div [flex, gap-sm, mt-sm]
+        button "Step back" [primary, @click -> closeExhibit()]
+
+// ── Footer ──
+@footer [dark]
+  p "© 2026 Al-Aqmar Tinwala. Crafted with purpose and heart."
+  p "This website was made with my own framework Breeze."
+  a "Learn more about Breeze" [href=https://breeze-framework.vercel.app, target=_blank, rel=noopener]
+  p "You are in the {currentRoom} wing. Code can love you back."
