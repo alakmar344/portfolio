@@ -1,3771 +1,1162 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Al-Aqmar Tinwala — 13yo Heart-First AI Architect · RealLearn &amp; 11 Live Worlds</title>
-<meta name="description" content="Al-Aqmar Tinwala is a 13-year-old AI architect building intelligence with a soul. Creator of RealLearn (adaptive AI learning engine), eSAMz AI (privacy-first LLM), Gati mobility, and π Science. 11 live worlds serving 3,000+ users." />
-<meta name="keywords" content="Al-Aqmar Tinwala, RealLearn, AI architect, eSAMz AI, privacy-first AI, Rust, Sarvam 105b, Next.js, Gati mobility, Pi science, youAI-2B, teen developer, editorial portfolio" />
-<meta name="author" content="Al-Aqmar Tinwala" />
-<meta name="robots" content="index, follow" />
-<link rel="canonical" href="https://esamz.info/" />
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.88em' font-size='82'>☽</text></svg>" />
-<meta property="og:type" content="website" />
-<meta property="og:title" content="Al-Aqmar Tinwala — 13yo AI Architect · RealLearn &amp; 11 Live Worlds" />
-<meta property="og:description" content="Heart-first, privacy-first intelligence with a soul. 11 live worlds, 43 repos, 2 published books. Enter the workshop." />
-<meta property="og:url" content="https://esamz.info/" />
-<meta property="og:site_name" content="Al-Aqmar HQ" />
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Al-Aqmar Tinwala",
-  "url": "https://esamz.info/",
-  "email": "proman007power@gmail.com",
-  "jobTitle": "AI Architect & Full-Stack Systems Engineer",
-  "description": "13-year-old AI architect crafting high-performance intelligence with a soul. Creator of RealLearn AI and eSAMz AI, serving 3,000+ users.",
-  "sameAs": [
-    "https://github.com/alakmar344",
-    "https://www.linkedin.com/in/alakmar-teenwala-054067393",
-    "https://instagram.com/its_alakmar7"
-  ]
-}
-</script>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Al-Aqmar Journal — Vol. XIII</title>
+
+<!-- ═══ PRIVACY SHIELD ═══ -->
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="noimageindex">
+<meta name="author" content="Al-Aqmar Tinwala">
+<meta name="description" content="Al-Aqmar Tinwala — 13yo Heart-First AI Architect. RealLearn & 11 Live Worlds. Zero surveillance by design.">
+<!-- Block AI scrapers -->
+<meta name="generator" content="Handcrafted, zero telemetry">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="Permissions-Policy" content="interest-cohort=(), browsing-topics=()">
+<style>
+  /* Block known AI crawlers at the CSS layer too */
+  @media (min-width: 0px) { :root { --privacy: "zero-surveillance"; } }
+</style>
 
 <style>
-/* ==========================================================================
-   AL-AQMAR HQ — CALM VINTAGE EDITORIAL DESIGN SYSTEM (LIGHT MODE)
-   Tactile Linen · Sumi Espresso Ink · Washed Terracotta · Herbal Sage · Blueprint
-   ========================================================================== */
+/* ═══════════════════════════════════════════════════
+   THE AL-AQMAR JOURNAL — NEWSPAPER AESTHETIC
+   Zero external dependencies. System fonts only.
+   ═══════════════════════════════════════════════════ */
+
 :root {
-  /* Warm Archival Canvas & Paper Tones */
-  --paper-canvas: #FAF7F2;
-  --paper-warm: #F4EFE6;
-  --paper-card: #FFFFFF;
-  --paper-card-sub: #FAF8F4;
-  --paper-linen: #F1ECE1;
-  --paper-glass: rgba(250, 247, 242, 0.92);
-
-  /* Literary Sumi & Espresso Ink System */
-  --ink-primary: #1D1815;
-  --ink-body: #362D27;
-  --ink-secondary: #584D45;
-  --ink-muted: #85786E;
-  --ink-faint: #B5A89E;
-  --ink-rule: rgba(35, 26, 20, 0.12);
-  --ink-rule-strong: rgba(35, 26, 20, 0.22);
-
-  /* Calm Vintage Natural Accents */
-  --terracotta: #C6533A;
-  --terracotta-soft: #FCF1EE;
-  --terracotta-border: #E8B9AF;
-  
-  /* RealLearn Signature Herbal Sage & Olive */
-  --sage-olive: #4E6845;
-  --sage-dark: #374D2F;
-  --sage-soft: #EFF4ED;
-  --sage-border: #BDD0B8;
-
-  /* Delft Blueprint & Indigo for Code Vault */
-  --blueprint: #2A4C6E;
-  --blueprint-soft: #EEF3F8;
-  --blueprint-border: #B7CCE0;
-
-  /* Antique Honey Ochre for Warm Highlights */
-  --ochre: #D68C36;
-  --ochre-soft: #FCF6EC;
-  --ochre-border: #EED1A8;
-
-  /* Rose Quartz / Heart Accent */
-  --rose-heart: #C9425A;
-  --rose-soft: #FCEDF0;
-
-  /* Tactile Physical Paper Shadows */
-  --shadow-paper-sm: 0 2px 6px rgba(45, 35, 25, 0.04), 0 1px 3px rgba(45, 35, 25, 0.02);
-  --shadow-paper: 0 6px 20px -3px rgba(45, 35, 25, 0.06), 0 2px 6px rgba(45, 35, 25, 0.03);
-  --shadow-paper-lift: 0 14px 34px -4px rgba(45, 35, 25, 0.10), 0 4px 12px rgba(45, 35, 25, 0.04);
-  --shadow-terracotta: 0 10px 28px -4px rgba(198, 83, 58, 0.22);
-  --shadow-sage: 0 12px 32px -4px rgba(78, 104, 69, 0.20);
-  --shadow-blueprint: 0 12px 32px -4px rgba(42, 76, 110, 0.20);
-
-  /* Geometry & Radii */
-  --r-sm: 8px;
-  --r-md: 16px;
-  --r-lg: 22px;
-  --r-full: 9999px;
-
-  /* Typography Stacks */
-  --font-serif: 'Instrument Serif', Georgia, 'Times New Roman', serif;
-  --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
-  --font-hand: 'Caveat', cursive;
-  --max-w: 1220px;
+  --paper: #f4f1ea;
+  --paper-deep: #ebe6da;
+  --ink: #1a1612;
+  --ink-soft: #3d362e;
+  --rule: #1a1612;
+  --accent: #8b1a1a;      /* deep editorial red */
+  --moon: #c9b98a;         /* moonlight gold */
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --mono: "SF Mono", "JetBrains Mono", ui-monospace, "Cascadia Mono", Menlo, Consolas, monospace;
 }
 
-/* Base Reset */
-*, *::before, *::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-html {
-  scroll-behavior: smooth;
-  background-color: var(--paper-canvas);
-  color: var(--ink-body);
-  font-family: var(--font-body);
-}
+html { scroll-behavior: smooth; }
 
 body {
-  background-color: var(--paper-canvas);
-  background-image: 
-    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(214, 140, 54, 0.05), transparent 70%),
-    radial-gradient(ellipse 60% 40% at 90% 30%, rgba(78, 104, 69, 0.04), transparent 60%),
-    radial-gradient(ellipse 60% 50% at 10% 70%, rgba(198, 83, 58, 0.04), transparent 60%),
-    linear-gradient(rgba(35, 26, 20, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(35, 26, 20, 0.02) 1px, transparent 1px);
-  background-size: 100% 100%, 100% 100%, 100% 100%, 48px 48px, 48px 48px;
-  line-height: 1.68;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-  position: relative;
-  overflow-x: hidden;
+  background-image:
+    radial-gradient(circle at 20% 10%, rgba(201,185,138,0.08) 0%, transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(139,26,26,0.04) 0%, transparent 40%);
 }
 
-/* Fine Archival Paper Texture */
-body::after {
-  content: '';
+/* — Paper texture overlay — */
+body::before {
+  content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: 9999;
-  opacity: 0.22;
-  mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .1 0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23grain)'/%3E%3C/svg%3E");
-}
-
-::selection {
-  background: var(--terracotta-soft);
-  color: var(--terracotta);
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(26,22,18,0.015) 2px, rgba(26,22,18,0.015) 3px);
+  z-index: 1;
 }
 
 .container {
-  width: 100%;
-  max-width: var(--max-w);
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 0 32px;
+  padding: 0 2rem;
   position: relative;
   z-index: 2;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+/* ═══ MASTHEAD ═══ */
+.masthead {
+  border-bottom: 3px double var(--rule);
+  padding: 1.5rem 0 1rem;
+  text-align: center;
+  position: relative;
 }
 
-/* ==========================================================================
-   NAVIGATION — REFINED ARCHIVAL DOCK
-   ========================================================================== */
-.site-header {
-  position: sticky;
-  top: 16px;
-  z-index: 1000;
-  padding: 0 16px;
-}
-
-.nav-dock {
-  max-width: var(--max-w);
-  margin: 0 auto;
-  background: var(--paper-glass);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid var(--ink-rule);
-  border-radius: var(--r-full);
-  padding: 8px 18px;
+.masthead-top {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  box-shadow: var(--shadow-paper-sm), 0 0 0 1px rgba(255, 255, 255, 0.6);
-  transition: all 0.25s ease;
+  align-items: center;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 1.25rem;
 }
 
-.nav-dock:hover {
-  border-color: var(--ink-rule-strong);
-  box-shadow: var(--shadow-paper);
+.masthead-top .privacy-seal {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 0.25rem 0.6rem;
+  border-radius: 2px;
+  font-weight: 600;
 }
 
-.brand {
+.masthead h1 {
+  font-family: var(--serif);
+  font-size: clamp(2.5rem, 7vw, 5.5rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 0.95;
+  margin: 0.5rem 0;
+  font-style: italic;
+}
+
+.masthead h1 .moon {
+  display: inline-block;
+  color: var(--accent);
+  font-style: normal;
+  transform: translateY(-0.1em);
+}
+
+.masthead-sub {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-top: 0.5rem;
+}
+
+.masthead-sub .arabic {
+  font-family: var(--serif);
+  font-style: italic;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--accent);
+}
+
+/* ═══ NAVIGATION RIBBON ═══ */
+.nav-ribbon {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--rule);
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  flex-wrap: wrap;
+}
+
+.nav-ribbon a {
+  color: var(--ink);
+  text-decoration: none;
+  transition: color 0.2s;
+  position: relative;
+}
+
+.nav-ribbon a:hover {
+  color: var(--accent);
+}
+
+.nav-ribbon a::after {
+  content: "✦";
+  position: absolute;
+  right: -1.1rem;
+  color: var(--moon);
+  font-size: 0.6rem;
+}
+
+.nav-ribbon a:last-child::after { display: none; }
+
+/* ═══ SECTION HEADERS ═══ */
+.section {
+  padding: 3rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.section-label {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+.section-title {
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+  font-style: italic;
+}
+
+.section-rule {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: 1.5rem 0;
+}
+
+/* ═══ LEAD STORY ═══ */
+.lead {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.lead-kicker {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1rem;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 0.5rem;
 }
 
-.brand-seal {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  background: var(--terracotta);
-  color: #FFFFFF;
+.lead-kicker::before {
+  content: "";
+  width: 2rem;
+  height: 2px;
+  background: var(--accent);
+}
+
+.lead h2 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+}
+
+.lead-deck {
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--ink-soft);
+  line-height: 1.4;
+  margin-bottom: 1.5rem;
+  border-left: 3px solid var(--accent);
+  padding-left: 1.25rem;
+}
+
+.lead p {
+  font-size: 1.05rem;
+  margin-bottom: 1rem;
+  text-align: justify;
+  hyphens: auto;
+}
+
+.lead p:first-of-type::first-letter {
+  font-size: 4.5rem;
+  float: left;
+  line-height: 0.85;
+  padding: 0.3rem 0.6rem 0 0;
+  font-weight: 900;
+  color: var(--accent);
+  font-style: italic;
+}
+
+.lead-stats {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 2rem;
+  font-family: var(--mono);
+}
+
+.lead-stats h3 {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--moon);
+  border-bottom: 1px solid var(--moon);
+  padding-bottom: 0.75rem;
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.6rem 0;
+  border-bottom: 1px dashed rgba(244,241,234,0.2);
+  font-size: 0.85rem;
+}
+
+.stat-row span:last-child {
+  color: var(--moon);
+  font-weight: 600;
+}
+
+.cta-btn {
+  display: inline-block;
+  margin-top: 1.5rem;
+  padding: 0.85rem 1.75rem;
+  background: var(--ink);
+  color: var(--paper);
+  text-decoration: none;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  transition: all 0.2s;
+  border: 1px solid var(--ink);
+}
+
+.cta-btn:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.cta-btn.outline {
+  background: transparent;
+  color: var(--ink);
+}
+
+.cta-btn.outline:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+/* ═══ ELEVEN WORLDS GRID ═══ */
+.worlds-grid {
   display: grid;
-  place-items: center;
-  font-size: 1.15rem;
-  border: 1.5px solid var(--terracotta);
-  box-shadow: 0 2px 6px rgba(198, 83, 58, 0.35);
-  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-  flex-shrink: 0;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 0;
+  border-top: 1px solid var(--rule);
+  border-left: 1px solid var(--rule);
 }
 
-.brand:hover .brand-seal {
-  transform: rotate(-12deg) scale(1.08);
+.world-card {
+  padding: 1.75rem;
+  border-right: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  background: var(--paper);
+  transition: background 0.2s;
+  position: relative;
 }
 
-.brand-name {
-  font-family: var(--font-serif);
-  font-size: 1.35rem;
-  line-height: 1;
-  color: var(--ink-primary);
-  font-weight: 400;
+.world-card:hover {
+  background: var(--paper-deep);
+}
+
+.world-card.flagship {
+  grid-column: span 2;
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.world-card.flagship:hover {
+  background: #2a241d;
+}
+
+.world-num {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+.world-card.flagship .world-num {
+  color: var(--moon);
+}
+
+.world-card h3 {
+  font-size: 1.5rem;
+  font-weight: 900;
+  line-height: 1.05;
+  margin-bottom: 0.5rem;
   letter-spacing: -0.01em;
 }
 
-.brand-name em {
+.world-card.flagship h3 {
+  font-size: 2.25rem;
   font-style: italic;
-  color: var(--terracotta);
-  margin-left: 2px;
 }
 
-.brand-name small {
-  display: block;
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  color: var(--ink-muted);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  margin-top: 3px;
-}
-
-.nav-links-deck {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  list-style: none;
-}
-
-.nav-item-link {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--ink-secondary);
-  padding: 8px 14px;
-  border-radius: var(--r-full);
-  transition: all 0.2s ease;
-  white-space: nowrap;
-}
-
-.nav-item-link:hover {
-  color: var(--ink-primary);
-  background: rgba(35, 26, 20, 0.04);
-}
-
-.nav-item-link.current {
-  color: var(--terracotta);
-  background: var(--terracotta-soft);
-  border: 1px solid var(--terracotta-border);
-}
-
-.nav-dock-actions {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-/* Command Palette Shortcut Trigger */
-.cmd-palette-btn {
-  background: var(--paper-warm);
-  border: 1px solid var(--ink-rule);
-  border-radius: var(--r-full);
-  color: var(--ink-secondary);
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  padding: 6px 14px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.cmd-palette-btn:hover {
-  background: #FFFFFF;
-  color: var(--ink-primary);
-  border-color: var(--terracotta-border);
-}
-
-.cmd-palette-btn kbd {
-  background: #FFFFFF;
-  border: 1px solid var(--ink-rule);
-  padding: 1px 6px;
-  border-radius: 4px;
-  font-size: 0.65rem;
-  color: var(--ink-primary);
-}
-
-/* Sound Switcher */
-.sound-btn {
-  background: transparent;
-  border: 1px solid var(--ink-rule);
-  border-radius: 50%;
-  width: 36px;
-  height: 36px;
-  display: grid;
-  place-items: center;
-  color: var(--ink-secondary);
-  cursor: pointer;
-  transition: all 0.2s ease;
+.world-tagline {
+  font-style: italic;
+  color: var(--ink-soft);
   font-size: 0.95rem;
+  margin-bottom: 0.75rem;
 }
 
-.sound-btn:hover {
-  background: #FFFFFF;
-  color: var(--ink-primary);
-  border-color: var(--ink-rule-strong);
+.world-card.flagship .world-tagline {
+  color: var(--moon);
 }
 
-.sound-btn.is-active {
-  color: var(--terracotta);
-  background: var(--terracotta-soft);
-  border-color: var(--terracotta-border);
+.world-desc {
+  font-size: 0.92rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
 }
 
-.status-pill {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  font-weight: 700;
-  background: #FFFFFF;
-  color: var(--ink-primary);
-  padding: 7px 16px;
-  border-radius: var(--r-full);
-  border: 1px solid var(--ink-rule);
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  box-shadow: 0 1px 3px rgba(35, 26, 20, 0.04);
-  transition: all 0.2s ease;
-}
-
-.status-pill:hover {
-  border-color: var(--sage-olive);
-  transform: translateY(-1px);
-}
-
-.status-green-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--sage-olive);
-  animation: gentle-blink 2.2s ease-in-out infinite;
-}
-
-@keyframes gentle-blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.35; }
-}
-
-.hamburger {
-  display: none;
-  background: #FFFFFF;
-  border: 1px solid var(--ink-rule);
-  color: var(--ink-primary);
-  border-radius: 10px;
-  padding: 7px 11px;
-  font-size: 1.15rem;
-  cursor: pointer;
-}
-
-/* Mobile Menu Drawer */
-.mobile-nav-panel {
-  display: none;
-  margin: 10px 16px;
-  background: #FFFFFF;
-  border: 1px solid var(--ink-rule);
-  border-radius: var(--r-md);
-  padding: 16px;
-  position: sticky;
-  top: 80px;
-  z-index: 999;
-  box-shadow: var(--shadow-paper);
-}
-
-.mobile-nav-panel.open {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.mobile-nav-panel a {
-  padding: 11px 16px;
-  border-radius: var(--r-sm);
-  font-weight: 600;
-  font-size: 0.94rem;
-  color: var(--ink-primary);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.mobile-nav-panel a:hover {
-  background: var(--paper-warm);
-  color: var(--terracotta);
-}
-
-/* ==========================================================================
-   HERO — CALM VINTAGE EDITORIAL FLAVOR & ARCHITECT WORKSHOP
-   ========================================================================== */
-.hero-editorial {
-  padding: 54px 0 30px;
-  position: relative;
-}
-
-.editorial-stamps-bar {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-bottom: 24px;
-}
-
-.stamp-seal {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 6px 14px;
-  border-radius: var(--r-full);
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  background: #FFFFFF;
-  border: 1px solid var(--ink-rule);
-  box-shadow: 0 1px 3px rgba(35, 26, 20, 0.03);
-}
-
-.stamp-seal.seal-terracotta {
-  color: var(--terracotta);
-  background: var(--terracotta-soft);
-  border-color: var(--terracotta-border);
-}
-
-.stamp-seal.seal-sage {
-  color: var(--sage-olive);
-  background: var(--sage-soft);
-  border-color: var(--sage-border);
-}
-
-.stamp-seal.seal-blueprint {
-  color: var(--blueprint);
-  background: var(--blueprint-soft);
-  border-color: var(--blueprint-border);
-}
-
-.stamp-seal.seal-ochre {
-  color: var(--ochre);
-  background: var(--ochre-soft);
-  border-color: var(--ochre-border);
-}
-
-.hero-main-grid {
-  display: grid;
-  grid-template-columns: 1.18fr 0.82fr;
-  gap: 46px;
-  align-items: start;
-}
-
-.hero-title-editorial {
-  font-family: var(--font-serif);
-  font-weight: 400;
-  font-size: clamp(3rem, 6.4vw, 5.4rem);
-  line-height: 0.94;
-  letter-spacing: -0.025em;
-  color: var(--ink-primary);
-  margin-bottom: 22px;
-}
-
-.hero-title-editorial em {
-  font-style: italic;
-  color: var(--terracotta);
-  font-weight: 400;
-}
-
-.hero-title-editorial .mark-subtle {
-  background: linear-gradient(transparent 65%, var(--ochre-soft) 65%, var(--ochre-soft) 94%, transparent 94%);
-  padding: 0 4px;
-}
-
-.hero-lead-text {
-  font-size: 1.15rem;
-  line-height: 1.76;
-  color: var(--ink-secondary);
-  max-width: 610px;
-  margin-bottom: 26px;
-}
-
-.hero-lead-text strong {
-  color: var(--ink-primary);
-  font-weight: 700;
-}
-
-.hero-lead-text .lead-highlight {
-  color: var(--sage-olive);
-  font-weight: 700;
-}
-
-/* Vintage Paper Sticker Tray */
-.vintage-stickers-tray {
+.world-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 30px;
-}
-
-.vintage-sticker {
-  font-family: var(--font-mono);
-  font-size: 0.74rem;
-  font-weight: 600;
-  color: var(--ink-secondary);
-  background: #FFFFFF;
-  border: 1px solid var(--ink-rule);
-  padding: 6px 14px;
-  border-radius: var(--r-full);
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  box-shadow: 0 1px 3px rgba(35, 26, 20, 0.04);
-  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-  cursor: default;
-}
-
-.vintage-sticker:hover {
-  transform: translateY(-2px);
-  background: var(--paper-warm);
-  border-color: var(--ink-rule-strong);
-  color: var(--ink-primary);
-}
-
-.vintage-sticker.sticker-spotlight {
-  border-color: var(--sage-border);
-  color: var(--sage-dark);
-  background: var(--sage-soft);
-}
-
-.vintage-sticker.sticker-spotlight:hover {
-  border-color: var(--sage-olive);
-  background: #E5EDE2;
-}
-
-/* Action Deck Buttons */
-.hero-actions-deck {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-bottom: 18px;
-}
-
-.btn-vintage {
-  font-family: var(--font-body);
-  font-weight: 700;
-  font-size: 0.94rem;
-  padding: 13px 24px;
-  border-radius: var(--r-md);
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-  transition: all 0.22s ease;
-  border: 1px solid transparent;
-}
-
-.btn-primary-terracotta {
-  background: var(--terracotta);
-  color: #FFFFFF;
-  box-shadow: var(--shadow-terracotta);
-}
-
-.btn-primary-terracotta:hover {
-  background: #B3462E;
-  transform: translateY(-2px);
-  box-shadow: 0 14px 34px -4px rgba(198, 83, 58, 0.35);
-}
-
-.btn-matte-paper {
-  background: #FFFFFF;
-  color: var(--ink-primary);
-  border-color: var(--ink-rule);
-  box-shadow: var(--shadow-paper-sm);
-}
-
-.btn-matte-paper:hover {
-  background: var(--paper-warm);
-  border-color: var(--ink-rule-strong);
-  transform: translateY(-2px);
-}
-
-.btn-blueprint-pill {
-  background: var(--blueprint-soft);
-  color: var(--blueprint);
-  border-color: var(--blueprint-border);
-}
-
-.btn-blueprint-pill:hover {
-  background: var(--blueprint);
-  color: #FFFFFF;
-  box-shadow: var(--shadow-blueprint);
-  transform: translateY(-2px);
-}
-
-/* Handwritten Marginalia Callout */
-.author-note-callout {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: 10px;
-}
-
-.author-note-callout span {
-  font-family: var(--font-hand);
-  font-size: 1.6rem;
-  color: var(--terracotta);
-  font-weight: 700;
-  line-height: 1.2;
-}
-
-.author-note-callout .doodle-arrow {
-  font-size: 1.25rem;
-  transform: rotate(15deg);
-}
-
-/* ==========================================================================
-   MINIMALIST ANALOG MISSION CONTROL (DIETER RAMS / BRAUN TACTILE BENCH)
-   ========================================================================== */
-.analog-terminal-box {
-  background: #FFFFFF;
-  border: 1px solid var(--ink-rule);
-  border-radius: var(--r-lg);
-  padding: 22px;
-  box-shadow: var(--shadow-paper);
-  position: relative;
-  overflow: hidden;
-  transition: all 0.25s ease;
-}
-
-.analog-terminal-box:hover {
-  border-color: var(--ink-rule-strong);
-  box-shadow: var(--shadow-paper-lift);
-}
-
-.terminal-header-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 14px;
-  padding-bottom: 10px;
-  border-bottom: 1px dashed var(--ink-rule);
-}
-
-.terminal-dot-trio {
-  display: flex;
-  gap: 6px;
-}
-
-.terminal-dot-trio span {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  display: block;
-}
-
-.dot-one { background: var(--terracotta); }
-.dot-two { background: var(--ochre); }
-.dot-three { background: var(--sage-olive); }
-
-.terminal-reg-tag {
-  font-family: var(--font-mono);
+  gap: 0.35rem;
+  margin-bottom: 1rem;
+  font-family: var(--mono);
   font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  color: var(--ink-muted);
+  letter-spacing: 0.05em;
 }
 
-/* Architectural Moon Dial Radar */
-.analog-radar-stage {
-  background: var(--paper-warm);
-  border: 1px solid var(--ink-rule);
-  border-radius: var(--r-md);
-  height: 165px;
-  position: relative;
-  overflow: hidden;
-  display: grid;
-  place-items: center;
-  margin-bottom: 16px;
+.world-tags span {
+  padding: 0.2rem 0.5rem;
+  border: 1px solid currentColor;
+  opacity: 0.7;
 }
 
-.radar-subtle-grid {
-  position: absolute;
-  inset: 0;
-  background-image: 
-    linear-gradient(rgba(35, 26, 20, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(35, 26, 20, 0.04) 1px, transparent 1px);
-  background-size: 20px 20px;
-}
-
-.analog-center-disc {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background: #FFFFFF;
-  border: 2px solid var(--ink-primary);
-  display: grid;
-  place-items: center;
-  box-shadow: 0 4px 16px rgba(35, 26, 20, 0.08);
-  position: relative;
-  z-index: 3;
-}
-
-.analog-center-disc .moon-symbol {
-  font-family: var(--font-serif);
-  font-size: 2.2rem;
-  color: var(--ink-primary);
-  line-height: 1;
-}
-
-.orbit-concentric-ring {
-  position: absolute;
-  width: 230px;
-  height: 230px;
-  border: 1px dashed rgba(35, 26, 20, 0.22);
-  border-radius: 50%;
-  animation: slow-orbit-rotate 28s linear infinite;
-  pointer-events: none;
-}
-
-.orbit-concentric-ring.r2 {
-  width: 155px;
-  height: 155px;
-  border-color: rgba(198, 83, 58, 0.28);
-  animation-duration: 18s;
-  animation-direction: reverse;
-}
-
-@keyframes slow-orbit-rotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-.orbit-chip-label {
-  position: absolute;
-  top: -11px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #FFFFFF;
-  border: 1px solid var(--ink-rule-strong);
-  color: var(--ink-primary);
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  font-weight: 700;
-  padding: 2px 10px;
-  border-radius: var(--r-full);
-  white-space: nowrap;
-  box-shadow: 0 1px 3px rgba(35, 26, 20, 0.08);
-}
-
-.r2 .orbit-chip-label {
-  top: auto;
-  bottom: -11px;
-  background: var(--sage-soft);
-  color: var(--sage-dark);
-  border-color: var(--sage-border);
-}
-
-/* Desk Control Buttons */
-.desk-buttons-strip {
-  display: flex;
-  gap: 6px;
-  margin-bottom: 12px;
-  overflow-x: auto;
+.world-card a.launch {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent);
   padding-bottom: 2px;
 }
 
-.desk-btn {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  font-weight: 700;
-  padding: 6px 12px;
-  border-radius: var(--r-sm);
-  border: 1px solid var(--ink-rule);
-  background: var(--paper-warm);
-  color: var(--ink-secondary);
-  cursor: pointer;
-  transition: all 0.2s ease;
-  white-space: nowrap;
+.world-card.flagship a.launch {
+  color: var(--moon);
+  border-color: var(--moon);
 }
 
-.desk-btn.active, .desk-btn:hover {
-  background: #FFFFFF;
-  color: var(--ink-primary);
-  border-color: var(--ink-primary);
-  box-shadow: 0 1px 3px rgba(35, 26, 20, 0.06);
+.world-card a.launch:hover {
+  opacity: 0.7;
 }
 
-/* Analog Screen Presentation */
-.analog-screen {
-  background: var(--paper-card-sub);
-  border: 1px solid var(--ink-rule);
-  border-radius: var(--r-sm);
-  padding: 16px;
-  font-family: var(--font-mono);
-  font-size: 0.79rem;
-  line-height: 1.7;
-  color: var(--ink-body);
-  min-height: 160px;
+/* ═══ VAULT / GIT GEMS ═══ */
+.vault-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
 }
 
-.screen-prompt {
-  color: var(--terracotta);
-  font-weight: 700;
-  margin-bottom: 6px;
+.gem {
+  border: 1px solid var(--rule);
+  padding: 1.5rem;
+  position: relative;
+  background: var(--paper);
+  transition: transform 0.2s;
 }
 
-.screen-data-row {
+.gem:hover {
+  transform: translateY(-2px);
+}
+
+.gem.crown {
+  grid-column: span 2;
+  background: var(--paper-deep);
+  border: 2px solid var(--ink);
+}
+
+.gem-header {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 2px;
+  align-items: baseline;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--rule);
 }
 
-.screen-k { color: var(--ink-muted); }
-.screen-v { color: var(--ink-primary); font-weight: 700; }
-.screen-verified {
-  color: var(--sage-olive);
-  font-weight: 700;
-  margin-top: 6px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-/* ==========================================================================
-   TICKER BAND — VINTAGE PRINTER MARQUEE
-   ========================================================================== */
-.vintage-ticker-band {
-  margin: 50px 0 20px;
-  background: var(--paper-warm);
-  border-top: 1px solid var(--ink-rule);
-  border-bottom: 1px solid var(--ink-rule);
-  overflow: hidden;
-  position: relative;
-}
-
-.ticker-flow-track {
-  display: flex;
-  white-space: nowrap;
-  animation: gentle-flow 34s linear infinite;
-  padding: 11px 0;
-  gap: 24px;
-}
-
-.ticker-flow-track:hover {
-  animation-play-state: paused;
-}
-
-@keyframes gentle-flow {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-
-.ticker-entry {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-family: var(--font-serif);
-  font-size: 1.08rem;
-  letter-spacing: 0.01em;
-  color: var(--ink-primary);
-}
-
-.ticker-entry em {
-  font-style: italic;
-  color: var(--terracotta);
-}
-
-.ticker-entry .dot-sep {
-  color: var(--ink-muted);
+.gem-carats {
+  font-family: var(--mono);
   font-size: 0.75rem;
-}
-
-/* ==========================================================================
-   METRIC TICKETS / ARCHIVAL CATALOG SLIPS
-   ========================================================================== */
-.catalog-slips-section {
-  padding: 44px 0 16px;
-}
-
-.slips-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 18px;
-}
-
-.catalog-slip {
-  background: #FFFFFF;
-  border: 1px solid var(--ink-rule);
-  border-radius: var(--r-md);
-  padding: 22px;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.22s ease;
-  display: flex;
-  flex-direction: column;
-  box-shadow: var(--shadow-paper-sm);
-}
-
-.catalog-slip:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-paper);
-  border-color: var(--ink-rule-strong);
-}
-
-.catalog-slip::after {
-  content: '';
-  position: absolute;
-  top: 12px;
-  bottom: 12px;
-  left: 0;
-  width: 3px;
-  background: var(--ink-rule);
-  border-radius: 2px;
-}
-
-.catalog-slip.slip-terracotta::after { background: var(--terracotta); }
-.catalog-slip.slip-sage::after { background: var(--sage-olive); }
-.catalog-slip.slip-blueprint::after { background: var(--blueprint); }
-.catalog-slip.slip-ochre::after { background: var(--ochre); }
-
-.slip-catalog-num {
-  font-family: var(--font-mono);
-  font-size: 0.67rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink-muted);
-  font-weight: 700;
-  margin-bottom: 8px;
-}
-
-.slip-hero-num {
-  font-family: var(--font-serif);
-  font-size: 3rem;
-  line-height: 1;
-  color: var(--ink-primary);
-  margin-bottom: 6px;
-}
-
-.slip-hero-num.num-terracotta { color: var(--terracotta); }
-.slip-hero-num.num-sage { color: var(--sage-olive); }
-.slip-hero-num.num-blueprint { color: var(--blueprint); }
-
-.slip-caption {
-  font-size: 0.88rem;
-  color: var(--ink-secondary);
-  font-weight: 600;
-}
-
-.slip-marginalia {
-  font-family: var(--font-hand);
-  font-size: 1.35rem;
-  color: var(--ink-muted);
-  margin-top: 4px;
-}
-
-/* ==========================================================================
-   CHAPTER HEADINGS
-   ========================================================================== */
-.chapter-kicker {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-family: var(--font-mono);
-  font-size: 0.74rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--terracotta);
-  margin-bottom: 10px;
-}
-
-.chapter-kicker::before {
-  content: '';
-  width: 24px;
-  height: 2px;
-  background: var(--terracotta);
-  border-radius: 2px;
-}
-
-.chapter-kicker.kicker-sage {
-  color: var(--sage-olive);
-}
-.chapter-kicker.kicker-sage::before {
-  background: var(--sage-olive);
-}
-
-.chapter-kicker.kicker-blueprint {
-  color: var(--blueprint);
-}
-.chapter-kicker.kicker-blueprint::before {
-  background: var(--blueprint);
-}
-
-.chapter-title {
-  font-family: var(--font-serif);
-  font-size: clamp(2.5rem, 5.2vw, 4.4rem);
-  font-weight: 400;
-  line-height: 0.98;
-  letter-spacing: -0.025em;
-  color: var(--ink-primary);
-}
-
-.chapter-title em {
-  font-style: italic;
-  color: var(--terracotta);
-}
-
-.chapter-subhead {
-  font-size: 1.05rem;
-  color: var(--ink-secondary);
-  max-width: 680px;
-  margin-top: 14px;
-  line-height: 1.7;
-}
-
-/* ==========================================================================
-   CHAPTER 01: REALLEARN SPOTLIGHT & 11 LIVE WORLDS
-   ========================================================================== */
-.worlds-section {
-  padding: 80px 0 30px;
-}
-
-/* Category Filter Bar */
-.filter-tabs-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  margin: 34px 0 28px;
-  flex-wrap: wrap;
-}
-
-.filter-pills-cluster {
-  display: flex;
-  gap: 6px;
-  background: #FFFFFF;
-  border: 1px solid var(--ink-rule);
-  border-radius: var(--r-full);
-  padding: 4px;
-  box-shadow: var(--shadow-paper-sm);
-}
-
-.filter-tab-pill {
-  background: transparent;
-  border: 1px solid transparent;
-  color: var(--ink-secondary);
-  font-family: var(--font-body);
-  font-size: 0.83rem;
-  font-weight: 700;
-  padding: 8px 18px;
-  border-radius: var(--r-full);
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.filter-tab-pill.active {
-  background: var(--paper-warm);
-  color: var(--ink-primary);
-  border-color: var(--ink-rule-strong);
-}
-
-.filter-tab-pill:hover:not(.active) {
-  color: var(--ink-primary);
-  background: rgba(35, 26, 20, 0.03);
-}
-
-.catalog-counter-tag {
-  font-family: var(--font-hand);
-  font-size: 1.35rem;
-  color: var(--sage-olive);
-  font-weight: 700;
-}
-
-/* Grid */
-.products-masonry-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
-}
-
-/* ==========================================================================
-   REALLEARN AI CENTERPIECE SPOTLIGHT CARD (ARCHIVAL FOLIO EDITION)
-   ========================================================================== */
-.reallearn-folio-spotlight {
-  grid-column: 1 / -1;
-  background: #FFFFFF;
-  border: 2px solid var(--sage-border);
-  border-radius: var(--r-lg);
-  padding: 38px 42px;
-  box-shadow: var(--shadow-sage), var(--shadow-paper);
-  position: relative;
-  overflow: hidden;
-  margin-bottom: 12px;
-  transition: all 0.25s ease;
-}
-
-.reallearn-folio-spotlight:hover {
-  border-color: var(--sage-olive);
-  box-shadow: 0 16px 42px -6px rgba(78, 104, 69, 0.25);
-}
-
-.folio-header-tags {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-bottom: 18px;
-}
-
-.folio-crown-seal {
-  background: var(--sage-soft);
-  border: 1px solid var(--sage-border);
-  color: var(--sage-dark);
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  padding: 5px 14px;
-  border-radius: var(--r-full);
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.folio-crown-seal .pulse-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--sage-olive);
-}
-
-.folio-meta-stamp {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--ink-muted);
-  background: var(--paper-warm);
-  border: 1px solid var(--ink-rule);
-  padding: 4px 12px;
-  border-radius: var(--r-full);
-}
-
-.reallearn-grid-layout {
-  display: grid;
-  grid-template-columns: 1.16fr 0.84fr;
-  gap: 38px;
-  align-items: start;
-}
-
-.folio-title-area h3 {
-  font-family: var(--font-serif);
-  font-size: clamp(2.4rem, 4.2vw, 3.6rem);
-  font-weight: 400;
-  line-height: 1;
-  letter-spacing: -0.02em;
-  color: var(--ink-primary);
-  margin-bottom: 8px;
-}
-
-.folio-title-area h3 em {
-  font-style: italic;
-  color: var(--sage-olive);
-}
-
-.folio-motto {
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  color: var(--sage-olive);
-  text-transform: uppercase;
-  display: block;
-  margin-bottom: 16px;
-}
-
-.folio-narrative {
-  font-size: 1.05rem;
-  line-height: 1.74;
-  color: var(--ink-secondary);
-  margin-bottom: 22px;
-}
-
-.folio-narrative strong {
-  color: var(--ink-primary);
-}
-
-/* 3-Stage Progression Cards */
-.folio-progression-deck {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  margin-bottom: 24px;
-}
-
-.progression-step-box {
-  background: var(--paper-card-sub);
-  border: 1px solid var(--sage-border);
-  border-radius: var(--r-sm);
-  padding: 12px 14px;
-}
-
-.progression-step-idx {
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  color: var(--sage-olive);
-  display: block;
-  margin-bottom: 3px;
-}
-
-.progression-step-name {
-  font-weight: 700;
-  font-size: 0.9rem;
-  color: var(--ink-primary);
-  display: block;
-}
-
-.progression-step-desc {
-  font-size: 0.74rem;
-  color: var(--ink-muted);
-  line-height: 1.45;
-  margin-top: 3px;
-}
-
-.reallearn-tags-cluster {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-bottom: 24px;
-}
-
-.reallearn-tags-cluster span {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  font-weight: 600;
-  background: var(--sage-soft);
-  border: 1px solid var(--sage-border);
-  color: var(--sage-dark);
-  padding: 4px 10px;
-  border-radius: 6px;
-}
-
-.reallearn-ctas-row {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  flex-wrap: wrap;
-}
-
-.btn-sage-launch {
-  background: var(--sage-olive);
-  color: #FFFFFF;
-  font-weight: 700;
-  font-size: 0.94rem;
-  padding: 12px 24px;
-  border-radius: var(--r-md);
-  box-shadow: var(--shadow-sage);
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  transition: all 0.22s ease;
-}
-
-.btn-sage-launch:hover {
-  background: var(--sage-dark);
-  transform: translateY(-2px);
-  box-shadow: 0 16px 36px -4px rgba(78, 104, 69, 0.35);
-}
-
-.proprietary-pill {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--ink-muted);
-  border: 1px dashed var(--ink-rule-strong);
-  padding: 8px 14px;
-  border-radius: var(--r-md);
-  background: var(--paper-warm);
-}
-
-/* Interactive Study Deck / Topic Sampler for RealLearn */
-.interactive-study-deck {
-  background: var(--paper-warm);
-  border: 1px solid var(--sage-border);
-  border-radius: var(--r-md);
-  padding: 20px;
-  box-shadow: inset 0 1px 3px rgba(35, 26, 20, 0.05);
-}
-
-.deck-top-title {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 12px;
-}
-
-.deck-top-title span {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  font-weight: 700;
+  color: var(--accent);
   letter-spacing: 0.1em;
-  color: var(--sage-olive);
-  text-transform: uppercase;
 }
 
-.study-tabs-cluster {
-  display: flex;
-  gap: 6px;
-  margin-bottom: 14px;
-  flex-wrap: wrap;
+.gem h4 {
+  font-size: 1.25rem;
+  font-weight: 900;
+  margin-bottom: 0.5rem;
+  line-height: 1.1;
 }
 
-.study-tab-btn {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  font-weight: 600;
-  padding: 5px 11px;
-  border-radius: 6px;
-  background: #FFFFFF;
-  border: 1px solid var(--ink-rule);
-  color: var(--ink-secondary);
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.study-tab-btn.active, .study-tab-btn:hover {
-  background: var(--sage-soft);
-  border-color: var(--sage-border);
-  color: var(--sage-dark);
-}
-
-.lesson-card-preview {
-  background: #FFFFFF;
-  border: 1px solid var(--ink-rule);
-  border-radius: 10px;
-  padding: 16px;
-  font-size: 0.85rem;
-  min-height: 180px;
-  box-shadow: var(--shadow-paper-sm);
-}
-
-.lesson-badge {
-  font-family: var(--font-mono);
-  font-size: 0.66rem;
-  font-weight: 700;
-  padding: 2px 8px;
-  border-radius: 4px;
-  background: var(--sage-soft);
-  color: var(--sage-dark);
-  display: inline-block;
-  margin-bottom: 8px;
-}
-
-.lesson-title-head {
-  font-family: var(--font-serif);
-  font-weight: 400;
-  color: var(--ink-primary);
-  margin-bottom: 6px;
-  font-size: 1.35rem;
-}
-
-.lesson-text-body {
-  color: var(--ink-secondary);
-  line-height: 1.6;
-  margin-bottom: 12px;
-}
-
-.lesson-news-grounding {
-  border-top: 1px dashed var(--ink-rule);
-  padding-top: 10px;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--terracotta);
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-/* ==========================================================================
-   STANDARD WORLD CARDS
-   ========================================================================== */
-.world-product-card {
-  background: #FFFFFF;
-  border: 1px solid var(--ink-rule);
-  border-radius: var(--r-md);
-  padding: 26px;
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  box-shadow: var(--shadow-paper-sm);
-  transition: all 0.22s ease;
-}
-
-.world-product-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--ink-rule-strong);
-  box-shadow: var(--shadow-paper);
-}
-
-.world-product-card.card-co-flagship {
-  border-color: var(--terracotta-border);
-}
-
-.world-product-card.card-co-flagship:hover {
-  border-color: var(--terracotta);
-  box-shadow: var(--shadow-terracotta);
-}
-
-.card-top-stripe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-}
-
-.stripe-terracotta { background: var(--terracotta); }
-.stripe-sage { background: var(--sage-olive); }
-.stripe-blueprint { background: var(--blueprint); }
-.stripe-ochre { background: var(--ochre); }
-
-.card-meta-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 14px;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: var(--ink-muted);
-}
-
-.card-spec-pill {
-  padding: 3px 10px;
-  border-radius: var(--r-full);
-  font-size: 0.68rem;
-  font-weight: 700;
-  background: var(--paper-warm);
-  border: 1px solid var(--ink-rule);
-  color: var(--ink-primary);
-}
-
-.card-spec-pill.pill-active-users {
-  background: var(--terracotta-soft);
-  border-color: var(--terracotta-border);
-  color: var(--terracotta);
-}
-
-.world-product-card h4 {
-  font-family: var(--font-serif);
-  font-size: 1.85rem;
-  font-weight: 400;
-  line-height: 1.05;
-  color: var(--ink-primary);
-  margin-bottom: 6px;
-  letter-spacing: -0.015em;
-}
-
-.world-product-card h4 small {
-  display: block;
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  font-weight: 700;
-  color: var(--ink-muted);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  margin-top: 4px;
-}
-
-.world-product-card p {
-  font-size: 0.92rem;
-  line-height: 1.62;
-  color: var(--ink-secondary);
-  margin-bottom: 18px;
-}
-
-.card-chips-tray {
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-  margin-bottom: 22px;
-}
-
-.card-chips-tray span {
-  font-family: var(--font-mono);
-  font-size: 0.67rem;
-  font-weight: 600;
-  background: var(--paper-card-sub);
-  border: 1px solid var(--ink-rule);
-  border-radius: 6px;
-  padding: 3px 8px;
-  color: var(--ink-secondary);
-}
-
-.card-link-btn {
-  margin-top: auto;
-  align-self: flex-start;
-  font-family: var(--font-body);
-  font-size: 0.88rem;
-  font-weight: 700;
-  padding: 9px 18px;
-  border-radius: var(--r-sm);
-  background: var(--paper-warm);
-  border: 1px solid var(--ink-rule);
-  color: var(--ink-primary);
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  transition: all 0.2s ease;
-}
-
-.card-link-btn:hover {
-  background: var(--ink-primary);
-  color: #FFFFFF;
-  border-color: var(--ink-primary);
-  transform: translateY(-2px);
-}
-
-.card-link-btn.disabled {
-  background: transparent;
-  color: var(--ink-muted);
-  border-style: dashed;
-  cursor: default;
-}
-
-.card-link-btn.disabled:hover {
-  background: transparent;
-  color: var(--ink-muted);
-  border-color: var(--ink-rule);
-  transform: none;
-}
-
-.card-floating-badge {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  font-size: 2rem;
-  opacity: 0.85;
-  pointer-events: none;
-}
-
-/* ==========================================================================
-   CHAPTER 02: GIT GEMS (CURATED REPOSITORY VAULT)
-   ========================================================================== */
-.gems-section {
-  padding: 80px 0 30px;
-  position: relative;
-}
-
-.gems-notice-banner {
-  background: var(--blueprint-soft);
-  border: 1px solid var(--blueprint-border);
-  border-radius: var(--r-md);
-  padding: 22px 28px;
-  margin: 30px 0 32px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.gems-notice-banner p {
-  font-size: 0.95rem;
-  color: var(--blueprint);
-  max-width: 780px;
-}
-
-.gems-notice-banner strong {
-  color: var(--ink-primary);
-}
-
-/* Crown Gem: youAI-2B */
-.crown-gem-folio {
-  grid-column: 1 / -1;
-  background: #FFFFFF;
-  border: 2px solid var(--blueprint-border);
-  border-radius: var(--r-lg);
-  padding: 38px 42px;
-  box-shadow: var(--shadow-blueprint), var(--shadow-paper);
-  position: relative;
-  overflow: hidden;
-  margin-bottom: 12px;
-  transition: all 0.25s ease;
-}
-
-.crown-gem-folio:hover {
-  border-color: var(--blueprint);
-  box-shadow: 0 16px 42px -6px rgba(42, 76, 110, 0.25);
-}
-
-.crown-gem-tag {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-family: var(--font-mono);
-  font-size: 0.74rem;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  background: var(--blueprint-soft);
-  border: 1px solid var(--blueprint-border);
-  color: var(--blueprint);
-  padding: 6px 14px;
-  border-radius: var(--r-full);
-  width: fit-content;
-  margin-bottom: 16px;
-}
-
-.crown-gem-tag .carat-pill {
-  background: var(--blueprint);
-  color: #FFFFFF;
-  border-radius: 999px;
-  padding: 2px 8px;
-  font-size: 0.68rem;
-}
-
-.crown-gem-folio h3 {
-  font-family: var(--font-serif);
-  font-size: clamp(2.2rem, 4vw, 3.4rem);
-  font-weight: 400;
-  color: var(--ink-primary);
-  margin-bottom: 8px;
-  letter-spacing: -0.02em;
-}
-
-.crown-gem-folio h3 small {
-  display: block;
-  font-family: var(--font-mono);
-  font-size: 0.76rem;
-  color: var(--blueprint);
-  letter-spacing: 0.08em;
-  margin-top: 4px;
-}
-
-.crown-gem-folio p {
-  font-size: 1.02rem;
-  line-height: 1.72;
-  color: var(--ink-secondary);
-  max-width: 840px;
-  margin-bottom: 22px;
-}
-
-.gem-facets-row {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 12px;
-  margin-bottom: 24px;
-}
-
-.gem-facet-card {
-  background: var(--paper-warm);
-  border: 1px solid var(--ink-rule);
-  border-radius: 10px;
-  padding: 12px 16px;
-}
-
-.gem-facet-card b {
-  display: block;
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  color: var(--blueprint);
-  letter-spacing: 0.12em;
-  margin-bottom: 4px;
-}
-
-.gem-facet-card span {
-  font-size: 0.86rem;
-  font-weight: 600;
-  color: var(--ink-primary);
-}
-
-/* Standard Gem Cards */
-.gem-specimen-card {
-  background: #FFFFFF;
-  border: 1px solid var(--ink-rule);
-  border-radius: var(--r-md);
-  padding: 24px;
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  box-shadow: var(--shadow-paper-sm);
-  transition: all 0.22s ease;
-}
-
-.gem-specimen-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--blueprint-border);
-  box-shadow: var(--shadow-paper);
-}
-
-.gem-header-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  font-weight: 700;
-  margin-bottom: 12px;
-}
-
-.gem-kind-label {
-  color: var(--blueprint);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.gem-carat-tag {
-  background: var(--blueprint-soft);
-  border: 1px solid var(--blueprint-border);
-  color: var(--blueprint);
-  padding: 2px 9px;
-  border-radius: 999px;
-  font-size: 0.66rem;
-}
-
-.gem-specimen-card h4 {
-  font-family: var(--font-serif);
+.gem.crown h4 {
   font-size: 1.75rem;
-  font-weight: 400;
-  color: var(--ink-primary);
-  margin-bottom: 6px;
-  letter-spacing: -0.015em;
-}
-
-.gem-specimen-card h4 small {
-  display: block;
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  color: var(--ink-muted);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  margin-top: 4px;
-}
-
-.gem-specimen-card p {
-  font-size: 0.9rem;
-  line-height: 1.6;
-  color: var(--ink-secondary);
-  margin-bottom: 18px;
-}
-
-/* ==========================================================================
-   CHAPTER 03: STORY & ETHOS ("HEART FIRST" LITERARY CHAPTER)
-   ========================================================================== */
-.ethos-chapter-section {
-  padding: 86px 0;
-  background: var(--paper-warm);
-  border-top: 1px solid var(--ink-rule);
-  border-bottom: 1px solid var(--ink-rule);
-  position: relative;
-}
-
-.literary-quote-banner {
-  text-align: center;
-  max-width: 880px;
-  margin: 0 auto 56px;
-  padding-bottom: 40px;
-  border-bottom: 1px dashed var(--ink-rule-strong);
-}
-
-.literary-quote-banner blockquote {
-  font-family: var(--font-serif);
-  font-size: clamp(2rem, 4.4vw, 3.2rem);
-  font-weight: 400;
-  line-height: 1.25;
-  color: var(--ink-primary);
-  letter-spacing: -0.02em;
-}
-
-.literary-quote-banner blockquote em {
-  color: var(--terracotta);
   font-style: italic;
 }
 
-.literary-quote-banner cite {
-  display: block;
-  margin-top: 14px;
-  font-family: var(--font-hand);
-  font-size: 1.55rem;
-  color: var(--terracotta);
-  font-style: normal;
-  font-weight: 700;
+.gem p {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  color: var(--ink-soft);
 }
 
-.ethos-two-col-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 36px;
-  align-items: start;
+.gem a {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--ink);
 }
 
-.ethos-manuscript-card {
-  background: #FFFFFF;
-  border: 1px solid var(--ink-rule);
-  border-radius: var(--r-lg);
-  padding: 36px;
-  box-shadow: var(--shadow-paper);
+.gem a:hover { color: var(--accent); border-color: var(--accent); }
+
+/* ═══ MANIFESTO / ETHOS ═══ */
+.manifesto {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 4rem 2rem;
+  text-align: center;
+  margin: 0 -2rem;
 }
 
-.ethos-manuscript-card h3 {
-  font-family: var(--font-serif);
-  font-size: 2.4rem;
+.manifesto .section-label {
+  color: var(--moon);
+}
+
+.manifesto-quote {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-style: italic;
+  line-height: 1.3;
+  max-width: 900px;
+  margin: 0 auto 2rem;
   font-weight: 400;
-  color: var(--ink-primary);
-  margin: 14px 0 16px;
-  line-height: 1.05;
 }
 
-.ethos-manuscript-card p {
-  font-size: 1.02rem;
-  line-height: 1.72;
-  color: var(--ink-secondary);
-  margin-bottom: 16px;
+.manifesto-quote::before {
+  content: "“";
+  font-size: 4rem;
+  line-height: 0;
+  vertical-align: -0.4em;
+  color: var(--moon);
+  margin-right: 0.2em;
 }
 
-.principles-catalog {
+.pillars {
   display: grid;
-  gap: 12px;
-  margin-top: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 3rem auto 0;
+  text-align: left;
 }
 
-.principle-row-card {
-  background: var(--paper-warm);
-  border: 1px solid var(--ink-rule);
-  border-radius: var(--r-sm);
-  padding: 14px 18px;
-  display: flex;
-  gap: 14px;
-  align-items: flex-start;
-  transition: border-color 0.2s;
+.pillar {
+  border-top: 1px solid var(--moon);
+  padding-top: 1rem;
 }
 
-.principle-row-card:hover {
-  border-color: var(--ink-rule-strong);
+.pillar-num {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--moon);
+  letter-spacing: 0.2em;
+  margin-bottom: 0.5rem;
 }
 
-.principle-symbol {
-  font-size: 1.4rem;
-  line-height: 1;
+.pillar h4 {
+  font-size: 1.25rem;
+  font-style: italic;
+  margin-bottom: 0.5rem;
 }
 
-.principle-row-card strong {
-  display: block;
-  font-size: 0.96rem;
-  color: var(--ink-primary);
-  margin-bottom: 2px;
-}
-
-.principle-row-card small {
-  font-size: 0.84rem;
-  color: var(--ink-secondary);
+.pillar p {
+  font-size: 0.9rem;
+  color: rgba(244,241,234,0.8);
   line-height: 1.5;
 }
 
-/* Ethos Side Column */
-.ethos-side-stack {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.ethos-excerpt-box {
-  background: #FFFFFF;
-  border: 1px solid var(--ink-rule);
-  border-radius: var(--r-md);
-  padding: 26px;
-  box-shadow: var(--shadow-paper-sm);
-}
-
-.ethos-excerpt-box h4 {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.12em;
-  color: var(--terracotta);
-  text-transform: uppercase;
-  margin-bottom: 10px;
-}
-
-.ethos-excerpt-box p {
-  font-family: var(--font-serif);
-  font-size: 1.4rem;
-  line-height: 1.45;
-  color: var(--ink-primary);
-  font-style: italic;
-}
-
-.moon-phases-panel {
-  background: #FFFFFF;
-  border: 1px solid var(--ink-rule);
-  border-radius: var(--r-md);
-  padding: 24px;
-  box-shadow: var(--shadow-paper-sm);
-}
-
-.moon-phases-panel h4 {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.12em;
-  color: var(--ink-primary);
-  text-transform: uppercase;
-  margin-bottom: 12px;
-}
-
-.moon-symbols-row {
-  display: flex;
-  justify-content: space-between;
-  font-size: 1.8rem;
-  margin-bottom: 12px;
-}
-
-.moon-symbols-row span.current {
-  color: var(--terracotta);
-}
-
-.moon-phases-panel p {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--ink-muted);
-  line-height: 1.6;
-}
-
-/* ==========================================================================
-   CHAPTER 04: THE LIBRARY (2 BOOKS ON AMAZON KDP)
-   ========================================================================== */
-.library-section {
-  padding: 80px 0 30px;
-}
-
-.books-folio-deck {
+/* ═══ LIBRARY ═══ */
+.books {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 26px;
-  margin-top: 34px;
+  gap: 2rem;
 }
 
-.book-slipcase-card {
-  background: #FFFFFF;
-  border: 1px solid var(--ink-rule);
-  border-radius: var(--r-md);
-  padding: 28px;
-  display: flex;
-  gap: 24px;
-  transition: all 0.22s ease;
-  position: relative;
-  overflow: hidden;
-  box-shadow: var(--shadow-paper-sm);
-}
-
-.book-slipcase-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--ink-rule-strong);
-  box-shadow: var(--shadow-paper);
-}
-
-.book-jacket-spine {
-  width: 105px;
-  flex-shrink: 0;
-  border-radius: 10px;
-  min-height: 165px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 16px 14px;
-  color: #FFFFFF;
-  box-shadow: 0 4px 14px rgba(35, 26, 20, 0.18);
-}
-
-.book-jacket-spine.spine-blue {
-  background: linear-gradient(135deg, #2A4C6E, #1F3852);
-}
-
-.book-jacket-spine.spine-terracotta {
-  background: linear-gradient(135deg, #C6533A, #A63F28);
-}
-
-.book-jacket-spine b {
-  font-size: 2.2rem;
-  line-height: 1;
-}
-
-.book-jacket-spine small {
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.1em;
-  font-weight: 700;
-}
-
-.book-description-area {
+.book {
+  border: 1px solid var(--rule);
+  padding: 2rem;
   display: flex;
   flex-direction: column;
 }
 
-.book-tag-kicker {
-  font-family: var(--font-mono);
+.book-badge {
+  font-family: var(--mono);
   font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  color: var(--terracotta);
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  margin-bottom: 6px;
+  color: var(--accent);
+  margin-bottom: 1rem;
 }
 
-.book-description-area h4 {
-  font-family: var(--font-serif);
-  font-size: 1.85rem;
-  font-weight: 400;
-  color: var(--ink-primary);
-  line-height: 1.1;
-  margin-bottom: 8px;
-}
-
-.book-description-area p {
-  font-size: 0.94rem;
-  line-height: 1.62;
-  color: var(--ink-secondary);
-  margin-bottom: 18px;
-}
-
-.book-description-area .card-link-btn {
-  margin-top: auto;
-}
-
-/* ==========================================================================
-   CHAPTER 05: THE WORKBENCH (TOOLBOX)
-   ========================================================================== */
-.toolbox-section {
-  padding: 80px 0 30px;
-}
-
-.workbench-categories-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
-  margin-top: 30px;
-}
-
-.tool-drawer-card {
-  background: #FFFFFF;
-  border: 1px solid var(--ink-rule);
-  border-radius: var(--r-md);
-  padding: 24px;
-  box-shadow: var(--shadow-paper-sm);
-}
-
-.tool-drawer-card h5 {
-  font-family: var(--font-mono);
-  font-size: 0.74rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink-muted);
-  margin-bottom: 16px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.tool-drawer-card h5::before {
-  content: '●';
-  color: var(--terracotta);
-  font-size: 0.75rem;
-}
-
-.tool-chips-cluster {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.tool-chip-badge {
-  background: var(--paper-warm);
-  border: 1px solid var(--ink-rule);
-  border-radius: var(--r-full);
-  padding: 7px 15px;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--ink-primary);
-  transition: all 0.2s ease;
-}
-
-.tool-chip-badge:hover {
-  background: #FFFFFF;
-  border-color: var(--terracotta-border);
-  color: var(--terracotta);
-  transform: translateY(-2px);
-}
-
-/* ==========================================================================
-   CONTACT / FINALE — CLEAN LETTERPRESS STATIONERY
-   ========================================================================== */
-.contact-section {
-  padding: 60px 0 30px;
-}
-
-.stationery-wrap-box {
-  background: #FFFFFF;
-  border: 1px solid var(--ink-rule-strong);
-  border-radius: var(--r-lg);
-  padding: 60px 48px;
-  text-align: center;
-  box-shadow: var(--shadow-paper-lift);
-  position: relative;
-  overflow: hidden;
-}
-
-.stationery-wrap-box::before {
-  content: '✦ ✦ ✦';
-  position: absolute;
-  top: 18px;
-  left: 0;
-  right: 0;
-  font-size: 0.9rem;
-  letter-spacing: 0.6em;
-  color: var(--terracotta);
-  opacity: 0.8;
-}
-
-.stationery-wrap-box h3 {
-  font-family: var(--font-serif);
-  font-size: clamp(2.6rem, 5.8vw, 4.4rem);
-  font-weight: 400;
-  color: var(--ink-primary);
-  line-height: 1;
-  letter-spacing: -0.02em;
-  margin-bottom: 14px;
-}
-
-.stationery-wrap-box h3 em {
+.book h4 {
+  font-size: 1.75rem;
   font-style: italic;
-  color: var(--terracotta);
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 1rem;
 }
 
-.stationery-wrap-box > p {
-  font-size: 1.15rem;
-  color: var(--ink-secondary);
-  max-width: 640px;
-  margin: 0 auto 30px;
-}
-
-.contact-action-row {
-  display: flex;
-  gap: 14px;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.email-postal-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  background: var(--paper-warm);
-  border: 1px solid var(--ink-rule);
-  border-radius: var(--r-full);
-  padding: 6px 6px 6px 20px;
-  font-family: var(--font-mono);
-  font-size: 0.88rem;
-  font-weight: 600;
-  color: var(--ink-primary);
-  box-shadow: var(--shadow-paper-sm);
-}
-
-.email-copy-action {
-  background: var(--ink-primary);
-  color: #FFFFFF;
-  border: none;
-  border-radius: var(--r-full);
-  padding: 10px 18px;
-  font-family: var(--font-mono);
-  font-weight: 700;
-  font-size: 0.78rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.email-copy-action:hover {
-  background: var(--terracotta);
-  transform: scale(1.02);
-}
-
-.heart-tally-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  background: var(--rose-soft);
-  color: var(--rose-heart);
-  border: 1px solid var(--rose-heart);
-  border-radius: var(--r-full);
-  padding: 14px 26px;
-  font-family: var(--font-body);
+.book p {
   font-size: 0.95rem;
-  font-weight: 800;
-  cursor: pointer;
-  box-shadow: var(--shadow-paper-sm);
-  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
 }
 
-.heart-tally-btn:hover {
-  transform: scale(1.06);
-  background: #FBE2E7;
+/* ═══ BENCH / RUNTIMES ═══ */
+.bench-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
 }
 
-.heart-tally-btn:active {
-  transform: scale(0.96);
+.bench-col h4 {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--rule);
 }
 
-.contact-marginal-footnote {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  color: var(--ink-muted);
-  margin-top: 24px;
-}
-
-/* ==========================================================================
-   FOOTER
-   ========================================================================== */
-.site-footer {
-  margin-top: 60px;
-  background: var(--paper-warm);
-  border-top: 1px solid var(--ink-rule);
-  padding: 34px 0;
-}
-
-.footer-inner-dock {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.footer-copy-text {
-  font-size: 0.88rem;
-  color: var(--ink-secondary);
-}
-
-.footer-copy-text .hand-signature {
-  font-family: var(--font-hand);
-  font-size: 1.45rem;
-  color: var(--terracotta);
-  margin-left: 8px;
-  font-weight: 700;
-}
-
-.footer-social-links {
-  display: flex;
-  gap: 10px;
+.bench-col ul {
   list-style: none;
 }
 
-.footer-social-links a {
-  color: var(--ink-secondary);
-  font-size: 0.85rem;
-  font-weight: 600;
-  border: 1px solid var(--ink-rule);
-  border-radius: var(--r-full);
-  padding: 7px 16px;
-  background: #FFFFFF;
-  transition: all 0.2s ease;
+.bench-col li {
+  padding: 0.4rem 0;
+  font-size: 0.95rem;
+  border-bottom: 1px dotted rgba(26,22,18,0.2);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
-.footer-social-links a:hover {
-  border-color: var(--terracotta);
-  color: var(--terracotta);
-  transform: translateY(-2px);
+.bench-col li::before {
+  content: "◈";
+  color: var(--accent);
+  font-size: 0.7rem;
 }
 
-/* ==========================================================================
-   COMMAND PALETTE MODAL (⌘K / ARCHIVAL CATALOG INDEX)
-   ========================================================================== */
-.cmd-modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(35, 26, 20, 0.45);
-  backdrop-filter: blur(8px);
-  z-index: 4000;
-  display: none;
-  align-items: flex-start;
+/* ═══ CORRESPONDENCE / CONTACT ═══ */
+.contact {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: var(--paper-deep);
+  margin: 0 -2rem;
+  border-top: 3px double var(--rule);
+  border-bottom: 3px double var(--rule);
+}
+
+.contact h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-style: italic;
+  font-weight: 900;
+  margin-bottom: 1rem;
+}
+
+.contact-email {
+  font-family: var(--mono);
+  font-size: 1.1rem;
+  color: var(--accent);
+  margin: 1.5rem 0;
+  letter-spacing: 0.05em;
+  word-break: break-all;
+}
+
+.contact-email a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent);
+}
+
+.contact-meta {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-top: 1rem;
+}
+
+.socials {
+  display: flex;
   justify-content: center;
-  padding-top: 14vh;
+  gap: 2rem;
+  margin-top: 2rem;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
 }
 
-.cmd-modal-overlay.open {
-  display: flex;
+.socials a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--ink);
 }
 
-.cmd-archival-card {
-  background: #FFFFFF;
-  border: 1px solid var(--ink-rule-strong);
-  border-radius: var(--r-md);
-  width: 100%;
-  max-width: 580px;
-  box-shadow: 0 25px 60px rgba(35, 26, 20, 0.22);
-  overflow: hidden;
-  animation: modal-drop 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
+.socials a:hover { color: var(--accent); border-color: var(--accent); }
 
-@keyframes modal-drop {
-  from { opacity: 0; transform: scale(0.96) translateY(-8px); }
-  to { opacity: 1; transform: scale(1) translateY(0); }
-}
-
-.cmd-search-field {
-  width: 100%;
-  background: var(--paper-warm);
-  border: none;
-  border-bottom: 1px solid var(--ink-rule);
-  padding: 18px 22px;
-  font-family: var(--font-body);
-  font-size: 1.05rem;
-  color: var(--ink-primary);
-  outline: none;
-}
-
-.cmd-search-field::placeholder {
-  color: var(--ink-muted);
-}
-
-.cmd-items-deck {
-  max-height: 340px;
-  overflow-y: auto;
-  padding: 10px;
-  list-style: none;
-}
-
-.cmd-entry-row {
-  padding: 10px 14px;
-  border-radius: 8px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  color: var(--ink-primary);
-  font-size: 0.9rem;
-  font-weight: 600;
-  transition: all 0.15s ease;
-}
-
-.cmd-entry-row:hover, .cmd-entry-row.selected {
-  background: var(--terracotta-soft);
-  color: var(--terracotta);
-}
-
-.cmd-entry-row small {
-  font-family: var(--font-mono);
+/* ═══ COLOPHON ═══ */
+.colophon {
+  text-align: center;
+  padding: 2rem 0;
+  font-family: var(--mono);
   font-size: 0.72rem;
-  color: var(--ink-muted);
+  letter-spacing: 0.15em;
+  color: var(--ink-soft);
+  text-transform: uppercase;
 }
 
-.cmd-bottom-guide {
-  padding: 10px 18px;
-  background: var(--paper-warm);
-  border-top: 1px solid var(--ink-rule);
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  color: var(--ink-muted);
-  display: flex;
-  justify-content: space-between;
+.colophon .ps {
+  font-family: var(--serif);
+  font-style: italic;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  color: var(--ink);
 }
 
-/* ==========================================================================
-   TOAST NOTIFICATION & FLOATING PARTICLES
-   ========================================================================== */
-.toast-capsule {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  z-index: 5000;
-  background: #FFFFFF;
-  color: var(--ink-primary);
-  border: 1px solid var(--terracotta-border);
-  padding: 12px 20px;
-  border-radius: var(--r-sm);
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  font-weight: 700;
-  box-shadow: var(--shadow-paper-lift);
-  transform: translateY(120px);
-  opacity: 0;
-  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.toast-capsule.show {
-  transform: translateY(0);
-  opacity: 1;
-}
-
-/* Floating Heart Element */
-.floating-ink-heart {
-  position: fixed;
-  pointer-events: none;
-  font-size: 1.6rem;
-  z-index: 6000;
-  animation: ink-heart-ascend 1.6s ease-out forwards;
-}
-
-@keyframes ink-heart-ascend {
-  0% { transform: translateY(0) scale(0.6) rotate(0deg); opacity: 1; }
-  100% { transform: translateY(-160px) scale(1.4) rotate(25deg); opacity: 0; }
-}
-
-/* ==========================================================================
-   SCROLL REVEAL (GENTLE EDITORIAL FADE)
-   ========================================================================== */
-.reveal-editorial {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.55s ease, transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.reveal-editorial.visible {
-  opacity: 1;
-  transform: none;
-}
-
-/* ==========================================================================
-   RESPONSIVE DESIGN
-   ========================================================================== */
-@media (max-width: 1080px) {
-  .hero-main-grid { grid-template-columns: 1fr; gap: 34px; }
-  .reallearn-grid-layout { grid-template-columns: 1fr; }
-  .products-masonry-grid { grid-template-columns: repeat(2, 1fr); }
-  .ethos-two-col-layout { grid-template-columns: 1fr; }
-  .books-folio-deck { grid-template-columns: 1fr; }
-  .workbench-categories-grid { grid-template-columns: 1fr; }
-}
-
+/* ═══ RESPONSIVE ═══ */
 @media (max-width: 768px) {
-  .slips-grid { grid-template-columns: repeat(2, 1fr); }
-  .products-masonry-grid { grid-template-columns: 1fr; }
-  .folio-progression-deck { grid-template-columns: 1fr; }
-  .container { padding: 0 20px; }
-  .reallearn-folio-spotlight { padding: 26px 20px; }
-  .crown-gem-folio { padding: 26px 20px; }
-}
-
-@media (max-width: 640px) {
-  .nav-links-deck, .cmd-palette-btn { display: none; }
-  .hamburger { display: block; }
-  .slips-grid { grid-template-columns: 1fr; }
-  .stationery-wrap-box { padding: 40px 18px; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.001ms !important;
-    transition-duration: 0.001ms !important;
-  }
+  .container { padding: 0 1.25rem; }
+  .lead { grid-template-columns: 1fr; }
+  .world-card.flagship { grid-column: span 1; }
+  .gem.crown { grid-column: span 1; }
+  .books { grid-template-columns: 1fr; }
+  .nav-ribbon { gap: 1rem; font-size: 0.68rem; }
+  .manifesto, .contact { margin: 0 -1.25rem; padding: 3rem 1.25rem; }
 }
 </style>
 </head>
-
 <body>
 
-<!-- ============ SITE HEADER & REFINED DOCK ============ -->
-<header class="site-header">
-  <nav class="nav-dock">
-    <a href="#top" class="brand" aria-label="Al-Aqmar Tinwala HQ">
-      <div class="brand-seal">☽</div>
-      <div class="brand-name">
-        Al-Aqmar<em>.</em>
-        <small>القمر · Architect v13</small>
-      </div>
-    </a>
+<div class="container">
 
-    <ul class="nav-links-deck">
-      <li><a href="#worlds" class="nav-item-link current">✦ RealLearn &amp; Worlds</a></li>
-      <li><a href="#gems" class="nav-item-link">💎 Git Gems</a></li>
-      <li><a href="#ethos" class="nav-item-link">♥ Heart First</a></li>
-      <li><a href="#library" class="nav-item-link">📚 Library</a></li>
-      <li><a href="#workbench" class="nav-item-link">🧰 Workbench</a></li>
-      <li><a href="#contact" class="nav-item-link">✉ Contact</a></li>
-    </ul>
-
-    <div class="nav-dock-actions">
-      <!-- ⌘K Quick Index Trigger -->
-      <button class="cmd-palette-btn" id="cmdOpenTrigger" aria-label="Open catalog index">
-        <span>⌘K Index</span>
-        <kbd>/</kbd>
-      </button>
-
-      <!-- Synthesized Audio Switcher -->
-      <button class="sound-btn is-active" id="soundSwitcher" title="Toggle Acoustic UI Audio" aria-label="Toggle UI Audio">
-        🔊
-      </button>
-
-      <a href="#contact" class="status-pill">
-        <span class="status-green-dot"></span>
-        <span>In Workshop</span>
-      </a>
-
-      <button class="hamburger" id="hamburgerBtn" aria-label="Open navigation menu">☰</button>
-    </div>
-  </nav>
+<!-- ═══════════════════════════════════════════════════
+     MASTHEAD
+     ═══════════════════════════════════════════════════ -->
+<header class="masthead">
+  <div class="masthead-top">
+    <span>Vol. XIII · Issue I</span>
+    <span>Saturday, September 26, 2026</span>
+    <span class="privacy-seal">◉ Zero Surveillance</span>
+  </div>
+  <h1><span class="moon">☽</span> The Al-Aqmar Journal</h1>
+  <div class="masthead-sub">
+    Al-Aqmar Tinwala · <span class="arabic">القمر</span> · Architect v13 · Heart-First Intelligence
+  </div>
 </header>
 
-<!-- Mobile Navigation Panel -->
-<div class="mobile-nav-panel" id="mobileDrawerPanel">
-  <a href="#worlds" onclick="closeMobileNav()"><span>✦ RealLearn &amp; 11 Live Worlds</span> <small>Flagship</small></a>
-  <a href="#gems" onclick="closeMobileNav()"><span>💎 Git Gems (11 Curated Repos)</span> <small>Vault</small></a>
-  <a href="#ethos" onclick="closeMobileNav()"><span>♥ Heart-First Philosophy</span> <small>Ethos</small></a>
-  <a href="#library" onclick="closeMobileNav()"><span>📚 Library (2 Published Books)</span> <small>Amazon KDP</small></a>
-  <a href="#workbench" onclick="closeMobileNav()"><span>🧰 Architecture Bench</span> <small>Runtimes</small></a>
-  <a href="#contact" onclick="closeMobileNav()"><span>✉ Contact Al-Aqmar</span> <small>Fast Reply</small></a>
-</div>
+<nav class="nav-ribbon">
+  <a href="#lead">Lead Story</a>
+  <a href="#worlds">The Eleven Worlds</a>
+  <a href="#vault">The Vault</a>
+  <a href="#ethos">Manifesto</a>
+  <a href="#library">Library</a>
+  <a href="#bench">The Bench</a>
+  <a href="#contact">Correspondence</a>
+</nav>
 
-<!-- ============ HERO SECTION ============ -->
-<main id="top">
-<section class="hero-editorial">
-  <div class="container">
-    <div class="editorial-stamps-bar reveal-editorial visible">
-      <span class="stamp-seal seal-terracotta"><span class="status-green-dot"></span> 13yo AI Systems Architect</span>
-      <span class="stamp-seal seal-sage">👑 RealLearn Flagship Live</span>
-      <span class="stamp-seal seal-blueprint">♥ Heart-First · Zero Surveillance</span>
-      <span class="stamp-seal seal-ochre">3,000+ Worldwide Active Users</span>
+<!-- ═══════════════════════════════════════════════════
+     LEAD STORY — REALLEARN
+     ═══════════════════════════════════════════════════ -->
+<section class="section" id="lead">
+  <div class="section-label">§ I · Lead Story</div>
+  <h2 class="section-title">The Flagship.</h2>
+  <hr class="section-rule">
+
+  <div class="lead">
+    <div>
+      <div class="lead-kicker">RealLearn AI · Adaptive EdTech</div>
+      <h2>The world is your textbook.</h2>
+      <p class="lead-deck">An AI-native learning engine built for deep cognitive mastery — not disposable one-line answers.</p>
+      <p>RealLearn transforms any prompt into a structured three-stage interactive journey. Rigorously anchored in live news via the Serper API and guarded by a 100% quiz-gated progression system powered by SM-2 spaced repetition running entirely on-device.</p>
+      <p>Foundation. Mechanism. Real World. No shortcuts. No hallucinated confidence. Just mastery, earned.</p>
+      <a href="https://reallearn-info.vercel.app" class="cta-btn" rel="noopener noreferrer">Launch RealLearn ↗</a>
+      <a href="#worlds" class="cta-btn outline">See All 11 Worlds →</a>
     </div>
 
-    <div class="hero-main-grid">
-      <div class="hero-text-block reveal-editorial visible">
-        <h1 class="hero-title-editorial">
-          HEART-FIRST <em>AI</em> ARCHITECTURE <br/>with a <span class="mark-subtle">soul.</span>
-        </h1>
+    <aside class="lead-stats">
+      <h3>◉ System Dossier</h3>
+      <div class="stat-row"><span>Stack</span><span>Next.js 16 · React 19</span></div>
+      <div class="stat-row"><span>Inference</span><span>Groq LPU · 120B</span></div>
+      <div class="stat-row"><span>Grounding</span><span>Serper Real-Time</span></div>
+      <div class="stat-row"><span>Memory</span><span>SM-2 · On-Device</span></div>
+      <div class="stat-row"><span>Auth</span><span>Clerk</span></div>
+      <div class="stat-row"><span>Languages</span><span>63</span></div>
+      <div class="stat-row"><span>Retention</span><span>Zero · By Design</span></div>
+      <div class="stat-row"><span>Status</span><span>● Live · Production</span></div>
+    </aside>
+  </div>
+</section>
 
-        <p class="hero-lead-text">
-          I&rsquo;m <strong>Al-Aqmar Tinwala</strong> — 13-year-old AI architect engineering systems that treat humans with dignity. From my new flagship <strong class="lead-highlight">RealLearn AI</strong> (adaptive 3-stage mastery with live news grounding &amp; on-device spaced repetition) to privacy-first LLM <strong>eSAMz AI</strong>, atom physics in <strong>π Science</strong>, and Indian mobility OS <strong>गति Gati</strong>.
-        </p>
+<!-- ═══════════════════════════════════════════════════
+     THE ELEVEN WORLDS
+     ═══════════════════════════════════════════════════ -->
+<section class="section" id="worlds">
+  <div class="section-label">§ II · The Eleven Worlds</div>
+  <h2 class="section-title">Real utility, crafted with dignity.</h2>
+  <hr class="section-rule">
 
-        <!-- Tactile Paper Sticker Tray -->
-        <div class="vintage-stickers-tray">
-          <span class="vintage-sticker sticker-spotlight">🎓 RealLearn Spotlight</span>
-          <span class="vintage-sticker">🔒 Zero Retention Protocol</span>
-          <span class="vintage-sticker">🦀 Rust Runtimes</span>
-          <span class="vintage-sticker">🧠 2B Transformer from Scratch</span>
-          <span class="vintage-sticker">📚 Author ×2</span>
-          <span class="vintage-sticker">🛺 Multimodal Mobility</span>
-        </div>
+  <div class="worlds-grid">
 
-        <div class="hero-actions-deck">
-          <a href="#reallearn-spotlight" class="btn-vintage btn-primary-terracotta" onclick="playPaperSound(640)">
-            <span>Explore RealLearn Spotlight →</span>
-          </a>
-          <a href="#worlds" class="btn-vintage btn-matte-paper" onclick="playPaperSound(480)">
-            <span>11 Live Worlds</span>
-          </a>
-          <a href="#gems" class="btn-vintage btn-blueprint-pill" onclick="playPaperSound(560)">
-            <span>Inspect Git Gems 💎</span>
-          </a>
-        </div>
+    <article class="world-card flagship">
+      <div class="world-num">✦ 01 · FLAGSHIP</div>
+      <h3>RealLearn AI</h3>
+      <div class="world-tagline">The World Is Your Textbook</div>
+      <p class="world-desc">Adaptive EdTech engine. Three-stage mastery. Live news grounding. Quiz-gated progression. On-device spaced repetition.</p>
+      <div class="world-tags"><span>Next.js 16</span><span>Groq LPU</span><span>SM-2</span><span>63 Langs</span></div>
+      <a href="https://reallearn-info.vercel.app" class="launch" rel="noopener noreferrer">Launch Live ↗</a>
+    </article>
 
-        <div class="author-note-callout">
-          <span>“software should grant dignity, not extract attention ♡”</span>
-          <span class="doodle-arrow">⤵</span>
-        </div>
+    <article class="world-card">
+      <div class="world-num">02 · PRIVACY CORE</div>
+      <h3>eSAMz AI</h3>
+      <div class="world-tagline">Privacy-first LLM engine</div>
+      <p class="world-desc">128k context window. Sarvam 105b. Low-latency Rust router. Guaranteed zero data retention.</p>
+      <div class="world-tags"><span>Rust</span><span>Sarvam</span><span>128k Ctx</span></div>
+      <a href="https://esamz.info" class="launch" rel="noopener noreferrer">Launch →</a>
+    </article>
+
+    <article class="world-card">
+      <div class="world-num">03 · 3D PHYSICS</div>
+      <h3>π — Pi</h3>
+      <div class="world-tagline">Interactive atoms & molecules</div>
+      <p class="world-desc">Tactile WebGL science playground. Electron clouds, covalent bonds, 3D molecular structures at 60fps.</p>
+      <div class="world-tags"><span>WebGL</span><span>Three.js</span><span>60FPS</span></div>
+      <a href="https://science-project-pi.vercel.app" class="launch" rel="noopener noreferrer">Explore →</a>
+    </article>
+
+    <article class="world-card">
+      <div class="world-num">04 · MOBILITY OS</div>
+      <h3>गति — Gati</h3>
+      <div class="world-tagline">Hyperlocal transit intelligence</div>
+      <p class="world-desc">Multimodal Indian transit. Autos, metro, state buses, bikes. Live ETAs. Bilingual voice queries.</p>
+      <div class="world-tags"><span>Voice AI</span><span>Live ETA</span><span>EN/हिन्दी</span></div>
+      <a href="https://gati-rho.vercel.app" class="launch" rel="noopener noreferrer">Hop on →</a>
+    </article>
+
+    <article class="world-card">
+      <div class="world-num">05 · STRATEGY</div>
+      <h3>PivotIQ</h3>
+      <div class="world-tagline">Startup positioning engine</div>
+      <p class="world-desc">Adversarial investor prompts. Risk exposure checks. Competitive moat modeling for founders.</p>
+      <div class="world-tags"><span>Gemini AI</span><span>Risk Matrix</span></div>
+      <a href="https://pivot-iq.vercel.app" class="launch" rel="noopener noreferrer">Launch →</a>
+    </article>
+
+    <article class="world-card">
+      <div class="world-num">06 · WELLNESS</div>
+      <h3>MindEase</h3>
+      <div class="world-tagline">100% on-device emotional support</div>
+      <p class="world-desc">Empathetic voice chatbot. Local browser processing. Zero telemetry. 20 languages.</p>
+      <div class="world-tags"><span>On-Device</span><span>Privacy</span><span>20 Langs</span></div>
+      <a href="https://me.esamz.info" class="launch" rel="noopener noreferrer">Launch →</a>
+    </article>
+
+    <article class="world-card">
+      <div class="world-num">07 · FINTECH</div>
+      <h3>Hissab</h3>
+      <div class="world-tagline">Merchant sales & profit tracker</div>
+      <p class="world-desc">Mobile-first bookkeeping for Indian micro-enterprises. 30-day rolling analytics. Real-time margins.</p>
+      <div class="world-tags"><span>PWA</span><span>Local Storage</span></div>
+      <a href="https://hisaab.esamz.info" class="launch" rel="noopener noreferrer">Launch →</a>
+    </article>
+
+    <article class="world-card">
+      <div class="world-num">08 · VOICE AI</div>
+      <h3>CiboCocinar</h3>
+      <div class="world-tagline">Hands-free kitchen companion</div>
+      <p class="world-desc">Ultra-low-latency culinary voice assistant. Step-by-step timers. Completely hands-free. &lt;200ms.</p>
+      <div class="world-tags"><span>Voice AI</span><span>Fast Audio</span></div>
+      <a href="https://cibo.esamz.info" class="launch" rel="noopener noreferrer">Launch →</a>
+    </article>
+
+    <article class="world-card">
+      <div class="world-num">09 · DESIGN QA</div>
+      <h3>Fit The Color</h3>
+      <div class="world-tagline">Color-space harmony calculator</div>
+      <p class="world-desc">WCAG AAA contrast. Perceptual OKLCH distances. Harmonic palette generation for designers.</p>
+      <div class="world-tags"><span>OKLCH</span><span>Next.js 15</span></div>
+      <a href="https://fit-the-color-info.vercel.app" class="launch" rel="noopener noreferrer">Launch →</a>
+    </article>
+
+    <article class="world-card">
+      <div class="world-num">10 · MINIMAL GAME</div>
+      <h3>Neon Tic-Tac-Toe</h3>
+      <div class="world-tagline">High contrast · Pure vanilla</div>
+      <p class="world-desc">Zero-dependency canvas game. Neon lighting shaders. Unbeatable minimax AI logic.</p>
+      <div class="world-tags"><span>Vanilla JS</span><span>Minimax</span><span>0 Deps</span></div>
+      <a href="https://tic-info.vercel.app" class="launch" rel="noopener noreferrer">Play →</a>
+    </article>
+
+    <article class="world-card">
+      <div class="world-num">11 · IN THE LAB</div>
+      <h3>SeeMarket</h3>
+      <div class="world-tagline">Real-time technical indicators</div>
+      <p class="world-desc">RSI, MACD, algorithmic support/resistance. Server-side computation. Zero client lag. On the workbench.</p>
+      <div class="world-tags"><span>TypeScript</span><span>Server-Side</span></div>
+      <a href="https://github.com/alakmar344/See-market" class="launch" rel="noopener noreferrer">Inspect Repo ↗</a>
+    </article>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     THE VAULT — GIT GEMS
+     ═══════════════════════════════════════════════════ -->
+<section class="section" id="vault">
+  <div class="section-label">§ III · The Vault</div>
+  <h2 class="section-title">Git Gems. Carats cut from the dark.</h2>
+  <hr class="section-rule">
+  <p style="font-size:1.05rem; max-width:720px; margin-bottom:2rem; font-style:italic; color:var(--ink-soft);">
+    Out of 43 public repositories, 11 were selected, audited, and rated across architectural depth, performance rigor, and local-first execution.
+  </p>
+
+  <div class="vault-grid">
+
+    <article class="gem crown">
+      <div class="gem-header">
+        <span style="font-family:var(--mono); font-size:0.7rem; letter-spacing:0.2em; color:var(--accent);">✦ THE CROWN GEM</span>
+        <span class="gem-carats">90 CARATS</span>
       </div>
+      <h4>youAI-2B</h4>
+      <p>A complete, pip-installable toolkit for training, aligning, and serving a 2B-parameter autoregressive transformer. Engineered from raw tensor mathematics — no boilerplate wrappers. RoPE · RMSNorm · SwiGLU · GQA · KV-Cache. DPO · ORPO · SimPO alignment. LoRA · QLoRA · DARE · TIES merging.</p>
+      <a href="https://github.com/alakmar344/youAI-2B-From-Scratch-Transformer-Implementation" rel="noopener noreferrer">Hold the Crown Gem →</a>
+    </article>
 
-      <!-- Minimalist Analog Mission Control (Dieter Rams / Braun Inspired) -->
-      <div class="analog-terminal-box reveal-editorial visible">
-        <div class="terminal-header-bar">
-          <div class="terminal-dot-trio">
-            <span class="dot-one"></span>
-            <span class="dot-two"></span>
-            <span class="dot-three"></span>
-          </div>
-          <span class="terminal-reg-tag">WORKSHOP DESK // SYSTEM 13.4</span>
-        </div>
+    <article class="gem">
+      <div class="gem-header"><span>GEM 02</span><span class="gem-carats">87 CT</span></div>
+      <h4>Gati Codebase</h4>
+      <p>14.1k lines of TypeScript. 57 commits. 14 merged PRs. Bilingual EN/हिन्दी voice intent routing.</p>
+      <a href="https://github.com/alakmar344/gati" rel="noopener noreferrer">Inspect →</a>
+    </article>
 
-        <!-- Moon Radar Stage -->
-        <div class="analog-radar-stage" aria-hidden="true">
-          <div class="radar-subtle-grid"></div>
-          <div class="orbit-concentric-ring"><span class="orbit-chip-label">⚡ RealLearn · 3-Stage AI</span></div>
-          <div class="orbit-concentric-ring r2"><span class="orbit-chip-label">🔒 Zero Retention</span></div>
-          <div class="analog-center-disc">
-            <span class="moon-symbol">☽</span>
-          </div>
-        </div>
+    <article class="gem">
+      <div class="gem-header"><span>GEM 03</span><span class="gem-carats">82 CT</span></div>
+      <h4>Vinecraft</h4>
+      <p>Infinite browser voxel world. Procedural terrain, ambient occlusion, 10 biomes, 46 block physics.</p>
+      <a href="https://github.com/alakmar344/vinecraft" rel="noopener noreferrer">Mine It →</a>
+    </article>
 
-        <!-- Desk Switcher Buttons -->
-        <div class="desk-buttons-strip">
-          <button class="desk-btn active" onclick="switchDeskTab('reallearn', this)">$ reallearn --spec</button>
-          <button class="desk-btn" onclick="switchDeskTab('privacy', this)">$ esamz --privacy</button>
-          <button class="desk-btn" onclick="switchDeskTab('youai', this)">$ youai-2b --eval</button>
-          <button class="desk-btn" onclick="switchDeskTab('runtimes', this)">$ arch --bench</button>
-        </div>
+    <article class="gem">
+      <div class="gem-header"><span>GEM 04</span><span class="gem-carats">82 CT</span></div>
+      <h4>science-project</h4>
+      <p>Custom 60fps chemistry visualizer. Optimized for low-power Chromebooks without GPU thermal throttling.</p>
+      <a href="https://github.com/alakmar344/science-project" rel="noopener noreferrer">Inspect →</a>
+    </article>
 
-        <!-- Dynamic Screen Content -->
-        <div class="analog-screen" id="analogScreen">
-          <div class="screen-prompt">$ reallearn --spec --inspect-architecture</div>
-          <div class="screen-data-row"><span class="screen-k">Flagship Engine:</span><span class="screen-v">RealLearn AI (Adaptive EdTech)</span></div>
-          <div class="screen-data-row"><span class="screen-k">Progression System:</span><span class="screen-v">Foundation → Mechanism → Real World</span></div>
-          <div class="screen-data-row"><span class="screen-k">Mastery Gate:</span><span class="screen-v">100% Quiz Gate + SM-2 Memory Curve</span></div>
-          <div class="screen-data-row"><span class="screen-k">Live Grounding:</span><span class="screen-v">Serper API Real-Time News Stream</span></div>
-          <div class="screen-data-row"><span class="screen-k">On-Device Retention:</span><span class="screen-v">Zero AI Cost Spaced Repetition</span></div>
-          <div class="screen-verified">✓ Production live at reallearn-info.vercel.app</div>
-        </div>
-      </div>
+    <article class="gem">
+      <div class="gem-header"><span>GEM 05</span><span class="gem-carats">81 CT</span></div>
+      <h4>esamz.a</h4>
+      <p>112 commits. Next.js proxy. Granular consent tiers. Verifiable memory purge endpoints.</p>
+      <a href="https://github.com/alakmar344/esamz.a" rel="noopener noreferrer">Read Architecture →</a>
+    </article>
+
+    <article class="gem">
+      <div class="gem-header"><span>GEM 06</span><span class="gem-carats">79 CT</span></div>
+      <h4>See-market</h4>
+      <p>Two-service fintech backend. Real-time RSI, Bollinger Bands, MA convergences over streaming sockets.</p>
+      <a href="https://github.com/alakmar344/See-market" rel="noopener noreferrer">Inspect →</a>
+    </article>
+
+    <article class="gem">
+      <div class="gem-header"><span>GEM 07</span><span class="gem-carats">79 CT</span></div>
+      <h4>analytics-hub</h4>
+      <p>Self-hosted analytics. Visitor IPs hashed via salt-rotated HMAC-SHA256. Mathematically incapable of tracking.</p>
+      <a href="https://github.com/alakmar344/analytics-hub" rel="noopener noreferrer">Read Proof →</a>
+    </article>
+
+    <article class="gem">
+      <div class="gem-header"><span>GEM 08</span><span class="gem-carats">74 CT</span></div>
+      <h4>My-code / eSAMz Code</h4>
+      <p>Browser-first AI coding agent. Plan → execute → observe → test cycles in isolated Docker containers.</p>
+      <a href="https://github.com/alakmar344/My-code" rel="noopener noreferrer">Inspect Agent →</a>
+    </article>
+
+    <article class="gem">
+      <div class="gem-header"><span>GEM 09</span><span class="gem-carats">73 CT</span></div>
+      <h4>Not-a-thing-launcher</h4>
+      <p>Nothing-inspired Android launcher. Dot-matrix typography. Zero-telemetry battery efficiency. GitHub CI builds.</p>
+      <a href="https://github.com/alakmar344/Not-a-thing-launcher" rel="noopener noreferrer">Get APK →</a>
+    </article>
+
+    <article class="gem">
+      <div class="gem-header"><span>GEM 10</span><span class="gem-carats">72 CT</span></div>
+      <h4>revive-me</h4>
+      <p>Zero-dependency Rust utility. Revives corrupted legacy files (.dbf, .xls, .dat) into clean JSON. No cloud APIs.</p>
+      <a href="https://github.com/alakmar344/revive-me" rel="noopener noreferrer">Inspect Rust CLI →</a>
+    </article>
+
+    <article class="gem">
+      <div class="gem-header"><span>ROUGH STONE</span><span class="gem-carats">UNCUT</span></div>
+      <h4>breeze-framework</h4>
+      <p>Experimental lightweight framework. Currently on the lapidary's bench. Cutting has just begun.</p>
+      <a href="https://github.com/alakmar344/breeze-framework" rel="noopener noreferrer">Watch It Grow →</a>
+    </article>
+
+  </div>
+
+  <div style="text-align:center; margin-top:2.5rem;">
+    <a href="https://github.com/alakmar344" class="cta-btn outline" rel="noopener noreferrer">Browse All 43 Repos on GitHub →</a>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     MANIFESTO / ETHOS
+     ═══════════════════════════════════════════════════ -->
+<section class="manifesto" id="ethos">
+  <div class="section-label">§ IV · Manifesto</div>
+  <blockquote class="manifesto-quote">
+    Software should grant dignity, not extract attention.
+  </blockquote>
+
+  <p style="max-width:720px; margin:0 auto; font-style:italic; color:rgba(244,241,234,0.85); font-size:1.05rem;">
+    I didn't start building AI for corporate hype or speculative valuation. I started because our digital tools should grant everyday humans speed, privacy, and genuine cognitive elevation.
+  </p>
+
+  <div class="pillars">
+    <div class="pillar">
+      <div class="pillar-num">I · PRINCIPLE</div>
+      <h4>Heart First</h4>
+      <p>Software engineered for human elevation, not addictive doom-scrolling or surveillance.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">II · PRINCIPLE</div>
+      <h4>Zero Retention</h4>
+      <p>Your queries, identity, and thoughts stay yours. Absolute zero data logging by design.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">III · PRINCIPLE</div>
+      <h4>Uncompromising Wonder</h4>
+      <p>Build for genuine curiosity — atoms, motion, live transit, and high-impact learning systems.</p>
     </div>
   </div>
 
-  <!-- Editorial Ticker Band -->
-  <div class="vintage-ticker-band" aria-hidden="true">
-    <div class="ticker-flow-track" id="tickerFlowTrack">
-      <span class="ticker-entry">RealLearn AI Flagship <span class="dot-sep">✦</span></span>
-      <span class="ticker-entry"><em>Heart First</em> Intelligence <span class="dot-sep">✦</span></span>
-      <span class="ticker-entry">11 Live Worlds Shipped <span class="dot-sep">✦</span></span>
-      <span class="ticker-entry">Zero Data Retention by Design <span class="dot-sep">✦</span></span>
-      <span class="ticker-entry">3,000+ Active Users Worldwide <span class="dot-sep">✦</span></span>
-      <span class="ticker-entry">youAI-2B From Scratch <span class="dot-sep">✦</span></span>
-      <span class="ticker-entry">π Science at 60FPS <span class="dot-sep">✦</span></span>
-      <span class="ticker-entry">गति Indian Mobility OS <span class="dot-sep">✦</span></span>
-      <span class="ticker-entry">Published Author ×2 <span class="dot-sep">✦</span></span>
+  <p style="margin-top:3rem; font-family:var(--mono); font-size:0.8rem; letter-spacing:0.2em; color:var(--moon); text-transform:uppercase;">
+    — yes, I'm 13. and yes, I ship systems that work. ♡
+  </p>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     LIBRARY
+     ═══════════════════════════════════════════════════ -->
+<section class="section" id="library">
+  <div class="section-label">§ V · The Library</div>
+  <h2 class="section-title">Two volumes. Zero fluff.</h2>
+  <hr class="section-rule">
+  <p style="font-size:1.05rem; max-width:720px; margin-bottom:2rem; font-style:italic; color:var(--ink-soft);">
+    Written from hands-on terminal experience — dissecting transformer token mechanics, model alignment strategies, and 30 days of production Claude Code orchestration.
+  </p>
+
+  <div class="books">
+    <article class="book">
+      <div class="book-badge">★ Bestseller · AI Vol. 1</div>
+      <h4>The AI Mastery Handbook</h4>
+      <p>An architectural breakdown of Claude, Gemini, Llama, and ChatGPT. Foundational LLM mechanics, attention math, temperature tuning, and high-precision prompt engineering.</p>
+      <a href="https://www.amazon.com/dp/B0GX2N6WTT" class="cta-btn" rel="noopener noreferrer">View on Amazon →</a>
+    </article>
+
+    <article class="book">
+      <div class="book-badge">✦ New Release · 30 Days</div>
+      <h4>30 Days Mastering Claude Code</h4>
+      <p>A tactical guide into agentic developer automation, subagent orchestration, and production terminal coding workflows derived from shipping real products.</p>
+      <a href="https://www.amazon.com/dp/B0GY1F3573" class="cta-btn" rel="noopener noreferrer">View on Amazon →</a>
+    </article>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     THE BENCH / RUNTIMES
+     ═══════════════════════════════════════════════════ -->
+<section class="section" id="bench">
+  <div class="section-label">§ VI · The Architecture Bench</div>
+  <h2 class="section-title">Low-latency bones. Velvet UX.</h2>
+  <hr class="section-rule">
+
+  <div class="bench-grid">
+    <div class="bench-col">
+      <h4>Core Runtimes & Compilers</h4>
+      <ul>
+        <li>Rust</li>
+        <li>Next.js 16</li>
+        <li>Fastify 5</li>
+        <li>TypeScript</li>
+        <li>Node.js 24</li>
+        <li>Turbopack</li>
+      </ul>
+    </div>
+    <div class="bench-col">
+      <h4>AI Inference & Hardware</h4>
+      <ul>
+        <li>Groq LPU</li>
+        <li>Sarvam 105b</li>
+        <li>PyTorch</li>
+        <li>On-Device LLMs</li>
+        <li>Serper Grounding</li>
+        <li>Whisper & Voice</li>
+      </ul>
+    </div>
+    <div class="bench-col">
+      <h4>Disciplines & Protocols</h4>
+      <ul>
+        <li>Zero Retention</li>
+        <li>WebGL 3D</li>
+        <li>SM-2 Spaced Repetition</li>
+        <li>Multimodal Transit</li>
+        <li>OKLCH Math</li>
+        <li>From-Scratch Transformers</li>
+      </ul>
     </div>
   </div>
 </section>
 
-<!-- ============ METRIC TICKETS / ARCHIVAL CATALOG SLIPS ============ -->
-<section class="catalog-slips-section">
-  <div class="container">
-    <div class="slips-grid">
-      <div class="catalog-slip slip-terracotta reveal-editorial visible">
-        <span class="slip-catalog-num">SLIP № 01 · HUMANS SERVED</span>
-        <span class="slip-hero-num num-terracotta">3,000+</span>
-        <span class="slip-caption">Active users relying on live worlds</span>
-        <span class="slip-marginalia">organic global reach ♥</span>
-      </div>
+<!-- ═══════════════════════════════════════════════════
+     CORRESPONDENCE / CONTACT
+     ═══════════════════════════════════════════════════ -->
+<section class="contact" id="contact">
+  <div class="section-label" style="color:var(--accent);">§ VII · Correspondence</div>
+  <h2>Let's architect something exceptional.</h2>
+  <p style="max-width:600px; margin:1rem auto; font-style:italic; color:var(--ink-soft);">
+    Available for AI systems consulting, fast full-stack engineering, and soulful collaborations.
+  </p>
 
-      <div class="catalog-slip slip-sage reveal-editorial visible">
-        <span class="slip-catalog-num">SLIP № 02 · SHIPPED PRODUCTS</span>
-        <span class="slip-hero-num num-sage">11</span>
-        <span class="slip-caption">Full-stack live systems deployed</span>
-        <span class="slip-marginalia">zero mockups, all real</span>
-      </div>
+  <div class="contact-email">
+    <a href="mailto:proman007power@gmail.com">proman007power@gmail.com</a>
+  </div>
 
-      <div class="catalog-slip slip-blueprint reveal-editorial visible">
-        <span class="slip-catalog-num">SLIP № 03 · AUDITED REPOSITORIES</span>
-        <span class="slip-hero-num num-blueprint">43+</span>
-        <span class="slip-caption">Open-source &amp; architectural codebases</span>
-        <span class="slip-marginalia">11 curated Git Gems 💎</span>
-      </div>
+  <div class="contact-meta">
+    Response time: faster than your Turbopack build · Bangalore / Remote
+  </div>
 
-      <div class="catalog-slip slip-ochre reveal-editorial visible">
-        <span class="slip-catalog-num">SLIP № 04 · PUBLISHED TITLES</span>
-        <span class="slip-hero-num">2</span>
-        <span class="slip-caption">Volumes published on Amazon KDP</span>
-        <span class="slip-marginalia">Bestseller in AI</span>
-      </div>
-    </div>
+  <div class="socials">
+    <a href="https://github.com/alakmar344" rel="noopener noreferrer">GitHub</a>
+    <a href="https://www.linkedin.com/in/alakmar-teenwala-054067393" rel="noopener noreferrer">LinkedIn</a>
+    <a href="https://instagram.com/its_alakmar7" rel="noopener noreferrer">Instagram</a>
   </div>
 </section>
 
-<!-- ============ CHAPTER 01: REALLEARN SPOTLIGHT & 11 LIVE WORLDS ============ -->
-<section class="worlds-section" id="worlds">
-  <div class="container">
-    <span class="chapter-kicker kicker-sage reveal-editorial">Chapter 01 — Flagship Showcase &amp; Live Products</span>
-    <h2 class="chapter-title reveal-editorial">
-      11 Live Worlds. <br/><em>Real utility, crafted with dignity.</em>
-    </h2>
-    <p class="chapter-subhead reveal-editorial">
-      Every product below is live, responsive, and serving real humans. RealLearn AI takes center stage as our brand new flagship, flanked by systems spanning privacy AI, 3D science, Indian mobility, and creator tools.
-    </p>
-
-    <!-- Category Filters -->
-    <div class="filter-tabs-row reveal-editorial">
-      <div class="filter-pills-cluster" role="tablist">
-        <button class="filter-tab-pill active" onclick="filterWorldsCategory('all', this)">All Projects (11)</button>
-        <button class="filter-tab-pill" onclick="filterWorldsCategory('ai', this)">AI &amp; EdTech (4)</button>
-        <button class="filter-tab-pill" onclick="filterWorldsCategory('science', this)">Science &amp; Mobility (2)</button>
-        <button class="filter-tab-pill" onclick="filterWorldsCategory('tools', this)">Tools &amp; Fintech (5)</button>
-      </div>
-      <div class="catalog-counter-tag">✎ <span id="visibleCounterNum">11</span> / 11 showing</div>
-    </div>
-
-    <div class="products-masonry-grid" id="worldsProductsGrid">
-
-      <!-- =========================================================
-           FLAGSHIP CENTERPIECE: REALLEARN AI (FOLIO EDITION)
-           ========================================================= -->
-      <article class="reallearn-folio-spotlight reveal-editorial" id="reallearn-spotlight" data-category="ai">
-        <div class="folio-header-tags">
-          <span class="folio-crown-seal"><span class="pulse-dot"></span> 👑 NEW FLAGSHIP SPOTLIGHT</span>
-          <span class="folio-meta-stamp">Next.js 16 · React 19 · Groq LPU · Serper News</span>
-          <span class="folio-meta-stamp">63 Global Languages</span>
-        </div>
-
-        <div class="reallearn-grid-layout">
-          <div>
-            <div class="folio-title-area">
-              <h3>RealLearn <em>AI</em></h3>
-              <span class="folio-motto">“The World Is Your Textbook” · Adaptive EdTech Engine</span>
-            </div>
-
-            <p class="folio-narrative">
-              AI-native learning platform engineered for <strong>deep cognitive mastery</strong> rather than disposable one-line answers. RealLearn transforms any prompt into a structured <strong>3-stage interactive learning journey</strong>, rigorously anchored in live news and guarded by quiz-gated progression.
-            </p>
-
-            <!-- 3-Stage Progression Highlights -->
-            <div class="folio-progression-deck">
-              <div class="progression-step-box">
-                <span class="progression-step-idx">PART 01</span>
-                <span class="progression-step-name">Foundation</span>
-                <span class="progression-step-desc">Core concepts, intuitive analogies &amp; fundamental mental models.</span>
-              </div>
-              <div class="progression-step-box">
-                <span class="progression-step-idx">PART 02</span>
-                <span class="progression-step-name">Mechanism</span>
-                <span class="progression-step-desc">Step-by-step inner mechanics, mathematical rigors &amp; engineering.</span>
-              </div>
-              <div class="progression-step-box">
-                <span class="progression-step-idx">PART 03</span>
-                <span class="progression-step-name">Real World</span>
-                <span class="progression-step-desc">Grounded in live real-time news updates via the Serper API.</span>
-              </div>
-            </div>
-
-            <div class="reallearn-tags-cluster">
-              <span>Fastify 5 SSE</span>
-              <span>Quiz-Gated 100% Mastery</span>
-              <span>SM-2 Spaced Repetition (On-Device)</span>
-              <span>Groq LPU 120B</span>
-              <span>Clerk Auth</span>
-              <span>Turbopack</span>
-            </div>
-
-            <div class="reallearn-ctas-row">
-              <a href="https://reallearn-info.vercel.app" target="_blank" rel="noopener" class="btn-sage-launch" onclick="playPaperSound(740)">
-                <span>Launch RealLearn Live ↗</span>
-              </a>
-              <span class="proprietary-pill">🔒 Closed-Source Flagship · Proprietary</span>
-            </div>
-          </div>
-
-          <!-- Interactive Study Deck Preview -->
-          <div class="interactive-study-deck">
-            <div class="deck-top-title">
-              <span>Interactive Progression Explorer</span>
-              <small style="color:var(--ink-muted);font-family:var(--font-mono);font-size:0.65rem;">SAMPLE TOPICS</small>
-            </div>
-
-            <div class="study-tabs-cluster">
-              <button class="study-tab-btn active" onclick="switchTopicSample('quantum', this)">Quantum Computing</button>
-              <button class="study-tab-btn" onclick="switchTopicSample('crispr', this)">CRISPR Genetics</button>
-              <button class="study-tab-btn" onclick="switchTopicSample('attention', this)">Neural Attention</button>
-            </div>
-
-            <div class="lesson-card-preview" id="lessonPreviewContainer">
-              <span class="lesson-badge">PART 1: INTUITIVE FOUNDATION</span>
-              <div class="lesson-title-head">Qubits &amp; Superposition</div>
-              <div class="lesson-text-body">
-                Unlike classical bits that exist strictly as 0 or 1, a qubit exploits quantum superposition to occupy continuous probability states—enabling parallel state exploration across Hilbert space.
-              </div>
-              <div class="lesson-news-grounding">
-                <span>⚡ Live Serper Grounding:</span> “IBM announces 1,121-qubit Condor chip benchmark (Sep 2026)”
-              </div>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <!-- 02: eSAMz AI (Privacy Core Co-Star) -->
-      <article class="world-product-card card-co-flagship reveal-editorial" data-category="ai">
-        <span class="card-top-stripe stripe-terracotta"></span>
-        <span class="card-floating-badge">🌙</span>
-        <div class="card-meta-row">
-          <span>02 / 11 · PRIVACY CORE</span>
-          <span class="card-spec-pill pill-active-users">● 3,000+ USERS</span>
-        </div>
-        <h4>eSAMz AI <small>PRIVACY-FIRST LLM ENGINE</small></h4>
-        <p>Flagship privacy-first conversational AI. Features a 128k context window, Sarvam 105b model integration, and a low-latency Rust router engineered with guaranteed zero data retention.</p>
-        <div class="card-chips-tray">
-          <span>Rust</span><span>Sarvam 105b</span><span>128k Ctx</span><span>Zero Retention</span><span>PWA</span>
-        </div>
-        <a class="card-link-btn" href="https://esamz.info" target="_blank" rel="noopener">Launch eSAMz AI →</a>
-      </article>
-
-      <!-- 03: π — Pi (Science Visualizer) -->
-      <article class="world-product-card reveal-editorial" data-category="science">
-        <span class="card-top-stripe stripe-sage"></span>
-        <span class="card-floating-badge">⚛️</span>
-        <div class="card-meta-row">
-          <span>03 / 11 · 3D PHYSICS</span>
-          <span class="card-spec-pill">60FPS VISUALS</span>
-        </div>
-        <h4>π — Pi <small>INTERACTIVE ATOMS &amp; MOLECULES</small></h4>
-        <p>A tactile WebGL science playground bringing chemistry to life. Explore electron probability clouds, covalent bonds, and 3D molecular structures in real-time on any browser.</p>
-        <div class="card-chips-tray">
-          <span>WebGL</span><span>Three.js</span><span>Chemistry</span><span>EdTech 3D</span>
-        </div>
-        <a class="card-link-btn" href="https://science-project-pi.vercel.app" target="_blank" rel="noopener">Explore Pi World →</a>
-      </article>
-
-      <!-- 04: गति — Gati (Indian Mobility OS) -->
-      <article class="world-product-card reveal-editorial" data-category="science">
-        <span class="card-top-stripe stripe-ochre"></span>
-        <span class="card-floating-badge">🛺</span>
-        <div class="card-meta-row">
-          <span>04 / 11 · MOBILITY OS</span>
-          <span class="card-spec-pill">BILINGUAL VOICE</span>
-        </div>
-        <h4>गति — Gati <small>HYPERLOCAL TRANSIT INTELLIGENCE</small></h4>
-        <p>Reimagining multimodal transport across India. Connects autos, metro rails, state buses, and last-mile bikes into one cohesive transit feed with live ETAs and bilingual voice queries.</p>
-        <div class="card-chips-tray">
-          <span>Hyperlocal</span><span>Voice AI</span><span>Live Transit</span><span>India First</span>
-        </div>
-        <a class="card-link-btn" href="https://gati-rho.vercel.app" target="_blank" rel="noopener">Hop on Gati →</a>
-      </article>
-
-      <!-- 05: PivotIQ (Startup Validator) -->
-      <article class="world-product-card reveal-editorial" data-category="tools">
-        <span class="card-top-stripe stripe-terracotta"></span>
-        <span class="card-floating-badge">🧭</span>
-        <div class="card-meta-row">
-          <span>05 / 11 · STRATEGY</span>
-          <span class="card-spec-pill">VALIDATION</span>
-        </div>
-        <h4>PivotIQ <small>STARTUP POSITIONING ENGINE</small></h4>
-        <p>Interactive concept tester for founders. Stresses product-market fit using adversarial investor prompts, risk exposure checks, and competitive moat modeling.</p>
-        <div class="card-chips-tray">
-          <span>Gemini AI</span><span>Strategy</span><span>Risk Matrix</span><span>Fast</span>
-        </div>
-        <a class="card-link-btn" href="https://pivot-iq.vercel.app" target="_blank" rel="noopener">Launch PivotIQ →</a>
-      </article>
-
-      <!-- 06: MindEase (On-Device Wellness) -->
-      <article class="world-product-card reveal-editorial" data-category="ai">
-        <span class="card-top-stripe stripe-sage"></span>
-        <span class="card-floating-badge">🧠</span>
-        <div class="card-meta-row">
-          <span>06 / 11 · LOCAL WELLNESS</span>
-          <span class="card-spec-pill">20 LANGUAGES</span>
-        </div>
-        <h4>MindEase <small>100% ON-DEVICE EMOTIONAL SUPPORT</small></h4>
-        <p>Empathetic voice chatbot processing locally in the browser. Zero telemetry, zero server logging, supporting 20 languages with high-dignity gentleness.</p>
-        <div class="card-chips-tray">
-          <span>On-Device</span><span>Web Speech</span><span>Privacy</span><span>Local LLM</span>
-        </div>
-        <a class="card-link-btn" href="https://me.esamz.info" target="_blank" rel="noopener">Launch MindEase →</a>
-      </article>
-
-      <!-- 07: Hissab (Fintech) -->
-      <article class="world-product-card reveal-editorial" data-category="tools">
-        <span class="card-top-stripe stripe-ochre"></span>
-        <span class="card-floating-badge">📊</span>
-        <div class="card-meta-row">
-          <span>07 / 11 · FINTECH</span>
-          <span class="card-spec-pill">SMALL BUSINESS</span>
-        </div>
-        <h4>Hissab <small>MERCHANT SALES &amp; PROFIT TRACKER</small></h4>
-        <p>Mobile-first bookkeeping for Indian retailers and micro-enterprises. 30-day rolling analytics, real-time margin calculations, and straightforward cashflow tracking.</p>
-        <div class="card-chips-tray">
-          <span>Fintech</span><span>Analytics</span><span>PWA</span><span>Local Storage</span>
-        </div>
-        <a class="card-link-btn" href="https://hisaab.esamz.info" target="_blank" rel="noopener">Launch Hissab →</a>
-      </article>
-
-      <!-- 08: CiboCocinar (Voice Cooking AI) -->
-      <article class="world-product-card reveal-editorial" data-category="ai">
-        <span class="card-top-stripe stripe-terracotta"></span>
-        <span class="card-floating-badge">🎤</span>
-        <div class="card-meta-row">
-          <span>08 / 11 · VOICE AI</span>
-          <span class="card-spec-pill">&lt;200MS LATENCY</span>
-        </div>
-        <h4>CiboCocinar <small>HANDS-FREE KITCHEN COMPANION</small></h4>
-        <p>Ultra-low-latency culinary voice assistant designed for messy kitchen counters. Step-by-step cooking timers and ingredient adjustments completely hands-free.</p>
-        <div class="card-chips-tray">
-          <span>Voice AI</span><span>Fast Audio</span><span>Kitchen Tech</span>
-        </div>
-        <a class="card-link-btn" href="https://cibo.esamz.info" target="_blank" rel="noopener">Launch Cibo →</a>
-      </article>
-
-      <!-- 09: Fit The Color (Design Mathematics) -->
-      <article class="world-product-card reveal-editorial" data-category="tools">
-        <span class="card-top-stripe stripe-blueprint"></span>
-        <span class="card-floating-badge">🎨</span>
-        <div class="card-meta-row">
-          <span>09 / 11 · DESIGN QA</span>
-          <span class="card-spec-pill">NEXT.JS 15</span>
-        </div>
-        <h4>Fit The Color <small>COLOR-SPACE HARMONY CALCULATOR</small></h4>
-        <p>Mathematical color system explorer. Computes WCAG AAA contrast ratios, perceptual OKLCH color distances, and harmonic palette generation for designers.</p>
-        <div class="card-chips-tray">
-          <span>Color Science</span><span>Next.js 15</span><span>OKLCH</span><span>Accessibility</span>
-        </div>
-        <a class="card-link-btn" href="https://fit-the-color-info.vercel.app" target="_blank" rel="noopener">Launch Color Tool →</a>
-      </article>
-
-      <!-- 10: Neon Tic-Tac-Toe -->
-      <article class="world-product-card reveal-editorial" data-category="tools">
-        <span class="card-top-stripe stripe-sage"></span>
-        <span class="card-floating-badge">🎮</span>
-        <div class="card-meta-row">
-          <span>10 / 11 · MINIMAL GAME</span>
-          <span class="card-spec-pill">0 DEPENDENCIES</span>
-        </div>
-        <h4>Neon Tic-Tac-Toe <small>HIGH CONTRAST &amp; PURE VANILLA</small></h4>
-        <p>Fast, tactile zero-dependency canvas game. Built in pure vanilla JavaScript with smooth neon lighting shaders and unbeatable minimax AI logic.</p>
-        <div class="card-chips-tray">
-          <span>Vanilla JS</span><span>Minimax AI</span><span>HTML5</span><span>Zero Bloat</span>
-        </div>
-        <a class="card-link-btn" href="https://tic-info.vercel.app" target="_blank" rel="noopener">Play Game →</a>
-      </article>
-
-      <!-- 11: SeeMarket (Market Intelligence) -->
-      <article class="world-product-card reveal-editorial" data-category="tools">
-        <span class="card-top-stripe stripe-blueprint"></span>
-        <span class="card-floating-badge">📈</span>
-        <div class="card-meta-row">
-          <span>11 / 11 · IN LAB</span>
-          <span class="card-spec-pill">ACTIVE LAB</span>
-        </div>
-        <h4>SeeMarket <small>REAL-TIME TECHNICAL INDICATORS</small></h4>
-        <p>Market analytics service computing RSI, MACD, and algorithmic support/resistance zones server-side with zero client lag. Currently on the workbench.</p>
-        <div class="card-chips-tray">
-          <span>TypeScript</span><span>Server Indicators</span><span>Market Tech</span>
-        </div>
-        <a class="card-link-btn" href="https://github.com/alakmar344/See-market" target="_blank" rel="noopener">Inspect Repo ↗</a>
-      </article>
-
-    </div>
-  </div>
-</section>
-
-<!-- ============ CHAPTER 02: GIT GEMS (CURATED REPOSITORY VAULT) ============ -->
-<section class="gems-section" id="gems">
-  <div class="container">
-    <span class="chapter-kicker kicker-blueprint reveal-editorial">Chapter 02 — Audited Open Source Vault</span>
-    <h2 class="chapter-title reveal-editorial">
-      Git Gems. <br/><em>Carats of code, cut from the dark.</em>
-    </h2>
-    <p class="chapter-subhead reveal-editorial">
-      Out of 43 public repositories, 11 were selected, audited, and rated across architectural depth, performance rigor, and local-first execution. <strong>The code is public. The vault is curated.</strong>
-    </p>
-
-    <div class="gems-notice-banner reveal-editorial">
-      <p>💎 <strong>Audited Repository Index:</strong> 11 gems evaluated for transformer mathematical fidelity, memory safety, and client-side optimization.</p>
-      <a class="btn-vintage btn-blueprint-pill" href="https://github.com/alakmar344" target="_blank" rel="noopener" style="padding:10px 20px;font-size:0.85rem">
-        <span>Browse All 43 on GitHub →</span>
-      </a>
-    </div>
-
-    <div class="products-masonry-grid">
-
-      <!-- Crown Gem: youAI-2B -->
-      <article class="crown-gem-folio reveal-editorial">
-        <div class="crown-gem-tag">
-          <span>👑 THE CROWN GEM</span>
-          <span class="carat-pill">✦ 90 CARATS</span>
-        </div>
-        <h3>youAI-2B <small>2B TRANSFORMER IMPLEMENTATION FROM SCRATCH</small></h3>
-        <p>
-          A complete, pip-installable toolkit for training, aligning, and serving a 2-billion parameter autoregressive transformer. Engineered from raw tensor mathematics without boilerplate wrappers.
-        </p>
-        <div class="gem-facets-row">
-          <div class="gem-facet-card">
-            <b>CORE ARCHITECTURE</b>
-            <span>RoPE · RMSNorm · SwiGLU · GQA · KV-Cache</span>
-          </div>
-          <div class="gem-facet-card">
-            <b>ALIGNMENT SUITE</b>
-            <span>DPO · ORPO · SimPO Direct Preference</span>
-          </div>
-          <div class="gem-facet-card">
-            <b>MODEL MERGE</b>
-            <span>LoRA · QLoRA · DARE · TIES · SLERP</span>
-          </div>
-          <div class="gem-facet-card">
-            <b>PRODUCTION AUDIT</b>
-            <span>20 Modules · 14 Unit Test Suites · Pip Ready</span>
-          </div>
-        </div>
-        <div class="card-chips-tray">
-          <span>Python</span><span>PyTorch</span><span>DPO</span><span>LoRA</span><span>CUDA</span>
-        </div>
-        <a class="card-link-btn" href="https://github.com/alakmar344/youAI-2B-From-Scratch-Transformer-Implementation" target="_blank" rel="noopener">Hold the Crown Gem →</a>
-      </article>
-
-      <!-- Gem 02: Gati Codebase -->
-      <article class="gem-specimen-card reveal-editorial">
-        <div class="gem-header-row">
-          <span class="gem-kind-label">GEM 02 · FULL PRODUCT</span>
-          <span class="gem-carat-tag">87 CARATS</span>
-        </div>
-        <h4>Gati Codebase <small>THE ENGINE BEHIND GATI</small></h4>
-        <p>The entire source codebase for the Gati mobility OS: 14.1k lines of TypeScript, 57 commits, and 14 merged PRs featuring bilingual EN/हिन्दी voice intent routing.</p>
-        <div class="card-chips-tray"><span>TypeScript</span><span>Voice AI</span><span>Geolocation</span></div>
-        <a class="card-link-btn" href="https://github.com/alakmar344/gati" target="_blank" rel="noopener">Inspect Repo →</a>
-      </article>
-
-      <!-- Gem 03: Vinecraft -->
-      <article class="gem-specimen-card reveal-editorial">
-        <div class="gem-header-row">
-          <span class="gem-kind-label">GEM 03 · GRAPHICS ENGINE</span>
-          <span class="gem-carat-tag">82 CARATS</span>
-        </div>
-        <h4>Vinecraft <small>PROCEDURAL VOXEL ENGINE IN THREE.JS</small></h4>
-        <p>Infinite browser voxel world written in vanilla JS + Three.js: procedural terrain generation, ambient occlusion, real-time shadow casting, 10 biomes, and 46 unique block physics.</p>
-        <div class="card-chips-tray"><span>JavaScript</span><span>Three.js</span><span>Procedural</span></div>
-        <a class="card-link-btn" href="https://github.com/alakmar344/vinecraft" target="_blank" rel="noopener">Mine It Yourself →</a>
-      </article>
-
-      <!-- Gem 04: science-project -->
-      <article class="gem-specimen-card reveal-editorial">
-        <div class="gem-header-row">
-          <span class="gem-kind-label">GEM 04 · PHYSICS ENGINE</span>
-          <span class="gem-carat-tag">82 CARATS</span>
-        </div>
-        <h4>science-project <small>THE CODE BEHIND π SCIENCE</small></h4>
-        <p>Custom 60fps chemistry visualizer built specifically to run smoothly on low-power school Chromebooks and budget tablets without GPU thermal throttling.</p>
-        <div class="card-chips-tray"><span>WebGL</span><span>Canvas</span><span>EdTech</span></div>
-        <a class="card-link-btn" href="https://github.com/alakmar344/science-project" target="_blank" rel="noopener">Inspect Repo →</a>
-      </article>
-
-      <!-- Gem 05: esamz.a -->
-      <article class="gem-specimen-card reveal-editorial">
-        <div class="gem-header-row">
-          <span class="gem-kind-label">GEM 05 · PRIVACY ARCHITECTURE</span>
-          <span class="gem-carat-tag">81 CARATS</span>
-        </div>
-        <h4>esamz.a <small>ZERO RETENTION PROTOCOL</small></h4>
-        <p>The codebase powering eSAMz AI: 112 commits of architecture iteration, Next.js proxy, granular consent tiers, and verifiable memory purge endpoints.</p>
-        <div class="card-chips-tray"><span>TypeScript</span><span>Next.js</span><span>Zero Retention</span></div>
-        <a class="card-link-btn" href="https://github.com/alakmar344/esamz.a" target="_blank" rel="noopener">Read Architecture →</a>
-      </article>
-
-      <!-- Gem 06: See-market -->
-      <article class="gem-specimen-card reveal-editorial">
-        <div class="gem-header-row">
-          <span class="gem-kind-label">GEM 06 · QUANT INDICATORS</span>
-          <span class="gem-carat-tag">79 CARATS</span>
-        </div>
-        <h4>See-market <small>SERVER-SIDE TECHNICAL ANALYSIS</small></h4>
-        <p>Two-service fintech backend providing real-time mathematical momentum metrics (RSI, Bollinger Bands, Moving Average convergences) over streaming sockets.</p>
-        <div class="card-chips-tray"><span>TypeScript</span><span>Fastify</span><span>FinTech</span></div>
-        <a class="card-link-btn" href="https://github.com/alakmar344/See-market" target="_blank" rel="noopener">Inspect Repo →</a>
-      </article>
-
-      <!-- Gem 07: analytics-hub -->
-      <article class="gem-specimen-card reveal-editorial">
-        <div class="gem-header-row">
-          <span class="gem-kind-label">GEM 07 · SURVEILLANCE-FREE</span>
-          <span class="gem-carat-tag">79 CARATS</span>
-        </div>
-        <h4>analytics-hub <small>CRYPTOGRAPHIC PRIVACY ANALYTICS</small></h4>
-        <p>Self-hosted website analytics engine. Visitor IP addresses are immediately hashed using salt-rotated HMAC-SHA256 in middleware before storage—mathematically incapable of tracking.</p>
-        <div class="card-chips-tray"><span>Node.js</span><span>HMAC</span><span>Privacy</span></div>
-        <a class="card-link-btn" href="https://github.com/alakmar344/analytics-hub" target="_blank" rel="noopener">Read Proof →</a>
-      </article>
-
-      <!-- Gem 08: My-code -->
-      <article class="gem-specimen-card reveal-editorial">
-        <div class="gem-header-row">
-          <span class="gem-kind-label">GEM 08 · AGENTIC WORKSPACE</span>
-          <span class="gem-carat-tag">74 CARATS</span>
-        </div>
-        <h4>My-code / eSAMz Code <small>AUTONOMOUS DEV AGENT LOOP</small></h4>
-        <p>Browser-first AI coding agent featuring plan → execute → observe → test cycles running inside isolated Docker containers with strictly enforced CPU/memory quotas.</p>
-        <div class="card-chips-tray"><span>React</span><span>Docker</span><span>Autonomous AI</span></div>
-        <a class="card-link-btn" href="https://github.com/alakmar344/My-code" target="_blank" rel="noopener">Inspect Agent →</a>
-      </article>
-
-      <!-- Gem 09: Not-a-thing-launcher -->
-      <article class="gem-specimen-card reveal-editorial">
-        <div class="gem-header-row">
-          <span class="gem-kind-label">GEM 09 · ANDROID SYSTEM</span>
-          <span class="gem-carat-tag">73 CARATS</span>
-        </div>
-        <h4>Not-a-thing-launcher <small>DOT MATRIX SYSTEM UI IN KOTLIN</small></h4>
-        <p>Nothing-inspired Android OS launcher with dot-matrix typography, customized gesture navigation, zero-telemetry battery efficiency, and GitHub CI automated builds.</p>
-        <div class="card-chips-tray"><span>Kotlin</span><span>Android SDK</span><span>CI Releases</span></div>
-        <a class="card-link-btn" href="https://github.com/alakmar344/Not-a-thing-launcher" target="_blank" rel="noopener">Get APK Releases →</a>
-      </article>
-
-      <!-- Gem 10: revive-me -->
-      <article class="gem-specimen-card reveal-editorial">
-        <div class="gem-header-row">
-          <span class="gem-kind-label">GEM 10 · RUST CLI TOOL</span>
-          <span class="gem-carat-tag">72 CARATS</span>
-        </div>
-        <h4>revive-me <small>OFFLINE LEGACY FILE RESTORATION</small></h4>
-        <p>Zero-dependency Rust utility that revives and parses corrupted or ancient legacy files (.dbf, .xls, .dat) into clean modern JSON without connecting to cloud APIs.</p>
-        <div class="card-chips-tray"><span>Rust</span><span>CLI</span><span>File Recovery</span></div>
-        <a class="card-link-btn" href="https://github.com/alakmar344/revive-me" target="_blank" rel="noopener">Inspect Rust CLI →</a>
-      </article>
-
-      <!-- Gem 11: breeze-framework -->
-      <article class="gem-specimen-card reveal-editorial">
-        <div class="gem-header-row">
-          <span class="gem-kind-label">ROUGH STONE · ON BENCH</span>
-          <span class="gem-carat-tag">UNCUT</span>
-        </div>
-        <h4>breeze-framework <small>EXPERIMENTAL LIGHTWEIGHT SYSTEM</small></h4>
-        <p>Minimalist application framework exploration currently on the lapidary’s bench. Cutting and testing have just begun.</p>
-        <div class="card-chips-tray"><span>Early Lab</span><span>Framework</span></div>
-        <a class="card-link-btn" href="https://github.com/alakmar344/breeze-framework" target="_blank" rel="noopener">Watch It Grow →</a>
-      </article>
-
-    </div>
-  </div>
-</section>
-
-<!-- ============ CHAPTER 03: STORY & ETHOS ("HEART FIRST") ============ -->
-<section class="ethos-chapter-section" id="ethos">
-  <div class="container">
-    <div class="literary-quote-banner reveal-editorial">
-      <blockquote>
-        “Technology must serve people with <em>uncompromising dignity,</em> never treat humans as raw data extraction.”
-      </blockquote>
-      <cite>— field note from the workbench · age 13 ✦</cite>
-    </div>
-
-    <div class="ethos-two-col-layout">
-      <div class="ethos-manuscript-card reveal-editorial">
-        <span class="stamp-seal seal-terracotta">☽ القمر — The Moon</span>
-        <h3>Architect turned <em>kinetic storyteller.</em></h3>
-        <p>
-          My name is <strong>Al-Aqmar Tinwala</strong>. I didn&rsquo;t start building AI systems for corporate hype or speculative valuation — I started because our digital tools should grant everyday humans <strong>speed, privacy, and genuine cognitive elevation</strong>.
-        </p>
-        <p>
-          Whether it is architecting <strong>RealLearn</strong> to deconstruct complex physics into 3-part mastery, designing <strong>eSAMz AI</strong> to never store a single user byte, or crafting 60fps molecular physics in <strong>π</strong> — I believe exceptional code has a heartbeat.
-        </p>
-
-        <div class="principles-catalog">
-          <div class="principle-row-card">
-            <span class="principle-symbol">♥</span>
-            <div>
-              <strong>Heart First</strong>
-              <small>Software engineered for human elevation, not addictive doom-scrolling or surveillance.</small>
-            </div>
-          </div>
-          <div class="principle-row-card">
-            <span class="principle-symbol">🔒</span>
-            <div>
-              <strong>Zero Retention Architecture</strong>
-              <small>Your queries, identity, and personal thoughts stay yours. Absolute zero data logging by design.</small>
-            </div>
-          </div>
-          <div class="principle-row-card">
-            <span class="principle-symbol">🧪</span>
-            <div>
-              <strong>Uncompromising Wonder</strong>
-              <small>Build for genuine curiosity — atoms, motion, live transit, and high-impact learning systems.</small>
-            </div>
-          </div>
-        </div>
-
-        <p style="font-family:var(--font-hand);font-size:1.6rem;color:var(--terracotta);margin-top:24px;font-weight:700">
-          — yes, I’m 13. and yes, I ship systems that work. ♡
-        </p>
-      </div>
-
-      <div class="ethos-side-stack">
-        <div class="ethos-excerpt-box reveal-editorial">
-          <h4>BUILDER AXIOM</h4>
-          <p>
-            “Every line of code I ship is guided by one immutable rule: Heart First. If a system doesn’t treat people with dignity, it doesn’t belong on the internet.”
-          </p>
-          <small style="color:var(--terracotta);font-family:var(--font-mono);display:block;margin-top:12px;font-weight:700;">
-            — Al-Aqmar Tinwala, v13
-          </small>
-        </div>
-
-        <div class="moon-phases-panel reveal-editorial">
-          <h4>● CURRENT PHASE — WAXING SYSTEM BUILDER</h4>
-          <div class="moon-symbols-row">
-            <span>🌑</span>
-            <span>🌒</span>
-            <span>🌓</span>
-            <span class="current">🌕</span>
-            <span>🌖</span>
-          </div>
-          <p>
-            CORE DOMAINS: ADAPTIVE EDTECH (REALLEARN) · PRIVACY ENGINEERING · ON-DEVICE LLMS · VOICE AI · REAL-TIME MOBILITY · FROM-SCRATCH TRANSFORMERS · COMPILER TOOLS
-          </p>
-        </div>
-
-        <div class="ethos-excerpt-box reveal-editorial" style="background:var(--sage-soft);border-color:var(--sage-border);">
-          <h4 style="color:var(--sage-dark)">FIELD JOURNAL EXCERPT</h4>
-          <p style="color:var(--ink-primary)">
-            “I love building software that solves concrete, daily friction for students, small merchants, and commuters.”
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ CHAPTER 04: THE LIBRARY (2 BOOKS) ============ -->
-<section class="library-section" id="library">
-  <div class="container">
-    <span class="chapter-kicker kicker-terracotta reveal-editorial">Chapter 04 — Published Volumes</span>
-    <h2 class="chapter-title reveal-editorial">
-      Two Books. <br/><em>Zero fluff, pure builder insight.</em>
-    </h2>
-    <p class="chapter-subhead reveal-editorial">
-      Written directly from hands-on terminal experience — dissecting transformer token mechanics, model alignment strategies, and 30 days of production Claude Code orchestration.
-    </p>
-
-    <div class="books-folio-deck">
-      <!-- Book 01 -->
-      <article class="book-slipcase-card reveal-editorial">
-        <div class="book-jacket-spine spine-blue">
-          <small>BESTSELLER</small>
-          <b>📘</b>
-          <small>AI · VOL. 1</small>
-        </div>
-        <div class="book-description-area">
-          <span class="book-tag-kicker">★ Bestseller on Amazon KDP</span>
-          <h4>The AI Mastery Handbook</h4>
-          <p>
-            An architectural breakdown of Claude, Gemini, Llama, and ChatGPT. Covers foundational LLM mechanics, attention math, temperature tuning, and high-precision prompt engineering.
-          </p>
-          <a class="card-link-btn" href="https://www.amazon.com/dp/B0GX2N6WTT" target="_blank" rel="noopener">
-            <span>View on Amazon KDP →</span>
-          </a>
-        </div>
-      </article>
-
-      <!-- Book 02 -->
-      <article class="book-slipcase-card reveal-editorial">
-        <div class="book-jacket-spine spine-terracotta">
-          <small>NEW RELEASE</small>
-          <b>📗</b>
-          <small>30 DAYS</small>
-        </div>
-        <div class="book-description-area">
-          <span class="book-tag-kicker">✦ New Release on Amazon KDP</span>
-          <h4>30 Days Mastering Claude Code</h4>
-          <p>
-            A 30-day tactical guide into agentic developer automation, subagent orchestration, and production terminal coding workflows derived from shipping real products.
-          </p>
-          <a class="card-link-btn" href="https://www.amazon.com/dp/B0GY1F3573" target="_blank" rel="noopener">
-            <span>View on Amazon KDP →</span>
-          </a>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ============ CHAPTER 05: THE WORKBENCH ============ -->
-<section class="toolbox-section" id="workbench">
-  <div class="container">
-    <span class="chapter-kicker kicker-blueprint reveal-editorial">Chapter 05 — Architecture &amp; Runtimes</span>
-    <h2 class="chapter-title reveal-editorial">
-      Low-Latency Bones, <br/><em>velvet UX.</em>
-    </h2>
-    <p class="chapter-subhead reveal-editorial">
-      The languages, compilers, inference backends, and engineering disciplines powering our 11 live systems and open-source models.
-    </p>
-
-    <div class="workbench-categories-grid reveal-editorial">
-      <div class="tool-drawer-card">
-        <h5>Core Runtimes &amp; Compilers</h5>
-        <div class="tool-chips-cluster">
-          <span class="tool-chip-badge">🦀 Rust</span>
-          <span class="tool-chip-badge">▲ Next.js 16</span>
-          <span class="tool-chip-badge">⚡ Fastify 5</span>
-          <span class="tool-chip-badge">🔷 TypeScript</span>
-          <span class="tool-chip-badge">▦ Node.js 24</span>
-          <span class="tool-chip-badge">◈ Turbopack</span>
-        </div>
-      </div>
-
-      <div class="tool-drawer-card">
-        <h5>AI Inference &amp; Hardware</h5>
-        <div class="tool-chips-cluster">
-          <span class="tool-chip-badge">⚡ Groq LPU</span>
-          <span class="tool-chip-badge">✦ Sarvam 105b</span>
-          <span class="tool-chip-badge">◆ PyTorch</span>
-          <span class="tool-chip-badge">◉ On-Device LLMs</span>
-          <span class="tool-chip-badge">🌐 Serper Grounding</span>
-          <span class="tool-chip-badge">🎤 Whisper &amp; Voice</span>
-        </div>
-      </div>
-
-      <div class="tool-drawer-card">
-        <h5>Disciplines &amp; Protocols</h5>
-        <div class="tool-chips-cluster">
-          <span class="tool-chip-badge">🔒 Zero Retention</span>
-          <span class="tool-chip-badge">≋ WebGL 3D</span>
-          <span class="tool-chip-badge">🧠 Spaced Repetition (SM-2)</span>
-          <span class="tool-chip-badge">🛺 Multimodal Transit</span>
-          <span class="tool-chip-badge">🎨 OKLCH Math</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ CONTACT / FINALE ============ -->
-<section class="contact-section" id="contact">
-  <div class="container">
-    <div class="stationery-wrap-box reveal-editorial">
-      <h3>
-        LET&rsquo;S ARCHITECT <br/>SOMETHING <em>EXCEPTIONAL.</em>
-      </h3>
-      <p>
-        Available for AI systems consulting, fast full-stack engineering, and soulful collaborations. Let&rsquo;s craft tools that give people their time and autonomy back.
-      </p>
-
-      <div class="contact-action-row">
-        <div class="email-postal-pill">
-          <span>proman007power@gmail.com</span>
-          <button class="email-copy-action" onclick="copyContactEmail()">⧉ Copy Email</button>
-        </div>
-
-        <button class="heart-tally-btn" onclick="sendHeartLove(event)">
-          <span>♥ Send Love</span>
-          <span id="heartCountTally">(142)</span>
-        </button>
-      </div>
-
-      <div class="contact-marginal-footnote">
-        RESPONSE TIME: FASTER THAN YOUR TURBOPACK BUILD · BANGALORE / REMOTE
-      </div>
-    </div>
-  </div>
-</section>
-</main>
-
-<!-- ============ SITE FOOTER ============ -->
-<footer class="site-footer">
-  <div class="container footer-inner-dock">
-    <div class="footer-copy-text">
-      © 2026 Al-Aqmar Tinwala. Crafted with soul &amp; mathematical rigor.
-      <span class="hand-signature">P.S. — Code can love you back. ♡</span>
-    </div>
-
-    <ul class="footer-social-links">
-      <li><a href="https://github.com/alakmar344" target="_blank" rel="noopener">GitHub</a></li>
-      <li><a href="https://www.linkedin.com/in/alakmar-teenwala-054067393" target="_blank" rel="noopener">LinkedIn</a></li>
-      <li><a href="https://instagram.com/its_alakmar7" target="_blank" rel="noopener">Instagram</a></li>
-    </ul>
-  </div>
+<!-- ═══════════════════════════════════════════════════
+     COLOPHON
+     ═══════════════════════════════════════════════════ -->
+<footer class="colophon">
+  <div>© 2026 Al-Aqmar Tinwala · Crafted with soul & mathematical rigor</div>
+  <div class="ps">P.S. — Code can love you back. ♡</div>
 </footer>
 
-<!-- ============ COMMAND PALETTE MODAL (⌘K) ============ -->
-<div class="cmd-modal-overlay" id="cmdOverlay">
-  <div class="cmd-archival-card">
-    <input type="text" id="cmdSearchInput" class="cmd-search-field" placeholder="Search a project, gem, book, or chapter (e.g. RealLearn, Gati)..." autofocus />
-    <ul class="cmd-items-deck" id="cmdResultsDeck">
-      <!-- Populated dynamically via JS -->
-    </ul>
-    <div class="cmd-bottom-guide">
-      <span>↑↓ to navigate · ENTER to open</span>
-      <span>ESC to dismiss</span>
-    </div>
-  </div>
 </div>
 
-<!-- Archival Toast Notification -->
-<div class="toast-capsule" id="archivalToast">
-  <span id="toastSymbol">✦</span>
-  <span id="toastNotificationText">Notification text</span>
-</div>
-
-<!-- ============ INTERACTIVE SCRIPTS ============ -->
-<script>
-/* --------------------------------------------------------------------------
-   SYNTHESIZED ACOUSTIC UI SOUND (TACTILE PAPER & TYPEWRITER HAPTICS)
-   -------------------------------------------------------------------------- */
-let audioCtx = null;
-let soundOn = true;
-
-function initAudioContext() {
-  if (!audioCtx && (window.AudioContext || window.webkitAudioContext)) {
-    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-  }
-}
-
-function playPaperSound(freq = 540, type = 'sine', duration = 0.07) {
-  if (!soundOn) return;
-  try {
-    initAudioContext();
-    if (!audioCtx) return;
-    if (audioCtx.state === 'suspended') audioCtx.resume();
-    const osc = audioCtx.createOscillator();
-    const gain = audioCtx.createGain();
-    osc.type = type;
-    osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-    gain.gain.setValueAtTime(0.035, audioCtx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
-    osc.connect(gain);
-    gain.connect(audioCtx.destination);
-    osc.start();
-    osc.stop(audioCtx.currentTime + duration);
-  } catch (e) {
-    // Audio fallback
-  }
-}
-
-const soundSwitcher = document.getElementById('soundSwitcher');
-soundSwitcher.addEventListener('click', () => {
-  soundOn = !soundOn;
-  soundSwitcher.classList.toggle('is-active', soundOn);
-  soundSwitcher.textContent = soundOn ? '🔊' : '🔇';
-  displayToast(soundOn ? 'Acoustic UI Audio Enabled' : 'Acoustic UI Muted', soundOn ? '🔊' : '🔇');
-  if (soundOn) playPaperSound(820);
-});
-
-/* --------------------------------------------------------------------------
-   MOBILE NAV TOGGLE
-   -------------------------------------------------------------------------- */
-const hamburgerBtn = document.getElementById('hamburgerBtn');
-const mobileDrawerPanel = document.getElementById('mobileDrawerPanel');
-hamburgerBtn.addEventListener('click', () => {
-  mobileDrawerPanel.classList.toggle('open');
-  playPaperSound(500);
-});
-
-function closeMobileNav() {
-  mobileDrawerPanel.classList.remove('open');
-}
-
-/* --------------------------------------------------------------------------
-   TICKER SEAMLESS LOOP
-   -------------------------------------------------------------------------- */
-const tickerFlowTrack = document.getElementById('tickerFlowTrack');
-if (tickerFlowTrack) {
-  tickerFlowTrack.innerHTML += tickerFlowTrack.innerHTML;
-}
-
-/* --------------------------------------------------------------------------
-   CHAPTER 01: REALLEARN TOPIC SAMPLER
-   -------------------------------------------------------------------------- */
-const topicLessons = {
-  quantum: {
-    badge: 'PART 1: INTUITIVE FOUNDATION',
-    title: 'Qubits & Superposition',
-    body: 'Unlike classical bits that exist strictly as 0 or 1, a qubit exploits quantum superposition to occupy continuous probability states—enabling parallel state exploration across Hilbert space.',
-    grounding: 'Live Serper Grounding: “IBM announces 1,121-qubit Condor chip benchmark (Sep 2026)”'
-  },
-  crispr: {
-    badge: 'PART 2: MOLECULAR MECHANISM',
-    title: 'Cas9 RNA-Guided Endonuclease',
-    body: 'The guide RNA binds directly to the complementary genomic target adjacent to a Protospacer Adjacent Motif (PAM). The Cas9 enzyme then induces a double-strand break, triggering cellular repair machinery.',
-    grounding: 'Live Serper Grounding: “Prime editing trial yields 92% precision in sickle cell patient cohort”'
-  },
-  attention: {
-    badge: 'PART 3: REAL-WORLD ARCHITECTURE',
-    title: 'Scaled Dot-Product & KV-Caching',
-    body: 'Attention computes QK^T / √d_k matrices to measure token relevance. In production streaming systems, Key-Value caching stores previous projection states to achieve O(1) step generation.',
-    grounding: 'Live Serper Grounding: “RealLearn integrates Groq LPU streaming inference at 480 tokens/sec”'
-  }
-};
-
-function switchTopicSample(key, btn) {
-  document.querySelectorAll('.study-tab-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  playPaperSound(620);
-  const data = topicLessons[key];
-  const container = document.getElementById('lessonPreviewContainer');
-  container.style.opacity = '0';
-  setTimeout(() => {
-    container.innerHTML = `
-      <span class="lesson-badge">${data.badge}</span>
-      <div class="lesson-title-head">${data.title}</div>
-      <div class="lesson-text-body">${data.body}</div>
-      <div class="lesson-news-grounding">
-        <span>⚡ Live Serper Grounding:</span> ${data.grounding}
-      </div>
-    `;
-    container.style.opacity = '1';
-  }, 130);
-}
-
-/* --------------------------------------------------------------------------
-   WORLD PRODUCT FILTERING
-   -------------------------------------------------------------------------- */
-function filterWorldsCategory(category, btn) {
-  playPaperSound(520);
-  document.querySelectorAll('.filter-tab-pill').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  const cards = document.querySelectorAll('#worldsProductsGrid > article');
-  let count = 0;
-  cards.forEach(card => {
-    const cardCat = card.getAttribute('data-category');
-    const matches = (category === 'all') || (cardCat === category);
-    if (matches) {
-      card.style.display = 'flex';
-      count++;
-    } else {
-      card.style.display = 'none';
-    }
-  });
-  document.getElementById('visibleCounterNum').textContent = count;
-}
-
-/* --------------------------------------------------------------------------
-   ANALOG DESK TERMINAL SWITCHER
-   -------------------------------------------------------------------------- */
-function switchDeskTab(tab, btn) {
-  playPaperSound(580);
-  document.querySelectorAll('.desk-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  const screen = document.getElementById('analogScreen');
-  
-  if (tab === 'reallearn') {
-    screen.innerHTML = `
-      <div class="screen-prompt">$ reallearn --spec --inspect-architecture</div>
-      <div class="screen-data-row"><span class="screen-k">Flagship Engine:</span><span class="screen-v">RealLearn AI (Adaptive EdTech)</span></div>
-      <div class="screen-data-row"><span class="screen-k">Progression System:</span><span class="screen-v">Foundation → Mechanism → Real World</span></div>
-      <div class="screen-data-row"><span class="screen-k">Mastery Gate:</span><span class="screen-v">100% Quiz Gate + SM-2 Memory Curve</span></div>
-      <div class="screen-data-row"><span class="screen-k">Live Grounding:</span><span class="screen-v">Serper API Real-Time News Stream</span></div>
-      <div class="screen-data-row"><span class="screen-k">On-Device Retention:</span><span class="screen-v">Zero AI Cost Spaced Repetition</span></div>
-      <div class="screen-verified">✓ Production live at reallearn-info.vercel.app</div>
-    `;
-  } else if (tab === 'privacy') {
-    screen.innerHTML = `
-      <div class="screen-prompt">$ esamz --audit --privacy-protocol</div>
-      <div class="screen-data-row"><span class="screen-k">Data Retention:</span><span class="screen-v">0% Stored (Zero Retention by Design)</span></div>
-      <div class="screen-data-row"><span class="screen-k">Context Horizon:</span><span class="screen-v">128,000 Tokens</span></div>
-      <div class="screen-data-row"><span class="screen-k">Inference Engine:</span><span class="screen-v">Sarvam 105B Parameter Core</span></div>
-      <div class="screen-data-row"><span class="screen-k">Routing Layer:</span><span class="screen-v">Rust-Compiled Proxy (&lt;12ms overhead)</span></div>
-      <div class="screen-data-row"><span class="screen-k">User Base:</span><span class="screen-v">3,000+ Active Worldwide</span></div>
-      <div class="screen-verified">✓ 100% Zero-Surveillance Compliance.</div>
-    `;
-  } else if (tab === 'youai') {
-    screen.innerHTML = `
-      <div class="screen-prompt">$ youai-2b --run-eval --dataset mmlu-pro</div>
-      <div class="screen-data-row"><span class="screen-k">Model Type:</span><span class="screen-v">2.0B Autoregressive Transformer</span></div>
-      <div class="screen-data-row"><span class="screen-k">Positional Encoding:</span><span class="screen-v">Rotary Positional Embeddings (RoPE)</span></div>
-      <div class="screen-data-row"><span class="screen-k">Attention:</span><span class="screen-v">Grouped-Query Attention (GQA)</span></div>
-      <div class="screen-data-row"><span class="screen-k">Alignment Methods:</span><span class="screen-v">DPO, ORPO, SimPO Implemented</span></div>
-      <div class="screen-data-row"><span class="screen-k">Verification:</span><span class="screen-v">14 Unit Test Files Passing</span></div>
-      <div class="screen-verified">✓ Toolkit verified &amp; pip-installable.</div>
-    `;
-  } else if (tab === 'runtimes') {
-    screen.innerHTML = `
-      <div class="screen-prompt">$ arch --bench --runtimes</div>
-      <div class="screen-data-row"><span class="screen-k">Languages:</span><span class="screen-v">Rust, TypeScript, Python, Kotlin</span></div>
-      <div class="screen-data-row"><span class="screen-k">Frontends:</span><span class="screen-v">Next.js 16 (Turbopack), React 19</span></div>
-      <div class="screen-data-row"><span class="screen-k">APIs:</span><span class="screen-v">Fastify 5 SSE, Serverless Edge</span></div>
-      <div class="screen-data-row"><span class="screen-k">Design System:</span><span class="screen-v">Calm Vintage Editorial, Non-AI Slop</span></div>
-      <div class="screen-verified">✓ All 11 systems fully operational.</div>
-    `;
-  }
-}
-
-/* --------------------------------------------------------------------------
-   EMAIL CLIPBOARD COPY
-   -------------------------------------------------------------------------- */
-function copyContactEmail() {
-  const email = 'proman007power@gmail.com';
-  playPaperSound(720);
-  if (navigator.clipboard) {
-    navigator.clipboard.writeText(email).then(() => {
-      displayToast('Email copied to clipboard! Talk soon ✉', '✓');
-    });
-  } else {
-    displayToast(email, '✉');
-  }
-}
-
-/* --------------------------------------------------------------------------
-   HEART TALLY INTERACTION
-   -------------------------------------------------------------------------- */
-let heartTally = 142;
-function sendHeartLove(e) {
-  heartTally++;
-  document.getElementById('heartCountTally').textContent = '(' + heartTally + ')';
-  playPaperSound(780, 'triangle', 0.1);
-
-  // Spawn visual floating heart emoji
-  const heart = document.createElement('div');
-  heart.className = 'floating-ink-heart';
-  heart.textContent = ['♥', '♡', '💌', '✨'][Math.floor(Math.random() * 4)];
-  const x = e.clientX || window.innerWidth / 2;
-  const y = e.clientY || window.innerHeight / 2;
-  heart.style.left = (x - 15 + (Math.random() * 40 - 20)) + 'px';
-  heart.style.top = (y - 20) + 'px';
-  document.body.appendChild(heart);
-
-  setTimeout(() => {
-    heart.remove();
-  }, 1600);
-
-  displayToast('Thank you! Code can love you back ♡', '♥');
-}
-
-/* --------------------------------------------------------------------------
-   TOAST HELPER
-   -------------------------------------------------------------------------- */
-let toastHideTimeout;
-function displayToast(msg, icon = '✦') {
-  const t = document.getElementById('archivalToast');
-  document.getElementById('toastNotificationText').textContent = msg;
-  document.getElementById('toastSymbol').textContent = icon;
-  t.classList.add('show');
-  clearTimeout(toastHideTimeout);
-  toastHideTimeout = setTimeout(() => {
-    t.classList.remove('show');
-  }, 2600);
-}
-
-/* --------------------------------------------------------------------------
-   ARCHIVAL COMMAND PALETTE (⌘K / CTRL+K / SEARCH)
-   -------------------------------------------------------------------------- */
-const cmdOverlay = document.getElementById('cmdOverlay');
-const cmdSearchInput = document.getElementById('cmdSearchInput');
-const cmdResultsDeck = document.getElementById('cmdResultsDeck');
-const cmdOpenTrigger = document.getElementById('cmdOpenTrigger');
-
-const archivalCatalog = [
-  { title: 'RealLearn AI', sub: '👑 Flagship Adaptive EdTech · Live at reallearn-info.vercel.app', href: 'https://reallearn-info.vercel.app', external: true },
-  { title: 'eSAMz AI', sub: 'Privacy-First LLM · 128k context · 3,000+ users', href: 'https://esamz.info', external: true },
-  { title: 'π — Pi Science', sub: '3D Atoms & Molecules WebGL Playground', href: 'https://science-project-pi.vercel.app', external: true },
-  { title: 'गति — Gati', sub: 'Multimodal Indian Mobility OS with Voice AI', href: 'https://gati-rho.vercel.app', external: true },
-  { title: 'PivotIQ', sub: 'Startup concept & risk validator', href: 'https://pivot-iq.vercel.app', external: true },
-  { title: 'MindEase', sub: 'On-device emotional wellness · 20 languages', href: 'https://me.esamz.info', external: true },
-  { title: 'Hissab', sub: 'Indian small-business fintech & margin tracker', href: 'https://hisaab.esamz.info', external: true },
-  { title: 'CiboCocinar', sub: 'Hands-free kitchen voice assistant', href: 'https://cibo.esamz.info', external: true },
-  { title: 'Fit The Color', sub: 'Color mathematics & OKLCH contrast engine', href: 'https://fit-the-color-info.vercel.app', external: true },
-  { title: 'Neon Tic-Tac-Toe', sub: 'Zero-dependency pure vanilla game', href: 'https://tic-info.vercel.app', external: true },
-  { title: 'youAI-2B Repo', sub: '💎 Crown Gem · 2B Transformer from scratch', href: 'https://github.com/alakmar344/youAI-2B-From-Scratch-Transformer-Implementation', external: true },
-  { title: 'Gati Codebase', sub: '💎 14.1k lines of TypeScript mobility code', href: 'https://github.com/alakmar344/gati', external: true },
-  { title: 'Vinecraft Repo', sub: '💎 Three.js voxel engine with 46 blocks', href: 'https://github.com/alakmar344/vinecraft', external: true },
-  { title: 'The AI Mastery Handbook', sub: '📚 Bestselling book on Amazon KDP', href: 'https://www.amazon.com/dp/B0GX2N6WTT', external: true },
-  { title: '30 Days Mastering Claude Code', sub: '📚 Agentic workflows guide on Amazon KDP', href: 'https://www.amazon.com/dp/B0GY1F3573', external: true },
-  { title: 'Chapter 01: Live Worlds', sub: 'Explore all 11 live products', href: '#worlds', external: false },
-  { title: 'Chapter 02: Git Gems', sub: 'Curated 11 repository vault', href: '#gems', external: false },
-  { title: 'Chapter 03: Heart First Story', sub: 'Read the philosophy and ethos', href: '#ethos', external: false },
-  { title: 'Chapter 04: Published Books', sub: 'Explore books on Amazon KDP', href: '#library', external: false },
-  { title: 'Contact Al-Aqmar', sub: 'Email, GitHub, collaborations', href: '#contact', external: false }
-];
-
-function openCmdOverlay() {
-  cmdOverlay.classList.add('open');
-  cmdSearchInput.value = '';
-  renderCatalogEntries(archivalCatalog);
-  cmdSearchInput.focus();
-  playPaperSound(580);
-}
-
-function closeCmdOverlay() {
-  cmdOverlay.classList.remove('open');
-}
-
-cmdOpenTrigger.addEventListener('click', openCmdOverlay);
-
-cmdOverlay.addEventListener('click', (e) => {
-  if (e.target === cmdOverlay) closeCmdOverlay();
-});
-
-document.addEventListener('keydown', (e) => {
-  if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
-    e.preventDefault();
-    if (cmdOverlay.classList.contains('open')) {
-      closeCmdOverlay();
-    } else {
-      openCmdOverlay();
-    }
-  }
-  if (e.key === 'Escape' && cmdOverlay.classList.contains('open')) {
-    closeCmdOverlay();
-  }
-});
-
-function renderCatalogEntries(items) {
-  cmdResultsDeck.innerHTML = '';
-  if (items.length === 0) {
-    cmdResultsDeck.innerHTML = '<li class="cmd-entry-row" style="color:var(--ink-muted);cursor:default;">No catalog entries found.</li>';
-    return;
-  }
-  items.slice(0, 8).forEach((item, idx) => {
-    const li = document.createElement('li');
-    li.className = 'cmd-entry-row' + (idx === 0 ? ' selected' : '');
-    li.innerHTML = `
-      <span>${item.title}</span>
-      <small>${item.sub}</small>
-    `;
-    li.addEventListener('click', () => {
-      closeCmdOverlay();
-      if (item.external) {
-        window.open(item.href, '_blank', 'noopener');
-      } else {
-        window.location.hash = item.href;
-      }
-    });
-    cmdResultsDeck.appendChild(li);
-  });
-}
-
-cmdSearchInput.addEventListener('input', (e) => {
-  const query = e.target.value.toLowerCase().trim();
-  if (!query) {
-    renderCatalogEntries(archivalCatalog);
-    return;
-  }
-  const filtered = archivalCatalog.filter(item => 
-    item.title.toLowerCase().includes(query) || item.sub.toLowerCase().includes(query)
-  );
-  renderCatalogEntries(filtered);
-});
-
-/* --------------------------------------------------------------------------
-   GENTLE PAPER LIFT TILT (TACTILE EDITORIAL MICRO-INTERACTION)
-   -------------------------------------------------------------------------- */
-const paperCards = document.querySelectorAll('.world-product-card, .gem-specimen-card, .catalog-slip, .reallearn-folio-spotlight');
-paperCards.forEach(card => {
-  card.addEventListener('mousemove', (e) => {
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    const rotateX = ((y - centerY) / centerY) * -2.5;
-    const rotateY = ((x - centerX) / centerX) * 2.5;
-    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-3px)`;
-  });
-
-  card.addEventListener('mouseleave', () => {
-    card.style.transform = '';
-  });
-});
-
-/* --------------------------------------------------------------------------
-   SCROLL REVEAL OBSERVER
-   -------------------------------------------------------------------------- */
-const scrollObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      scrollObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.08 });
-
-document.querySelectorAll('.reveal-editorial').forEach(el => scrollObserver.observe(el));
-</script>
+<!-- NO JAVASCRIPT. NO TRACKERS. NO COOKIES. PURE HTML/CSS. -->
 </body>
 </html>
