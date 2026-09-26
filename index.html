@@ -1,1169 +1,740 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-edition="day">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Al-Aqmar Journal — Vol. XIII</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Al-Aqmar Journal — Al-Aqmar Tinwala, Heart-First AI Architect</title>
 
-<!-- ═══ PRIVACY SHIELD ═══ -->
-<meta name="referrer" content="no-referrer">
-<meta name="robots" content="noimageindex">
+<meta name="description" content="The Al-Aqmar Journal — Al-Aqmar Tinwala, 13-year-old heart-first AI architect. Eleven live products, 3,000+ users, 43 repositories, two published books. Zero data retention by design.">
 <meta name="author" content="Al-Aqmar Tinwala">
-<meta name="description" content="Al-Aqmar Tinwala — 13yo Heart-First AI Architect. RealLearn & 11 Live Worlds. Zero surveillance by design.">
+<meta name="theme-color" content="#f3f2ed" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0b0c0e" media="(prefers-color-scheme: dark)">
+
+<!-- privacy shield — no third-party requests, no trackers, self-hosted type -->
+<meta name="referrer" content="no-referrer">
 <meta name="generator" content="Handcrafted, zero telemetry">
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
 <meta http-equiv="Permissions-Policy" content="interest-cohort=(), browsing-topics=()">
 
-<style>
-:root {
-  --paper: #f4f1ea;
-  --paper-deep: #ebe6da;
-  --ink: #1a1612;
-  --ink-soft: #3d362e;
-  --rule: #1a1612;
-  --accent: #8b1a1a;
-  --moon: #c9b98a;
-  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
-  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-  --mono: "SF Mono", "JetBrains Mono", ui-monospace, "Cascadia Mono", Menlo, Consolas, monospace;
-}
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-html { scroll-behavior: smooth; }
-
-body {
-  background: var(--paper);
-  color: var(--ink);
-  font-family: var(--serif);
-  font-size: 17px;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  background-image:
-    radial-gradient(circle at 20% 10%, rgba(201,185,138,0.08) 0%, transparent 40%),
-    radial-gradient(circle at 80% 80%, rgba(139,26,26,0.04) 0%, transparent 40%);
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background-image:
-    repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(26,22,18,0.015) 2px, rgba(26,22,18,0.015) 3px);
-  z-index: 1;
-}
-
-.container {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 2rem;
-  position: relative;
-  z-index: 2;
-}
-
-/* ═══ MASTHEAD ═══ */
-.masthead {
-  border-bottom: 3px double var(--rule);
-  padding: 1.5rem 0 1rem;
-  text-align: center;
-  position: relative;
-}
-
-.masthead-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-family: var(--mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  padding-bottom: 0.75rem;
-  border-bottom: 1px solid var(--rule);
-  margin-bottom: 1.25rem;
-}
-
-.masthead-top .privacy-seal {
-  background: var(--ink);
-  color: var(--paper);
-  padding: 0.25rem 0.6rem;
-  border-radius: 2px;
-  font-weight: 600;
-}
-
-.masthead h1 {
-  font-family: var(--serif);
-  font-size: clamp(2.5rem, 7vw, 5.5rem);
-  font-weight: 900;
-  letter-spacing: -0.02em;
-  line-height: 0.95;
-  margin: 0.5rem 0;
-  font-style: italic;
-}
-
-.masthead h1 .moon {
-  display: inline-block;
-  color: var(--accent);
-  font-style: normal;
-  transform: translateY(-0.1em);
-}
-
-.masthead-sub {
-  font-family: var(--mono);
-  font-size: 0.8rem;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  margin-top: 0.5rem;
-}
-
-.masthead-sub .arabic {
-  font-family: var(--serif);
-  font-style: italic;
-  letter-spacing: 0;
-  text-transform: none;
-  color: var(--accent);
-}
-
-/* ═══ NAVIGATION ═══ */
-.nav-ribbon {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  padding: 0.75rem 0;
-  border-bottom: 1px solid var(--rule);
-  font-family: var(--mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  flex-wrap: wrap;
-}
-
-.nav-ribbon a {
-  color: var(--ink);
-  text-decoration: none;
-  transition: color 0.2s;
-  position: relative;
-}
-
-.nav-ribbon a:hover { color: var(--accent); }
-
-.nav-ribbon a::after {
-  content: "✦";
-  position: absolute;
-  right: -1.1rem;
-  color: var(--moon);
-  font-size: 0.6rem;
-}
-
-.nav-ribbon a:last-child::after { display: none; }
-
-/* ═══ SECTIONS ═══ */
-.section {
-  padding: 3rem 0;
-  border-bottom: 1px solid var(--rule);
-}
-
-.section-label {
-  font-family: var(--mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 0.5rem;
-}
-
-.section-title {
-  font-size: clamp(2rem, 4.5vw, 3.5rem);
-  font-weight: 900;
-  line-height: 1;
-  letter-spacing: -0.02em;
-  margin-bottom: 1rem;
-  font-style: italic;
-}
-
-.section-rule {
-  border: none;
-  border-top: 1px solid var(--rule);
-  margin: 1.5rem 0;
-}
-
-/* ═══ PROFILE — THE LEAD ═══ */
-.profile-lead {
-  display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: 3rem;
-  align-items: start;
-}
-
-.profile-portrait {
-  background: var(--ink);
-  color: var(--paper);
-  padding: 2.5rem;
-  position: relative;
-  aspect-ratio: 3/4;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-}
-
-.profile-portrait::before {
-  content: "☽";
-  position: absolute;
-  top: 2rem;
-  right: 2rem;
-  font-size: 4rem;
-  color: var(--moon);
-  opacity: 0.3;
-}
-
-.profile-portrait h2 {
-  font-size: 2.5rem;
-  font-style: italic;
-  font-weight: 900;
-  line-height: 1;
-  margin-bottom: 1rem;
-  color: var(--moon);
-}
-
-.profile-portrait .age-badge {
-  font-family: var(--mono);
-  font-size: 0.8rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--paper);
-  opacity: 0.7;
-  margin-bottom: 1rem;
-}
-
-.profile-portrait .tagline {
-  font-size: 1.1rem;
-  font-style: italic;
-  line-height: 1.4;
-  color: rgba(244,241,234,0.9);
-}
-
-.profile-content h3 {
-  font-size: 2.5rem;
-  font-weight: 900;
-  line-height: 1;
-  margin-bottom: 1.5rem;
-  letter-spacing: -0.02em;
-}
-
-.profile-content h3 .highlight {
-  color: var(--accent);
-  font-style: italic;
-}
-
-.profile-deck {
-  font-size: 1.3rem;
-  font-style: italic;
-  color: var(--ink-soft);
-  line-height: 1.4;
-  margin-bottom: 1.5rem;
-  border-left: 3px solid var(--accent);
-  padding-left: 1.25rem;
-}
-
-.profile-content p {
-  font-size: 1.05rem;
-  margin-bottom: 1rem;
-  text-align: justify;
-  hyphens: auto;
-}
-
-.profile-stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  margin: 2rem 0;
-  padding: 1.5rem;
-  background: var(--paper-deep);
-  border: 1px solid var(--rule);
-}
-
-.stat-box {
-  text-align: center;
-}
-
-.stat-box .num {
-  font-family: var(--mono);
-  font-size: 2rem;
-  font-weight: 900;
-  color: var(--accent);
-  line-height: 1;
-}
-
-.stat-box .label {
-  font-family: var(--mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  margin-top: 0.25rem;
-}
-
-.cta-row {
-  display: flex;
-  gap: 1rem;
-  margin-top: 2rem;
-  flex-wrap: wrap;
-}
-
-.cta-btn {
-  display: inline-block;
-  padding: 0.85rem 1.75rem;
-  background: var(--ink);
-  color: var(--paper);
-  text-decoration: none;
-  font-family: var(--mono);
-  font-size: 0.8rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  transition: all 0.2s;
-  border: 1px solid var(--ink);
-}
-
-.cta-btn:hover {
-  background: var(--accent);
-  border-color: var(--accent);
-}
-
-.cta-btn.outline {
-  background: transparent;
-  color: var(--ink);
-}
-
-.cta-btn.outline:hover {
-  background: var(--ink);
-  color: var(--paper);
-}
-
-/* ═══ WORLDS GRID ═══ */
-.worlds-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 0;
-  border-top: 1px solid var(--rule);
-  border-left: 1px solid var(--rule);
-}
-
-.world-card {
-  padding: 1.75rem;
-  border-right: 1px solid var(--rule);
-  border-bottom: 1px solid var(--rule);
-  background: var(--paper);
-  transition: background 0.2s;
-  position: relative;
-}
-
-.world-card:hover {
-  background: var(--paper-deep);
-}
-
-.world-card.flagship {
-  grid-column: span 2;
-  background: var(--ink);
-  color: var(--paper);
-}
-
-.world-card.flagship:hover {
-  background: #2a241d;
-}
-
-.world-num {
-  font-family: var(--mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.2em;
-  color: var(--accent);
-  margin-bottom: 0.5rem;
-}
-
-.world-card.flagship .world-num {
-  color: var(--moon);
-}
-
-.world-card h3 {
-  font-size: 1.5rem;
-  font-weight: 900;
-  line-height: 1.05;
-  margin-bottom: 0.5rem;
-  letter-spacing: -0.01em;
-}
-
-.world-card.flagship h3 {
-  font-size: 2rem;
-  font-style: italic;
-}
-
-.world-tagline {
-  font-style: italic;
-  color: var(--ink-soft);
-  font-size: 0.95rem;
-  margin-bottom: 0.75rem;
-}
-
-.world-card.flagship .world-tagline {
-  color: var(--moon);
-}
-
-.world-desc {
-  font-size: 0.92rem;
-  line-height: 1.5;
-  margin-bottom: 1rem;
-}
-
-.world-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem;
-  margin-bottom: 1rem;
-  font-family: var(--mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.05em;
-}
-
-.world-tags span {
-  padding: 0.2rem 0.5rem;
-  border: 1px solid currentColor;
-  opacity: 0.7;
-}
-
-.world-card a.launch {
-  font-family: var(--mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--accent);
-  text-decoration: none;
-  border-bottom: 1px solid var(--accent);
-  padding-bottom: 2px;
-}
-
-.world-card.flagship a.launch {
-  color: var(--moon);
-  border-color: var(--moon);
-}
-
-.world-card a.launch:hover {
-  opacity: 0.7;
-}
-
-/* ═══ VAULT ═══ */
-.vault-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.5rem;
-}
-
-.gem {
-  border: 1px solid var(--rule);
-  padding: 1.5rem;
-  position: relative;
-  background: var(--paper);
-  transition: transform 0.2s;
-}
-
-.gem:hover {
-  transform: translateY(-2px);
-}
-
-.gem.crown {
-  grid-column: span 2;
-  background: var(--paper-deep);
-  border: 2px solid var(--ink);
-}
-
-.gem-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: 0.75rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid var(--rule);
-}
-
-.gem-carats {
-  font-family: var(--mono);
-  font-size: 0.75rem;
-  color: var(--accent);
-  letter-spacing: 0.1em;
-}
-
-.gem h4 {
-  font-size: 1.25rem;
-  font-weight: 900;
-  margin-bottom: 0.5rem;
-  line-height: 1.1;
-}
-
-.gem.crown h4 {
-  font-size: 1.75rem;
-  font-style: italic;
-}
-
-.gem p {
-  font-size: 0.9rem;
-  line-height: 1.5;
-  margin-bottom: 1rem;
-  color: var(--ink-soft);
-}
-
-.gem a {
-  font-family: var(--mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--ink);
-  text-decoration: none;
-  border-bottom: 1px solid var(--ink);
-}
-
-.gem a:hover { color: var(--accent); border-color: var(--accent); }
-
-/* ═══ MANIFESTO ═══ */
-.manifesto {
-  background: var(--ink);
-  color: var(--paper);
-  padding: 4rem 2rem;
-  text-align: center;
-  margin: 0 -2rem;
-}
-
-.manifesto .section-label {
-  color: var(--moon);
-}
-
-.manifesto-quote {
-  font-size: clamp(1.5rem, 3vw, 2.25rem);
-  font-style: italic;
-  line-height: 1.3;
-  max-width: 900px;
-  margin: 0 auto 2rem;
-  font-weight: 400;
-}
-
-.manifesto-quote::before {
-  content: """;
-  font-size: 4rem;
-  line-height: 0;
-  vertical-align: -0.4em;
-  color: var(--moon);
-  margin-right: 0.2em;
-}
-
-.pillars {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 2rem;
-  max-width: 1000px;
-  margin: 3rem auto 0;
-  text-align: left;
-}
-
-.pillar {
-  border-top: 1px solid var(--moon);
-  padding-top: 1rem;
-}
-
-.pillar-num {
-  font-family: var(--mono);
-  font-size: 0.7rem;
-  color: var(--moon);
-  letter-spacing: 0.2em;
-  margin-bottom: 0.5rem;
-}
-
-.pillar h4 {
-  font-size: 1.25rem;
-  font-style: italic;
-  margin-bottom: 0.5rem;
-}
-
-.pillar p {
-  font-size: 0.9rem;
-  color: rgba(244,241,234,0.8);
-  line-height: 1.5;
-}
-
-/* ═══ LIBRARY ═══ */
-.books {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-}
-
-.book {
-  border: 1px solid var(--rule);
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-}
-
-.book-badge {
-  font-family: var(--mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 1rem;
-}
-
-.book h4 {
-  font-size: 1.75rem;
-  font-style: italic;
-  font-weight: 900;
-  line-height: 1.1;
-  margin-bottom: 1rem;
-}
-
-.book p {
-  font-size: 0.95rem;
-  line-height: 1.5;
-  margin-bottom: 1.5rem;
-  flex-grow: 1;
-}
-
-/* ═══ BENCH ═══ */
-.bench-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-}
-
-.bench-col h4 {
-  font-family: var(--mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 1rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid var(--rule);
-}
-
-.bench-col ul {
-  list-style: none;
-}
-
-.bench-col li {
-  padding: 0.4rem 0;
-  font-size: 0.95rem;
-  border-bottom: 1px dotted rgba(26,22,18,0.2);
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.bench-col li::before {
-  content: "◈";
-  color: var(--accent);
-  font-size: 0.7rem;
-}
-
-/* ═══ CONTACT ═══ */
-.contact {
-  text-align: center;
-  padding: 4rem 2rem;
-  background: var(--paper-deep);
-  margin: 0 -2rem;
-  border-top: 3px double var(--rule);
-  border-bottom: 3px double var(--rule);
-}
-
-.contact h2 {
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-style: italic;
-  font-weight: 900;
-  margin-bottom: 1rem;
-}
-
-.contact-email {
-  font-family: var(--mono);
-  font-size: 1.1rem;
-  color: var(--accent);
-  margin: 1.5rem 0;
-  letter-spacing: 0.05em;
-  word-break: break-all;
-}
-
-.contact-email a {
-  color: inherit;
-  text-decoration: none;
-  border-bottom: 1px solid var(--accent);
-}
-
-.contact-meta {
-  font-family: var(--mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  margin-top: 1rem;
-}
-
-.socials {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  margin-top: 2rem;
-  font-family: var(--mono);
-  font-size: 0.8rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-}
-
-.socials a {
-  color: var(--ink);
-  text-decoration: none;
-  border-bottom: 1px solid var(--ink);
-}
-
-.socials a:hover { color: var(--accent); border-color: var(--accent); }
-
-.colophon {
-  text-align: center;
-  padding: 2rem 0;
-  font-family: var(--mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.15em;
-  color: var(--ink-soft);
-  text-transform: uppercase;
-}
-
-.colophon .ps {
-  font-family: var(--serif);
-  font-style: italic;
-  text-transform: none;
-  letter-spacing: 0;
-  font-size: 0.9rem;
-  margin-top: 0.5rem;
-  color: var(--ink);
-}
-
-@media (max-width: 768px) {
-  .container { padding: 0 1.25rem; }
-  .profile-lead { grid-template-columns: 1fr; }
-  .profile-portrait { aspect-ratio: auto; padding: 2rem; }
-  .world-card.flagship { grid-column: span 1; }
-  .gem.crown { grid-column: span 1; }
-  .books { grid-template-columns: 1fr; }
-  .nav-ribbon { gap: 1rem; font-size: 0.68rem; }
-  .manifesto, .contact { margin: 0 -1.25rem; padding: 3rem 1.25rem; }
-  .profile-stats { grid-template-columns: 1fr; }
-}
-</style>
+<meta property="og:type" content="profile">
+<meta property="og:title" content="The Al-Aqmar Journal — Future Edition">
+<meta property="og:description" content="A thirteen-year-old is shipping AI that forgets you on purpose. Eleven live products. Zero bytes retained.">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23111214'/%3E%3Cpath d='M20.5 6a10 10 0 100 20 12 12 0 010-20z' fill='%23f3f2ed'/%3E%3C/svg%3E">
+<link rel="preload" href="assets/fonts/instrument-serif-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/inter-tight-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/styles.css">
+<script>/* set the edition before first paint */(function(){try{var e=localStorage.getItem('aaj-edition');if(!e)e=matchMedia('(prefers-color-scheme: dark)').matches?'night':'day';document.documentElement.dataset.edition=e;}catch(_){}})();</script>
 </head>
 <body>
+<a class="skip" href="#front">Skip to the front page</a>
 
-<div class="container">
-
+<!-- ══════════════ MASTHEAD ══════════════ -->
 <header class="masthead">
-  <div class="masthead-top">
-    <span>Vol. XIII · Issue I</span>
-    <span>Saturday, September 26, 2026</span>
-    <span class="privacy-seal">◉ Zero Surveillance</span>
+  <div class="wrap">
+    <div class="masthead__utility">
+      <p class="label">Vol.&nbsp;XIII &nbsp;·&nbsp; No.&nbsp;01</p>
+      <p class="label u-mid">Bangalore &nbsp;·&nbsp; <time datetime="2026-09-26">Saturday, 26 September 2026</time></p>
+      <button class="edition-toggle" type="button" id="edition" aria-pressed="false" aria-label="Switch between the day and night edition">
+        <span class="sw" aria-hidden="true"></span>
+        <span><span class="ed-pre">Edition: </span><b id="edition-name">Day</b></span>
+      </button>
+    </div>
+
+    <div class="nameplate">
+      <h1>
+        <span class="the">The</span><span class="np"><span class="moon" aria-hidden="true">☾</span> Al-Aqmar</span> <span class="jrnl">Journal</span>
+      </h1>
+    </div>
+
+    <p class="masthead__strap label">
+      <span>Al-Aqmar Tinwala</span>
+      <span class="arabic" lang="ar" dir="rtl">القمر</span>
+      <span>Heart-First AI Architect</span>
+      <span class="strap-x">Eleven Live Products</span>
+      <span class="strap-x">Zero Bytes Retained</span>
+    </p>
   </div>
-  <h1><span class="moon">☽</span> The Al-Aqmar Journal</h1>
-  <div class="masthead-sub">
-    Al-Aqmar Tinwala · <span class="arabic">القمر</span> · Architect v13 · Heart-First Intelligence
+
+  <div class="ticker" aria-label="Latest dispatches">
+    <ul class="ticker__track" id="ticker-a">
+      <li><b>eSAMz AI</b> passes 3,000 active users — and stores none of them</li>
+      <li><b>RealLearn</b> ships three-stage mastery in 63 languages</li>
+      <li><b>youAI-2B</b> — a 2B-parameter transformer written from raw tensor math</li>
+      <li><b>गति</b> folds autos, metro and buses into one journey</li>
+      <li><b>Second volume published:</b> 30 Days Mastering Claude Code</li>
+      <li><b>π</b> renders molecules at 60fps on a school Chromebook</li>
+      <li><b>Filed:</b> 43 public repositories, 11 cut and rated</li>
+    </ul>
   </div>
 </header>
 
-<nav class="nav-ribbon">
-  <a href="#profile">Profile</a>
-  <a href="#worlds">The Eleven Worlds</a>
-  <a href="#vault">The Vault</a>
-  <a href="#ethos">Manifesto</a>
-  <a href="#library">Library</a>
-  <a href="#bench">The Bench</a>
-  <a href="#contact">Correspondence</a>
-</nav>
-
-<!-- ═══ PROFILE — THE LEAD ═══ -->
-<section class="section" id="profile">
-  <div class="section-label">§ I · Profile</div>
-  <h2 class="section-title">The Architect.</h2>
-  <hr class="section-rule">
-
-  <div class="profile-lead">
-    <aside class="profile-portrait">
-      <div class="age-badge">Architect v13 · Age is just a version number</div>
-      <h2>Al-Aqmar<br>Tinwala</h2>
-      <div class="tagline">"القمر — The Moon. Heart-first AI architect engineering systems that treat humans with dignity."</div>
-    </aside>
-
-    <div class="profile-content">
-      <h3>A 13-year-old building <span class="highlight">privacy-first intelligence</span> with a soul.</h3>
-      <p class="profile-deck">I didn't start building AI for corporate hype or speculative valuation — I started because our digital tools should grant everyday humans speed, privacy, and genuine cognitive elevation.</p>
-      <p>From adaptive EdTech that deconstructs complex physics into 3-part mastery, to privacy-first LLMs that never store a single user byte, to 60fps molecular visualizations running on school Chromebooks — I believe exceptional code has a heartbeat.</p>
-      <p>Every line I ship is guided by one immutable rule: <strong>Heart First</strong>. If a system doesn't treat people with dignity, it doesn't belong on the internet.</p>
-
-      <div class="profile-stats">
-        <div class="stat-box">
-          <div class="num">11</div>
-          <div class="label">Live Worlds</div>
-        </div>
-        <div class="stat-box">
-          <div class="num">3,000+</div>
-          <div class="label">Active Users</div>
-        </div>
-        <div class="stat-box">
-          <div class="num">2</div>
-          <div class="label">Published Books</div>
-        </div>
-      </div>
-
-      <div class="cta-row">
-        <a href="#worlds" class="cta-btn">Explore My Work →</a>
-        <a href="#contact" class="cta-btn outline">Get In Touch</a>
-      </div>
-    </div>
+<!-- ══════════════ RAIL ══════════════ -->
+<div class="rail">
+  <div class="wrap rail__inner">
+    <a class="rail__mark" href="#top"><span class="moon" aria-hidden="true">☾</span> A&nbsp;·&nbsp;A Journal</a>
+    <nav aria-label="Sections">
+      <a href="#front">Front Page</a>
+      <a href="#works">Selected Works</a>
+      <a href="#archive">Archive</a>
+      <a href="#editorial">Editorial</a>
+      <a href="#library">Library</a>
+      <a href="#ledger">Ledger</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="edition-toggle rail__edition" type="button" id="edition-2" aria-pressed="false" aria-label="Switch between day and night edition">
+      <span class="sw" aria-hidden="true"></span>
+    </button>
   </div>
-</section>
-
-<!-- ═══ THE ELEVEN WORLDS ═══ -->
-<section class="section" id="worlds">
-  <div class="section-label">§ II · The Eleven Worlds</div>
-  <h2 class="section-title">Real utility, crafted with dignity.</h2>
-  <hr class="section-rule">
-
-  <div class="worlds-grid">
-
-    <article class="world-card flagship">
-      <div class="world-num">✦ 01 · FLAGSHIP</div>
-      <h3>RealLearn AI</h3>
-      <div class="world-tagline">Adaptive EdTech · 3-Stage Mastery</div>
-      <p class="world-desc">AI-native learning engine with live news grounding, quiz-gated progression, and on-device SM-2 spaced repetition. Next.js 16 · Groq LPU · 63 languages.</p>
-      <div class="world-tags"><span>Next.js 16</span><span>Groq LPU</span><span>SM-2</span><span>63 Langs</span></div>
-      <a href="https://reallearn-info.vercel.app" class="launch" rel="noopener noreferrer">Launch Live ↗</a>
-    </article>
-
-    <article class="world-card">
-      <div class="world-num">02 · PRIVACY CORE</div>
-      <h3>eSAMz AI</h3>
-      <div class="world-tagline">Privacy-first LLM engine</div>
-      <p class="world-desc">128k context window. Sarvam 105b. Low-latency Rust router. Guaranteed zero data retention.</p>
-      <div class="world-tags"><span>Rust</span><span>Sarvam</span><span>128k Ctx</span></div>
-      <a href="https://esamz.info" class="launch" rel="noopener noreferrer">Launch →</a>
-    </article>
-
-    <article class="world-card">
-      <div class="world-num">03 · 3D PHYSICS</div>
-      <h3>π — Pi</h3>
-      <div class="world-tagline">Interactive atoms & molecules</div>
-      <p class="world-desc">Tactile WebGL science playground. Electron clouds, covalent bonds, 3D molecular structures at 60fps.</p>
-      <div class="world-tags"><span>WebGL</span><span>Three.js</span><span>60FPS</span></div>
-      <a href="https://science-project-pi.vercel.app" class="launch" rel="noopener noreferrer">Explore →</a>
-    </article>
-
-    <article class="world-card">
-      <div class="world-num">04 · MOBILITY OS</div>
-      <h3>गति — Gati</h3>
-      <div class="world-tagline">Hyperlocal transit intelligence</div>
-      <p class="world-desc">Multimodal Indian transit. Autos, metro, state buses, bikes. Live ETAs. Bilingual voice queries.</p>
-      <div class="world-tags"><span>Voice AI</span><span>Live ETA</span><span>EN/हिन्दी</span></div>
-      <a href="https://gati-rho.vercel.app" class="launch" rel="noopener noreferrer">Hop on →</a>
-    </article>
-
-    <article class="world-card">
-      <div class="world-num">05 · STRATEGY</div>
-      <h3>PivotIQ</h3>
-      <div class="world-tagline">Startup positioning engine</div>
-      <p class="world-desc">Adversarial investor prompts. Risk exposure checks. Competitive moat modeling for founders.</p>
-      <div class="world-tags"><span>Gemini AI</span><span>Risk Matrix</span></div>
-      <a href="https://pivot-iq.vercel.app" class="launch" rel="noopener noreferrer">Launch →</a>
-    </article>
-
-    <article class="world-card">
-      <div class="world-num">06 · WELLNESS</div>
-      <h3>MindEase</h3>
-      <div class="world-tagline">100% on-device emotional support</div>
-      <p class="world-desc">Empathetic voice chatbot. Local browser processing. Zero telemetry. 20 languages.</p>
-      <div class="world-tags"><span>On-Device</span><span>Privacy</span><span>20 Langs</span></div>
-      <a href="https://me.esamz.info" class="launch" rel="noopener noreferrer">Launch →</a>
-    </article>
-
-    <article class="world-card">
-      <div class="world-num">07 · FINTECH</div>
-      <h3>Hissab</h3>
-      <div class="world-tagline">Merchant sales & profit tracker</div>
-      <p class="world-desc">Mobile-first bookkeeping for Indian micro-enterprises. 30-day rolling analytics. Real-time margins.</p>
-      <div class="world-tags"><span>PWA</span><span>Local Storage</span></div>
-      <a href="https://hisaab.esamz.info" class="launch" rel="noopener noreferrer">Launch →</a>
-    </article>
-
-    <article class="world-card">
-      <div class="world-num">08 · VOICE AI</div>
-      <h3>CiboCocinar</h3>
-      <div class="world-tagline">Hands-free kitchen companion</div>
-      <p class="world-desc">Ultra-low-latency culinary voice assistant. Step-by-step timers. Completely hands-free. &lt;200ms.</p>
-      <div class="world-tags"><span>Voice AI</span><span>Fast Audio</span></div>
-      <a href="https://cibo.esamz.info" class="launch" rel="noopener noreferrer">Launch →</a>
-    </article>
-
-    <article class="world-card">
-      <div class="world-num">09 · DESIGN QA</div>
-      <h3>Fit The Color</h3>
-      <div class="world-tagline">Color-space harmony calculator</div>
-      <p class="world-desc">WCAG AAA contrast. Perceptual OKLCH distances. Harmonic palette generation for designers.</p>
-      <div class="world-tags"><span>OKLCH</span><span>Next.js 15</span></div>
-      <a href="https://fit-the-color-info.vercel.app" class="launch" rel="noopener noreferrer">Launch →</a>
-    </article>
-
-    <article class="world-card">
-      <div class="world-num">10 · MINIMAL GAME</div>
-      <h3>Neon Tic-Tac-Toe</h3>
-      <div class="world-tagline">High contrast · Pure vanilla</div>
-      <p class="world-desc">Zero-dependency canvas game. Neon lighting shaders. Unbeatable minimax AI logic.</p>
-      <div class="world-tags"><span>Vanilla JS</span><span>Minimax</span><span>0 Deps</span></div>
-      <a href="https://tic-info.vercel.app" class="launch" rel="noopener noreferrer">Play →</a>
-    </article>
-
-    <article class="world-card">
-      <div class="world-num">11 · IN THE LAB</div>
-      <h3>SeeMarket</h3>
-      <div class="world-tagline">Real-time technical indicators</div>
-      <p class="world-desc">RSI, MACD, algorithmic support/resistance. Server-side computation. Zero client lag. On the workbench.</p>
-      <div class="world-tags"><span>TypeScript</span><span>Server-Side</span></div>
-      <a href="https://github.com/alakmar344/See-market" class="launch" rel="noopener noreferrer">Inspect Repo ↗</a>
-    </article>
-
-  </div>
-</section>
-
-<!-- ═══ THE VAULT ═══ -->
-<section class="section" id="vault">
-  <div class="section-label">§ III · The Vault</div>
-  <h2 class="section-title">Git Gems. Carats cut from the dark.</h2>
-  <hr class="section-rule">
-  <p style="font-size:1.05rem; max-width:720px; margin-bottom:2rem; font-style:italic; color:var(--ink-soft);">
-    Out of 43 public repositories, 11 were selected, audited, and rated across architectural depth, performance rigor, and local-first execution.
-  </p>
-
-  <div class="vault-grid">
-
-    <article class="gem crown">
-      <div class="gem-header">
-        <span style="font-family:var(--mono); font-size:0.7rem; letter-spacing:0.2em; color:var(--accent);">✦ THE CROWN GEM</span>
-        <span class="gem-carats">90 CARATS</span>
-      </div>
-      <h4>youAI-2B</h4>
-      <p>A complete, pip-installable toolkit for training, aligning, and serving a 2B-parameter autoregressive transformer. Engineered from raw tensor mathematics — no boilerplate wrappers. RoPE · RMSNorm · SwiGLU · GQA · KV-Cache. DPO · ORPO · SimPO alignment. LoRA · QLoRA · DARE · TIES merging.</p>
-      <a href="https://github.com/alakmar344/youAI-2B-From-Scratch-Transformer-Implementation" rel="noopener noreferrer">Hold the Crown Gem →</a>
-    </article>
-
-    <article class="gem">
-      <div class="gem-header"><span>GEM 02</span><span class="gem-carats">87 CT</span></div>
-      <h4>Gati Codebase</h4>
-      <p>14.1k lines of TypeScript. 57 commits. 14 merged PRs. Bilingual EN/हिन्दी voice intent routing.</p>
-      <a href="https://github.com/alakmar344/gati" rel="noopener noreferrer">Inspect →</a>
-    </article>
-
-    <article class="gem">
-      <div class="gem-header"><span>GEM 03</span><span class="gem-carats">82 CT</span></div>
-      <h4>Vinecraft</h4>
-      <p>Infinite browser voxel world. Procedural terrain, ambient occlusion, 10 biomes, 46 block physics.</p>
-      <a href="https://github.com/alakmar344/vinecraft" rel="noopener noreferrer">Mine It →</a>
-    </article>
-
-    <article class="gem">
-      <div class="gem-header"><span>GEM 04</span><span class="gem-carats">82 CT</span></div>
-      <h4>science-project</h4>
-      <p>Custom 60fps chemistry visualizer. Optimized for low-power Chromebooks without GPU thermal throttling.</p>
-      <a href="https://github.com/alakmar344/science-project" rel="noopener noreferrer">Inspect →</a>
-    </article>
-
-    <article class="gem">
-      <div class="gem-header"><span>GEM 05</span><span class="gem-carats">81 CT</span></div>
-      <h4>esamz.a</h4>
-      <p>112 commits. Next.js proxy. Granular consent tiers. Verifiable memory purge endpoints.</p>
-      <a href="https://github.com/alakmar344/esamz.a" rel="noopener noreferrer">Read Architecture →</a>
-    </article>
-
-    <article class="gem">
-      <div class="gem-header"><span>GEM 06</span><span class="gem-carats">79 CT</span></div>
-      <h4>See-market</h4>
-      <p>Two-service fintech backend. Real-time RSI, Bollinger Bands, MA convergences over streaming sockets.</p>
-      <a href="https://github.com/alakmar344/See-market" rel="noopener noreferrer">Inspect →</a>
-    </article>
-
-    <article class="gem">
-      <div class="gem-header"><span>GEM 07</span><span class="gem-carats">79 CT</span></div>
-      <h4>analytics-hub</h4>
-      <p>Self-hosted analytics. Visitor IPs hashed via salt-rotated HMAC-SHA256. Mathematically incapable of tracking.</p>
-      <a href="https://github.com/alakmar344/analytics-hub" rel="noopener noreferrer">Read Proof →</a>
-    </article>
-
-    <article class="gem">
-      <div class="gem-header"><span>GEM 08</span><span class="gem-carats">74 CT</span></div>
-      <h4>My-code / eSAMz Code</h4>
-      <p>Browser-first AI coding agent. Plan → execute → observe → test cycles in isolated Docker containers.</p>
-      <a href="https://github.com/alakmar344/My-code" rel="noopener noreferrer">Inspect Agent →</a>
-    </article>
-
-    <article class="gem">
-      <div class="gem-header"><span>GEM 09</span><span class="gem-carats">73 CT</span></div>
-      <h4>Not-a-thing-launcher</h4>
-      <p>Nothing-inspired Android launcher. Dot-matrix typography. Zero-telemetry battery efficiency. GitHub CI builds.</p>
-      <a href="https://github.com/alakmar344/Not-a-thing-launcher" rel="noopener noreferrer">Get APK →</a>
-    </article>
-
-    <article class="gem">
-      <div class="gem-header"><span>GEM 10</span><span class="gem-carats">72 CT</span></div>
-      <h4>revive-me</h4>
-      <p>Zero-dependency Rust utility. Revives corrupted legacy files (.dbf, .xls, .dat) into clean JSON. No cloud APIs.</p>
-      <a href="https://github.com/alakmar344/revive-me" rel="noopener noreferrer">Inspect Rust CLI →</a>
-    </article>
-
-    <article class="gem">
-      <div class="gem-header"><span>ROUGH STONE</span><span class="gem-carats">UNCUT</span></div>
-      <h4>breeze-framework</h4>
-      <p>Experimental lightweight framework. Currently on the lapidary's bench. Cutting has just begun.</p>
-      <a href="https://github.com/alakmar344/breeze-framework" rel="noopener noreferrer">Watch It Grow →</a>
-    </article>
-
-  </div>
-
-  <div style="text-align:center; margin-top:2.5rem;">
-    <a href="https://github.com/alakmar344" class="cta-btn outline" rel="noopener noreferrer">Browse All 43 Repos on GitHub →</a>
-  </div>
-</section>
-
-<!-- ═══ MANIFESTO ═══ -->
-<section class="manifesto" id="ethos">
-  <div class="section-label">§ IV · Manifesto</div>
-  <blockquote class="manifesto-quote">
-    Software should grant dignity, not extract attention.
-  </blockquote>
-
-  <p style="max-width:720px; margin:0 auto; font-style:italic; color:rgba(244,241,234,0.85); font-size:1.05rem;">
-    I didn't start building AI for corporate hype or speculative valuation. I started because our digital tools should grant everyday humans speed, privacy, and genuine cognitive elevation.
-  </p>
-
-  <div class="pillars">
-    <div class="pillar">
-      <div class="pillar-num">I · PRINCIPLE</div>
-      <h4>Heart First</h4>
-      <p>Software engineered for human elevation, not addictive doom-scrolling or surveillance.</p>
-    </div>
-    <div class="pillar">
-      <div class="pillar-num">II · PRINCIPLE</div>
-      <h4>Zero Retention</h4>
-      <p>Your queries, identity, and thoughts stay yours. Absolute zero data logging by design.</p>
-    </div>
-    <div class="pillar">
-      <div class="pillar-num">III · PRINCIPLE</div>
-      <h4>Uncompromising Wonder</h4>
-      <p>Build for genuine curiosity — atoms, motion, live transit, and high-impact learning systems.</p>
-    </div>
-  </div>
-
-  <p style="margin-top:3rem; font-family:var(--mono); font-size:0.8rem; letter-spacing:0.2em; color:var(--moon); text-transform:uppercase;">
-    — yes, I'm 13. and yes, I ship systems that work. ♡
-  </p>
-</section>
-
-<!-- ═══ LIBRARY ═══ -->
-<section class="section" id="library">
-  <div class="section-label">§ V · The Library</div>
-  <h2 class="section-title">Two volumes. Zero fluff.</h2>
-  <hr class="section-rule">
-  <p style="font-size:1.05rem; max-width:720px; margin-bottom:2rem; font-style:italic; color:var(--ink-soft);">
-    Written from hands-on terminal experience — dissecting transformer token mechanics, model alignment strategies, and 30 days of production Claude Code orchestration.
-  </p>
-
-  <div class="books">
-    <article class="book">
-      <div class="book-badge">★ Bestseller · AI Vol. 1</div>
-      <h4>The AI Mastery Handbook</h4>
-      <p>An architectural breakdown of Claude, Gemini, Llama, and ChatGPT. Foundational LLM mechanics, attention math, temperature tuning, and high-precision prompt engineering.</p>
-      <a href="https://www.amazon.com/dp/B0GX2N6WTT" class="cta-btn" rel="noopener noreferrer">View on Amazon →</a>
-    </article>
-
-    <article class="book">
-      <div class="book-badge">✦ New Release · 30 Days</div>
-      <h4>30 Days Mastering Claude Code</h4>
-      <p>A tactical guide into agentic developer automation, subagent orchestration, and production terminal coding workflows derived from shipping real products.</p>
-      <a href="https://www.amazon.com/dp/B0GY1F3573" class="cta-btn" rel="noopener noreferrer">View on Amazon →</a>
-    </article>
-  </div>
-</section>
-
-<!-- ═══ THE BENCH ═══ -->
-<section class="section" id="bench">
-  <div class="section-label">§ VI · The Architecture Bench</div>
-  <h2 class="section-title">Low-latency bones. Velvet UX.</h2>
-  <hr class="section-rule">
-
-  <div class="bench-grid">
-    <div class="bench-col">
-      <h4>Core Runtimes & Compilers</h4>
-      <ul>
-        <li>Rust</li>
-        <li>Next.js 16</li>
-        <li>Fastify 5</li>
-        <li>TypeScript</li>
-        <li>Node.js 24</li>
-        <li>Turbopack</li>
-      </ul>
-    </div>
-    <div class="bench-col">
-      <h4>AI Inference & Hardware</h4>
-      <ul>
-        <li>Groq LPU</li>
-        <li>Sarvam 105b</li>
-        <li>PyTorch</li>
-        <li>On-Device LLMs</li>
-        <li>Serper Grounding</li>
-        <li>Whisper & Voice</li>
-      </ul>
-    </div>
-    <div class="bench-col">
-      <h4>Disciplines & Protocols</h4>
-      <ul>
-        <li>Zero Retention</li>
-        <li>WebGL 3D</li>
-        <li>SM-2 Spaced Repetition</li>
-        <li>Multimodal Transit</li>
-        <li>OKLCH Math</li>
-        <li>From-Scratch Transformers</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ CONTACT ═══ -->
-<section class="contact" id="contact">
-  <div class="section-label" style="color:var(--accent);">§ VII · Correspondence</div>
-  <h2>Let's architect something exceptional.</h2>
-  <p style="max-width:600px; margin:1rem auto; font-style:italic; color:var(--ink-soft);">
-    Available for AI systems consulting, fast full-stack engineering, and soulful collaborations.
-  </p>
-
-  <div class="contact-email">
-    <a href="mailto:proman007power@gmail.com">proman007power@gmail.com</a>
-  </div>
-
-  <div class="contact-meta">
-    Response time: faster than your Turbopack build · Bangalore / Remote
-  </div>
-
-  <div class="socials">
-    <a href="https://github.com/alakmar344" rel="noopener noreferrer">GitHub</a>
-    <a href="https://www.linkedin.com/in/alakmar-teenwala-054067393" rel="noopener noreferrer">LinkedIn</a>
-    <a href="https://instagram.com/its_alakmar7" rel="noopener noreferrer">Instagram</a>
-  </div>
-</section>
-
-<footer class="colophon">
-  <div>© 2026 Al-Aqmar Tinwala · Crafted with soul & mathematical rigor</div>
-  <div class="ps">P.S. — Code can love you back. ♡</div>
-</footer>
-
+  <div class="rail__progress" id="progress" aria-hidden="true"></div>
 </div>
 
+<main id="top">
+
+<!-- ══════════════ FRONT PAGE ══════════════ -->
+<section id="front" aria-labelledby="front-h">
+  <div class="wrap front">
+
+    <!-- KEY FACTS -->
+    <aside class="facts" data-reveal>
+      <h2>Key Facts</h2>
+      <dl>
+        <div>
+          <dt>Subject</dt>
+          <dd>Al-Aqmar Tinwala<br><span class="arabic" lang="ar" dir="rtl">القمر</span> — “the moon”</dd>
+        </div>
+        <div>
+          <dt>Age</dt>
+          <dd>Thirteen. Architect v13.</dd>
+        </div>
+        <div>
+          <dt>Discipline</dt>
+          <dd>AI systems &amp; full-stack engineering — Rust, Next.js, from-scratch transformers</dd>
+        </div>
+        <div>
+          <dt>Shipped</dt>
+          <dd>11 live products · 3,000+ users</dd>
+        </div>
+        <div>
+          <dt>Filed</dt>
+          <dd>43 public repositories</dd>
+        </div>
+        <div>
+          <dt>Published</dt>
+          <dd>2 volumes, Amazon KDP</dd>
+        </div>
+        <div>
+          <dt>Based</dt>
+          <dd>Bangalore, India · Remote</dd>
+        </div>
+      </dl>
+      <p class="facts__seal"><span class="dot" aria-hidden="true"></span> Standing rule<br>Zero retention, by design</p>
+    </aside>
+
+    <!-- LEDE -->
+    <div class="lede" data-reveal>
+      <p class="lede__kicker"><span class="label label--flare">Profile</span><span class="label">The Architect, v13</span></p>
+      <h2 id="front-h">A thirteen-year-old is shipping AI that <em>forgets you</em> on purpose.</h2>
+      <p class="lede__deck">Eleven products are live. An LLM engine, a learning engine, a transit engine — all built on a single rule most of the industry has quietly abandoned: keep nothing.</p>
+
+      <p class="byline">
+        <span class="label">By the desk of Al-Aqmar Tinwala</span>
+        <span class="label">Heart-First Intelligence</span>
+      </p>
+
+      <div class="lede__body">
+        <p>I didn’t start building AI for hype or a valuation. I started because the tools we hand to ordinary people should give them speed, privacy, and genuine cognitive lift — not a slower phone and a thinner sense of self.</p>
+        <p>So the work looks like this: adaptive EdTech that takes one question and turns it into three stages of real understanding. A privacy-first assistant with a 128k context window that never writes a user byte to disk. Molecular visualisations holding 60fps on a school Chromebook with no GPU to speak of.</p>
+        <p>Underneath it is a 2B-parameter transformer I wrote from raw tensor mathematics — attention, RoPE, RMSNorm, alignment — because you should be able to explain every layer of the thing you ship.</p>
+        <p><strong>Heart first.</strong> If a system doesn’t treat the person using it with dignity, it doesn’t belong on the internet. That test has killed more of my features than any deadline.</p>
+      </div>
+
+      <p class="lede__cta">
+        <a class="btn" href="#works">Read the selected works</a>
+        <a class="elink" href="#contact">Start a correspondence</a>
+      </p>
+    </div>
+
+    <!-- PLATE + LEAD TEASER -->
+    <div class="aside-col">
+      <figure class="plate" data-reveal>
+        <div class="plate__art">
+          <svg class="eng moon-plate" viewBox="0 0 320 320" role="img" aria-labelledby="moon-t">
+            <title id="moon-t">Halftone engraving of the moon, the meaning of the name Al-Aqmar</title>
+            <defs>
+              <pattern id="mp-dots" width="9" height="9" patternUnits="userSpaceOnUse">
+                <circle cx="4.5" cy="4.5" r="2" fill="currentColor"/>
+              </pattern>
+              <linearGradient id="mp-term" x1="0.05" y1="0.1" x2="1" y2="0.75">
+                <stop offset="0.1" stop-color="#fff" stop-opacity="1"/>
+                <stop offset="0.6" stop-color="#fff" stop-opacity="0.35"/>
+                <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+              </linearGradient>
+              <mask id="mp-mask"><rect width="320" height="320" fill="url(#mp-term)"/></mask>
+              <clipPath id="mp-clip"><circle cx="158" cy="156" r="116"/></clipPath>
+            </defs>
+            <g class="hair">
+              <path d="M158 8v26M158 278v26M8 156h26M282 156h26"/>
+              <circle cx="158" cy="156" r="134" stroke-dasharray="1 7"/>
+            </g>
+            <g class="spin">
+              <circle class="hair" cx="158" cy="156" r="144" stroke-dasharray="14 10"/>
+              <circle class="acc-f" cx="158" cy="12" r="3.4"/>
+            </g>
+            <circle cx="158" cy="156" r="116" fill="url(#mp-dots)" mask="url(#mp-mask)"/>
+            <g clip-path="url(#mp-clip)" class="hair">
+              <circle cx="112" cy="120" r="22"/><circle cx="182" cy="196" r="31"/>
+              <circle cx="96" cy="204" r="13"/><circle cx="196" cy="108" r="9"/>
+              <circle cx="140" cy="168" r="5"/>
+            </g>
+            <circle class="ln" cx="158" cy="156" r="116"/>
+            <text x="16" y="306">Plate I — Al-Qamar</text>
+          </svg>
+        </div>
+        <figcaption><b>Plate I</b><span>“Al-Aqmar” means the moon. Reflected light, no heat of its own — the argument for software that serves rather than extracts.</span></figcaption>
+      </figure>
+
+      <article class="teaser" data-reveal>
+        <p class="label label--accent">Lead story <span aria-hidden="true">·</span> §&nbsp;II</p>
+        <h3>RealLearn turns one question into three stages of mastery.</h3>
+        <p>News-grounded explanation, quiz-gated progression, and spaced repetition that never leaves the device.</p>
+        <a class="elink" href="#works">Read the feature</a>
+      </article>
+    </div>
+  </div>
+
+  <!-- SIGNALS -->
+  <div class="wrap">
+    <div class="signals" data-reveal>
+      <div><p class="n">11</p><p class="k">Products live<br>in public</p></div>
+      <div><p class="n">3,000<span class="plus">+</span></p><p class="k">Active users<br>served</p></div>
+      <div><p class="n">43</p><p class="k">Public<br>repositories</p></div>
+      <div><p class="n">2</p><p class="k">Volumes<br>published</p></div>
+      <div><p class="n">0</p><p class="k">User bytes<br>retained</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ SELECTED WORKS ══════════════ -->
+<section class="section" id="works" aria-labelledby="works-h">
+  <div class="wrap">
+    <header class="shead" data-reveal>
+      <p class="shead__top"><span class="label label--accent">§&nbsp;II</span><span class="label">Selected Works</span><span class="rule-fill" aria-hidden="true"></span><span class="label">Eleven filed · Two featured</span></p>
+      <h2 id="works-h">Eleven products, live and <em>in public.</em></h2>
+      <p class="shead__note">Not prototypes. Each one is deployed, reachable from this page, and carrying real users — ordered here by depth rather than by date.</p>
+    </header>
+  </div>
+
+  <!-- FEATURE 01 — flagship, inverted spread -->
+  <div class="bleed bleed--ink">
+    <div class="wrap">
+      <article class="feature feature--lead" data-reveal>
+        <div>
+          <p class="label label--flare"><span class="dot" aria-hidden="true"></span> Flagship <span aria-hidden="true">·</span> Adaptive learning</p>
+          <div class="feature__head">
+            <span class="feature__num" aria-hidden="true">01</span>
+            <div>
+              <h3>RealLearn AI</h3>
+              <p class="feature__standfirst">One question becomes a three-stage journey: an explanation grounded in live news, progression you have to earn through a quiz gate, and SM-2 spaced repetition that lives on your device — not on a server.</p>
+            </div>
+          </div>
+          <div class="feature__metrics">
+            <div><p class="mv">63</p><p class="mk">Languages</p></div>
+            <div><p class="mv">3</p><p class="mk">Mastery stages</p></div>
+            <div><p class="mv">SM-2</p><p class="mk">On-device recall</p></div>
+            <div><p class="mv">Groq</p><p class="mk">LPU inference</p></div>
+          </div>
+          <p class="stack-line">Next.js 16 · Groq LPU · Serper grounding · local-first storage</p>
+          <a class="btn" href="https://reallearn-info.vercel.app" target="_blank" rel="noopener noreferrer">Open RealLearn <span aria-hidden="true">↗</span><span class="vh">(opens in a new tab)</span></a>
+        </div>
+        <figure class="feature__art">
+          <div class="plate__art">
+            <svg class="eng" viewBox="0 0 400 300" role="img" aria-labelledby="rl-t">
+              <title id="rl-t">Diagram: three gated stages of learning, ending in spaced repetition</title>
+              <g class="hair">
+                <path d="M0 60h400M0 150h400M0 240h400" stroke-dasharray="2 6"/>
+                <path d="M100 0v300M200 0v300M300 0v300" stroke-dasharray="2 6"/>
+              </g>
+              <path class="ln-2" d="M28 240 C 90 240 90 150 150 150 C 210 150 210 60 272 60"/>
+              <g class="ln"><path d="M150 120v60M272 30v60"/></g>
+              <circle class="sld" cx="28" cy="240" r="5"/>
+              <circle class="sld" cx="150" cy="150" r="5"/>
+              <circle class="acc-f" cx="272" cy="60" r="7"/>
+              <g class="acc"><circle cx="272" cy="60" r="16"/></g>
+              <g class="ln"><rect x="330" y="40" width="46" height="46"/><path d="M330 63h46M353 40v46"/></g>
+              <text x="14" y="268">Stage I · Ask</text>
+              <text x="122" y="196">II · Quiz gate</text>
+              <text x="246" y="106">III · Mastery</text>
+              <text x="322" y="106">SM-2</text>
+            </svg>
+          </div>
+        </figure>
+      </article>
+    </div>
+  </div>
+
+  <!-- FEATURE 02 -->
+  <div class="wrap">
+    <article class="feature feature--flip u-spread" data-reveal>
+      <div>
+        <p class="label label--accent">Privacy core <span aria-hidden="true">·</span> LLM engine</p>
+        <div class="feature__head">
+          <span class="feature__num" aria-hidden="true">02</span>
+          <div>
+            <h3>eSAMz AI</h3>
+            <p class="feature__standfirst">A 128k-context assistant riding a low-latency Rust router, with web search and granular consent tiers. Three thousand people use it daily and leave nothing behind — the purge endpoints are verifiable.</p>
+          </div>
+        </div>
+        <div class="feature__metrics">
+          <div><p class="mv">3,000+</p><p class="mk">Active users</p></div>
+          <div><p class="mv">128k</p><p class="mk">Context window</p></div>
+          <div><p class="mv">0</p><p class="mk">Bytes retained</p></div>
+          <div><p class="mv">105b</p><p class="mk">Sarvam params</p></div>
+        </div>
+        <p class="stack-line">Rust router · Sarvam 105b · Next.js proxy · consent tiers</p>
+        <a class="btn btn--ghost" href="https://esamz.info" target="_blank" rel="noopener noreferrer">Open eSAMz <span aria-hidden="true">↗</span><span class="vh">(opens in a new tab)</span></a>
+      </div>
+      <figure class="feature__art">
+        <div class="plate__art">
+          <svg class="eng" viewBox="0 0 400 300" role="img" aria-labelledby="es-t">
+            <title id="es-t">Diagram: a 128k context window filled with tokens, and an empty retention store</title>
+            <g class="hair"><path d="M40 44h320M40 300"/></g>
+            <text x="40" y="36">Context window — 128,000 tokens</text>
+            <g class="ln"><rect x="40" y="52" width="320" height="34"/></g>
+            <g class="sld">
+              <rect x="44" y="56" width="238" height="26" opacity="0.18"/>
+              <rect x="44" y="56" width="3" height="26"/><rect x="52" y="56" width="3" height="26"/>
+              <rect x="60" y="56" width="3" height="26"/><rect x="68" y="56" width="3" height="26"/>
+              <rect x="76" y="56" width="3" height="26"/><rect x="92" y="56" width="3" height="26"/>
+              <rect x="108" y="56" width="3" height="26"/><rect x="124" y="56" width="3" height="26"/>
+              <rect x="148" y="56" width="3" height="26"/><rect x="176" y="56" width="3" height="26"/>
+              <rect x="212" y="56" width="3" height="26"/><rect x="254" y="56" width="3" height="26"/>
+            </g>
+            <g class="ln"><path d="M200 86v40"/><path d="M194 120l6 8 6-8"/></g>
+            <text x="212" y="116">Rust router</text>
+            <g class="acc"><rect x="120" y="128" width="160" height="40"/></g>
+            <text x="132" y="153">&lt; 120 ms hop</text>
+            <g class="ln"><path d="M120 148H70v60h40"/><path d="M280 148h50v60h-40"/></g>
+            <text x="34" y="228">Answer</text>
+            <text x="300" y="228">Retention</text>
+            <g class="ln" stroke-dasharray="4 5"><rect x="248" y="236" width="112" height="44"/></g>
+            <text class="flr" x="286" y="266" style="font-size:19px;letter-spacing:0.1em;fill:var(--flare);opacity:1;">EMPTY</text>
+            <g class="ln"><rect x="40" y="236" width="112" height="44"/><path d="M52 258h88M132 250l8 8-8 8"/></g>
+          </svg>
+        </div>
+      </figure>
+    </article>
+  </div>
+
+  <!-- DOUBLE TRUCK — 03 / 04 -->
+  <div class="wrap">
+    <div class="truck u-rule-top">
+      <article data-reveal>
+        <p class="label"><span aria-hidden="true">03</span> <span aria-hidden="true">·</span> Interactive science</p>
+        <figure class="plate">
+          <div class="plate__art">
+            <svg class="eng" viewBox="0 0 400 200" role="img" aria-labelledby="pi-t">
+              <title id="pi-t">Engraving of an atom with electron shells, and a bent water molecule</title>
+              <g class="hair"><path d="M0 100h400" stroke-dasharray="2 6"/><path d="M200 12v176" stroke-dasharray="2 6"/></g>
+              <g transform="translate(112 100)">
+                <ellipse class="ln" rx="78" ry="27"/>
+                <ellipse class="ln" rx="78" ry="27" transform="rotate(60)"/>
+                <ellipse class="ln" rx="78" ry="27" transform="rotate(-60)"/>
+                <circle class="sld" r="9"/>
+                <circle class="acc-f" cx="78" cy="0" r="4.5"/>
+                <circle class="acc-f" cx="-39" cy="24" r="4.5"/>
+                <circle class="acc-f" cx="-39" cy="-24" r="4.5"/>
+              </g>
+              <g transform="translate(300 92)">
+                <path class="ln" d="M0 0l-52 34M0 0l52 34"/>
+                <circle class="ln-2 ko" cx="0" cy="0" r="21"/>
+                <circle class="ln-2 ko" cx="-52" cy="34" r="15"/>
+                <circle class="ln-2 ko" cx="52" cy="34" r="15"/>
+                <text x="-5" y="4" style="font-size:12px;letter-spacing:0;opacity:1;">O</text>
+                <text x="-56" y="38" style="font-size:9px;letter-spacing:0;opacity:1;">H</text>
+                <text x="48" y="38" style="font-size:9px;letter-spacing:0;opacity:1;">H</text>
+                <path class="acc" d="M-19 12 A 24 24 0 0 0 19 12"/>
+                <text class="acc-f" x="-16" y="52" style="font-size:7px;opacity:1;">104.5°</text>
+              </g>
+              <text x="52" y="184">Shells · bonds · geometry</text>
+              <text x="252" y="184">Bent geometry</text>
+            </svg>
+          </div>
+        </figure>
+        <h3><span class="glyph">π</span> — Pi</h3>
+        <p>Atoms you can actually touch. Electron clouds, covalent bonds and molecular geometry rendered at a steady 60fps — tuned to run on low-power school Chromebooks without thermal throttling.</p>
+        <p class="tagrow"><span>WebGL</span><span>Three.js</span><span>60 FPS</span><span>Chromebook-tuned</span></p>
+        <a class="elink" data-ext href="https://science-project-pi.vercel.app" target="_blank" rel="noopener noreferrer">Explore the playground<span class="vh"> (opens in a new tab)</span></a>
+      </article>
+
+      <article data-reveal>
+        <p class="label"><span aria-hidden="true">04</span> <span aria-hidden="true">·</span> Mobility</p>
+        <figure class="plate">
+          <div class="plate__art">
+            <svg class="eng" viewBox="0 0 400 200" role="img" aria-labelledby="ga-t">
+              <title id="ga-t">Transit diagram: auto, metro and bus lines meeting at interchanges</title>
+              <g class="hair"><path d="M0 100h400" stroke-dasharray="2 6"/></g>
+              <path class="ln-2" d="M20 156h96l52-52h92"/>
+              <path class="acc" d="M20 60h72l48 48h120"/>
+              <path class="ln" d="M132 20v50l56 56v40" stroke-dasharray="7 6"/>
+              <g class="sld">
+                <circle cx="20" cy="156" r="4"/><circle cx="20" cy="60" r="4"/>
+                <circle cx="260" cy="104" r="4"/><circle cx="188" cy="166" r="4"/>
+              </g>
+              <circle class="ln-2 ko" cx="140" cy="108" r="9"/>
+              <circle class="ln-2 ko" cx="168" cy="104" r="6"/>
+              <g class="ln"><rect x="300" y="52" width="80" height="34"/><path d="M300 74h80"/></g>
+              <text x="308" y="68">ETA 4 min</text>
+              <text x="20" y="190">Auto</text><text x="120" y="190">Metro</text><text x="232" y="190">Bus · last mile</text>
+            </svg>
+          </div>
+        </figure>
+        <h3><span class="glyph">गति</span> — Gati</h3>
+        <p><i>Gati</i> means motion. Autos, metro, state buses and last-mile bikes folded into a single hyperlocal journey planner with live ETAs and bilingual voice intent — 14.1k lines of TypeScript.</p>
+        <p class="tagrow"><span>Voice AI</span><span>Live ETA</span><span>EN / हिन्दी</span><span>India-first</span></p>
+        <a class="elink" data-ext href="https://gati-rho.vercel.app" target="_blank" rel="noopener noreferrer">Plan a journey<span class="vh"> (opens in a new tab)</span></a>
+      </article>
+    </div>
+  </div>
+
+  <!-- INDEX 05–11 -->
+  <div class="wrap u-pad-top">
+    <header class="shead u-tight" data-reveal>
+      <p class="shead__top"><span class="label label--accent">Also filed</span><span class="rule-fill" aria-hidden="true"></span><span class="label">05 — 11</span></p>
+      <h2 class="u-sub">Seven more, each solving one thing properly.</h2>
+      <p class="shead__note">Smaller surfaces, same standard: real users, no telemetry, nothing that needs a server it doesn’t deserve.</p>
+    </header>
+
+    <div class="ledger" data-reveal>
+      <a class="ledger__row" href="https://pivot-iq.vercel.app" target="_blank" rel="noopener noreferrer">
+        <span class="ledger__n">05</span>
+        <span class="ledger__t">PivotIQ</span>
+        <span class="ledger__d">Adversarial investor prompts, risk exposure checks and competitive moat modelling — a founder’s idea, stress-tested before it meets a real room.</span>
+        <span class="ledger__s">Gemini · Risk matrix</span>
+        <span class="ledger__go" aria-hidden="true">↗</span>
+      </a>
+      <a class="ledger__row" href="https://me.esamz.info" target="_blank" rel="noopener noreferrer">
+        <span class="ledger__n">06</span>
+        <span class="ledger__t">MindEase</span>
+        <span class="ledger__d">Emotional support that never phones home. Empathetic voice chat processed entirely in the browser, in twenty languages, with zero storage.</span>
+        <span class="ledger__s">On-device · 20 langs</span>
+        <span class="ledger__go" aria-hidden="true">↗</span>
+      </a>
+      <a class="ledger__row" href="https://hisaab.esamz.info" target="_blank" rel="noopener noreferrer">
+        <span class="ledger__n">07</span>
+        <span class="ledger__t">Hissab</span>
+        <span class="ledger__d">Bookkeeping for Indian micro-enterprises, built thumb-first: 30-day rolling analytics and live profit margins on the phone already in the shop.</span>
+        <span class="ledger__s">PWA · Local storage</span>
+        <span class="ledger__go" aria-hidden="true">↗</span>
+      </a>
+      <a class="ledger__row" href="https://cibo.esamz.info" target="_blank" rel="noopener noreferrer">
+        <span class="ledger__n">08</span>
+        <span class="ledger__t">CiboCocinar</span>
+        <span class="ledger__d">A kitchen companion you talk to with flour on your hands — step-by-step guidance and timers under 200ms of latency, fully hands-free.</span>
+        <span class="ledger__s">Voice AI · &lt;200 ms</span>
+        <span class="ledger__go" aria-hidden="true">↗</span>
+      </a>
+      <a class="ledger__row" href="https://fit-the-color-info.vercel.app" target="_blank" rel="noopener noreferrer">
+        <span class="ledger__n">09</span>
+        <span class="ledger__t">Fit The Color</span>
+        <span class="ledger__d">Colour decisions with receipts: perceptual OKLCH distance, WCAG AAA contrast checks and harmonic palette generation for designers who argue with data.</span>
+        <span class="ledger__s">OKLCH · Next.js 15</span>
+        <span class="ledger__go" aria-hidden="true">↗</span>
+      </a>
+      <a class="ledger__row" href="https://tic-info.vercel.app" target="_blank" rel="noopener noreferrer">
+        <span class="ledger__n">10</span>
+        <span class="ledger__t">Neon Tic-Tac-Toe</span>
+        <span class="ledger__d">A zero-dependency canvas game with neon lighting and unbeatable minimax. Proof that “small” and “careless” are different words.</span>
+        <span class="ledger__s">Vanilla JS · 0 deps</span>
+        <span class="ledger__go" aria-hidden="true">↗</span>
+      </a>
+      <a class="ledger__row" data-state="lab" href="https://github.com/alakmar344/See-market" target="_blank" rel="noopener noreferrer">
+        <span class="ledger__n">11</span>
+        <span class="ledger__t">SeeMarket</span>
+        <span class="ledger__d">RSI, MACD and algorithmic support/resistance computed server-side so the client never stutters. Live movers and symbol Q&amp;A, still on the workbench.</span>
+        <span class="ledger__s">TypeScript · Server-side</span>
+        <span class="ledger__go" aria-hidden="true">↗</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ ARCHIVE ══════════════ -->
+<section class="section" id="archive" aria-labelledby="archive-h">
+  <div class="wrap">
+    <header class="shead" data-reveal>
+      <p class="shead__top"><span class="label label--accent">§&nbsp;III</span><span class="label">The Archive</span><span class="rule-fill" aria-hidden="true"></span><span class="label">Open source · 43 filed</span></p>
+      <h2 id="archive-h">Forty-three repositories. <em>Eleven</em> cut and rated.</h2>
+      <p class="shead__note">Everything public is audited on three axes — architectural depth, performance rigour, and how much it can do without a server. The rating is in carats, because gems and code are both cut, not found.</p>
+    </header>
+
+    <!-- CROWN -->
+    <article class="crown" data-reveal>
+      <div>
+        <p class="label label--flare"><span class="dot" aria-hidden="true"></span> The crown gem <span aria-hidden="true">·</span> Open source</p>
+        <h3>youAI-2B</h3>
+        <p>A pip-installable toolkit for training, aligning and serving a 2-billion-parameter autoregressive transformer — written from raw tensor mathematics, with no boilerplate wrapper doing the thinking for it.</p>
+        <p class="u-mt">If you want to know whether someone understands a language model, ask them to write the attention. This is that answer, in public, with alignment and merge strategies on top.</p>
+        <p class="u-cta"><a class="elink" data-ext href="https://github.com/alakmar344/youAI-2B-From-Scratch-Transformer-Implementation" target="_blank" rel="noopener noreferrer">Read the implementation<span class="vh"> (opens in a new tab)</span></a></p>
+      </div>
+      <div class="crown__score">
+        <p class="n">90</p>
+        <p class="k">Carats<br><b>Highest in the archive</b></p>
+      </div>
+      <div class="crown__specs">
+        <div><b>Architecture</b><span>RoPE · RMSNorm · SwiGLU · GQA · KV-cache</span></div>
+        <div><b>Alignment</b><span>DPO · ORPO · SimPO</span></div>
+        <div><b>Adapters</b><span>LoRA · QLoRA · DARE · TIES merging</span></div>
+        <div><b>Params</b><span>2,000,000,000</span></div>
+        <figure class="plate u-mt">
+          <div class="plate__art">
+            <svg class="eng" viewBox="0 0 200 120" role="img" aria-labelledby="ai-t">
+              <title id="ai-t">Attention matrix engraving</title>
+              <g class="sld">
+                <rect x="8" y="8" width="16" height="16"/><rect x="28" y="8" width="16" height="16" opacity="0.15"/>
+                <rect x="48" y="8" width="16" height="16" opacity="0.08"/><rect x="68" y="8" width="16" height="16" opacity="0.05"/>
+                <rect x="8" y="28" width="16" height="16" opacity="0.55"/><rect x="28" y="28" width="16" height="16"/>
+                <rect x="48" y="28" width="16" height="16" opacity="0.2"/><rect x="68" y="28" width="16" height="16" opacity="0.07"/>
+                <rect x="8" y="48" width="16" height="16" opacity="0.3"/><rect x="28" y="48" width="16" height="16" opacity="0.65"/>
+                <rect x="48" y="48" width="16" height="16"/><rect x="68" y="48" width="16" height="16" opacity="0.18"/>
+                <rect x="8" y="68" width="16" height="16" opacity="0.12"/><rect x="28" y="68" width="16" height="16" opacity="0.35"/>
+                <rect x="48" y="68" width="16" height="16" opacity="0.7"/><rect x="68" y="68" width="16" height="16"/>
+              </g>
+              <g class="hair"><rect x="8" y="8" width="76" height="76"/></g>
+              <g class="acc"><path d="M100 46h30M124 40l8 6-8 6"/></g>
+              <g class="ln"><rect x="140" y="20" width="52" height="52"/><path d="M140 46h52M166 20v52"/></g>
+              <text x="8" y="102">Causal attention</text>
+              <text x="140" y="102">Logits</text>
+            </svg>
+          </div>
+        </figure>
+      </div>
+    </article>
+
+    <!-- CARAT TABLE -->
+    <div class="carat-table u-gap" data-reveal>
+      <p class="label carat-head"><span>Rated repositories</span><span>Carats</span></p>
+      <a class="carat-row" style="--v:87%" href="https://github.com/alakmar344/gati" target="_blank" rel="noopener noreferrer">
+        <span class="cn">02</span><span class="ct">gati</span>
+        <span class="cd">14.1k lines of TypeScript, 57 commits, 14 merged PRs. Bilingual voice intent routing across four transit modes.</span>
+        <span class="cbar"><i aria-hidden="true"></i></span><span class="cv">87</span>
+      </a>
+      <a class="carat-row" style="--v:82%" href="https://github.com/alakmar344/vinecraft" target="_blank" rel="noopener noreferrer">
+        <span class="cn">03</span><span class="ct">vinecraft</span>
+        <span class="cd">An infinite voxel world in the browser — procedural terrain, ambient occlusion, 10 biomes, 46 block physics types.</span>
+        <span class="cbar"><i aria-hidden="true"></i></span><span class="cv">82</span>
+      </a>
+      <a class="carat-row" style="--v:82%" href="https://github.com/alakmar344/science-project" target="_blank" rel="noopener noreferrer">
+        <span class="cn">04</span><span class="ct">science-project</span>
+        <span class="cd">The 60fps chemistry renderer behind π, hand-optimised for GPU-less Chromebooks.</span>
+        <span class="cbar"><i aria-hidden="true"></i></span><span class="cv">82</span>
+      </a>
+      <a class="carat-row" style="--v:81%" href="https://github.com/alakmar344/esamz.a" target="_blank" rel="noopener noreferrer">
+        <span class="cn">05</span><span class="ct">esamz.a</span>
+        <span class="cd">112 commits of privacy plumbing: Next.js proxy, granular consent tiers, verifiable memory-purge endpoints.</span>
+        <span class="cbar"><i aria-hidden="true"></i></span><span class="cv">81</span>
+      </a>
+      <a class="carat-row" style="--v:79%" href="https://github.com/alakmar344/See-market" target="_blank" rel="noopener noreferrer">
+        <span class="cn">06</span><span class="ct">See-market</span>
+        <span class="cd">Two-service fintech backend computing RSI, Bollinger bands and MA convergences over streaming sockets.</span>
+        <span class="cbar"><i aria-hidden="true"></i></span><span class="cv">79</span>
+      </a>
+      <a class="carat-row" style="--v:79%" href="https://github.com/alakmar344/analytics-hub" target="_blank" rel="noopener noreferrer">
+        <span class="cn">07</span><span class="ct">analytics-hub</span>
+        <span class="cd">Self-hosted analytics where visitor IPs are hashed through salt-rotated HMAC-SHA256 — mathematically incapable of tracking anyone.</span>
+        <span class="cbar"><i aria-hidden="true"></i></span><span class="cv">79</span>
+      </a>
+      <a class="carat-row" style="--v:74%" href="https://github.com/alakmar344/My-code" target="_blank" rel="noopener noreferrer">
+        <span class="cn">08</span><span class="ct">My-code</span>
+        <span class="cd">A browser-first coding agent running plan → execute → observe → test cycles inside isolated Docker containers.</span>
+        <span class="cbar"><i aria-hidden="true"></i></span><span class="cv">74</span>
+      </a>
+      <a class="carat-row" style="--v:73%" href="https://github.com/alakmar344/Not-a-thing-launcher" target="_blank" rel="noopener noreferrer">
+        <span class="cn">09</span><span class="ct">Not-a-thing-launcher</span>
+        <span class="cd">A dot-matrix Android launcher with zero telemetry and real battery discipline, built in CI.</span>
+        <span class="cbar"><i aria-hidden="true"></i></span><span class="cv">73</span>
+      </a>
+      <a class="carat-row" style="--v:72%" href="https://github.com/alakmar344/revive-me" target="_blank" rel="noopener noreferrer">
+        <span class="cn">10</span><span class="ct">revive-me</span>
+        <span class="cd">A zero-dependency Rust utility that revives corrupted legacy files — .dbf, .xls, .dat — into clean JSON. No cloud in the loop.</span>
+        <span class="cbar"><i aria-hidden="true"></i></span><span class="cv">72</span>
+      </a>
+      <a class="carat-row" data-uncut href="https://github.com/alakmar344/breeze-framework" target="_blank" rel="noopener noreferrer">
+        <span class="cn">11</span><span class="ct">breeze-framework</span>
+        <span class="cd">A lightweight framework still on the lapidary’s bench. Cutting has only just begun.</span>
+        <span class="cbar"><i aria-hidden="true"></i></span><span class="cv">Uncut</span>
+      </a>
+    </div>
+
+    <div class="archive__foot" data-reveal>
+      <p class="meta">Ratings are the author’s own audit · updated with each edition</p>
+      <a class="btn btn--ghost" href="https://github.com/alakmar344" target="_blank" rel="noopener noreferrer">Browse all 43 repositories <span aria-hidden="true">↗</span><span class="vh">(opens in a new tab)</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ EDITORIAL ══════════════ -->
+<section class="bleed bleed--ink" id="editorial" aria-labelledby="editorial-h">
+  <div class="wrap editorial">
+    <div class="editorial__grid">
+      <div class="editorial__quote" data-reveal>
+        <p class="label label--accent">§&nbsp;IV <span aria-hidden="true">·</span> Editorial</p>
+        <blockquote id="editorial-h">Software should grant dignity, not <em>extract attention.</em></blockquote>
+        <p class="meta">— Al-Aqmar Tinwala, standing position</p>
+      </div>
+      <div class="editorial__body" data-reveal>
+        <p><span class="lead-in">The position</span>Most of what gets called intelligence today is really retention: keep the session, keep the profile, keep the person coming back. That is a business model wearing a research paper as a coat.</p>
+        <p>The alternative isn’t complicated, it’s just less profitable. Process the request, answer it well, forget it. Run on the device when the device can carry it. Ask before you remember anything, and prove you can forget.</p>
+        <p>Every product on this page is built that way, and it is why some of them are slower to monetise and faster to trust. I would rather ship the second kind of software.</p>
+      </div>
+    </div>
+
+    <div class="principles" data-reveal>
+      <div>
+        <p class="label">I <span aria-hidden="true">·</span> Principle</p>
+        <h3>Heart first</h3>
+        <p>Engineered for human elevation — not for doom-scroll retention or quiet surveillance. If it fails that test, it doesn’t ship.</p>
+      </div>
+      <div>
+        <p class="label">II <span aria-hidden="true">·</span> Principle</p>
+        <h3>Zero retention</h3>
+        <p>Your queries, your identity, your half-formed thoughts stay yours. No logging by default, and purge endpoints you can verify.</p>
+      </div>
+      <div>
+        <p class="label">III <span aria-hidden="true">·</span> Principle</p>
+        <h3>Uncompromising wonder</h3>
+        <p>Build for curiosity: atoms, motion, live transit, learning that sticks. Useful and delightful are not a trade-off.</p>
+      </div>
+    </div>
+
+    <p class="editorial__sign" data-reveal>Yes, I’m thirteen. Yes, the systems work. <span aria-hidden="true">♡</span></p>
+  </div>
+</section>
+
+<!-- ══════════════ LIBRARY ══════════════ -->
+<section class="section" id="library" aria-labelledby="library-h">
+  <div class="wrap">
+    <header class="shead" data-reveal>
+      <p class="shead__top"><span class="label label--accent">§&nbsp;V</span><span class="label">The Library</span><span class="rule-fill" aria-hidden="true"></span><span class="label">Two volumes · Amazon KDP</span></p>
+      <h2 id="library-h">Two volumes. <em>Zero</em> filler.</h2>
+      <p class="shead__note">Both written from terminal hours rather than press releases — transformer token mechanics, alignment strategy, and thirty days of shipping production work with an agent at the keyboard.</p>
+    </header>
+
+    <div class="library">
+      <article class="vol" data-reveal>
+        <div class="cover" aria-hidden="true">
+          <p class="cb">Al-Aqmar Tinwala</p>
+          <p class="ct">The AI Mastery Handbook</p>
+          <p class="cb">Vol. I · Amazon KDP</p>
+        </div>
+        <div class="vol__body">
+          <p class="label label--flare">★ Bestseller <span aria-hidden="true">·</span> Volume I</p>
+          <h3>The AI Mastery Handbook</h3>
+          <p>An architectural breakdown of Claude, Gemini, Llama and ChatGPT: how attention actually works, what temperature really does, and prompt engineering treated as an engineering discipline.</p>
+          <a class="elink" data-ext href="https://www.amazon.com/dp/B0GX2N6WTT" target="_blank" rel="noopener noreferrer">View on Amazon<span class="vh"> (opens in a new tab)</span></a>
+        </div>
+      </article>
+
+      <article class="vol" data-reveal>
+        <div class="cover" aria-hidden="true">
+          <p class="cb">Al-Aqmar Tinwala</p>
+          <p class="ct">30 Days Mastering Claude Code</p>
+          <p class="cb">Vol. II · Amazon KDP</p>
+        </div>
+        <div class="vol__body">
+          <p class="label label--accent">✦ New release <span aria-hidden="true">·</span> Volume II</p>
+          <h3>30 Days Mastering Claude Code</h3>
+          <p>A tactical month inside agentic development: subagent orchestration, terminal workflows, and the habits that came out of shipping real products this way.</p>
+          <a class="elink" data-ext href="https://www.amazon.com/dp/B0GY1F3573" target="_blank" rel="noopener noreferrer">View on Amazon<span class="vh"> (opens in a new tab)</span></a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ LEDGER (stack) ══════════════ -->
+<section class="section" id="ledger" aria-labelledby="ledger-h">
+  <div class="wrap">
+    <header class="shead" data-reveal>
+      <p class="shead__top"><span class="label label--accent">§&nbsp;VI</span><span class="label">The Ledger</span><span class="rule-fill" aria-hidden="true"></span><span class="label">Tools of the trade</span></p>
+      <h2 id="ledger-h">Low-latency bones. <em>Velvet</em> surfaces.</h2>
+      <p class="shead__note">Chosen for speed and for what they let me delete — not for a résumé.</p>
+    </header>
+
+    <div class="bench" data-reveal>
+      <div>
+        <h3>Runtimes &amp; compilers</h3>
+        <ul>
+          <li>Rust <span>Routers · CLI</span></li>
+          <li>Next.js 16 <span>App router</span></li>
+          <li>TypeScript <span>Everywhere</span></li>
+          <li>Fastify 5 <span>Services</span></li>
+          <li>Node.js 24 <span>Runtime</span></li>
+          <li>Turbopack <span>Builds</span></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Inference &amp; hardware</h3>
+        <ul>
+          <li>Groq LPU <span>Low latency</span></li>
+          <li>Sarvam 105b <span>India-first</span></li>
+          <li>PyTorch <span>Training</span></li>
+          <li>On-device LLMs <span>Private</span></li>
+          <li>Whisper &amp; voice <span>Speech</span></li>
+          <li>Serper <span>Grounding</span></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Disciplines</h3>
+        <ul>
+          <li>Zero retention <span>Default</span></li>
+          <li>From-scratch transformers <span>2B params</span></li>
+          <li>WebGL &amp; 3D <span>60 fps</span></li>
+          <li>SM-2 repetition <span>Local</span></li>
+          <li>Multimodal transit <span>Realtime</span></li>
+          <li>OKLCH colour math <span>WCAG AAA</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ CORRESPONDENCE ══════════════ -->
+<section class="section contact" id="contact" aria-labelledby="contact-h">
+  <div class="wrap">
+    <div class="contact__grid">
+      <div data-reveal>
+        <p class="label label--accent">§&nbsp;VII <span aria-hidden="true">·</span> Correspondence</p>
+        <h2 id="contact-h">Let’s architect something <em>exceptional.</em></h2>
+        <a class="mail" href="mailto:proman007power@gmail.com">proman007power@gmail.com</a>
+        <p class="socials">
+          <a class="elink" data-ext href="https://github.com/alakmar344" target="_blank" rel="noopener noreferrer">GitHub<span class="vh"> (opens in a new tab)</span></a>
+          <a class="elink" data-ext href="https://www.linkedin.com/in/alakmar-teenwala-054067393" target="_blank" rel="noopener noreferrer">LinkedIn<span class="vh"> (opens in a new tab)</span></a>
+          <a class="elink" data-ext href="https://instagram.com/its_alakmar7" target="_blank" rel="noopener noreferrer">Instagram<span class="vh"> (opens in a new tab)</span></a>
+        </p>
+      </div>
+      <div class="contact__meta" data-reveal>
+        <div><b>Open to</b><span>AI systems consulting, fast full-stack builds, and collaborations with soul in them</span></div>
+        <div><b>Response</b><span>Faster than your Turbopack build</span></div>
+        <div><b>Located</b><span>Bangalore, India · Remote, happily</span></div>
+        <div><b>Not doing</b><span>Surveillance features. Any budget.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="wrap colophon">
+  <p>© 2026 Al-Aqmar Tinwala · Written, designed and built by hand<br>Crafted with soul and mathematical rigour</p>
+  <p>Set in Instrument Serif, Newsreader, Inter Tight and Geist Mono — all self-hosted<br>No trackers, no third-party requests, no cookies. Zero telemetry.</p>
+  <a class="to-top" href="#top">Return to the front page <span aria-hidden="true">↑</span></a>
+  <p class="ps">P.S. — Code can love you back. ♡</p>
+</footer>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Al-Aqmar Tinwala","alternateName":"القمر","jobTitle":"AI Architect & Full-Stack Developer","description":"Heart-first AI architect building privacy-first intelligence with zero data retention.","address":{"@type":"PostalAddress","addressLocality":"Bangalore","addressCountry":"IN"},"email":"mailto:proman007power@gmail.com","sameAs":["https://github.com/alakmar344","https://www.linkedin.com/in/alakmar-teenwala-054067393","https://instagram.com/its_alakmar7"]}
+</script>
+<script src="assets/main.js" defer></script>
 </body>
 </html>
