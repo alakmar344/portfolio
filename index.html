@@ -10,29 +10,19 @@
 <meta name="robots" content="noimageindex">
 <meta name="author" content="Al-Aqmar Tinwala">
 <meta name="description" content="Al-Aqmar Tinwala — 13yo Heart-First AI Architect. RealLearn & 11 Live Worlds. Zero surveillance by design.">
-<!-- Block AI scrapers -->
 <meta name="generator" content="Handcrafted, zero telemetry">
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
 <meta http-equiv="Permissions-Policy" content="interest-cohort=(), browsing-topics=()">
-<style>
-  /* Block known AI crawlers at the CSS layer too */
-  @media (min-width: 0px) { :root { --privacy: "zero-surveillance"; } }
-</style>
 
 <style>
-/* ═══════════════════════════════════════════════════
-   THE AL-AQMAR JOURNAL — NEWSPAPER AESTHETIC
-   Zero external dependencies. System fonts only.
-   ═══════════════════════════════════════════════════ */
-
 :root {
   --paper: #f4f1ea;
   --paper-deep: #ebe6da;
   --ink: #1a1612;
   --ink-soft: #3d362e;
   --rule: #1a1612;
-  --accent: #8b1a1a;      /* deep editorial red */
-  --moon: #c9b98a;         /* moonlight gold */
+  --accent: #8b1a1a;
+  --moon: #c9b98a;
   --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
   --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
   --mono: "SF Mono", "JetBrains Mono", ui-monospace, "Cascadia Mono", Menlo, Consolas, monospace;
@@ -54,7 +44,6 @@ body {
     radial-gradient(circle at 80% 80%, rgba(139,26,26,0.04) 0%, transparent 40%);
 }
 
-/* — Paper texture overlay — */
 body::before {
   content: "";
   position: fixed;
@@ -137,7 +126,7 @@ body::before {
   color: var(--accent);
 }
 
-/* ═══ NAVIGATION RIBBON ═══ */
+/* ═══ NAVIGATION ═══ */
 .nav-ribbon {
   display: flex;
   justify-content: center;
@@ -158,9 +147,7 @@ body::before {
   position: relative;
 }
 
-.nav-ribbon a:hover {
-  color: var(--accent);
-}
+.nav-ribbon a:hover { color: var(--accent); }
 
 .nav-ribbon a::after {
   content: "✦";
@@ -172,7 +159,7 @@ body::before {
 
 .nav-ribbon a:last-child::after { display: none; }
 
-/* ═══ SECTION HEADERS ═══ */
+/* ═══ SECTIONS ═══ */
 .section {
   padding: 3rem 0;
   border-bottom: 1px solid var(--rule);
@@ -202,43 +189,76 @@ body::before {
   margin: 1.5rem 0;
 }
 
-/* ═══ LEAD STORY ═══ */
-.lead {
+/* ═══ PROFILE — THE LEAD ═══ */
+.profile-lead {
   display: grid;
-  grid-template-columns: 1.3fr 1fr;
+  grid-template-columns: 1fr 1.2fr;
   gap: 3rem;
   align-items: start;
 }
 
-.lead-kicker {
-  font-family: var(--mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 1rem;
+.profile-portrait {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 2.5rem;
+  position: relative;
+  aspect-ratio: 3/4;
   display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
-.lead-kicker::before {
-  content: "";
-  width: 2rem;
-  height: 2px;
-  background: var(--accent);
+.profile-portrait::before {
+  content: "☽";
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  font-size: 4rem;
+  color: var(--moon);
+  opacity: 0.3;
 }
 
-.lead h2 {
-  font-size: clamp(2.5rem, 5vw, 4rem);
+.profile-portrait h2 {
+  font-size: 2.5rem;
+  font-style: italic;
   font-weight: 900;
-  line-height: 0.95;
-  letter-spacing: -0.02em;
-  margin-bottom: 1.5rem;
+  line-height: 1;
+  margin-bottom: 1rem;
+  color: var(--moon);
 }
 
-.lead-deck {
-  font-size: 1.25rem;
+.profile-portrait .age-badge {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--paper);
+  opacity: 0.7;
+  margin-bottom: 1rem;
+}
+
+.profile-portrait .tagline {
+  font-size: 1.1rem;
+  font-style: italic;
+  line-height: 1.4;
+  color: rgba(244,241,234,0.9);
+}
+
+.profile-content h3 {
+  font-size: 2.5rem;
+  font-weight: 900;
+  line-height: 1;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+}
+
+.profile-content h3 .highlight {
+  color: var(--accent);
+  font-style: italic;
+}
+
+.profile-deck {
+  font-size: 1.3rem;
   font-style: italic;
   color: var(--ink-soft);
   line-height: 1.4;
@@ -247,56 +267,53 @@ body::before {
   padding-left: 1.25rem;
 }
 
-.lead p {
+.profile-content p {
   font-size: 1.05rem;
   margin-bottom: 1rem;
   text-align: justify;
   hyphens: auto;
 }
 
-.lead p:first-of-type::first-letter {
-  font-size: 4.5rem;
-  float: left;
-  line-height: 0.85;
-  padding: 0.3rem 0.6rem 0 0;
+.profile-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: var(--paper-deep);
+  border: 1px solid var(--rule);
+}
+
+.stat-box {
+  text-align: center;
+}
+
+.stat-box .num {
+  font-family: var(--mono);
+  font-size: 2rem;
   font-weight: 900;
   color: var(--accent);
-  font-style: italic;
+  line-height: 1;
 }
 
-.lead-stats {
-  background: var(--ink);
-  color: var(--paper);
-  padding: 2rem;
+.stat-box .label {
   font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-top: 0.25rem;
 }
 
-.lead-stats h3 {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 1.5rem;
-  margin-bottom: 1.5rem;
-  color: var(--moon);
-  border-bottom: 1px solid var(--moon);
-  padding-bottom: 0.75rem;
-}
-
-.stat-row {
+.cta-row {
   display: flex;
-  justify-content: space-between;
-  padding: 0.6rem 0;
-  border-bottom: 1px dashed rgba(244,241,234,0.2);
-  font-size: 0.85rem;
-}
-
-.stat-row span:last-child {
-  color: var(--moon);
-  font-weight: 600;
+  gap: 1rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
 }
 
 .cta-btn {
   display: inline-block;
-  margin-top: 1.5rem;
   padding: 0.85rem 1.75rem;
   background: var(--ink);
   color: var(--paper);
@@ -324,10 +341,10 @@ body::before {
   color: var(--paper);
 }
 
-/* ═══ ELEVEN WORLDS GRID ═══ */
+/* ═══ WORLDS GRID ═══ */
 .worlds-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 0;
   border-top: 1px solid var(--rule);
   border-left: 1px solid var(--rule);
@@ -377,7 +394,7 @@ body::before {
 }
 
 .world-card.flagship h3 {
-  font-size: 2.25rem;
+  font-size: 2rem;
   font-style: italic;
 }
 
@@ -434,7 +451,7 @@ body::before {
   opacity: 0.7;
 }
 
-/* ═══ VAULT / GIT GEMS ═══ */
+/* ═══ VAULT ═══ */
 .vault-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -506,7 +523,7 @@ body::before {
 
 .gem a:hover { color: var(--accent); border-color: var(--accent); }
 
-/* ═══ MANIFESTO / ETHOS ═══ */
+/* ═══ MANIFESTO ═══ */
 .manifesto {
   background: var(--ink);
   color: var(--paper);
@@ -529,7 +546,7 @@ body::before {
 }
 
 .manifesto-quote::before {
-  content: "“";
+  content: """;
   font-size: 4rem;
   line-height: 0;
   vertical-align: -0.4em;
@@ -609,7 +626,7 @@ body::before {
   flex-grow: 1;
 }
 
-/* ═══ BENCH / RUNTIMES ═══ */
+/* ═══ BENCH ═══ */
 .bench-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -646,7 +663,7 @@ body::before {
   font-size: 0.7rem;
 }
 
-/* ═══ CORRESPONDENCE / CONTACT ═══ */
+/* ═══ CONTACT ═══ */
 .contact {
   text-align: center;
   padding: 4rem 2rem;
@@ -706,7 +723,6 @@ body::before {
 
 .socials a:hover { color: var(--accent); border-color: var(--accent); }
 
-/* ═══ COLOPHON ═══ */
 .colophon {
   text-align: center;
   padding: 2rem 0;
@@ -727,15 +743,16 @@ body::before {
   color: var(--ink);
 }
 
-/* ═══ RESPONSIVE ═══ */
 @media (max-width: 768px) {
   .container { padding: 0 1.25rem; }
-  .lead { grid-template-columns: 1fr; }
+  .profile-lead { grid-template-columns: 1fr; }
+  .profile-portrait { aspect-ratio: auto; padding: 2rem; }
   .world-card.flagship { grid-column: span 1; }
   .gem.crown { grid-column: span 1; }
   .books { grid-template-columns: 1fr; }
   .nav-ribbon { gap: 1rem; font-size: 0.68rem; }
   .manifesto, .contact { margin: 0 -1.25rem; padding: 3rem 1.25rem; }
+  .profile-stats { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -743,9 +760,6 @@ body::before {
 
 <div class="container">
 
-<!-- ═══════════════════════════════════════════════════
-     MASTHEAD
-     ═══════════════════════════════════════════════════ -->
 <header class="masthead">
   <div class="masthead-top">
     <span>Vol. XIII · Issue I</span>
@@ -759,7 +773,7 @@ body::before {
 </header>
 
 <nav class="nav-ribbon">
-  <a href="#lead">Lead Story</a>
+  <a href="#profile">Profile</a>
   <a href="#worlds">The Eleven Worlds</a>
   <a href="#vault">The Vault</a>
   <a href="#ethos">Manifesto</a>
@@ -768,42 +782,49 @@ body::before {
   <a href="#contact">Correspondence</a>
 </nav>
 
-<!-- ═══════════════════════════════════════════════════
-     LEAD STORY — REALLEARN
-     ═══════════════════════════════════════════════════ -->
-<section class="section" id="lead">
-  <div class="section-label">§ I · Lead Story</div>
-  <h2 class="section-title">The Flagship.</h2>
+<!-- ═══ PROFILE — THE LEAD ═══ -->
+<section class="section" id="profile">
+  <div class="section-label">§ I · Profile</div>
+  <h2 class="section-title">The Architect.</h2>
   <hr class="section-rule">
 
-  <div class="lead">
-    <div>
-      <div class="lead-kicker">RealLearn AI · Adaptive EdTech</div>
-      <h2>The world is your textbook.</h2>
-      <p class="lead-deck">An AI-native learning engine built for deep cognitive mastery — not disposable one-line answers.</p>
-      <p>RealLearn transforms any prompt into a structured three-stage interactive journey. Rigorously anchored in live news via the Serper API and guarded by a 100% quiz-gated progression system powered by SM-2 spaced repetition running entirely on-device.</p>
-      <p>Foundation. Mechanism. Real World. No shortcuts. No hallucinated confidence. Just mastery, earned.</p>
-      <a href="https://reallearn-info.vercel.app" class="cta-btn" rel="noopener noreferrer">Launch RealLearn ↗</a>
-      <a href="#worlds" class="cta-btn outline">See All 11 Worlds →</a>
-    </div>
-
-    <aside class="lead-stats">
-      <h3>◉ System Dossier</h3>
-      <div class="stat-row"><span>Stack</span><span>Next.js 16 · React 19</span></div>
-      <div class="stat-row"><span>Inference</span><span>Groq LPU · 120B</span></div>
-      <div class="stat-row"><span>Grounding</span><span>Serper Real-Time</span></div>
-      <div class="stat-row"><span>Memory</span><span>SM-2 · On-Device</span></div>
-      <div class="stat-row"><span>Auth</span><span>Clerk</span></div>
-      <div class="stat-row"><span>Languages</span><span>63</span></div>
-      <div class="stat-row"><span>Retention</span><span>Zero · By Design</span></div>
-      <div class="stat-row"><span>Status</span><span>● Live · Production</span></div>
+  <div class="profile-lead">
+    <aside class="profile-portrait">
+      <div class="age-badge">Architect v13 · Age is just a version number</div>
+      <h2>Al-Aqmar<br>Tinwala</h2>
+      <div class="tagline">"القمر — The Moon. Heart-first AI architect engineering systems that treat humans with dignity."</div>
     </aside>
+
+    <div class="profile-content">
+      <h3>A 13-year-old building <span class="highlight">privacy-first intelligence</span> with a soul.</h3>
+      <p class="profile-deck">I didn't start building AI for corporate hype or speculative valuation — I started because our digital tools should grant everyday humans speed, privacy, and genuine cognitive elevation.</p>
+      <p>From adaptive EdTech that deconstructs complex physics into 3-part mastery, to privacy-first LLMs that never store a single user byte, to 60fps molecular visualizations running on school Chromebooks — I believe exceptional code has a heartbeat.</p>
+      <p>Every line I ship is guided by one immutable rule: <strong>Heart First</strong>. If a system doesn't treat people with dignity, it doesn't belong on the internet.</p>
+
+      <div class="profile-stats">
+        <div class="stat-box">
+          <div class="num">11</div>
+          <div class="label">Live Worlds</div>
+        </div>
+        <div class="stat-box">
+          <div class="num">3,000+</div>
+          <div class="label">Active Users</div>
+        </div>
+        <div class="stat-box">
+          <div class="num">2</div>
+          <div class="label">Published Books</div>
+        </div>
+      </div>
+
+      <div class="cta-row">
+        <a href="#worlds" class="cta-btn">Explore My Work →</a>
+        <a href="#contact" class="cta-btn outline">Get In Touch</a>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════
-     THE ELEVEN WORLDS
-     ═══════════════════════════════════════════════════ -->
+<!-- ═══ THE ELEVEN WORLDS ═══ -->
 <section class="section" id="worlds">
   <div class="section-label">§ II · The Eleven Worlds</div>
   <h2 class="section-title">Real utility, crafted with dignity.</h2>
@@ -814,8 +835,8 @@ body::before {
     <article class="world-card flagship">
       <div class="world-num">✦ 01 · FLAGSHIP</div>
       <h3>RealLearn AI</h3>
-      <div class="world-tagline">The World Is Your Textbook</div>
-      <p class="world-desc">Adaptive EdTech engine. Three-stage mastery. Live news grounding. Quiz-gated progression. On-device spaced repetition.</p>
+      <div class="world-tagline">Adaptive EdTech · 3-Stage Mastery</div>
+      <p class="world-desc">AI-native learning engine with live news grounding, quiz-gated progression, and on-device SM-2 spaced repetition. Next.js 16 · Groq LPU · 63 languages.</p>
       <div class="world-tags"><span>Next.js 16</span><span>Groq LPU</span><span>SM-2</span><span>63 Langs</span></div>
       <a href="https://reallearn-info.vercel.app" class="launch" rel="noopener noreferrer">Launch Live ↗</a>
     </article>
@@ -913,9 +934,7 @@ body::before {
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════
-     THE VAULT — GIT GEMS
-     ═══════════════════════════════════════════════════ -->
+<!-- ═══ THE VAULT ═══ -->
 <section class="section" id="vault">
   <div class="section-label">§ III · The Vault</div>
   <h2 class="section-title">Git Gems. Carats cut from the dark.</h2>
@@ -1013,9 +1032,7 @@ body::before {
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════
-     MANIFESTO / ETHOS
-     ═══════════════════════════════════════════════════ -->
+<!-- ═══ MANIFESTO ═══ -->
 <section class="manifesto" id="ethos">
   <div class="section-label">§ IV · Manifesto</div>
   <blockquote class="manifesto-quote">
@@ -1049,9 +1066,7 @@ body::before {
   </p>
 </section>
 
-<!-- ═══════════════════════════════════════════════════
-     LIBRARY
-     ═══════════════════════════════════════════════════ -->
+<!-- ═══ LIBRARY ═══ -->
 <section class="section" id="library">
   <div class="section-label">§ V · The Library</div>
   <h2 class="section-title">Two volumes. Zero fluff.</h2>
@@ -1077,9 +1092,7 @@ body::before {
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════
-     THE BENCH / RUNTIMES
-     ═══════════════════════════════════════════════════ -->
+<!-- ═══ THE BENCH ═══ -->
 <section class="section" id="bench">
   <div class="section-label">§ VI · The Architecture Bench</div>
   <h2 class="section-title">Low-latency bones. Velvet UX.</h2>
@@ -1122,9 +1135,7 @@ body::before {
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════
-     CORRESPONDENCE / CONTACT
-     ═══════════════════════════════════════════════════ -->
+<!-- ═══ CONTACT ═══ -->
 <section class="contact" id="contact">
   <div class="section-label" style="color:var(--accent);">§ VII · Correspondence</div>
   <h2>Let's architect something exceptional.</h2>
@@ -1147,9 +1158,6 @@ body::before {
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════
-     COLOPHON
-     ═══════════════════════════════════════════════════ -->
 <footer class="colophon">
   <div>© 2026 Al-Aqmar Tinwala · Crafted with soul & mathematical rigor</div>
   <div class="ps">P.S. — Code can love you back. ♡</div>
@@ -1157,6 +1165,5 @@ body::before {
 
 </div>
 
-<!-- NO JAVASCRIPT. NO TRACKERS. NO COOKIES. PURE HTML/CSS. -->
 </body>
 </html>
