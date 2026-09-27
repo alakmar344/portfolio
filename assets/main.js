@@ -19,7 +19,7 @@
     if (label) label.textContent = (evening ? 'Evening' : 'Day') + ' Edition';
 
     const metas = [...document.querySelectorAll('meta[name="theme-color"]')];
-    metas.forEach((m) => m.setAttribute('content', evening ? '#141414' : '#f4f1ea'));
+    metas.forEach((m) => m.setAttribute('content', evening ? '#161410' : '#eaddcf'));
   };
 
   let stored = null;
