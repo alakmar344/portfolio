@@ -1,4 +1,4 @@
-# Al-Aqmar Tinwala — Portfolio ✦ Heart First
+# Al-Aqmar Tinwala — The Gazette ✦ Heart First
 
 > **AI Architect | Full-Stack Developer | Published Author ×2 | Privacy Advocate | Rust Enthusiast | Heart-First Builder**
 
@@ -19,9 +19,10 @@ Al-Aqmar Tinwala is an AI Architect crafting high-performance intelligence with 
 | Metric | Value |
 |---|---|
 | Active Users | 3,000+ |
-| Open Source Projects | 20+ |
+| Curated Live Products | 5 |
+| Curated Open-Source Gems | 5 |
 | Publications | 2 |
-| Live Products | 11 |
+| Bytes Retained | 0 |
 
 ---
 
@@ -38,62 +39,56 @@ Build for wonder — atoms, molecules, motion.
 
 ---
 
-## Live Products (Portfolio)
+## Curated Live Products
 
 ### 🤖 eSAMz AI — *Flagship*
-Flagship privacy-first AI. 128k context, web search, powered by Sarvam 105b. Serving 3,000+ users with zero data retention.
-- **Tech:** Rust, Sarvam 105b
+A 128k-context privacy-first assistant on a Rust router with web search and consent tiers. Three thousand daily users, zero data retention.
+- **Tech:** Rust, Sarvam 105b, Next.js
 - **Launch:** [esamz.info](https://esamz.info)
 
-### 🧪 π — Pi — *Atom & Molecule Explainer*
-A playful, visual science playground. Atoms and molecules come alive — tap, swipe and explore covalent bonds, electron shells and molecular geometry with buttery-smooth 60fps animations built for curious minds.
-- **Tech:** Interactive 3D, WebGL, EdTech, Chemistry
+### 🎓 RealLearn AI — *Adaptive Learning*
+One question becomes a three-stage journey: grounded explanation, quiz gate, and on-device SM-2 spaced repetition.
+- **Tech:** Next.js 16, Groq, Serper, local-first
+- **Launch:** [reallearn-info.vercel.app](https://reallearn-info.vercel.app)
+
+### 🧪 π — Pi — *Interactive Science*
+A playful, visual science playground. Atoms and molecules come alive — explore covalent bonds, electron shells, and molecular geometry at buttery-smooth 60fps.
+- **Tech:** Three.js, WebGL, EdTech, Chemistry
 - **Launch:** [science-project-pi.vercel.app](https://science-project-pi.vercel.app)
 
 ### 🛺 गति — Gati — *Indian Mobility, Reimagined*
-गति means motion. A reimagined Indian mobility service blending autos, metros, buses and last-mile bikes into one seamless, hyperlocal journey planner with live ETAs and soulful UX.
-- **Tech:** Mobility, Hyperlocal, Real-time ETA, India-first
+गति means motion. A reimagined Indian mobility service blending autos, metros, buses, and last-mile bikes into one seamless, hyperlocal journey planner with live ETAs and bilingual voice intent.
+- **Tech:** TypeScript, Maps, Whisper, Voice AI
 - **Launch:** [gati-rho.vercel.app](https://gati-rho.vercel.app)
 
-### 🎮 Neon Tic-Tac-Toe
-Minimalist, high-contrast gaming experience. Dark-mode first, responsive, and optimized for performance.
-- **Tech:** Vanilla JS, HTML5/CSS3
-- **Launch:** [tic-info.vercel.app](https://tic-info.vercel.app)
-
-### 🚀 PivotIQ
-Startup idea validation. Helps founders test concepts with investor-style prompts and risk checks.
-- **Tech:** Gemini, Strategy
-- **Launch:** [pivot-iq.info.vercel.app](https://pivot-iq.info.vercel.app)
-
-### 🎓 RealLearn
-AI-powered adaptive learning. Transforms one question into a 3-part journey with real-world context.
-- **Tech:** Sarvam 105b, EdTech
-- **Launch:** [reallearn-info.vercel.app](https://reallearn-info.vercel.app)
-
-### 🧠 MindEase
-Emotional support chatbot. On-device only, 20 languages, voice output. Zero storage.
-- **Tech:** On-Device, Wellness
-- **Launch:** [me.esamz.info](https://me.esamz.info)
-
-### 📊 Hissab
-Sales tracker for Indian small businesses. Mobile-first, 30-day analytics, profit margins.
-- **Tech:** Finance, Analytics
-- **Launch:** [hisaab.esamz.info](https://hisaab.esamz.info)
-
-### 🎤 CiboCocinar
-Voice-first cooking assistant. <200ms latency. Hands-free kitchen guidance.
-- **Tech:** Voice AI, Cooking
-- **Launch:** [cibo.esamz.info](https://cibo.esamz.info)
-
-### 📈 SeeMarket
-Market intelligence. Live movers, watchlists, AI-powered symbol Q&A for traders.
-- **Tech:** Fintech, Real-time
-- **Launch:** Coming Soon
-
-### 🎨 Fit The Color
-Advanced color compatibility engine. Strategic design decisions with mathematical analysis.
-- **Tech:** Next.js 15, Design QA
+### 🎨 Fit The Color — *Design QA*
+Advanced color compatibility engine. OKLCH distance, WCAG AAA checks, and harmonic palettes for designers who care about math.
+- **Tech:** Next.js 15, Color science, Accessibility
 - **Launch:** [fit-the-color-info.vercel.app](https://fit-the-color-info.vercel.app)
+
+---
+
+## Curated Git Gems
+
+### 💎 youAI-2B — *Crown Jewel · 90 Carats*
+A pip-installable toolkit for training and serving a two-billion-parameter transformer — written from raw tensor math.
+- **Source:** [github.com/alakmar344/youAI-2B-From-Scratch-Transformer-Implementation](https://github.com/alakmar344/youAI-2B-From-Scratch-Transformer-Implementation)
+
+### 🌬️ breeze-framework — *Uncut*
+A lightweight, breathable web framework still being set into type.
+- **Source:** [github.com/alakmar344/breeze-framework](https://github.com/alakmar344/breeze-framework)
+
+### 🛺 gati — *87 Carats*
+Fourteen-thousand lines of TypeScript, bilingual voice routing across four transit modes.
+- **Source:** [github.com/alakmar344/gati](https://github.com/alakmar344/gati)
+
+### ⛏️ vinecraft — *82 Carats*
+Infinite voxel world in the browser: procedural terrain, ambient occlusion, ten biomes.
+- **Source:** [github.com/alakmar344/vinecraft](https://github.com/alakmar344/vinecraft)
+
+### 🧪 science-project — *82 Carats*
+The 60fps chemistry renderer behind π, tuned for GPU-less Chromebooks.
+- **Source:** [github.com/alakmar344/science-project](https://github.com/alakmar344/science-project)
 
 ---
 
@@ -104,16 +99,16 @@ Claude, Gemini, Llama, ChatGPT explained. AI history, LLM mechanics, and prompt 
 - **Available on:** [Amazon KDP](https://www.amazon.com/dp/B0GX2N6WTT)
 
 ### 📗 30 Days Mastering Claude Code — *New Release*
-30-day hands-on journey to mastering Claude Code. From the founder of eSAMz AI.
+Thirty days inside agentic development: subagents, terminal workflows, and the habits of shipping real products.
 - **Available on:** [Amazon KDP](https://www.amazon.com/dp/B0GY1F3573)
 
 ---
 
 ## Tech Stack & Highlights
 
-- **Languages & Frameworks:** Rust, Next.js, Vanilla JS, HTML5/CSS3, WebGL
-- **AI & ML:** Sarvam 105b, Gemini, On-Device LLMs
-- **Specialties:** Privacy-First Architecture, Voice AI, Real-time Systems, EdTech, Fintech, Interactive Science, Mobility
+- **Languages & Frameworks:** Rust, Next.js, TypeScript, Vanilla JS, HTML5/CSS3, WebGL
+- **AI & ML:** Sarvam 105b, Groq, Gemini, On-Device LLMs
+- **Specialties:** Privacy-First Architecture, Voice AI, Real-time Systems, EdTech, Interactive Science, Mobility
 - **Platforms:** Vercel, Web
 
 ---

@@ -3,528 +3,305 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Al-Aqmar Tinwala — Heart-First AI Architect</title>
+<title>Al-Aqmar Tinwala — The Gazette</title>
 
-<meta name="description" content="Al-Aqmar Tinwala — heart-first AI architect. Eleven live products, 3,000+ users, 43 repositories, two books. Zero data retention.">
+<meta name="description" content="Al-Aqmar Tinwala — a vintage broadsheet portfolio of heart-first AI. Five shipped products, five open-source gems, zero data retention.">
 <meta name="author" content="Al-Aqmar Tinwala">
-<meta name="theme-color" content="#f3f2ed" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0b0c0e" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f4f1ea" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141414" media="(prefers-color-scheme: dark)">
 
 <meta name="referrer" content="no-referrer">
-<meta name="generator" content="Handcrafted, zero telemetry">
+<meta name="generator" content="Hand-set, zero telemetry">
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
 <meta http-equiv="Permissions-Policy" content="interest-cohort=(), browsing-topics()">
 
 <meta property="og:type" content="profile">
-<meta property="og:title" content="Al-Aqmar Tinwala — Future Edition">
-<meta property="og:description" content="Shipping AI that forgets you on purpose.">
+<meta property="og:title" content="Al-Aqmar Tinwala — The Gazette">
+<meta property="og:description" content="A vintage broadsheet portfolio of heart-first AI.">
 
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23111214'/%3E%3Cpath d='M20.5 6a10 10 0 100 20 12 12 0 010-20z' fill='%23f3f2ed'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23f4f1ea'/%3E%3Cpath d='M16 4v24M4 16h24' stroke='%231a1a1a' stroke-width='2'/%3E%3C/svg%3E">
 <link rel="preload" href="assets/fonts/instrument-serif-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/instrument-serif-400-italic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/newsreader-var-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/inter-tight-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/styles.css">
-<script>(function(){try{var e=localStorage.getItem('aaj-edition');if(!e)e=matchMedia('(prefers-color-scheme: dark)').matches?'night':'day';document.documentElement.dataset.edition=e;}catch(_){}})();</script>
+<script>(function(){try{var e=localStorage.getItem('aaj-edition');if(!e)e=matchMedia('(prefers-color-scheme: dark)').matches?'evening':'day';document.documentElement.dataset.edition=e;}catch(_){}})();</script>
 </head>
 <body>
 <a class="skip" href="#front">Skip to content</a>
 
 <header class="masthead">
   <div class="wrap">
-    <div class="masthead__top">
-      <a class="masthead__mark" href="#top"><span class="moon" aria-hidden="true">☾</span> A · A</a>
-      <button class="edition-toggle" type="button" id="edition" aria-pressed="false" aria-label="Switch between day and night edition">
-        <span class="sw" aria-hidden="true"></span>
-        <span class="vh">Edition: <b id="edition-name">Day</b></span>
+    <div class="masthead__rule" aria-hidden="true"></div>
+    <div class="masthead__banner">
+      <p class="masthead__weather" id="edition-label">Day Edition</p>
+      <a class="masthead__title" href="#top" aria-label="The Al-Aqmar Gazette">
+        <span class="the">The</span>
+        <span class="name">Al-Aqmar</span>
+        <span class="name name--italic">Gazette</span>
+      </a>
+      <button class="edition-toggle" type="button" id="edition" aria-pressed="false" aria-label="Switch between day and evening edition">
+        <span class="edition-toggle__label">Day</span>
+        <span class="edition-toggle__mark" aria-hidden="true"></span>
+        <span class="edition-toggle__label">Evening</span>
       </button>
     </div>
-
-    <div class="nameplate">
-      <h1>
-        <span class="the">The</span><span class="np"><span class="moon" aria-hidden="true">☾</span> Al-Aqmar</span> <span class="jrnl">Journal</span>
-      </h1>
+    <div class="masthead__meta">
+      <span>Vol. CXXVI</span>
+      <span class="masthead__date">Sunday, 27 September 2026</span>
+      <span>Heart-First Intelligence</span>
     </div>
-
-    <p class="masthead__strap label">
-      <span>Al-Aqmar Tinwala</span>
-      <span class="arabic" lang="ar" dir="rtl">القمر</span>
-      <span>Heart-First AI Architect</span>
-    </p>
-  </div>
-
-  <div class="ticker" aria-label="Latest dispatches">
-    <ul class="ticker__track" id="ticker-a">
-      <li><b>eSAMz AI</b> passes 3,000 users — stores none</li>
-      <li><b>RealLearn</b> masters in 63 languages</li>
-      <li><b>youAI-2B</b> built from raw tensor math</li>
-      <li><b>गति</b> unifies autos, metro, buses</li>
-      <li><b>Book II</b> 30 Days Mastering Claude Code</li>
-      <li><b>π</b> molecules at 60fps on a Chromebook</li>
-      <li><b>43</b> public repositories</li>
-    </ul>
+    <div class="masthead__rule masthead__rule--thick" aria-hidden="true"></div>
   </div>
 </header>
 
-<div class="rail">
+<nav class="rail" aria-label="Sections">
   <div class="wrap rail__inner">
-    <nav aria-label="Sections">
-      <a href="#front">Front</a>
-      <a href="#works">Works</a>
-      <a href="#archive">Archive</a>
-      <a href="#editorial">Editorial</a>
-      <a href="#library">Library</a>
-      <a href="#ledger">Stack</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <button class="edition-toggle rail__edition" type="button" id="edition-2" aria-pressed="false" aria-label="Switch between day and night edition">
-      <span class="sw" aria-hidden="true"></span>
+    <a href="#front">Front Page</a>
+    <a href="#works">Works</a>
+    <a href="#gems">Git Gems</a>
+    <a href="#editorial">Editorial</a>
+    <a href="#contact">Correspondence</a>
+    <button class="edition-toggle rail__edition" type="button" id="edition-2" aria-pressed="false" aria-label="Switch between day and evening edition">
+      <span class="edition-toggle__label">Day</span>
+      <span class="edition-toggle__mark" aria-hidden="true"></span>
+      <span class="edition-toggle__label">Evening</span>
     </button>
   </div>
   <div class="rail__progress" id="progress" aria-hidden="true"></div>
-</div>
+</nav>
 
 <main id="top">
 
 <section id="front" aria-labelledby="front-h">
   <div class="wrap front">
 
-    <div class="lede" data-reveal>
-      <p class="lede__kicker"><span class="label label--flare">Profile</span><span class="label">Heart-First Architect</span></p>
-      <h2 id="front-h">Shipping AI that <em>forgets you</em> on purpose.</h2>
-      <p class="lede__deck">Eleven live products. One rule: keep nothing.</p>
+    <article class="lede" data-reveal>
+      <p class="lede__kicker"><span class="label">Front Page</span><span class="label">Heart-First Architect</span></p>
+      <h1 id="front-h">Shipping AI that <em>forgets you</em> on purpose.</h1>
+      <p class="lede__deck">Five products. Five open gems. One rule: keep nothing.</p>
 
-      <p class="byline">
-        <span class="label">By Al-Aqmar Tinwala</span>
-      </p>
-
-      <div class="lede__body">
-        <p>I build tools that give people speed, privacy, and real cognitive lift — not slower phones and thinner selves.</p>
-        <p>That means adaptive learning, privacy-first assistants, and molecular visuals at 60fps. Underneath sits a 2B-parameter transformer written from scratch — because you should understand every layer you ship.</p>
-        <p><strong>Heart first.</strong> If a system doesn’t treat its user with dignity, it doesn’t belong online.</p>
+      <div class="lede__byline">
+        <span>By Al-Aqmar Tinwala</span>
+        <span class="lede__tag" dir="rtl" lang="ar">القمر</span>
+        <span>Special to the Gazette</span>
       </div>
 
-      <p class="lede__cta">
-        <a class="btn" href="#works">See selected works</a>
-        <a class="elink" href="#contact">Get in touch</a>
-      </p>
-    </div>
+      <div class="lede__body">
+        <p><span class="dropcap">I</span> build tools that give people speed, privacy, and real cognitive lift — not slower phones and thinner selves. That means adaptive learning, privacy-first assistants, and molecular visuals at sixty frames per second. Underneath sits a two-billion-parameter transformer written from raw tensor math, because you should understand every layer you ship.</p>
+        <p><strong>Heart first.</strong> If a system does not treat its user with dignity, it does not belong online. Every item in this broadsheet is deployed, reachable, and audited for depth, performance, and how much runs without a server.</p>
+      </div>
+    </article>
 
-    <div class="aside-col">
-      <figure class="plate" data-reveal>
-        <div class="plate__art">
-          <svg class="eng moon-plate" viewBox="0 0 320 320" role="img" aria-labelledby="moon-t">
-            <title id="moon-t">Halftone engraving of the moon</title>
-            <defs>
-              <pattern id="mp-dots" width="9" height="9" patternUnits="userSpaceOnUse">
-                <circle cx="4.5" cy="4.5" r="2" fill="currentColor"/>
-              </pattern>
-              <linearGradient id="mp-term" x1="0.05" y1="0.1" x2="1" y2="0.75">
-                <stop offset="0.1" stop-color="#fff" stop-opacity="1"/>
-                <stop offset="0.6" stop-color="#fff" stop-opacity="0.35"/>
-                <stop offset="1" stop-color="#fff" stop-opacity="0"/>
-              </linearGradient>
-              <mask id="mp-mask"><rect width="320" height="320" fill="url(#mp-term)"/></mask>
-              <clipPath id="mp-clip"><circle cx="158" cy="156" r="116"/></clipPath>
-            </defs>
-            <g class="hair">
-              <path d="M158 8v26M158 278v26M8 156h26M282 156h26"/>
-              <circle cx="158" cy="156" r="134" stroke-dasharray="1 7"/>
-            </g>
-            <g class="spin">
-              <circle class="hair" cx="158" cy="156" r="144" stroke-dasharray="14 10"/>
-              <circle class="acc-f" cx="158" cy="12" r="3.4"/>
-            </g>
-            <circle cx="158" cy="156" r="116" fill="url(#mp-dots)" mask="url(#mp-mask)"/>
-            <g clip-path="url(#mp-clip)" class="hair">
-              <circle cx="112" cy="120" r="22"/><circle cx="182" cy="196" r="31"/>
-              <circle cx="96" cy="204" r="13"/><circle cx="196" cy="108" r="9"/>
-              <circle cx="140" cy="168" r="5"/>
-            </g>
-            <circle class="ln" cx="158" cy="156" r="116"/>
-            <text x="16" y="306">Plate I — Al-Qamar</text>
-          </svg>
-        </div>
-        <figcaption><b>Plate I</b><span>Al-Aqmar means the moon. Reflected light, no heat — software that serves, not extracts.</span></figcaption>
+    <aside class="front__column" aria-label="Bulletin">
+      <div class="bulletin" data-reveal>
+        <p class="bulletin__head label">Bulletin</p>
+        <ul>
+          <li><b>3,000+</b> daily users served</li>
+          <li><b>5</b> live products curated</li>
+          <li><b>5</b> open-source gems rated</li>
+          <li><b>0</b> bytes retained by default</li>
+          <li><b>2</b> volumes in print</li>
+        </ul>
+      </div>
+
+      <figure class="front__plate" data-reveal>
+        <svg class="eng" viewBox="0 0 240 240" role="img" aria-labelledby="moon-t">
+          <title id="moon-t">Engraving of the moon in halftone</title>
+          <defs>
+            <pattern id="dots" width="8" height="8" patternUnits="userSpaceOnUse">
+              <circle cx="4" cy="4" r="1.6" fill="currentColor"/>
+            </pattern>
+            <linearGradient id="moon-fade" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#fff" stop-opacity="1"/>
+              <stop offset="0.6" stop-color="#fff" stop-opacity="0.35"/>
+              <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+            </linearGradient>
+            <mask id="moon-mask"><rect width="240" height="240" fill="url(#moon-fade)"/></mask>
+            <clipPath id="moon-clip"><circle cx="120" cy="120" r="88"/></clipPath>
+          </defs>
+          <g stroke="currentColor" stroke-width="0.6" opacity="0.4" fill="none">
+            <path d="M120 12v26M120 202v26M12 120h26M202 120h26"/>
+            <circle cx="120" cy="120" r="102" stroke-dasharray="2 8"/>
+          </g>
+          <circle cx="120" cy="120" r="88" fill="url(#dots)" mask="url(#moon-mask)"/>
+          <g clip-path="url(#moon-clip)" fill="currentColor">
+            <circle cx="82" cy="88" r="16"/>
+            <circle cx="148" cy="150" r="22"/>
+            <circle cx="70" cy="158" r="9"/>
+            <circle cx="158" cy="78" r="6"/>
+          </g>
+          <circle cx="120" cy="120" r="88" fill="none" stroke="currentColor" stroke-width="1"/>
+          <text x="12" y="228" style="font-size:7px;letter-spacing:0.18em">Plate I — Al-Qamar</text>
+        </svg>
+        <figcaption>Al-Aqmar means the moon. Reflected light, no heat.</figcaption>
       </figure>
+    </aside>
 
-      <article class="teaser" data-reveal>
-        <p class="label label--accent">Lead story · §II</p>
-        <h3>RealLearn turns one question into mastery.</h3>
-        <p>News-grounded explanation, quiz-gated progression, and on-device spaced repetition.</p>
-        <a class="elink" href="#works">Read the feature</a>
-      </article>
-    </div>
-  </div>
-
-  <div class="wrap">
-    <div class="signals" data-reveal>
-      <div><p class="n">11</p><p class="k">Products live</p></div>
-      <div><p class="n">3,000<span class="plus">+</span></p><p class="k">Active users</p></div>
-      <div><p class="n">43</p><p class="k">Repositories</p></div>
-      <div><p class="n">2</p><p class="k">Books</p></div>
-      <div><p class="n">0</p><p class="k">Bytes retained</p></div>
-    </div>
   </div>
 </section>
 
 <section class="section" id="works" aria-labelledby="works-h">
   <div class="wrap">
-    <header class="shead" data-reveal>
-      <p class="shead__top"><span class="label label--accent">§II</span><span class="label">Selected Works</span><span class="rule-fill" aria-hidden="true"></span><span class="label">Eleven live</span></p>
-      <h2 id="works-h">Eleven products, <em>in public.</em></h2>
-      <p class="shead__note">Deployed, reachable, and used — ordered by depth, not date.</p>
+    <header class="section-head" data-reveal>
+      <p class="label">Selected Works</p>
+      <h2 id="works-h">Five products, <em>set in type.</em></h2>
     </header>
-  </div>
 
-  <div class="bleed bleed--ink">
-    <div class="wrap">
-      <article class="feature feature--lead" data-reveal>
-        <div>
-          <p class="label label--flare"><span class="dot" aria-hidden="true"></span> Flagship · Adaptive learning</p>
-          <div class="feature__head">
-            <span class="feature__num" aria-hidden="true">01</span>
-            <div>
-              <h3>RealLearn AI</h3>
-              <p class="feature__standfirst">One question becomes a three-stage journey: grounded explanation, quiz gate, and on-device SM-2 spaced repetition.</p>
-            </div>
-          </div>
-          <div class="feature__metrics">
-            <div><p class="mv">63</p><p class="mk">Languages</p></div>
-            <div><p class="mv">3</p><p class="mk">Mastery stages</p></div>
-            <div><p class="mv">SM-2</p><p class="mk">On-device</p></div>
-            <div><p class="mv">Groq</p><p class="mk">Inference</p></div>
-          </div>
-          <p class="stack-line">Next.js 16 · Groq · Serper · local-first</p>
-          <a class="btn" href="https://reallearn-info.vercel.app" target="_blank" rel="noopener noreferrer">Open RealLearn <span aria-hidden="true">↗</span><span class="vh">(opens in a new tab)</span></a>
+    <div class="works-grid">
+      <article class="work work--lead" data-reveal>
+        <p class="label">Flagship · §I</p>
+        <h3>eSAMz AI</h3>
+        <p class="work__standfirst">A 128k-context assistant on a Rust router with web search and consent tiers. Three thousand daily users, zero retention.</p>
+        <div class="work__meta">
+          <span><b>128k</b> context</span>
+          <span><b>0</b> retention</span>
+          <span><b>Rust</b> router</span>
         </div>
-        <figure class="feature__art">
-          <div class="plate__art">
-            <svg class="eng" viewBox="0 0 400 300" role="img" aria-labelledby="rl-t">
-              <title id="rl-t">Three stages of learning</title>
-              <g class="hair">
-                <path d="M0 60h400M0 150h400M0 240h400" stroke-dasharray="2 6"/>
-                <path d="M100 0v300M200 0v300M300 0v300" stroke-dasharray="2 6"/>
-              </g>
-              <path class="ln-2" d="M28 240 C 90 240 90 150 150 150 C 210 150 210 60 272 60"/>
-              <g class="ln"><path d="M150 120v60M272 30v60"/></g>
-              <circle class="sld" cx="28" cy="240" r="5"/>
-              <circle class="sld" cx="150" cy="150" r="5"/>
-              <circle class="acc-f" cx="272" cy="60" r="7"/>
-              <g class="acc"><circle cx="272" cy="60" r="16"/></g>
-              <g class="ln"><rect x="330" y="40" width="46" height="46"/><path d="M330 63h46M353 40v46"/></g>
-              <text x="14" y="268">Stage I · Ask</text>
-              <text x="122" y="196">II · Quiz</text>
-              <text x="246" y="106">III · Master</text>
-              <text x="322" y="106">SM-2</text>
-            </svg>
-          </div>
-        </figure>
+        <p class="work__stack">Rust · Sarvam 105b · Next.js · consent tiers</p>
+        <a class="work__link" href="https://esamz.info" target="_blank" rel="noopener noreferrer">Read dispatch <span aria-hidden="true">↗</span><span class="vh"> (opens in a new tab)</span></a>
       </article>
-    </div>
-  </div>
 
-  <div class="wrap">
-    <article class="feature feature--flip u-spread" data-reveal>
-      <div>
-        <p class="label label--accent">Privacy core · LLM engine</p>
-        <div class="feature__head">
-          <span class="feature__num" aria-hidden="true">02</span>
-          <div>
-            <h3>eSAMz AI</h3>
-            <p class="feature__standfirst">A 128k-context assistant on a Rust router with web search and consent tiers. Three thousand daily users, zero retention.</p>
-          </div>
+      <article class="work" data-reveal>
+        <p class="label">§II · Adaptive Learning</p>
+        <h3>RealLearn AI</h3>
+        <p class="work__standfirst">One question becomes a three-stage journey: grounded explanation, quiz gate, and on-device SM-2 spaced repetition.</p>
+        <div class="work__meta">
+          <span><b>63</b> languages</span>
+          <span><b>3</b> stages</span>
+          <span><b>SM-2</b> local</span>
         </div>
-        <div class="feature__metrics">
-          <div><p class="mv">3,000+</p><p class="mk">Active users</p></div>
-          <div><p class="mv">128k</p><p class="mk">Context</p></div>
-          <div><p class="mv">0</p><p class="mk">Retention</p></div>
-          <div><p class="mv">105b</p><p class="mk">Sarvam</p></div>
-        </div>
-        <p class="stack-line">Rust · Sarvam 105b · Next.js · consent tiers</p>
-        <a class="btn btn--ghost" href="https://esamz.info" target="_blank" rel="noopener noreferrer">Open eSAMz <span aria-hidden="true">↗</span><span class="vh">(opens in a new tab)</span></a>
-      </div>
-      <figure class="feature__art">
-        <div class="plate__art">
-          <svg class="eng" viewBox="0 0 400 300" role="img" aria-labelledby="es-t">
-            <title id="es-t">128k context window, empty retention store</title>
-            <g class="hair"><path d="M40 44h320M40 300"/></g>
-            <text x="40" y="36">Context — 128,000 tokens</text>
-            <g class="ln"><rect x="40" y="52" width="320" height="34"/></g>
-            <g class="sld">
-              <rect x="44" y="56" width="238" height="26" opacity="0.18"/>
-              <rect x="44" y="56" width="3" height="26"/><rect x="52" y="56" width="3" height="26"/>
-              <rect x="60" y="56" width="3" height="26"/><rect x="68" y="56" width="3" height="26"/>
-              <rect x="76" y="56" width="3" height="26"/><rect x="92" y="56" width="3" height="26"/>
-              <rect x="108" y="56" width="3" height="26"/><rect x="124" y="56" width="3" height="26"/>
-              <rect x="148" y="56" width="3" height="26"/><rect x="176" y="56" width="3" height="26"/>
-              <rect x="212" y="56" width="3" height="26"/><rect x="254" y="56" width="3" height="26"/>
-            </g>
-            <g class="ln"><path d="M200 86v40"/><path d="M194 120l6 8 6-8"/></g>
-            <text x="212" y="116">Rust router</text>
-            <g class="acc"><rect x="120" y="128" width="160" height="40"/></g>
-            <text x="132" y="153">&lt; 120 ms</text>
-            <g class="ln"><path d="M120 148H70v60h40"/><path d="M280 148h50v60h-40"/></g>
-            <text x="34" y="228">Answer</text>
-            <text x="300" y="228">Retention</text>
-            <g class="ln" stroke-dasharray="4 5"><rect x="248" y="236" width="112" height="44"/></g>
-            <text class="flr" x="286" y="266" style="font-size:19px;letter-spacing:0.1em;fill:var(--flare);opacity:1;">EMPTY</text>
-            <g class="ln"><rect x="40" y="236" width="112" height="44"/><path d="M52 258h88M132 250l8 8-8 8"/></g>
-          </svg>
-        </div>
-      </figure>
-    </article>
-  </div>
+        <p class="work__stack">Next.js 16 · Groq · Serper · local-first</p>
+        <a class="work__link" href="https://reallearn-info.vercel.app" target="_blank" rel="noopener noreferrer">Read dispatch <span aria-hidden="true">↗</span><span class="vh"> (opens in a new tab)</span></a>
+      </article>
 
-  <div class="wrap">
-    <div class="truck u-rule-top">
-      <article data-reveal>
-        <p class="label"><span aria-hidden="true">03</span> · Interactive science</p>
-        <figure class="plate">
-          <div class="plate__art">
-            <svg class="eng" viewBox="0 0 400 200" role="img" aria-labelledby="pi-t">
-              <title id="pi-t">Atom and water molecule</title>
-              <g class="hair"><path d="M0 100h400" stroke-dasharray="2 6"/><path d="M200 12v176" stroke-dasharray="2 6"/></g>
-              <g transform="translate(112 100)">
-                <ellipse class="ln" rx="78" ry="27"/>
-                <ellipse class="ln" rx="78" ry="27" transform="rotate(60)"/>
-                <ellipse class="ln" rx="78" ry="27" transform="rotate(-60)"/>
-                <circle class="sld" r="9"/>
-                <circle class="acc-f" cx="78" cy="0" r="4.5"/>
-                <circle class="acc-f" cx="-39" cy="24" r="4.5"/>
-                <circle class="acc-f" cx="-39" cy="-24" r="4.5"/>
-              </g>
-              <g transform="translate(300 92)">
-                <path class="ln" d="M0 0l-52 34M0 0l52 34"/>
-                <circle class="ln-2 ko" cx="0" cy="0" r="21"/>
-                <circle class="ln-2 ko" cx="-52" cy="34" r="15"/>
-                <circle class="ln-2 ko" cx="52" cy="34" r="15"/>
-                <text x="-5" y="4" style="font-size:12px;letter-spacing:0;opacity:1;">O</text>
-                <text x="-56" y="38" style="font-size:9px;letter-spacing:0;opacity:1;">H</text>
-                <text x="48" y="38" style="font-size:9px;letter-spacing:0;opacity:1;">H</text>
-                <path class="acc" d="M-19 12 A 24 24 0 0 0 19 12"/>
-                <text class="acc-f" x="-16" y="52" style="font-size:7px;opacity:1;">104.5°</text>
-              </g>
-              <text x="52" y="184">Shells · bonds · geometry</text>
-              <text x="252" y="184">Bent geometry</text>
-            </svg>
-          </div>
-        </figure>
+      <article class="work" data-reveal>
+        <p class="label">§III · Interactive Science</p>
         <h3><span class="glyph">π</span> — Pi</h3>
-        <p>Atoms, electron clouds, and molecular geometry at 60fps — tuned for school Chromebooks.</p>
-        <p class="tagrow"><span>WebGL</span><span>Three.js</span><span>60 FPS</span></p>
-        <a class="elink" data-ext href="https://science-project-pi.vercel.app" target="_blank" rel="noopener noreferrer">Explore<span class="vh"> (opens in a new tab)</span></a>
+        <p class="work__standfirst">Atoms, electron clouds, and molecular geometry at 60fps — tuned for school Chromebooks.</p>
+        <div class="work__meta">
+          <span><b>WebGL</b></span>
+          <span><b>60fps</b></span>
+          <span><b>Three.js</b></span>
+        </div>
+        <p class="work__stack">Three.js · GLSL · Canvas · 0 telemetry</p>
+        <a class="work__link" href="https://science-project-pi.vercel.app" target="_blank" rel="noopener noreferrer">Read dispatch <span aria-hidden="true">↗</span><span class="vh"> (opens in a new tab)</span></a>
       </article>
 
-      <article data-reveal>
-        <p class="label"><span aria-hidden="true">04</span> · Mobility</p>
-        <figure class="plate">
-          <div class="plate__art">
-            <svg class="eng" viewBox="0 0 400 200" role="img" aria-labelledby="ga-t">
-              <title id="ga-t">Transit diagram</title>
-              <g class="hair"><path d="M0 100h400" stroke-dasharray="2 6"/></g>
-              <path class="ln-2" d="M20 156h96l52-52h92"/>
-              <path class="acc" d="M20 60h72l48 48h120"/>
-              <path class="ln" d="M132 20v50l56 56v40" stroke-dasharray="7 6"/>
-              <g class="sld">
-                <circle cx="20" cy="156" r="4"/><circle cx="20" cy="60" r="4"/>
-                <circle cx="260" cy="104" r="4"/><circle cx="188" cy="166" r="4"/>
-              </g>
-              <circle class="ln-2 ko" cx="140" cy="108" r="9"/>
-              <circle class="ln-2 ko" cx="168" cy="104" r="6"/>
-              <g class="ln"><rect x="300" y="52" width="80" height="34"/><path d="M300 74h80"/></g>
-              <text x="308" y="68">ETA 4 min</text>
-              <text x="20" y="190">Auto</text><text x="120" y="190">Metro</text><text x="232" y="190">Bus · last mile</text>
-            </svg>
-          </div>
-        </figure>
+      <article class="work" data-reveal>
+        <p class="label">§IV · Mobility</p>
         <h3><span class="glyph">गति</span> — Gati</h3>
-        <p>Autos, metro, buses, and bikes in one hyperlocal journey planner with live ETAs and bilingual voice intent.</p>
-        <p class="tagrow"><span>Voice AI</span><span>Live ETA</span><span>EN / हिन्दी</span></p>
-        <a class="elink" data-ext href="https://gati-rho.vercel.app" target="_blank" rel="noopener noreferrer">Plan<span class="vh"> (opens in a new tab)</span></a>
+        <p class="work__standfirst">Autos, metro, buses, and bikes in one hyperlocal journey planner with live ETAs and bilingual voice intent.</p>
+        <div class="work__meta">
+          <span><b>Voice AI</b></span>
+          <span><b>Live ETA</b></span>
+          <span><b>EN / हिन्दी</b></span>
+        </div>
+        <p class="work__stack">TypeScript · Maps · Whisper · Voice</p>
+        <a class="work__link" href="https://gati-rho.vercel.app" target="_blank" rel="noopener noreferrer">Read dispatch <span aria-hidden="true">↗</span><span class="vh"> (opens in a new tab)</span></a>
       </article>
-    </div>
-  </div>
 
-  <div class="wrap u-pad-top">
-    <header class="shead u-tight" data-reveal>
-      <p class="shead__top"><span class="label label--accent">Also filed</span><span class="rule-fill" aria-hidden="true"></span><span class="label">05 — 11</span></p>
-      <h2 class="u-sub">Seven more, one thing each.</h2>
-    </header>
-
-    <div class="ledger" data-reveal>
-      <a class="ledger__row" href="https://pivot-iq.vercel.app" target="_blank" rel="noopener noreferrer">
-        <span class="ledger__n">05</span>
-        <span class="ledger__t">PivotIQ</span>
-        <span class="ledger__d">Stress-test a founder idea with adversarial investor prompts and risk matrices.</span>
-        <span class="ledger__s">Gemini · Risk matrix</span>
-        <span class="ledger__go" aria-hidden="true">↗</span>
-      </a>
-      <a class="ledger__row" href="https://me.esamz.info" target="_blank" rel="noopener noreferrer">
-        <span class="ledger__n">06</span>
-        <span class="ledger__t">MindEase</span>
-        <span class="ledger__d">Browser-only empathetic voice chat in 20 languages. Nothing stored.</span>
-        <span class="ledger__s">On-device · 20 langs</span>
-        <span class="ledger__go" aria-hidden="true">↗</span>
-      </a>
-      <a class="ledger__row" href="https://hisaab.esamz.info" target="_blank" rel="noopener noreferrer">
-        <span class="ledger__n">07</span>
-        <span class="ledger__t">Hissab</span>
-        <span class="ledger__d">Bookkeeping for Indian micro-businesses, thumb-first, on-device.</span>
-        <span class="ledger__s">PWA · Local storage</span>
-        <span class="ledger__go" aria-hidden="true">↗</span>
-      </a>
-      <a class="ledger__row" href="https://cibo.esamz.info" target="_blank" rel="noopener noreferrer">
-        <span class="ledger__n">08</span>
-        <span class="ledger__t">CiboCocinar</span>
-        <span class="ledger__d">Hands-free kitchen guidance under 200ms latency.</span>
-        <span class="ledger__s">Voice AI · &lt;200 ms</span>
-        <span class="ledger__go" aria-hidden="true">↗</span>
-      </a>
-      <a class="ledger__row" href="https://fit-the-color-info.vercel.app" target="_blank" rel="noopener noreferrer">
-        <span class="ledger__n">09</span>
-        <span class="ledger__t">Fit The Color</span>
-        <span class="ledger__d">OKLCH distance, WCAG AAA checks, and harmonic palettes.</span>
-        <span class="ledger__s">OKLCH · Next.js 15</span>
-        <span class="ledger__go" aria-hidden="true">↗</span>
-      </a>
-      <a class="ledger__row" href="https://tic-info.vercel.app" target="_blank" rel="noopener noreferrer">
-        <span class="ledger__n">10</span>
-        <span class="ledger__t">Neon Tic-Tac-Toe</span>
-        <span class="ledger__d">Zero-dependency canvas game with unbeatable minimax.</span>
-        <span class="ledger__s">Vanilla JS · 0 deps</span>
-        <span class="ledger__go" aria-hidden="true">↗</span>
-      </a>
-      <a class="ledger__row" data-state="lab" href="https://github.com/alakmar344/See-market" target="_blank" rel="noopener noreferrer">
-        <span class="ledger__n">11</span>
-        <span class="ledger__t">SeeMarket</span>
-        <span class="ledger__d">Server-side RSI, MACD, and support/resistance. Still on the bench.</span>
-        <span class="ledger__s">TypeScript · Server-side</span>
-        <span class="ledger__go" aria-hidden="true">↗</span>
-      </a>
+      <article class="work" data-reveal>
+        <p class="label">§V · Design QA</p>
+        <h3>Fit The Color</h3>
+        <p class="work__standfirst">OKLCH distance, WCAG AAA checks, and harmonic palettes for designers who care about math.</p>
+        <div class="work__meta">
+          <span><b>OKLCH</b></span>
+          <span><b>WCAG</b> AAA</span>
+          <span><b>Next.js</b> 15</span>
+        </div>
+        <p class="work__stack">Next.js 15 · Color science · Accessibility</p>
+        <a class="work__link" href="https://fit-the-color-info.vercel.app" target="_blank" rel="noopener noreferrer">Read dispatch <span aria-hidden="true">↗</span><span class="vh"> (opens in a new tab)</span></a>
+      </article>
     </div>
   </div>
 </section>
 
-<section class="section" id="archive" aria-labelledby="archive-h">
+<section class="section" id="gems" aria-labelledby="gems-h">
   <div class="wrap">
-    <header class="shead" data-reveal>
-      <p class="shead__top"><span class="label label--accent">§III</span><span class="label">The Archive</span><span class="rule-fill" aria-hidden="true"></span><span class="label">Open source</span></p>
-      <h2 id="archive-h">Forty-three repos. <em>Eleven</em> rated.</h2>
-      <p class="shead__note">Audited on depth, performance, and how much runs without a server.</p>
+    <header class="section-head" data-reveal>
+      <p class="label">The Repository Desk</p>
+      <h2 id="gems-h">Five git gems, <em>polished.</em></h2>
     </header>
 
-    <article class="crown" data-reveal>
-      <div>
-        <p class="label label--flare"><span class="dot" aria-hidden="true"></span> Crown gem · Open source</p>
+    <article class="gem gem--crown" data-reveal>
+      <div class="gem__main">
+        <p class="label">Crown Jewel</p>
         <h3>youAI-2B</h3>
-        <p>A pip-installable toolkit for training and serving a 2B-parameter transformer — written from raw tensor math.</p>
-        <p class="u-cta"><a class="elink" data-ext href="https://github.com/alakmar344/youAI-2B-From-Scratch-Transformer-Implementation" target="_blank" rel="noopener noreferrer">Read the implementation<span class="vh"> (opens in a new tab)</span></a></p>
+        <p>A pip-installable toolkit for training and serving a two-billion-parameter transformer — written from raw tensor math.</p>
       </div>
-      <div class="crown__score">
-        <p class="n">90</p>
-        <p class="k">Carats<br><b>Highest rated</b></p>
+      <dl class="gem__specs">
+        <div><dt>Architecture</dt><dd>RoPE · RMSNorm · SwiGLU · GQA · KV-cache</dd></div>
+        <div><dt>Alignment</dt><dd>DPO · ORPO · SimPO</dd></div>
+        <div><dt>Adapters</dt><dd>LoRA · QLoRA · DARE · TIES</dd></div>
+        <div><dt>Parameters</dt><dd>2,000,000,000</dd></div>
+      </dl>
+      <div class="gem__score">
+        <span class="gem__score-value">90</span>
+        <span class="gem__score-label">Carats</span>
       </div>
-      <div class="crown__specs">
-        <div><b>Arch</b><span>RoPE · RMSNorm · SwiGLU · GQA · KV-cache</span></div>
-        <div><b>Align</b><span>DPO · ORPO · SimPO</span></div>
-        <div><b>Adapters</b><span>LoRA · QLoRA · DARE · TIES</span></div>
-        <div><b>Params</b><span>2,000,000,000</span></div>
-        <figure class="plate u-mt">
-          <div class="plate__art">
-            <svg class="eng" viewBox="0 0 200 120" role="img" aria-labelledby="ai-t">
-              <title id="ai-t">Attention matrix</title>
-              <g class="sld">
-                <rect x="8" y="8" width="16" height="16"/><rect x="28" y="8" width="16" height="16" opacity="0.15"/>
-                <rect x="48" y="8" width="16" height="16" opacity="0.08"/><rect x="68" y="8" width="16" height="16" opacity="0.05"/>
-                <rect x="8" y="28" width="16" height="16" opacity="0.55"/><rect x="28" y="28" width="16" height="16"/>
-                <rect x="48" y="28" width="16" height="16" opacity="0.2"/><rect x="68" y="28" width="16" height="16" opacity="0.07"/>
-                <rect x="8" y="48" width="16" height="16" opacity="0.3"/><rect x="28" y="48" width="16" height="16" opacity="0.65"/>
-                <rect x="48" y="48" width="16" height="16"/><rect x="68" y="48" width="16" height="16" opacity="0.18"/>
-                <rect x="8" y="68" width="16" height="16" opacity="0.12"/><rect x="28" y="68" width="16" height="16" opacity="0.35"/>
-                <rect x="48" y="68" width="16" height="16" opacity="0.7"/><rect x="68" y="68" width="16" height="16"/>
-              </g>
-              <g class="hair"><rect x="8" y="8" width="76" height="76"/></g>
-              <g class="acc"><path d="M100 46h30M124 40l8 6-8 6"/></g>
-              <g class="ln"><rect x="140" y="20" width="52" height="52"/><path d="M140 46h52M166 20v52"/></g>
-              <text x="8" y="102">Causal attention</text>
-              <text x="140" y="102">Logits</text>
-            </svg>
-          </div>
-        </figure>
-      </div>
+      <a class="gem__link" href="https://github.com/alakmar344/youAI-2B-From-Scratch-Transformer-Implementation" target="_blank" rel="noopener noreferrer">Inspect source <span aria-hidden="true">↗</span><span class="vh"> (opens in a new tab)</span></a>
     </article>
 
-    <div class="carat-table u-gap" data-reveal>
-      <p class="label carat-head"><span>Rated</span><span>Carats</span></p>
-      <a class="carat-row" style="--v:87%" href="https://github.com/alakmar344/gati" target="_blank" rel="noopener noreferrer">
-        <span class="cn">02</span><span class="ct">gati</span>
-        <span class="cd">14.1k lines of TypeScript, bilingual voice routing across four transit modes.</span>
-        <span class="cbar"><i aria-hidden="true"></i></span><span class="cv">87</span>
+    <div class="gem-table" data-reveal>
+      <div class="gem-table__head" aria-hidden="true">
+        <span>No.</span>
+        <span>Name</span>
+        <span>Dispatch</span>
+        <span>Carats</span>
+      </div>
+
+      <a class="gem-table__row" href="https://github.com/alakmar344/breeze-framework" target="_blank" rel="noopener noreferrer">
+        <span class="gem-table__num">01</span>
+        <span class="gem-table__name">breeze-framework</span>
+        <span class="gem-table__desc">A lightweight, breathable web framework still being set into type.</span>
+        <span class="gem-table__score gem-table__score--uncut">Uncut</span>
       </a>
-      <a class="carat-row" style="--v:82%" href="https://github.com/alakmar344/vinecraft" target="_blank" rel="noopener noreferrer">
-        <span class="cn">03</span><span class="ct">vinecraft</span>
-        <span class="cd">Infinite voxel world in the browser: procedural terrain, ambient occlusion, 10 biomes.</span>
-        <span class="cbar"><i aria-hidden="true"></i></span><span class="cv">82</span>
+
+      <a class="gem-table__row" href="https://github.com/alakmar344/gati" target="_blank" rel="noopener noreferrer">
+        <span class="gem-table__num">02</span>
+        <span class="gem-table__name">gati</span>
+        <span class="gem-table__desc">Fourteen-thousand lines of TypeScript, bilingual voice routing across four transit modes.</span>
+        <span class="gem-table__score">87</span>
       </a>
-      <a class="carat-row" style="--v:82%" href="https://github.com/alakmar344/science-project" target="_blank" rel="noopener noreferrer">
-        <span class="cn">04</span><span class="ct">science-project</span>
-        <span class="cd">The 60fps chemistry renderer behind π, tuned for GPU-less Chromebooks.</span>
-        <span class="cbar"><i aria-hidden="true"></i></span><span class="cv">82</span>
+
+      <a class="gem-table__row" href="https://github.com/alakmar344/vinecraft" target="_blank" rel="noopener noreferrer">
+        <span class="gem-table__num">03</span>
+        <span class="gem-table__name">vinecraft</span>
+        <span class="gem-table__desc">Infinite voxel world in the browser: procedural terrain, ambient occlusion, ten biomes.</span>
+        <span class="gem-table__score">82</span>
       </a>
-      <a class="carat-row" style="--v:81%" href="https://github.com/alakmar344/esamz.a" target="_blank" rel="noopener noreferrer">
-        <span class="cn">05</span><span class="ct">esamz.a</span>
-        <span class="cd">Privacy plumbing: Next.js proxy, consent tiers, verifiable purge endpoints.</span>
-        <span class="cbar"><i aria-hidden="true"></i></span><span class="cv">81</span>
+
+      <a class="gem-table__row" href="https://github.com/alakmar344/science-project" target="_blank" rel="noopener noreferrer">
+        <span class="gem-table__num">04</span>
+        <span class="gem-table__name">science-project</span>
+        <span class="gem-table__desc">The 60fps chemistry renderer behind π, tuned for GPU-less Chromebooks.</span>
+        <span class="gem-table__score">82</span>
       </a>
-      <a class="carat-row" style="--v:79%" href="https://github.com/alakmar344/See-market" target="_blank" rel="noopener noreferrer">
-        <span class="cn">06</span><span class="ct">See-market</span>
-        <span class="cd">Two-service fintech backend computing RSI, Bollinger bands, and MA convergences.</span>
-        <span class="cbar"><i aria-hidden="true"></i></span><span class="cv">79</span>
-      </a>
-      <a class="carat-row" style="--v:79%" href="https://github.com/alakmar344/analytics-hub" target="_blank" rel="noopener noreferrer">
-        <span class="cn">07</span><span class="ct">analytics-hub</span>
-        <span class="cd">Self-hosted analytics with salt-rotated HMAC-SHA256 — mathematically untrackable.</span>
-        <span class="cbar"><i aria-hidden="true"></i></span><span class="cv">79</span>
-      </a>
-      <a class="carat-row" style="--v:74%" href="https://github.com/alakmar344/My-code" target="_blank" rel="noopener noreferrer">
-        <span class="cn">08</span><span class="ct">My-code</span>
-        <span class="cd">Browser coding agent running plan → execute → observe → test in Docker.</span>
-        <span class="cbar"><i aria-hidden="true"></i></span><span class="cv">74</span>
-      </a>
-      <a class="carat-row" style="--v:73%" href="https://github.com/alakmar344/Not-a-thing-launcher" target="_blank" rel="noopener noreferrer">
-        <span class="cn">09</span><span class="ct">Not-a-thing-launcher</span>
-        <span class="cd">Zero-telemetry Android launcher with real battery discipline.</span>
-        <span class="cbar"><i aria-hidden="true"></i></span><span class="cv">73</span>
-      </a>
-      <a class="carat-row" style="--v:72%" href="https://github.com/alakmar344/revive-me" target="_blank" rel="noopener noreferrer">
-        <span class="cn">10</span><span class="ct">revive-me</span>
-        <span class="cd">Rust utility that revives corrupted legacy files into clean JSON. No cloud.</span>
-        <span class="cbar"><i aria-hidden="true"></i></span><span class="cv">72</span>
-      </a>
-      <a class="carat-row" data-uncut href="https://github.com/alakmar344/breeze-framework" target="_blank" rel="noopener noreferrer">
-        <span class="cn">11</span><span class="ct">breeze-framework</span>
-        <span class="cd">Lightweight framework still on the bench.</span>
-        <span class="cbar"><i aria-hidden="true"></i></span><span class="cv">Uncut</span>
+
+      <a class="gem-table__row" href="https://github.com/alakmar344/esamz.a" target="_blank" rel="noopener noreferrer">
+        <span class="gem-table__num">05</span>
+        <span class="gem-table__name">esamz.a</span>
+        <span class="gem-table__desc">Privacy plumbing: Next.js proxy, consent tiers, verifiable purge endpoints.</span>
+        <span class="gem-table__score">81</span>
       </a>
     </div>
 
-    <div class="archive__foot" data-reveal>
-      <p class="meta">Ratings are my own audit · updated each edition</p>
-      <a class="btn btn--ghost" href="https://github.com/alakmar344" target="_blank" rel="noopener noreferrer">Browse all 43 <span aria-hidden="true">↗</span><span class="vh">(opens in a new tab)</span></a>
-    </div>
+    <p class="section__note" data-reveal>Ratings are my own audit of depth, performance, and server independence. <a class="elink" data-ext href="https://github.com/alakmar344" target="_blank" rel="noopener noreferrer">Browse all forty-three <span aria-hidden="true">↗</span><span class="vh"> (opens in a new tab)</span></a></p>
   </div>
 </section>
 
-<section class="bleed bleed--ink" id="editorial" aria-labelledby="editorial-h">
+<section class="section section--editorial" id="editorial" aria-labelledby="editorial-h">
   <div class="wrap editorial">
+    <header class="section-head section-head--light" data-reveal>
+      <p class="label">Editorial</p>
+      <h2 id="editorial-h">The position, <em>plainly stated.</em></h2>
+    </header>
+
     <div class="editorial__grid">
-      <div class="editorial__quote" data-reveal>
-        <p class="label label--accent">§IV · Editorial</p>
-        <blockquote id="editorial-h">Software should grant dignity, not <em>extract attention.</em></blockquote>
-        <p class="meta">— Al-Aqmar Tinwala</p>
-      </div>
+      <blockquote data-reveal>Software should grant dignity, not <em>extract attention.</em></blockquote>
       <div class="editorial__body" data-reveal>
-        <p><span class="lead-in">The position</span>Most “AI” today is retention dressed as research. Keep the session, keep the profile, keep the person coming back.</p>
-        <p>The alternative is simple: process the request, answer well, forget it. Run on the device when it can carry it. Ask before remembering, and prove you can forget.</p>
+        <p>Most “AI” today is retention dressed as research. Keep the session, keep the profile, keep the person coming back. The alternative is simple: process the request, answer well, forget it. Run on the device when it can carry it. Ask before remembering, and prove you can forget.</p>
         <p>Every product here is built that way. Slower to monetise, faster to trust.</p>
       </div>
     </div>
@@ -546,123 +323,44 @@
         <p>Useful and delightful are not a trade-off.</p>
       </div>
     </div>
-
-    <p class="editorial__sign" data-reveal>Built with rigor. Built to be trusted. <span aria-hidden="true">♡</span></p>
   </div>
 </section>
 
-<section class="section" id="library" aria-labelledby="library-h">
-  <div class="wrap">
-    <header class="shead" data-reveal>
-      <p class="shead__top"><span class="label label--accent">§V</span><span class="label">The Library</span><span class="rule-fill" aria-hidden="true"></span><span class="label">Two volumes</span></p>
-      <h2 id="library-h">Two volumes. <em>Zero</em> filler.</h2>
-    </header>
-
-    <div class="library">
-      <article class="vol" data-reveal>
-        <div class="cover" aria-hidden="true">
-          <p class="cb">Al-Aqmar Tinwala</p>
-          <p class="ct">The AI Mastery Handbook</p>
-          <p class="cb">Vol. I · Amazon KDP</p>
-        </div>
-        <div class="vol__body">
-          <p class="label label--flare">★ Bestseller · Vol. I</p>
-          <h3>The AI Mastery Handbook</h3>
-          <p>Attention, temperature, and prompt engineering as an engineering discipline — across Claude, Gemini, Llama, and ChatGPT.</p>
-          <a class="elink" data-ext href="https://www.amazon.com/dp/B0GX2N6WTT" target="_blank" rel="noopener noreferrer">View on Amazon<span class="vh"> (opens in a new tab)</span></a>
-        </div>
-      </article>
-
-      <article class="vol" data-reveal>
-        <div class="cover" aria-hidden="true">
-          <p class="cb">Al-Aqmar Tinwala</p>
-          <p class="ct">30 Days Mastering Claude Code</p>
-          <p class="cb">Vol. II · Amazon KDP</p>
-        </div>
-        <div class="vol__body">
-          <p class="label label--accent">✦ New · Vol. II</p>
-          <h3>30 Days Mastering Claude Code</h3>
-          <p>Thirty days inside agentic development: subagents, terminal workflows, and the habits of shipping real products.</p>
-          <a class="elink" data-ext href="https://www.amazon.com/dp/B0GY1F3573" target="_blank" rel="noopener noreferrer">View on Amazon<span class="vh"> (opens in a new tab)</span></a>
-        </div>
-      </article>
+<section class="section" id="contact" aria-labelledby="contact-h">
+  <div class="wrap contact">
+    <div class="contact__head" data-reveal>
+      <p class="label">Correspondence</p>
+      <h2 id="contact-h">Letters to the editor.</h2>
+      <p>Open to AI systems consulting, full-stack builds, and collaborations with soul. Faster to respond than your build pipeline.</p>
     </div>
-  </div>
-</section>
 
-<section class="section" id="ledger" aria-labelledby="ledger-h">
-  <div class="wrap">
-    <header class="shead" data-reveal>
-      <p class="shead__top"><span class="label label--accent">§VI</span><span class="label">The Ledger</span><span class="rule-fill" aria-hidden="true"></span><span class="label">Tools of the trade</span></p>
-      <h2 id="ledger-h">Low-latency bones. <em>Velvet</em> surfaces.</h2>
-    </header>
-
-    <div class="bench" data-reveal>
-      <div>
-        <h3>Runtimes</h3>
-        <ul>
-          <li>Rust <span>Routers · CLI</span></li>
-          <li>Next.js 16 <span>Apps</span></li>
-          <li>TypeScript <span>Everywhere</span></li>
-          <li>Fastify 5 <span>Services</span></li>
-          <li>Node.js 24 <span>Runtime</span></li>
-          <li>Turbopack <span>Builds</span></li>
-        </ul>
-      </div>
-      <div>
-        <h3>Inference</h3>
-        <ul>
-          <li>Groq LPU <span>Latency</span></li>
-          <li>Sarvam 105b <span>India-first</span></li>
-          <li>PyTorch <span>Training</span></li>
-          <li>On-device LLMs <span>Private</span></li>
-          <li>Whisper <span>Speech</span></li>
-          <li>Serper <span>Grounding</span></li>
-        </ul>
-      </div>
-      <div>
-        <h3>Disciplines</h3>
-        <ul>
-          <li>Zero retention <span>Default</span></li>
-          <li>From-scratch transformers <span>2B</span></li>
-          <li>WebGL &amp; 3D <span>60 fps</span></li>
-          <li>SM-2 repetition <span>Local</span></li>
-          <li>Multimodal transit <span>Realtime</span></li>
-          <li>OKLCH colour <span>WCAG AAA</span></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section contact" id="contact" aria-labelledby="contact-h">
-  <div class="wrap">
-    <div class="contact__grid">
-      <div data-reveal>
-        <p class="label label--accent">§VII · Correspondence</p>
-        <h2 id="contact-h">Let’s build something <em>exceptional.</em></h2>
-        <p class="socials">
-          <a class="elink" data-ext href="https://github.com/alakmar344" target="_blank" rel="noopener noreferrer">GitHub<span class="vh"> (opens in a new tab)</span></a>
-          <a class="elink" data-ext href="https://www.linkedin.com/in/alakmar-teenwala-054067393" target="_blank" rel="noopener noreferrer">LinkedIn<span class="vh"> (opens in a new tab)</span></a>
-          <a class="elink" data-ext href="https://instagram.com/its_alakmar7" target="_blank" rel="noopener noreferrer">Instagram<span class="vh"> (opens in a new tab)</span></a>
-        </p>
-      </div>
-      <div class="contact__meta" data-reveal>
-        <div><b>Open to</b><span>AI systems consulting, full-stack builds, collaborations with soul</span></div>
-        <div><b>Response</b><span>Faster than your build</span></div>
-        <div><b>Working</b><span>Remote</span></div>
-        <div><b>Not doing</b><span>Surveillance features</span></div>
-      </div>
+    <div class="contact__grid" data-reveal>
+      <a class="contact__card" href="https://github.com/alakmar344" target="_blank" rel="noopener noreferrer">
+        <span class="label">GitHub</span>
+        <span class="contact__handle">@alakmar344</span>
+      </a>
+      <a class="contact__card" href="https://www.linkedin.com/in/alakmar-teenwala-054067393" target="_blank" rel="noopener noreferrer">
+        <span class="label">LinkedIn</span>
+        <span class="contact__handle">Al-Aqmar Teenwala</span>
+      </a>
+      <a class="contact__card" href="https://instagram.com/its_alakmar7" target="_blank" rel="noopener noreferrer">
+        <span class="label">Instagram</span>
+        <span class="contact__handle">@its_alakmar7</span>
+      </a>
     </div>
   </div>
 </section>
 
 </main>
 
-<footer class="wrap colophon">
-  <p>© 2026 Al-Aqmar Tinwala · Hand-built<br>With soul and rigour</p>
-  <p>Self-hosted fonts · No trackers · Zero telemetry</p>
-  <a class="to-top" href="#top">Back to top <span aria-hidden="true">↑</span></a>
+<footer class="colophon">
+  <div class="wrap">
+    <div class="colophon__rule" aria-hidden="true"></div>
+    <div class="colophon__inner">
+      <p>© 2026 Al-Aqmar Tinwala · Hand-set in HTML &amp; CSS<br>Self-hosted fonts · No trackers · Zero telemetry</p>
+      <a class="to-top" href="#top">Back to top <span aria-hidden="true">↑</span></a>
+    </div>
+  </div>
 </footer>
 
 <script type="application/ld+json">
