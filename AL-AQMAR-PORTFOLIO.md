@@ -1,6 +1,6 @@
 # Al-Aqmar Tinwala — Portfolio ✦ Heart First
 
-> **AI Architect | Full-Stack Developer | Published Author ×2 | Privacy Advocate | Rust Enthusiast | 13 & Unstoppable**
+> **AI Architect | Full-Stack Developer | Published Author ×2 | Privacy Advocate | Rust Enthusiast | Heart-First Builder**
 
 القمر — "Al-Aqmar" means The Moon ✨
 
@@ -8,9 +8,9 @@
 
 ## About
 
-Al-Aqmar Tinwala is a 13-year-old AI Architect crafting high-performance intelligence with a soul. Every line of code is guided by one principle: **Heart First.** Technology should serve people with dignity, not extract value from them.
+Al-Aqmar Tinwala is an AI Architect crafting high-performance intelligence with a soul. Every line of code is guided by one principle: **Heart First.** Technology should serve people with dignity, not extract value from them.
 
-**"I'm 13 and just getting started."**
+**"I'm just getting started."**
 
 ---
 
@@ -120,13 +120,12 @@ Claude, Gemini, Llama, ChatGPT explained. AI history, LLM mechanics, and prompt 
 
 ## Contact & Connect
 
-- 📧 **Email:** [proman007power@gmail.com](mailto:proman007power@gmail.com)
 - 💻 **GitHub:** [github.com/alakmar344](https://github.com/alakmar344)
 - 💼 **LinkedIn:** [Al-Aqmar Teenwala](https://www.linkedin.com/in/alakmar-teenwala-054067393)
 - 📸 **Instagram:** [@its_alakmar7](https://instagram.com/its_alakmar7)
 
 ---
 
-*© 2026 Al-Aqmar Tinwala · Crafted with ♥ and Purpose · Age is just a version number (v13)*
+*© 2026 Al-Aqmar Tinwala · Crafted with ♥ and Purpose · Privacy-first, heart-first*
 
 *P.S. — Code can love you back. ♡*
