@@ -1,54 +1,38 @@
-/* The Al-Aqmar Journal — interaction layer.
-   Restrained by design: an edition switch, a reading indicator,
-   a scroll-spy, a seamless ticker, and one reveal. Nothing else. */
+/* The Al-Aqmar Gazette — interaction layer.
+   Restrained by design: edition switch, reading indicator,
+   scroll-spy, and gentle reveal. Nothing else. */
 (() => {
   'use strict';
 
   const root = document.documentElement;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
 
-  /* ── Edition (day / night) ───────────────────────────────── */
-  const themeMetas = [...document.querySelectorAll('meta[name="theme-color"]')];
+  /* ── Edition (day / evening) ─────────────────────────────── */
   const paint = (edition) => {
     root.dataset.edition = edition;
-    const night = edition === 'night';
+    const evening = edition === 'evening';
     document.querySelectorAll('.edition-toggle').forEach((b) => {
-      b.setAttribute('aria-pressed', String(night));
+      b.setAttribute('aria-pressed', String(evening));
     });
-    const name = document.getElementById('edition-name');
-    if (name) name.textContent = night ? 'Night' : 'Day';
-    // single authoritative theme-color while a choice is active
-    themeMetas.forEach((m) => m.remove());
-    let live = document.getElementById('tc');
-    if (!live) {
-      live = document.createElement('meta');
-      live.id = 'tc';
-      live.name = 'theme-color';
-      document.head.appendChild(live);
-    }
-    live.content = night ? '#0b0c0e' : '#f3f2ed';
+
+    const label = document.getElementById('edition-label');
+    if (label) label.textContent = (evening ? 'Evening' : 'Day') + ' Edition';
+
+    const metas = [...document.querySelectorAll('meta[name="theme-color"]')];
+    metas.forEach((m) => m.setAttribute('content', evening ? '#141414' : '#f4f1ea'));
   };
 
   let stored = null;
   try { stored = localStorage.getItem('aaj-edition'); } catch (_) {}
-  paint(stored || (matchMedia('(prefers-color-scheme: dark)').matches ? 'night' : 'day'));
+  paint(stored || (matchMedia('(prefers-color-scheme: dark)').matches ? 'evening' : 'day'));
 
   document.querySelectorAll('.edition-toggle').forEach((btn) => {
     btn.addEventListener('click', () => {
-      const next = root.dataset.edition === 'night' ? 'day' : 'night';
+      const next = root.dataset.edition === 'evening' ? 'day' : 'evening';
       paint(next);
       try { localStorage.setItem('aaj-edition', next); } catch (_) {}
     });
   });
-
-  /* ── Seamless ticker: duplicate the track ────────────────── */
-  const track = document.getElementById('ticker-a');
-  if (track && !reduced.matches) {
-    const clone = track.cloneNode(true);
-    clone.removeAttribute('id');
-    clone.setAttribute('aria-hidden', 'true');
-    track.parentElement.appendChild(clone);
-  }
 
   /* ── Reading indicator ───────────────────────────────────── */
   const bar = document.getElementById('progress');
@@ -67,7 +51,7 @@
   }
 
   /* ── Scroll-spy on the rail ──────────────────────────────── */
-  const links = [...document.querySelectorAll('.rail nav a')];
+  const links = [...document.querySelectorAll('.rail__inner a')];
   const sections = links
     .map((a) => document.querySelector(a.getAttribute('href')))
     .filter(Boolean);
@@ -100,7 +84,6 @@
       });
     }, { rootMargin: '0px 0px -8% 0px', threshold: 0.06 });
     targets.forEach((t) => io.observe(t));
-    // anything already in view on load should not wait for a scroll
     requestAnimationFrame(() => {
       targets.forEach((t) => {
         if (t.getBoundingClientRect().top < innerHeight * 0.92) t.classList.add('is-in');
