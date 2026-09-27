@@ -1,6 +1,6 @@
 /* ═══════════════════════════════════════════════════════════════
-   THE AL-AQMAR GAZETTE — Vintage Broadsheet Edition
-   Minimalist newspaper aesthetic · self-hosted type · zero telemetry
+   THE AL-AQMAR GAZETTE — 1800s Penny Press Edition
+   Ornate masthead · sepia stock · justified columns · fleuron rules
    ═══════════════════════════════════════════════════════════════ */
 
 /* ── 1. TYPE ─────────────────────────────────────────────────── */
@@ -54,46 +54,48 @@
   --ui: "Inter Tight", "AAJ Devanagari", "AAJ Arabic", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
   --mono: "Geist Mono", "AAJ Devanagari", "AAJ Arabic", ui-monospace, "SF Mono", Menlo, monospace;
 
-  /* day edition — aged newsprint */
-  --paper: #f4f1ea;
-  --paper-2: #e9e5dc;
-  --ink: #1a1a1a;
-  --ink-2: #55534b;
-  --ink-3: #8a877e;
-  --rule: rgba(26, 26, 26, 0.14);
-  --rule-2: rgba(26, 26, 26, 0.32);
-  --accent: #8b2e2e;
-  --accent-soft: rgba(139, 46, 46, 0.08);
+  /* day edition — 1800s sepia stock */
+  --paper: #eaddcf;
+  --paper-2: #e0d3c2;
+  --paper-3: #d6c8b5;
+  --ink: #181818;
+  --ink-2: #4a453d;
+  --ink-3: #7c7469;
+  --rule: rgba(24, 24, 24, 0.16);
+  --rule-2: rgba(24, 24, 24, 0.38);
+  --accent: #7a2525;
+  --accent-soft: rgba(122, 37, 37, 0.09);
 
   /* rhythm */
-  --maxw: 1240px;
-  --gut: clamp(1.1rem, 4vw, 3rem);
-  --gap: clamp(1.25rem, 2.4vw, 2.5rem);
-  --bay: clamp(3.5rem, 9vh, 7rem);
+  --maxw: 1180px;
+  --gut: clamp(1rem, 4vw, 2.8rem);
+  --gap: clamp(1.1rem, 2.2vw, 2.2rem);
+  --bay: clamp(3rem, 8vh, 6rem);
 
   /* scale */
-  --t-label: 0.62rem;
-  --t-meta: 0.72rem;
-  --t-body: 1.05rem;
-  --t-deck: clamp(1.15rem, 0.95rem + 0.7vw, 1.45rem);
-  --t-item: clamp(1.2rem, 1.05rem + 0.5vw, 1.5rem);
-  --t-head: clamp(2rem, 1.2rem + 2.8vw, 3.6rem);
-  --t-hero: clamp(2.6rem, 1rem + 5.5vw, 6rem);
-  --t-masthead: clamp(2.8rem, 6vw, 5.6rem);
+  --t-label: 0.58rem;
+  --t-meta: 0.68rem;
+  --t-body: 0.98rem;
+  --t-deck: clamp(1.05rem, 0.9rem + 0.55vw, 1.3rem);
+  --t-item: clamp(1.1rem, 1rem + 0.4vw, 1.35rem);
+  --t-head: clamp(1.8rem, 1.1rem + 2.4vw, 3.2rem);
+  --t-hero: clamp(2.4rem, 0.95rem + 5vw, 5.6rem);
+  --t-masthead: clamp(2.6rem, 5.5vw, 5.2rem);
 
   color-scheme: light;
 }
 
 [data-edition="evening"] {
-  --paper: #141414;
-  --paper-2: #1c1c1c;
-  --ink: #e8e4da;
-  --ink-2: #a6a297;
-  --ink-3: #7a7569;
-  --rule: rgba(232, 228, 218, 0.16);
-  --rule-2: rgba(232, 228, 218, 0.34);
-  --accent: #c96b5a;
-  --accent-soft: rgba(201, 107, 90, 0.10);
+  --paper: #161410;
+  --paper-2: #1f1b15;
+  --paper-3: #2a241c;
+  --ink: #e8e2d6;
+  --ink-2: #a39b8d;
+  --ink-3: #756d60;
+  --rule: rgba(232, 226, 214, 0.16);
+  --rule-2: rgba(232, 226, 214, 0.34);
+  --accent: #c97560;
+  --accent-soft: rgba(201, 117, 96, 0.11);
   color-scheme: dark;
 }
 
@@ -109,11 +111,13 @@ body {
   color: var(--ink);
   font-family: var(--text);
   font-size: var(--t-body);
-  font-weight: 360;
-  line-height: 1.58;
+  font-weight: 380;
+  line-height: 1.55;
   font-optical-sizing: auto;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  font-variant-numeric: oldstyle-nums;
+  hyphens: auto;
   overflow-x: hidden;
 }
 img, svg { display: block; max-width: 100%; }
@@ -121,6 +125,15 @@ a { color: inherit; }
 ul { list-style: none; padding: 0; }
 button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
 :target { scroll-margin-top: 4.5rem; }
+
+body::before {
+  content: "";
+  position: fixed; inset: 0; z-index: 900;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(0,0,0,0.04), transparent 55%),
+    radial-gradient(ellipse at 50% 100%, rgba(90,50,20,0.04), transparent 55%);
+}
 
 ::selection { background: var(--accent); color: var(--paper); }
 
@@ -151,16 +164,16 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   font-family: var(--mono);
   font-size: var(--t-label);
   font-weight: 500;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--ink-3);
-  font-feature-settings: "tnum" 1;
+  font-feature-settings: "onum" 1, "smcp" 1;
 }
 
 .elink {
   display: inline-flex; align-items: baseline; gap: 0.4em;
   font-family: var(--ui);
-  font-size: 0.92rem; font-weight: 500; letter-spacing: -0.005em;
+  font-size: 0.9rem; font-weight: 500; letter-spacing: -0.005em;
   text-decoration: none;
   color: var(--ink);
   padding-bottom: 0.15em;
@@ -177,15 +190,35 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .elink[data-ext]:hover::after { transform: translate(0.12em, -0.12em); }
 
 /* ── 5. MASTHEAD ─────────────────────────────────────────────── */
-.masthead { padding-top: clamp(1rem, 2.5vw, 1.8rem); }
+.masthead { padding-top: clamp(0.8rem, 2vw, 1.4rem); }
 
 .masthead__rule {
   height: 1px;
   background: var(--rule-2);
 }
 .masthead__rule--thick {
-  height: 3px;
+  height: 4px;
   background: var(--ink);
+}
+
+.masthead__top-line {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem;
+  padding: 0.45rem 0;
+  font-family: var(--mono);
+  font-size: var(--t-label);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.masthead__top-line .ornament {
+  width: 1.4rem; height: 0.7rem;
+  color: var(--ink-3);
+  flex: none;
+}
+@media (max-width: 34rem) {
+  .masthead__top-line { flex-direction: column; gap: 0.2rem; }
+  .masthead__top-line .ornament { display: none; }
 }
 
 .masthead__banner {
@@ -193,13 +226,13 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   gap: 1rem;
-  padding: clamp(0.8rem, 2vw, 1.4rem) 0;
+  padding: clamp(0.9rem, 2.2vw, 1.6rem) 0;
 }
 
 .masthead__weather {
   font-family: var(--mono);
   font-size: var(--t-label);
-  letter-spacing: 0.16em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--ink-3);
   justify-self: start;
@@ -210,8 +243,11 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   text-decoration: none; color: var(--ink);
   font-family: var(--display);
   text-transform: uppercase;
-  line-height: 0.85;
+  line-height: 0.84;
   letter-spacing: -0.02em;
+  padding: 0 clamp(0.5rem, 2vw, 1.5rem);
+  border-left: 1px solid var(--rule-2);
+  border-right: 1px solid var(--rule-2);
 }
 .masthead__title .the {
   font-family: var(--mono);
@@ -257,7 +293,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   display: flex; align-items: center; justify-content: space-between;
   gap: 1rem;
   padding: 0.55rem 0;
-  border-top: 1px solid var(--rule);
+  border-top: 3px double var(--rule-2);
   border-bottom: 1px solid var(--rule);
   font-family: var(--mono);
   font-size: var(--t-label);
@@ -270,6 +306,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 @media (max-width: 42rem) {
   .masthead__banner { grid-template-columns: 1fr; gap: 0.6rem; text-align: center; }
   .masthead__weather, .edition-toggle { justify-self: center; }
+  .masthead__title { border-left: 0; border-right: 0; }
   .masthead__meta { flex-direction: column; gap: 0.25rem; text-align: center; }
 }
 
@@ -282,8 +319,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   border-bottom: 1px solid var(--rule);
 }
 .rail__inner {
-  display: flex; align-items: center; gap: clamp(0.9rem, 2vw, 2rem);
-  height: 3.2rem;
+  display: flex; align-items: center; gap: clamp(0.8rem, 2vw, 2rem);
+  height: 3rem;
 }
 .rail__inner a {
   font-family: var(--mono); font-size: var(--t-label);
@@ -312,7 +349,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 @media (min-width: 58rem) {
   .front {
-    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.38fr);
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.35fr);
     gap: clamp(2.5rem, 5vw, 5rem);
   }
 }
@@ -324,9 +361,10 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .lede h1 {
   font-family: var(--display); font-weight: 400;
   font-size: var(--t-hero);
-  line-height: 0.92;
+  line-height: 0.9;
   letter-spacing: -0.03em;
   text-wrap: balance;
+  text-align: center;
   margin-bottom: clamp(0.9rem, 1.8vw, 1.4rem);
 }
 .lede h1 em { font-style: italic; color: var(--accent); }
@@ -335,12 +373,15 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   line-height: 1.35;
   font-weight: 350;
   color: var(--ink-2);
-  max-width: 36ch;
+  max-width: 38ch;
+  margin-inline: auto;
   padding-bottom: clamp(0.9rem, 1.8vw, 1.4rem);
   text-wrap: pretty;
+  text-align: center;
 }
 .lede__byline {
-  display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem 1rem;
+  display: flex; align-items: center; justify-content: center;
+  flex-wrap: wrap; gap: 0.5rem 1.2rem;
   padding: 0.65rem 0;
   border-top: 1px solid var(--ink);
   border-bottom: 1px solid var(--rule);
@@ -358,14 +399,18 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 .lede__body {
   columns: 1; column-gap: var(--gap);
-  max-width: 68ch;
+  max-width: 70ch;
+  margin-inline: auto;
+  text-align: justify;
+  text-align-last: left;
+  hyphens: auto;
 }
-@media (min-width: 40rem) { .lede__body { columns: 2; } }
+@media (min-width: 44rem) { .lede__body { columns: 2; } }
 :where(.lede__body) p { margin-bottom: 0.85em; text-wrap: pretty; }
 :where(.lede__body) p:first-child::first-letter {
   float: left;
   font-family: var(--display);
-  font-size: 3.4em;
+  font-size: 3.6em;
   line-height: 0.78;
   padding: 0.1em 0.1em 0 0;
   color: var(--accent);
@@ -385,15 +430,16 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   border-bottom: 1px solid var(--rule-2);
   margin-bottom: 0.75rem;
   color: var(--accent);
+  text-align: center;
 }
 .bulletin li {
   display: flex; align-items: baseline; justify-content: space-between; gap: 1rem;
   padding: 0.45rem 0;
   border-bottom: 1px solid var(--rule);
-  font-family: var(--ui); font-size: 0.94rem; letter-spacing: -0.01em;
+  font-family: var(--ui); font-size: 0.92rem; letter-spacing: -0.01em;
 }
 .bulletin li:last-child { border-bottom: 0; }
-.bulletin b { font-family: var(--display); font-size: 1.2rem; font-weight: 400; color: var(--ink); }
+.bulletin b { font-family: var(--display); font-size: 1.25rem; font-weight: 400; color: var(--ink); }
 
 .front__plate { margin: 0; }
 .front__plate svg {
@@ -405,8 +451,9 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 .front__plate figcaption {
   margin-top: 0.6rem;
-  font-family: var(--mono); font-size: 0.62rem; line-height: 1.5;
+  font-family: var(--mono); font-size: 0.6rem; line-height: 1.5;
   letter-spacing: 0.08em; color: var(--ink-3);
+  text-align: center;
 }
 
 .eng text {
@@ -420,9 +467,18 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
 .section-head {
   display: grid; gap: 0.6rem;
-  padding-bottom: clamp(1.5rem, 3vw, 2.5rem);
+  padding-bottom: clamp(1.4rem, 2.8vw, 2.2rem);
   border-bottom: 1px solid var(--rule);
   margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+  text-align: center;
+}
+.section-head::after {
+  content: "⁂";
+  font-family: var(--display);
+  font-size: 1.4rem;
+  color: var(--ink-3);
+  line-height: 1;
+  margin-top: 0.2rem;
 }
 .section-head h2 {
   font-family: var(--display); font-weight: 400;
@@ -430,12 +486,12 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   text-wrap: balance;
 }
 .section-head h2 em { font-style: italic; color: var(--accent); }
-.section-head--light h2 em { color: var(--accent); }
 
 .section__note {
   margin-top: clamp(1.5rem, 3vw, 2.2rem);
   font-family: var(--mono); font-size: var(--t-meta);
   letter-spacing: 0.06em; color: var(--ink-3);
+  text-align: center;
 }
 
 /* ── 9. WORKS ────────────────────────────────────────────────── */
@@ -457,28 +513,38 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 
 .work {
-  display: grid; gap: 0.7rem; align-content: start;
-  padding-top: clamp(0.9rem, 2vw, 1.3rem);
-  border-top: 1px solid var(--ink);
+  display: grid; gap: 0.65rem; align-content: start;
+  padding: clamp(1rem, 2vw, 1.4rem);
+  border: 1px solid var(--rule-2);
+  background: var(--paper-2);
+  position: relative;
+}
+.work::before {
+  content: "";
+  position: absolute; left: -1px; top: -1px;
+  width: 1.2rem; height: 1.2rem;
+  border-top: 2px solid var(--accent);
+  border-left: 2px solid var(--accent);
 }
 .work .label { color: var(--ink-3); }
 .work h3 {
   font-family: var(--display); font-weight: 400;
-  font-size: clamp(1.8rem, 1.2rem + 2vw, 3rem);
+  font-size: clamp(1.7rem, 1.15rem + 1.8vw, 2.8rem);
   line-height: 0.96; letter-spacing: -0.026em;
 }
 .work h3 .glyph { font-family: var(--text); font-weight: 400; }
 .work__standfirst {
-  font-size: 1rem; line-height: 1.5; color: var(--ink-2);
+  font-size: 0.98rem; line-height: 1.5; color: var(--ink-2);
   max-width: 48ch; text-wrap: pretty;
+  text-align: justify;
 }
 .work__meta {
-  display: flex; flex-wrap: wrap; gap: 0.6rem 1.2rem;
-  padding: 0.6rem 0;
+  display: flex; flex-wrap: wrap; gap: 0.5rem 1rem;
+  padding: 0.55rem 0;
   border-top: 1px solid var(--rule);
   border-bottom: 1px solid var(--rule);
-  margin-top: 0.4rem;
-  font-family: var(--ui); font-size: 0.9rem; letter-spacing: -0.01em;
+  margin-top: 0.3rem;
+  font-family: var(--ui); font-size: 0.86rem; letter-spacing: -0.01em;
   color: var(--ink-2);
 }
 .work__meta b { color: var(--ink); font-weight: 550; margin-right: 0.15em; }
@@ -488,7 +554,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 .work__link {
   display: inline-flex; align-items: baseline; gap: 0.4em;
-  font-family: var(--ui); font-size: 0.95rem; font-weight: 500;
+  font-family: var(--ui); font-size: 0.9rem; font-weight: 500;
   text-decoration: none; color: var(--ink);
   transition: color 0.25s;
 }
@@ -496,8 +562,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .work__link:hover { color: var(--accent); }
 .work__link:hover::after { transform: translate(0.12em, -0.12em); }
 
-.work--lead { border-top-width: 2px; }
-.work--lead h3 { font-size: clamp(2.2rem, 1.5rem + 3vw, 4.2rem); }
+.work--lead { border-width: 1px; padding: clamp(1.2rem, 2.5vw, 2rem); }
+.work--lead h3 { font-size: clamp(2rem, 1.4rem + 2.8vw, 3.8rem); }
 
 @media (max-width: 52rem) {
   .work--lead { display: grid; }
@@ -521,16 +587,16 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .gem__main .label { color: var(--accent); }
 .gem__main h3 {
   font-family: var(--display); font-weight: 400;
-  font-size: clamp(1.9rem, 1.2rem + 2.4vw, 3.2rem);
+  font-size: clamp(1.8rem, 1.15rem + 2.2vw, 3rem);
   line-height: 0.96; letter-spacing: -0.026em;
   margin: 0.4rem 0 0.7rem;
 }
-.gem__main p { color: var(--ink-2); max-width: 50ch; line-height: 1.55; }
+.gem__main p { color: var(--ink-2); max-width: 50ch; line-height: 1.55; text-align: justify; }
 .gem__specs { display: grid; gap: 0.55rem; align-content: start; }
 .gem__specs div {
   display: grid; grid-template-columns: 6.5rem 1fr; gap: 0.7rem;
   padding-bottom: 0.5rem; border-bottom: 1px solid var(--rule);
-  font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.07em;
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.07em;
   line-height: 1.55;
 }
 .gem__specs dt {
@@ -557,7 +623,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .gem__link {
   grid-column: 1 / -1;
   display: inline-flex; align-items: baseline; gap: 0.4em;
-  font-family: var(--ui); font-size: 0.95rem; font-weight: 500;
+  font-family: var(--ui); font-size: 0.9rem; font-weight: 500;
   text-decoration: none; color: var(--ink);
   padding-top: 0.6rem; border-top: 1px solid var(--rule);
 }
@@ -598,23 +664,23 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .gem-table__row:hover { background: var(--accent-soft); padding-left: 0.5rem; }
 .gem-table__num {
   grid-area: num;
-  font-family: var(--mono); font-size: 0.64rem; color: var(--ink-3);
+  font-family: var(--mono); font-size: 0.62rem; color: var(--ink-3);
   font-variant-numeric: tabular-nums; display: none;
 }
 @media (min-width: 52rem) { .gem-table__num { display: block; } }
 .gem-table__name {
   grid-area: name;
-  font-family: var(--ui); font-size: 1.05rem; font-weight: 550; letter-spacing: -0.012em;
+  font-family: var(--ui); font-size: 1rem; font-weight: 550; letter-spacing: -0.012em;
   color: var(--ink); transition: color 0.25s;
 }
 .gem-table__row:hover .gem-table__name { color: var(--accent); }
 .gem-table__desc {
   grid-area: desc;
-  font-size: 0.95rem; line-height: 1.45; color: var(--ink-2);
+  font-size: 0.92rem; line-height: 1.45; color: var(--ink-2);
 }
 .gem-table__score {
   grid-area: score;
-  font-family: var(--mono); font-size: 0.72rem; font-weight: 500;
+  font-family: var(--mono); font-size: 0.68rem; font-weight: 500;
   color: var(--ink); justify-self: end; font-variant-numeric: tabular-nums;
 }
 .gem-table__score--uncut { color: var(--accent); }
@@ -626,6 +692,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 .section--editorial .label { color: var(--ink-3); }
 .section--editorial .section-head { border-color: var(--rule-2); }
+.section--editorial .section-head::after { color: var(--ink-3); }
 .section--editorial .section-head h2 em { color: var(--accent); }
 
 .editorial__grid {
@@ -639,15 +706,19 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 .editorial__grid blockquote {
   font-family: var(--display); font-weight: 400;
-  font-size: clamp(2rem, 1rem + 3.5vw, 4rem);
+  font-size: clamp(1.9rem, 0.95rem + 3.4vw, 3.8rem);
   line-height: 0.96; letter-spacing: -0.03em;
   text-wrap: balance;
+  position: relative;
+  padding-left: 1rem;
+  border-left: 3px solid var(--accent);
 }
 .editorial__grid blockquote em { font-style: italic; color: var(--accent); }
 .editorial__body { max-width: 50ch; }
 .editorial__body p {
   color: var(--ink-2);
   margin-bottom: 0.9em; line-height: 1.6;
+  text-align: justify;
 }
 .editorial__body strong { color: var(--paper); font-weight: 600; }
 
@@ -668,13 +739,13 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 .principles h3 {
   font-family: var(--display); font-weight: 400;
-  font-size: clamp(1.4rem, 1rem + 1.2vw, 2rem);
+  font-size: clamp(1.35rem, 1rem + 1.1vw, 1.9rem);
   letter-spacing: -0.02em; margin: 0.5rem 0 0.45rem;
 }
-.principles p { font-size: 0.96rem; line-height: 1.52; color: var(--ink-2); }
+.principles p { font-size: 0.94rem; line-height: 1.52; color: var(--ink-2); }
 
 /* ── 12. CONTACT ─────────────────────────────────────────────── */
-.contact__head { max-width: 58ch; margin-bottom: clamp(2rem, 4vw, 3rem); }
+.contact__head { max-width: 58ch; margin-bottom: clamp(2rem, 4vw, 3rem); text-align: center; margin-inline: auto; }
 .contact__head h2 {
   font-family: var(--display); font-weight: 400;
   font-size: var(--t-head); line-height: 0.98; letter-spacing: -0.026em;
@@ -692,24 +763,25 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   border: 1px solid var(--rule-2);
   text-decoration: none;
   transition: background 0.25s, border-color 0.25s;
+  text-align: center;
 }
 .contact__card:hover { background: var(--paper-2); border-color: var(--accent); }
 .contact__handle {
-  font-family: var(--display); font-size: clamp(1.2rem, 1rem + 0.6vw, 1.6rem);
+  font-family: var(--display); font-size: clamp(1.15rem, 1rem + 0.5vw, 1.5rem);
   letter-spacing: -0.02em; color: var(--ink);
 }
 
 /* ── 13. COLOPHON ────────────────────────────────────────────── */
 .colophon { padding: clamp(2rem, 5vh, 3.5rem) 0 clamp(2.5rem, 6vh, 4rem); }
 .colophon__rule {
-  height: 3px; background: var(--ink); margin-bottom: clamp(1.2rem, 2.5vw, 2rem);
+  height: 4px; background: var(--ink); margin-bottom: clamp(1.2rem, 2.5vw, 2rem);
 }
 .colophon__inner {
   display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
   gap: 1rem;
 }
 .colophon p {
-  font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.08em;
+  font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.08em;
   line-height: 1.75; color: var(--ink-3);
 }
 .to-top {
@@ -731,8 +803,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
 /* ── 15. PRINT ───────────────────────────────────────────────── */
 @media print {
-  .rail, .edition-toggle, .to-top { display: none !important; }
-  body { background: #fff; color: #000; font-size: 10.5pt; }
+  .rail, .edition-toggle, .to-top, body::before { display: none !important; }
+  body { background: #fff; color: #000; font-size: 10pt; }
   .section--editorial { background: #fff !important; color: #000 !important; }
   .section { padding: 1.2rem 0; break-inside: avoid; }
   a { text-decoration: none; }
@@ -743,12 +815,13 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 @media (max-width: 26rem) {
   :root {
     --gut: 1rem;
-    --t-hero: clamp(2rem, 0.9rem + 5vw, 2.8rem);
-    --t-head: clamp(1.7rem, 1.1rem + 2.4vw, 2.4rem);
+    --t-hero: clamp(1.9rem, 0.85rem + 5vw, 2.6rem);
+    --t-head: clamp(1.6rem, 1.05rem + 2.2vw, 2.2rem);
   }
   .masthead__title .the { letter-spacing: 0.4em; text-indent: 0.4em; }
   .lede__kicker { flex-wrap: wrap; gap: 0.5rem; }
   .lede__byline { gap: 0.3rem 0.7rem; }
+  .lede__body { text-align: left; }
   .work__meta { gap: 0.4rem 0.9rem; }
   .gem-table__row { padding-left: 0 !important; }
 }
