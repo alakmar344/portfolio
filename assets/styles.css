@@ -1,18 +1,28 @@
 /* ═══════════════════════════════════════════════════════════════
-   THE AL-AQMAR GAZETTE — 1800s Penny Press Edition
-   Ornate masthead · sepia stock · justified columns · fleuron rules
+   THE AL-AQMAR GAZETTE — Early 1900s Broadsheet Edition
+   Blackletter nameplate · letterpress stock · ruled columns · hot-metal hierarchy
    ═══════════════════════════════════════════════════════════════ */
 
 /* ── 1. TYPE ─────────────────────────────────────────────────── */
 @font-face {
-  font-family: "Instrument Serif";
-  src: url("fonts/instrument-serif-400.woff2") format("woff2");
+  font-family: "Old Standard TT";
+  src: url("fonts/old-standard-tt-400.woff2") format("woff2");
   font-weight: 400; font-style: normal; font-display: swap;
 }
 @font-face {
-  font-family: "Instrument Serif";
-  src: url("fonts/instrument-serif-400-italic.woff2") format("woff2");
+  font-family: "Old Standard TT";
+  src: url("fonts/old-standard-tt-400-italic.woff2") format("woff2");
   font-weight: 400; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: "Old Standard TT";
+  src: url("fonts/old-standard-tt-700.woff2") format("woff2");
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "UnifrakturMaguntia";
+  src: url("fonts/unifraktur-maguntia-400.woff2") format("woff2");
+  font-weight: 400; font-style: normal; font-display: swap;
 }
 @font-face {
   font-family: "Newsreader";
@@ -49,37 +59,38 @@
 
 /* ── 2. TOKENS ───────────────────────────────────────────────── */
 :root {
-  --display: "Instrument Serif", "AAJ Devanagari", "AAJ Arabic", Georgia, "Times New Roman", serif;
+  --display: "Old Standard TT", "AAJ Devanagari", "AAJ Arabic", Georgia, "Times New Roman", serif;
+  --blackletter: "UnifrakturMaguntia", "AAJ Devanagari", "AAJ Arabic", "Old Standard TT", Georgia, serif;
   --text: "Newsreader", "AAJ Devanagari", "AAJ Arabic", Georgia, "Times New Roman", serif;
   --ui: "Inter Tight", "AAJ Devanagari", "AAJ Arabic", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
   --mono: "Geist Mono", "AAJ Devanagari", "AAJ Arabic", ui-monospace, "SF Mono", Menlo, monospace;
 
-  /* day edition — 1800s sepia stock */
-  --paper: #eaddcf;
-  --paper-2: #e0d3c2;
-  --paper-3: #d6c8b5;
-  --ink: #181818;
-  --ink-2: #4a453d;
-  --ink-3: #7c7469;
-  --rule: rgba(24, 24, 24, 0.16);
-  --rule-2: rgba(24, 24, 24, 0.38);
-  --accent: #7a2525;
-  --accent-soft: rgba(122, 37, 37, 0.09);
+  /* day edition — early 1900s letterpress stock */
+  --paper: #e9dcc9;
+  --paper-2: #ded0b9;
+  --paper-3: #d2c2a6;
+  --ink: #16130f;
+  --ink-2: #423c32;
+  --ink-3: #756a59;
+  --rule: rgba(22, 19, 15, 0.2);
+  --rule-2: rgba(22, 19, 15, 0.46);
+  --accent: #6d1f1f;
+  --accent-soft: rgba(109, 31, 31, 0.1);
 
-  /* rhythm */
+  /* rhythm — tighter, denser column measure */
   --maxw: 1180px;
-  --gut: clamp(1rem, 4vw, 2.8rem);
-  --gap: clamp(1.1rem, 2.2vw, 2.2rem);
-  --bay: clamp(3rem, 8vh, 6rem);
+  --gut: clamp(0.85rem, 3.4vw, 2.4rem);
+  --gap: clamp(0.9rem, 1.8vw, 1.7rem);
+  --bay: clamp(2.2rem, 6vh, 4.4rem);
 
   /* scale */
   --t-label: 0.58rem;
   --t-meta: 0.68rem;
-  --t-body: 0.98rem;
-  --t-deck: clamp(1.05rem, 0.9rem + 0.55vw, 1.3rem);
+  --t-body: 0.96rem;
+  --t-deck: clamp(1.02rem, 0.88rem + 0.5vw, 1.25rem);
   --t-item: clamp(1.1rem, 1rem + 0.4vw, 1.35rem);
-  --t-head: clamp(1.8rem, 1.1rem + 2.4vw, 3.2rem);
-  --t-hero: clamp(2.4rem, 0.95rem + 5vw, 5.6rem);
+  --t-head: clamp(1.75rem, 1.1rem + 2.2vw, 3rem);
+  --t-hero: clamp(2.3rem, 0.95rem + 4.7vw, 5.2rem);
   --t-masthead: clamp(2.6rem, 5.5vw, 5.2rem);
 
   color-scheme: light;
@@ -131,9 +142,19 @@ body::before {
   position: fixed; inset: 0; z-index: 900;
   pointer-events: none;
   background:
-    radial-gradient(ellipse at 50% 0%, rgba(0,0,0,0.04), transparent 55%),
-    radial-gradient(ellipse at 50% 100%, rgba(90,50,20,0.04), transparent 55%);
+    radial-gradient(ellipse at 50% 0%, rgba(0,0,0,0.05), transparent 55%),
+    radial-gradient(ellipse at 50% 100%, rgba(90,50,20,0.05), transparent 55%),
+    radial-gradient(ellipse at 50% 50%, transparent 60%, rgba(22,19,15,0.08) 100%);
 }
+body::after {
+  content: "";
+  position: fixed; inset: 0; z-index: 901;
+  pointer-events: none;
+  opacity: 0.5;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+[data-edition="evening"] body::after { opacity: 0.35; mix-blend-mode: overlay; }
 
 ::selection { background: var(--accent); color: var(--paper); }
 
@@ -241,30 +262,31 @@ body::before {
 .masthead__title {
   display: flex; flex-direction: column; align-items: center;
   text-decoration: none; color: var(--ink);
-  font-family: var(--display);
-  text-transform: uppercase;
-  line-height: 0.84;
-  letter-spacing: -0.02em;
-  padding: 0 clamp(0.5rem, 2vw, 1.5rem);
-  border-left: 1px solid var(--rule-2);
-  border-right: 1px solid var(--rule-2);
+  font-family: var(--blackletter);
+  text-transform: none;
+  line-height: 0.86;
+  letter-spacing: 0;
+  padding: 0 clamp(0.7rem, 2.4vw, 1.8rem);
+  border-left: 3px double var(--rule-2);
+  border-right: 3px double var(--rule-2);
 }
 .masthead__title .the {
   font-family: var(--mono);
-  font-size: 0.18em;
+  font-size: 0.16em;
   letter-spacing: 0.55em;
   text-indent: 0.55em;
-  margin-bottom: 0.5em;
+  margin-bottom: 0.55em;
   color: var(--ink-3);
   font-weight: 400;
+  text-transform: uppercase;
 }
 .masthead__title .name {
   font-size: var(--t-masthead);
+  text-shadow: 0.02em 0.02em 0 var(--accent-soft);
 }
 .masthead__title .name--italic {
-  font-style: italic;
-  letter-spacing: -0.04em;
-  text-transform: none;
+  color: var(--accent);
+  letter-spacing: 0;
 }
 
 .edition-toggle {
@@ -359,10 +381,10 @@ body::before {
   margin-bottom: clamp(1rem, 2vw, 1.6rem);
 }
 .lede h1 {
-  font-family: var(--display); font-weight: 400;
+  font-family: var(--display); font-weight: 700;
   font-size: var(--t-hero);
-  line-height: 0.9;
-  letter-spacing: -0.03em;
+  line-height: 0.92;
+  letter-spacing: -0.015em;
   text-wrap: balance;
   text-align: center;
   margin-bottom: clamp(0.9rem, 1.8vw, 1.4rem);
@@ -398,22 +420,29 @@ body::before {
   text-transform: none; color: var(--accent);
 }
 .lede__body {
-  columns: 1; column-gap: var(--gap);
-  max-width: 70ch;
+  columns: 1; column-gap: clamp(1.4rem, 2.6vw, 2.4rem);
+  column-rule: 1px solid var(--rule-2);
+  max-width: 68ch;
   margin-inline: auto;
   text-align: justify;
   text-align-last: left;
   hyphens: auto;
+  font-size: 0.94rem;
 }
 @media (min-width: 44rem) { .lede__body { columns: 2; } }
+@media (min-width: 68rem) { .lede__body { columns: 3; max-width: 84ch; } }
 :where(.lede__body) p { margin-bottom: 0.85em; text-wrap: pretty; }
 :where(.lede__body) p:first-child::first-letter {
   float: left;
   font-family: var(--display);
+  font-weight: 700;
   font-size: 3.6em;
   line-height: 0.78;
-  padding: 0.1em 0.1em 0 0;
-  color: var(--accent);
+  padding: 0.06em 0.12em 0 0.02em;
+  margin-right: 0.02em;
+  color: var(--paper);
+  background: var(--accent);
+  box-shadow: 0 0 0 1px var(--ink);
 }
 .dropcap { display: none; }
 .lede__body strong { font-weight: 600; }
@@ -439,7 +468,7 @@ body::before {
   font-family: var(--ui); font-size: 0.92rem; letter-spacing: -0.01em;
 }
 .bulletin li:last-child { border-bottom: 0; }
-.bulletin b { font-family: var(--display); font-size: 1.25rem; font-weight: 400; color: var(--ink); }
+.bulletin b { font-family: var(--display); font-size: 1.25rem; font-weight: 700; color: var(--ink); }
 
 .front__plate { margin: 0; }
 .front__plate svg {
@@ -463,13 +492,13 @@ body::before {
 
 /* ── 8. SECTIONS ─────────────────────────────────────────────── */
 .section { padding: var(--bay) 0; }
-.section + .section { border-top: 1px solid var(--rule); }
+.section + .section { border-top: 3px double var(--rule-2); }
 
 .section-head {
-  display: grid; gap: 0.6rem;
-  padding-bottom: clamp(1.4rem, 2.8vw, 2.2rem);
-  border-bottom: 1px solid var(--rule);
-  margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+  display: grid; gap: 0.55rem;
+  padding-bottom: clamp(1.2rem, 2.4vw, 1.9rem);
+  border-bottom: 3px double var(--rule-2);
+  margin-bottom: clamp(1.4rem, 2.8vw, 2.3rem);
   text-align: center;
 }
 .section-head::after {
@@ -481,8 +510,8 @@ body::before {
   margin-top: 0.2rem;
 }
 .section-head h2 {
-  font-family: var(--display); font-weight: 400;
-  font-size: var(--t-head); line-height: 0.98; letter-spacing: -0.026em;
+  font-family: var(--display); font-weight: 700;
+  font-size: var(--t-head); line-height: 1; letter-spacing: -0.01em;
   text-wrap: balance;
 }
 .section-head h2 em { font-style: italic; color: var(--accent); }
@@ -497,7 +526,7 @@ body::before {
 /* ── 9. WORKS ────────────────────────────────────────────────── */
 .works-grid {
   display: grid;
-  gap: clamp(1.5rem, 3vw, 2.5rem);
+  gap: clamp(1.1rem, 2.2vw, 1.8rem);
 }
 @media (min-width: 52rem) {
   .works-grid {
@@ -513,8 +542,8 @@ body::before {
 }
 
 .work {
-  display: grid; gap: 0.65rem; align-content: start;
-  padding: clamp(1rem, 2vw, 1.4rem);
+  display: grid; gap: 0.6rem; align-content: start;
+  padding: clamp(0.9rem, 1.8vw, 1.3rem);
   border: 1px solid var(--rule-2);
   background: var(--paper-2);
   position: relative;
@@ -528,9 +557,9 @@ body::before {
 }
 .work .label { color: var(--ink-3); }
 .work h3 {
-  font-family: var(--display); font-weight: 400;
-  font-size: clamp(1.7rem, 1.15rem + 1.8vw, 2.8rem);
-  line-height: 0.96; letter-spacing: -0.026em;
+  font-family: var(--display); font-weight: 700;
+  font-size: clamp(1.6rem, 1.1rem + 1.6vw, 2.6rem);
+  line-height: 0.98; letter-spacing: -0.01em;
 }
 .work h3 .glyph { font-family: var(--text); font-weight: 400; }
 .work__standfirst {
@@ -586,9 +615,9 @@ body::before {
 }
 .gem__main .label { color: var(--accent); }
 .gem__main h3 {
-  font-family: var(--display); font-weight: 400;
-  font-size: clamp(1.8rem, 1.15rem + 2.2vw, 3rem);
-  line-height: 0.96; letter-spacing: -0.026em;
+  font-family: var(--display); font-weight: 700;
+  font-size: clamp(1.7rem, 1.1rem + 2vw, 2.8rem);
+  line-height: 0.98; letter-spacing: -0.01em;
   margin: 0.4rem 0 0.7rem;
 }
 .gem__main p { color: var(--ink-2); max-width: 50ch; line-height: 1.55; text-align: justify; }
@@ -613,8 +642,8 @@ body::before {
 }
 .gem__score-value {
   display: block;
-  font-family: var(--display); font-size: clamp(3rem, 6vw, 5rem);
-  line-height: 0.85; letter-spacing: -0.04em; color: var(--accent);
+  font-family: var(--display); font-weight: 700; font-size: clamp(2.8rem, 5.6vw, 4.6rem);
+  line-height: 0.85; letter-spacing: -0.015em; color: var(--accent);
 }
 .gem__score-label {
   font-family: var(--mono); font-size: var(--t-label);
@@ -630,7 +659,7 @@ body::before {
 .gem__link::after { content: "↗"; font-family: var(--mono); font-size: 0.85em; }
 .gem__link:hover { color: var(--accent); }
 
-.gem-table { border-top: 2px solid var(--ink); }
+.gem-table { border-top: 3px double var(--ink); }
 .gem-table__head {
   display: grid;
   grid-template-columns: 3rem minmax(0, 13rem) minmax(0, 1fr) 4.5rem;
@@ -689,6 +718,15 @@ body::before {
 .section--editorial {
   background: var(--ink);
   color: var(--paper);
+  /* this band always inverts against the page, so its neutrals must
+     invert too — light ink on the dark day edition, dark ink on the
+     light evening edition — rather than following the page's tokens */
+  --ink-2: #b9b0a0;
+  --ink-3: #857c6c;
+}
+[data-edition="evening"] .section--editorial {
+  --ink-2: #423c32;
+  --ink-3: #6b6355;
 }
 .section--editorial .label { color: var(--ink-3); }
 .section--editorial .section-head { border-color: var(--rule-2); }
@@ -705,13 +743,13 @@ body::before {
   }
 }
 .editorial__grid blockquote {
-  font-family: var(--display); font-weight: 400;
-  font-size: clamp(1.9rem, 0.95rem + 3.4vw, 3.8rem);
-  line-height: 0.96; letter-spacing: -0.03em;
+  font-family: var(--display); font-weight: 400; font-style: italic;
+  font-size: clamp(1.8rem, 0.9rem + 3.1vw, 3.4rem);
+  line-height: 1; letter-spacing: -0.01em;
   text-wrap: balance;
   position: relative;
-  padding-left: 1rem;
-  border-left: 3px solid var(--accent);
+  padding-left: 1.1rem;
+  border-left: 4px double var(--accent);
 }
 .editorial__grid blockquote em { font-style: italic; color: var(--accent); }
 .editorial__body { max-width: 50ch; }
@@ -738,17 +776,17 @@ body::before {
   .principles > div + div { padding-left: clamp(1rem, 2vw, 1.6rem); }
 }
 .principles h3 {
-  font-family: var(--display); font-weight: 400;
-  font-size: clamp(1.35rem, 1rem + 1.1vw, 1.9rem);
-  letter-spacing: -0.02em; margin: 0.5rem 0 0.45rem;
+  font-family: var(--display); font-weight: 700;
+  font-size: clamp(1.3rem, 1rem + 1vw, 1.75rem);
+  letter-spacing: -0.01em; margin: 0.5rem 0 0.45rem;
 }
 .principles p { font-size: 0.94rem; line-height: 1.52; color: var(--ink-2); }
 
 /* ── 12. CONTACT ─────────────────────────────────────────────── */
 .contact__head { max-width: 58ch; margin-bottom: clamp(2rem, 4vw, 3rem); text-align: center; margin-inline: auto; }
 .contact__head h2 {
-  font-family: var(--display); font-weight: 400;
-  font-size: var(--t-head); line-height: 0.98; letter-spacing: -0.026em;
+  font-family: var(--display); font-weight: 700;
+  font-size: var(--t-head); line-height: 1; letter-spacing: -0.01em;
   margin: 0.5rem 0 0.8rem;
 }
 .contact__head p { color: var(--ink-2); line-height: 1.55; }
