@@ -1,373 +1,369 @@
 <!DOCTYPE html>
-<html lang="en" data-edition="day">
+<html lang="en" data-accent="lunar">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Al-Aqmar Tinwala — The Gazette</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Al-Aqmar Tinwala — Lunar Observatory</title>
 
-<meta name="description" content="Al-Aqmar Tinwala — a vintage broadsheet portfolio of heart-first AI. Five shipped products, five open-source gems, zero data retention.">
+<meta name="description" content="Al-Aqmar Tinwala — heart-first AI architect. Five live products, five open-source gems, two books, zero bytes retained. An interactive lunar observatory portfolio.">
 <meta name="author" content="Al-Aqmar Tinwala">
-<meta name="theme-color" content="#e9dcc9" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#161410" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#05060a">
+<meta name="color-scheme" content="dark">
 
 <meta name="referrer" content="no-referrer">
-<meta name="generator" content="Hand-set, zero telemetry">
+<meta name="generator" content="Hand-built, zero telemetry">
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
 <meta http-equiv="Permissions-Policy" content="interest-cohort=(), browsing-topics()">
 
 <meta property="og:type" content="profile">
-<meta property="og:title" content="Al-Aqmar Tinwala — The Gazette">
-<meta property="og:description" content="A vintage broadsheet portfolio of heart-first AI.">
+<meta property="og:title" content="Al-Aqmar Tinwala — Lunar Observatory">
+<meta property="og:description" content="Heart-first AI, shipped in public. Reflected light, no heat.">
 
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23e9dcc9'/%3E%3Cpath d='M16 4v24M4 16h24' stroke='%2316130f' stroke-width='2'/%3E%3C/svg%3E">
-<link rel="preload" href="assets/fonts/old-standard-tt-700.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/fonts/unifraktur-maguntia-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/fonts/newsreader-var-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2305060a'/%3E%3Ccircle cx='16' cy='16' r='9' fill='%23e9e6ff'/%3E%3Ccircle cx='20' cy='13' r='8' fill='%2305060a'/%3E%3C/svg%3E">
 <link rel="preload" href="assets/fonts/inter-tight-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/geist-mono-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/newsreader-var-italic.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/styles.css">
-<script>(function(){try{var e=localStorage.getItem('aaj-edition');if(!e)e=matchMedia('(prefers-color-scheme: dark)').matches?'evening':'day';document.documentElement.dataset.edition=e;}catch(_){}})();</script>
+<script>(function(){try{var a=localStorage.getItem('aaj-accent');if(a)document.documentElement.dataset.accent=a;}catch(_){}document.documentElement.classList.add('js');})();</script>
 </head>
 <body>
-<a class="skip" href="#front">Skip to content</a>
+<a class="skip" href="#main">Skip to content</a>
 
-<header class="masthead">
-  <div class="wrap">
-    <div class="masthead__rule" aria-hidden="true"></div>
-    <div class="masthead__top-line">
-      <span>Price One Penny</span>
-      <svg class="ornament" viewBox="0 0 24 12" aria-hidden="true"><path d="M12 0v12M0 6h24" stroke="currentColor" stroke-width="1.2"/></svg>
-      <span>Established MMXXIV</span>
-    </div>
-    <div class="masthead__rule" aria-hidden="true"></div>
-    <div class="masthead__banner">
-      <p class="masthead__weather" id="edition-label">Day Edition</p>
-      <a class="masthead__title" href="#top" aria-label="The Al-Aqmar Gazette">
-        <span class="the">The</span>
-        <span class="name">Al-Aqmar</span>
-        <span class="name name--italic">Gazette</span>
-      </a>
-      <button class="edition-toggle" type="button" id="edition" aria-pressed="false" aria-label="Switch between day and evening edition">
-        <span class="edition-toggle__label">Day</span>
-        <span class="edition-toggle__mark" aria-hidden="true"></span>
-        <span class="edition-toggle__label">Evening</span>
-      </button>
-    </div>
-    <div class="masthead__meta">
-      <span>Vol. CXXVI</span>
-      <span class="masthead__date">Sunday, 27 September 2026</span>
-      <span>Heart-First Intelligence</span>
-    </div>
-    <div class="masthead__rule masthead__rule--thick" aria-hidden="true"></div>
+<!-- ░░ Preloader ░░ -->
+<div class="boot" id="boot" aria-hidden="true">
+  <div class="boot__inner">
+    <span class="boot__ar" lang="ar" dir="rtl">القمر</span>
+    <span class="boot__count mono" id="boot-count">000</span>
+    <span class="boot__line mono">calibrating telescope · 0 cookies · 0 trackers</span>
   </div>
-</header>
+</div>
 
-<nav class="rail" aria-label="Sections">
-  <div class="wrap rail__inner">
-    <a href="#front">Front Page</a>
-    <a href="#works">Works</a>
-    <a href="#gems">Git Gems</a>
-    <a href="#editorial">Editorial</a>
-    <a href="#contact">Correspondence</a>
-    <button class="edition-toggle rail__edition" type="button" id="edition-2" aria-pressed="false" aria-label="Switch between day and evening edition">
-      <span class="edition-toggle__label">Day</span>
-      <span class="edition-toggle__mark" aria-hidden="true"></span>
-      <span class="edition-toggle__label">Evening</span>
+<!-- ░░ Ambient layers ░░ -->
+<canvas class="sky" id="sky" aria-hidden="true"></canvas>
+<div class="grain" aria-hidden="true"></div>
+<div class="cursor" id="cursor" aria-hidden="true"><span class="cursor__dot"></span><span class="cursor__ring"><span class="cursor__label" id="cursor-label"></span></span></div>
+
+<!-- ░░ Nav ░░ -->
+<header class="nav" id="nav">
+  <a class="nav__brand" href="#top" data-magnetic aria-label="Al-Aqmar — back to top">
+    <span class="nav__moon" aria-hidden="true"></span>
+    <span>Al-Aqmar</span>
+  </a>
+  <nav class="nav__links" aria-label="Sections">
+    <a href="#works" data-magnetic>Works</a>
+    <a href="#gems" data-magnetic>Gems</a>
+    <a href="#library" data-magnetic>Library</a>
+    <a href="#terminal" data-magnetic>Terminal</a>
+    <a href="#contact" data-magnetic>Contact</a>
+  </nav>
+  <div class="nav__right">
+    <span class="nav__clock mono" id="clock" title="Local time in India">IST --:--</span>
+    <button class="nav__k" type="button" id="open-palette" data-magnetic aria-label="Open command palette">
+      <kbd>⌘</kbd><kbd>K</kbd>
     </button>
   </div>
-  <div class="rail__progress" id="progress" aria-hidden="true"></div>
-</nav>
+  <div class="nav__progress" id="progress" aria-hidden="true"></div>
+</header>
 
-<main id="top">
+<main id="main">
 
-<section id="front" aria-labelledby="front-h">
-  <div class="wrap front">
-
-    <article class="lede" data-reveal>
-      <p class="lede__kicker"><span class="label">Front Page</span><span class="label">Heart-First Architect</span></p>
-      <h1 id="front-h">Shipping AI that <em>forgets you</em> on purpose.</h1>
-      <p class="lede__deck">Five products. Five open gems. One rule: keep nothing.</p>
-
-      <div class="lede__byline">
-        <span>By Al-Aqmar Tinwala</span>
-        <span class="lede__tag" dir="rtl" lang="ar">القمر</span>
-        <span>Special to the Gazette</span>
-      </div>
-
-      <div class="lede__body">
-        <p><span class="dropcap">I</span> build tools that give people speed, privacy, and real cognitive lift — not slower phones and thinner selves. That means adaptive learning, privacy-first assistants, and molecular visuals at sixty frames per second. Underneath sits a two-billion-parameter transformer written from raw tensor math, because you should understand every layer you ship.</p>
-        <p><strong>Heart first.</strong> If a system does not treat its user with dignity, it does not belong online. Every item in this broadsheet is deployed, reachable, and audited for depth, performance, and how much runs without a server.</p>
-      </div>
-    </article>
-
-    <aside class="front__column" aria-label="Bulletin">
-      <div class="bulletin" data-reveal>
-        <p class="bulletin__head label">Bulletin</p>
-        <ul>
-          <li><b>3,000+</b> daily users served</li>
-          <li><b>5</b> live products curated</li>
-          <li><b>5</b> open-source gems rated</li>
-          <li><b>0</b> bytes retained by default</li>
-          <li><b>2</b> volumes in print</li>
-        </ul>
-      </div>
-
-      <figure class="front__plate" data-reveal>
-        <svg class="eng" viewBox="0 0 240 240" role="img" aria-labelledby="moon-t">
-          <title id="moon-t">Engraving of the moon in halftone</title>
-          <defs>
-            <pattern id="dots" width="8" height="8" patternUnits="userSpaceOnUse">
-              <circle cx="4" cy="4" r="1.6" fill="currentColor"/>
-            </pattern>
-            <linearGradient id="moon-fade" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stop-color="#fff" stop-opacity="1"/>
-              <stop offset="0.6" stop-color="#fff" stop-opacity="0.35"/>
-              <stop offset="1" stop-color="#fff" stop-opacity="0"/>
-            </linearGradient>
-            <mask id="moon-mask"><rect width="240" height="240" fill="url(#moon-fade)"/></mask>
-            <clipPath id="moon-clip"><circle cx="120" cy="120" r="88"/></clipPath>
-          </defs>
-          <g stroke="currentColor" stroke-width="0.6" opacity="0.4" fill="none">
-            <path d="M120 12v26M120 202v26M12 120h26M202 120h26"/>
-            <circle cx="120" cy="120" r="102" stroke-dasharray="2 8"/>
-          </g>
-          <circle cx="120" cy="120" r="88" fill="url(#dots)" mask="url(#moon-mask)"/>
-          <g clip-path="url(#moon-clip)" fill="currentColor">
-            <circle cx="82" cy="88" r="16"/>
-            <circle cx="148" cy="150" r="22"/>
-            <circle cx="70" cy="158" r="9"/>
-            <circle cx="158" cy="78" r="6"/>
-          </g>
-          <circle cx="120" cy="120" r="88" fill="none" stroke="currentColor" stroke-width="1"/>
-          <text x="12" y="228" style="font-size:7px;letter-spacing:0.18em">Plate I — Al-Qamar</text>
-        </svg>
-        <figcaption>Al-Aqmar means the moon. Reflected light, no heat.</figcaption>
-      </figure>
-    </aside>
-
+<!-- ░░ HERO ░░ -->
+<section class="hero" id="top" aria-labelledby="hero-h">
+  <div class="hero__moon-wrap">
+    <canvas class="hero__moon" id="moon" role="img" aria-label="Live rendering of tonight's moon phase. Drag to scrub through the lunar cycle."></canvas>
+    <svg class="hero__orbit" viewBox="0 0 600 600" aria-hidden="true">
+      <defs><path id="orbit-path" d="M300,300 m-270,0 a270,270 0 1,1 540,0 a270,270 0 1,1 -540,0"/></defs>
+      <text><textPath href="#orbit-path">HEART FIRST ✦ PRIVACY FIRST ✦ CURIOSITY FIRST ✦ ZERO BYTES RETAINED ✦ REFLECTED LIGHT, NO HEAT ✦ </textPath></text>
+    </svg>
+    <p class="hero__phase mono" id="phase-readout" aria-live="polite">— tonight —</p>
   </div>
+
+  <div class="hero__copy">
+    <p class="eyebrow mono"><span class="pulse" aria-hidden="true"></span> Available for collaborations · 2026</p>
+    <h1 id="hero-h" class="hero__title">
+      <span class="line"><span class="split">Al-Aqmar</span></span>
+      <span class="line line--italic"><span class="split">Tinwala</span></span>
+    </h1>
+    <p class="hero__role mono"><span data-scramble="AI Architect">AI Architect</span> <span class="sep">/</span> <span data-scramble="Full-Stack">Full-Stack</span> <span class="sep">/</span> <span data-scramble="Author ×2">Author ×2</span></p>
+    <p class="hero__lede">Shipping AI that <em>forgets you</em> on purpose. Five live products, five open gems, one rule — keep nothing.</p>
+    <div class="hero__cta">
+      <a class="btn btn--solid" href="#works" data-magnetic data-cursor="Explore">See the work <span aria-hidden="true">↓</span></a>
+      <button class="btn btn--ghost" type="button" data-magnetic data-open-palette>Press <kbd>⌘K</kbd> anywhere</button>
+    </div>
+  </div>
+
+  <dl class="hero__stats">
+    <div><dt>Daily users</dt><dd><span data-count="3000">0</span>+</dd></div>
+    <div><dt>Live products</dt><dd><span data-count="5">0</span></dd></div>
+    <div><dt>Open gems</dt><dd><span data-count="5">0</span></dd></div>
+    <div><dt>Books in print</dt><dd><span data-count="2">0</span></dd></div>
+    <div><dt>Bytes retained</dt><dd class="accent"><span data-count="0">0</span></dd></div>
+  </dl>
+
+  <p class="hero__hint mono" aria-hidden="true">drag the moon ↻ · scroll ↓</p>
 </section>
 
-<section class="section" id="works" aria-labelledby="works-h">
-  <div class="wrap">
-    <header class="section-head" data-reveal>
-      <p class="label">Latest Intelligence</p>
-      <h2 id="works-h">Five products, <em>set in type.</em></h2>
+<!-- ░░ MARQUEE ░░ -->
+<div class="marquee" aria-label="Tech stack">
+  <div class="marquee__track">
+    <span>Rust</span><i>✦</i><span>Next.js</span><i>✦</i><span>TypeScript</span><i>✦</i><span>WebGL</span><i>✦</i><span>Three.js</span><i>✦</i><span>Sarvam 105b</span><i>✦</i><span>Groq</span><i>✦</i><span>Whisper</span><i>✦</i><span>On-device LLMs</span><i>✦</i><span>OKLCH</span><i>✦</i><span>SM-2</span><i>✦</i><span>LoRA</span><i>✦</i>
+  </div>
+  <div class="marquee__track" aria-hidden="true">
+    <span>Rust</span><i>✦</i><span>Next.js</span><i>✦</i><span>TypeScript</span><i>✦</i><span>WebGL</span><i>✦</i><span>Three.js</span><i>✦</i><span>Sarvam 105b</span><i>✦</i><span>Groq</span><i>✦</i><span>Whisper</span><i>✦</i><span>On-device LLMs</span><i>✦</i><span>OKLCH</span><i>✦</i><span>SM-2</span><i>✦</i><span>LoRA</span><i>✦</i>
+  </div>
+</div>
+
+<!-- ░░ WORKS — horizontal orbit reel ░░ -->
+<section class="works" id="works" aria-labelledby="works-h">
+  <div class="works__sticky">
+    <header class="section-head">
+      <p class="eyebrow mono">01 — Live products</p>
+      <h2 id="works-h" class="reveal-words">Five satellites, <em>in orbit.</em></h2>
+      <p class="works__counter mono"><span id="works-idx">01</span> / 05</p>
     </header>
 
-    <div class="works-grid">
-      <article class="work work--lead" data-reveal>
-        <p class="label">Flagship · §I</p>
-        <h3>eSAMz AI</h3>
-        <p class="work__standfirst">A 128k-context assistant on a Rust router with web search and consent tiers. Three thousand daily users, zero retention.</p>
-        <div class="work__meta">
-          <span><b>128k</b> context</span>
-          <span><b>0</b> retention</span>
-          <span><b>Rust</b> router</span>
+    <div class="works__track" id="works-track">
+
+      <article class="card" data-tilt>
+        <div class="card__art art-esamz" aria-hidden="true">
+          <svg viewBox="0 0 200 140"><g class="route"><path d="M20 70H70M130 70H180M70 70C90 30 110 30 130 70M70 70C90 110 110 110 130 70M70 70H130"/></g><rect x="84" y="56" width="32" height="28" rx="6"/><path class="lock" d="M92 56v-6a8 8 0 0 1 16 0v6"/><circle cx="20" cy="70" r="4"/><circle cx="180" cy="70" r="4"/></svg>
         </div>
-        <p class="work__stack">Rust · Sarvam 105b · Next.js · consent tiers</p>
-        <a class="work__link" href="https://esamz.info" target="_blank" rel="noopener noreferrer">Read dispatch <span aria-hidden="true">↗</span><span class="vh"> (opens in a new tab)</span></a>
+        <div class="card__body">
+          <p class="card__tag mono">Flagship · Rust router</p>
+          <h3>eSAMz AI</h3>
+          <p>A 128k-context assistant with web search and consent tiers. Three thousand daily users, zero retention.</p>
+          <ul class="chips"><li>128k ctx</li><li>0 retention</li><li>Sarvam 105b</li><li>Next.js</li></ul>
+          <a class="card__link" href="https://esamz.info" target="_blank" rel="noopener noreferrer" data-cursor="Launch">Launch esamz.info <span aria-hidden="true">↗</span><span class="vh"> (opens in a new tab)</span></a>
+        </div>
       </article>
 
-      <article class="work" data-reveal>
-        <p class="label">§II · Adaptive Learning</p>
-        <h3>RealLearn AI</h3>
-        <p class="work__standfirst">One question becomes a three-stage journey: grounded explanation, quiz gate, and on-device SM-2 spaced repetition.</p>
-        <div class="work__meta">
-          <span><b>63</b> languages</span>
-          <span><b>3</b> stages</span>
-          <span><b>SM-2</b> local</span>
+      <article class="card" data-tilt>
+        <div class="card__art art-learn" aria-hidden="true">
+          <svg viewBox="0 0 200 140"><path class="axis" d="M20 120H185M20 120V15"/><path class="curve" d="M20 25C40 90 50 100 60 100L60 40C75 85 90 92 100 92L100 45C120 78 135 82 145 82L145 50C160 70 175 72 185 72"/><circle cx="60" cy="40" r="3.5"/><circle cx="100" cy="45" r="3.5"/><circle cx="145" cy="50" r="3.5"/></svg>
         </div>
-        <p class="work__stack">Next.js 16 · Groq · Serper · local-first</p>
-        <a class="work__link" href="https://reallearn-info.vercel.app" target="_blank" rel="noopener noreferrer">Read dispatch <span aria-hidden="true">↗</span><span class="vh"> (opens in a new tab)</span></a>
+        <div class="card__body">
+          <p class="card__tag mono">Adaptive learning</p>
+          <h3>RealLearn AI</h3>
+          <p>One question becomes a three-stage journey: grounded explanation, quiz gate, and on-device SM-2 spaced repetition.</p>
+          <ul class="chips"><li>63 languages</li><li>SM-2 local</li><li>Groq</li><li>Next.js 16</li></ul>
+          <a class="card__link" href="https://reallearn-info.vercel.app" target="_blank" rel="noopener noreferrer" data-cursor="Launch">Launch RealLearn <span aria-hidden="true">↗</span><span class="vh"> (opens in a new tab)</span></a>
+        </div>
       </article>
 
-      <article class="work" data-reveal>
-        <p class="label">§III · Interactive Science</p>
-        <h3><span class="glyph">π</span> — Pi</h3>
-        <p class="work__standfirst">Atoms, electron clouds, and molecular geometry at 60fps — tuned for school Chromebooks.</p>
-        <div class="work__meta">
-          <span><b>WebGL</b></span>
-          <span><b>60fps</b></span>
-          <span><b>Three.js</b></span>
+      <article class="card" data-tilt>
+        <div class="card__art art-pi" aria-hidden="true">
+          <svg viewBox="0 0 200 140"><g transform="translate(100 70)"><ellipse class="orb o1" rx="70" ry="22"/><ellipse class="orb o2" rx="70" ry="22" transform="rotate(60)"/><ellipse class="orb o3" rx="70" ry="22" transform="rotate(120)"/><circle class="nucleus" r="9"/><g transform="rotate(0)"><circle class="el" r="3.5"><animateMotion dur="3s" repeatCount="indefinite" path="M70 0 A70 22 0 1 1 -70 0 A70 22 0 1 1 70 0"/></circle></g><g transform="rotate(60)"><circle class="el" r="3.5"><animateMotion dur="4.2s" repeatCount="indefinite" path="M70 0 A70 22 0 1 1 -70 0 A70 22 0 1 1 70 0"/></circle></g><g transform="rotate(120)"><circle class="el" r="3.5"><animateMotion dur="5.4s" repeatCount="indefinite" path="M70 0 A70 22 0 1 1 -70 0 A70 22 0 1 1 70 0"/></circle></g></g></svg>
         </div>
-        <p class="work__stack">Three.js · GLSL · Canvas · 0 telemetry</p>
-        <a class="work__link" href="https://science-project-pi.vercel.app" target="_blank" rel="noopener noreferrer">Read dispatch <span aria-hidden="true">↗</span><span class="vh"> (opens in a new tab)</span></a>
+        <div class="card__body">
+          <p class="card__tag mono">Interactive science</p>
+          <h3><span class="glyph">π</span> — Pi</h3>
+          <p>Atoms, electron clouds, and molecular geometry at 60fps — tuned for school Chromebooks.</p>
+          <ul class="chips"><li>WebGL</li><li>60fps</li><li>Three.js</li><li>GLSL</li></ul>
+          <a class="card__link" href="https://science-project-pi.vercel.app" target="_blank" rel="noopener noreferrer" data-cursor="Launch">Launch π <span aria-hidden="true">↗</span><span class="vh"> (opens in a new tab)</span></a>
+        </div>
       </article>
 
-      <article class="work" data-reveal>
-        <p class="label">§IV · Mobility</p>
-        <h3><span class="glyph">गति</span> — Gati</h3>
-        <p class="work__standfirst">Autos, metro, buses, and bikes in one hyperlocal journey planner with live ETAs and bilingual voice intent.</p>
-        <div class="work__meta">
-          <span><b>Voice AI</b></span>
-          <span><b>Live ETA</b></span>
-          <span><b>EN / हिन्दी</b></span>
+      <article class="card" data-tilt>
+        <div class="card__art art-gati" aria-hidden="true">
+          <svg viewBox="0 0 200 140"><path class="grid" d="M0 35H200M0 70H200M0 105H200M50 0V140M100 0V140M150 0V140"/><path class="path" d="M18 118L50 105L60 70L100 62L118 35L150 30L182 18"/><circle class="stop" cx="18" cy="118" r="5"/><circle class="stop" cx="100" cy="62" r="4"/><circle class="stop end" cx="182" cy="18" r="6"/><text x="110" y="120" class="devanagari">गति</text></svg>
         </div>
-        <p class="work__stack">TypeScript · Maps · Whisper · Voice</p>
-        <a class="work__link" href="https://gati-rho.vercel.app" target="_blank" rel="noopener noreferrer">Read dispatch <span aria-hidden="true">↗</span><span class="vh"> (opens in a new tab)</span></a>
+        <div class="card__body">
+          <p class="card__tag mono">Mobility, reimagined</p>
+          <h3><span class="glyph">गति</span> — Gati</h3>
+          <p>Autos, metro, buses, and bikes in one hyperlocal journey planner with live ETAs and bilingual voice intent.</p>
+          <ul class="chips"><li>Voice AI</li><li>Live ETA</li><li>EN / हिन्दी</li><li>Whisper</li></ul>
+          <a class="card__link" href="https://gati-rho.vercel.app" target="_blank" rel="noopener noreferrer" data-cursor="Launch">Launch Gati <span aria-hidden="true">↗</span><span class="vh"> (opens in a new tab)</span></a>
+        </div>
       </article>
 
-      <article class="work" data-reveal>
-        <p class="label">§V · Design QA</p>
-        <h3>Fit The Color</h3>
-        <p class="work__standfirst">OKLCH distance, WCAG AAA checks, and harmonic palettes for designers who care about math.</p>
-        <div class="work__meta">
-          <span><b>OKLCH</b></span>
-          <span><b>WCAG</b> AAA</span>
-          <span><b>Next.js</b> 15</span>
+      <article class="card" data-tilt>
+        <div class="card__art art-color" aria-hidden="true">
+          <div class="swatches"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          <p class="mono contrast">Δ OKLCH 0.214 · 7.3:1 AAA</p>
         </div>
-        <p class="work__stack">Next.js 15 · Color science · Accessibility</p>
-        <a class="work__link" href="https://fit-the-color-info.vercel.app" target="_blank" rel="noopener noreferrer">Read dispatch <span aria-hidden="true">↗</span><span class="vh"> (opens in a new tab)</span></a>
+        <div class="card__body">
+          <p class="card__tag mono">Design QA</p>
+          <h3>Fit The Color</h3>
+          <p>OKLCH distance, WCAG AAA checks, and harmonic palettes for designers who care about math.</p>
+          <ul class="chips"><li>OKLCH</li><li>WCAG AAA</li><li>Next.js 15</li></ul>
+          <a class="card__link" href="https://fit-the-color-info.vercel.app" target="_blank" rel="noopener noreferrer" data-cursor="Launch">Launch Fit The Color <span aria-hidden="true">↗</span><span class="vh"> (opens in a new tab)</span></a>
+        </div>
       </article>
+
     </div>
   </div>
 </section>
 
-<section class="section" id="gems" aria-labelledby="gems-h">
-  <div class="wrap">
-    <header class="section-head" data-reveal>
-      <p class="label">Repository Notes</p>
-      <h2 id="gems-h">Five git gems, <em>polished.</em></h2>
-    </header>
+<!-- ░░ GEMS — bento ░░ -->
+<section class="section gems" id="gems" aria-labelledby="gems-h">
+  <header class="section-head">
+    <p class="eyebrow mono">02 — Open source</p>
+    <h2 id="gems-h" class="reveal-words">Five git gems, <em>cut &amp; polished.</em></h2>
+  </header>
 
-    <article class="gem gem--crown" data-reveal>
-      <div class="gem__main">
-        <p class="label">Crown Jewel</p>
+  <div class="bento">
+    <a class="tile tile--crown" href="https://github.com/alakmar344/youAI-2B-From-Scratch-Transformer-Implementation" target="_blank" rel="noopener noreferrer" data-spot data-cursor="Source">
+      <canvas class="attn" id="attn" aria-hidden="true"></canvas>
+      <div class="tile__content">
+        <p class="card__tag mono">Crown jewel · 90 carats</p>
         <h3>youAI-2B</h3>
         <p>A pip-installable toolkit for training and serving a two-billion-parameter transformer — written from raw tensor math.</p>
+        <dl class="specs mono">
+          <div><dt>arch</dt><dd>RoPE · RMSNorm · SwiGLU · GQA · KV-cache</dd></div>
+          <div><dt>align</dt><dd>DPO · ORPO · SimPO</dd></div>
+          <div><dt>adapt</dt><dd>LoRA · QLoRA · DARE · TIES</dd></div>
+          <div><dt>params</dt><dd><span data-count="2000000000">0</span></dd></div>
+        </dl>
       </div>
-      <dl class="gem__specs">
-        <div><dt>Architecture</dt><dd>RoPE · RMSNorm · SwiGLU · GQA · KV-cache</dd></div>
-        <div><dt>Alignment</dt><dd>DPO · ORPO · SimPO</dd></div>
-        <div><dt>Adapters</dt><dd>LoRA · QLoRA · DARE · TIES</dd></div>
-        <div><dt>Parameters</dt><dd>2,000,000,000</dd></div>
-      </dl>
-      <div class="gem__score">
-        <span class="gem__score-value">90</span>
-        <span class="gem__score-label">Carats</span>
-      </div>
-      <a class="gem__link" href="https://github.com/alakmar344/youAI-2B-From-Scratch-Transformer-Implementation" target="_blank" rel="noopener noreferrer">Inspect source <span aria-hidden="true">↗</span><span class="vh"> (opens in a new tab)</span></a>
-    </article>
+      <span class="vh"> (opens in a new tab)</span>
+    </a>
 
-    <div class="gem-table" data-reveal>
-      <div class="gem-table__head" aria-hidden="true">
-        <span>No.</span>
-        <span>Name</span>
-        <span>Dispatch</span>
-        <span>Carats</span>
-      </div>
+    <a class="tile" href="https://github.com/alakmar344/gati" target="_blank" rel="noopener noreferrer" data-spot data-cursor="Source">
+      <div class="gauge" style="--v:87"><span>87</span></div>
+      <h3>gati</h3>
+      <p>14k lines of TypeScript. Bilingual voice routing across four transit modes.</p>
+      <span class="vh"> (opens in a new tab)</span>
+    </a>
 
-      <a class="gem-table__row" href="https://github.com/alakmar344/breeze-framework" target="_blank" rel="noopener noreferrer">
-        <span class="gem-table__num">01</span>
-        <span class="gem-table__name">breeze-framework</span>
-        <span class="gem-table__desc">A lightweight, breathable web framework still being set into type.</span>
-        <span class="gem-table__score gem-table__score--uncut">Uncut</span>
-      </a>
+    <a class="tile" href="https://github.com/alakmar344/vinecraft" target="_blank" rel="noopener noreferrer" data-spot data-cursor="Source">
+      <div class="gauge" style="--v:82"><span>82</span></div>
+      <h3>vinecraft</h3>
+      <p>Infinite voxel world in the browser: procedural terrain, ambient occlusion, ten biomes.</p>
+      <div class="voxels" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <span class="vh"> (opens in a new tab)</span>
+    </a>
 
-      <a class="gem-table__row" href="https://github.com/alakmar344/gati" target="_blank" rel="noopener noreferrer">
-        <span class="gem-table__num">02</span>
-        <span class="gem-table__name">gati</span>
-        <span class="gem-table__desc">Fourteen-thousand lines of TypeScript, bilingual voice routing across four transit modes.</span>
-        <span class="gem-table__score">87</span>
-      </a>
+    <a class="tile" href="https://github.com/alakmar344/science-project" target="_blank" rel="noopener noreferrer" data-spot data-cursor="Source">
+      <div class="gauge" style="--v:82"><span>82</span></div>
+      <h3>science-project</h3>
+      <p>The 60fps chemistry renderer behind π, tuned for GPU-less Chromebooks.</p>
+      <span class="vh"> (opens in a new tab)</span>
+    </a>
 
-      <a class="gem-table__row" href="https://github.com/alakmar344/vinecraft" target="_blank" rel="noopener noreferrer">
-        <span class="gem-table__num">03</span>
-        <span class="gem-table__name">vinecraft</span>
-        <span class="gem-table__desc">Infinite voxel world in the browser: procedural terrain, ambient occlusion, ten biomes.</span>
-        <span class="gem-table__score">82</span>
-      </a>
+    <a class="tile" href="https://github.com/alakmar344/esamz.a" target="_blank" rel="noopener noreferrer" data-spot data-cursor="Source">
+      <div class="gauge" style="--v:81"><span>81</span></div>
+      <h3>esamz.a</h3>
+      <p>Privacy plumbing: Next.js proxy, consent tiers, verifiable purge endpoints.</p>
+      <span class="vh"> (opens in a new tab)</span>
+    </a>
 
-      <a class="gem-table__row" href="https://github.com/alakmar344/science-project" target="_blank" rel="noopener noreferrer">
-        <span class="gem-table__num">04</span>
-        <span class="gem-table__name">science-project</span>
-        <span class="gem-table__desc">The 60fps chemistry renderer behind π, tuned for GPU-less Chromebooks.</span>
-        <span class="gem-table__score">82</span>
-      </a>
+    <a class="tile tile--uncut" href="https://github.com/alakmar344/breeze-framework" target="_blank" rel="noopener noreferrer" data-spot data-cursor="Source">
+      <div class="gauge gauge--uncut" style="--v:35"><span>—</span></div>
+      <h3>breeze-framework</h3>
+      <p>A lightweight, breathable web framework. Still uncut.</p>
+      <span class="vh"> (opens in a new tab)</span>
+    </a>
 
-      <a class="gem-table__row" href="https://github.com/alakmar344/esamz.a" target="_blank" rel="noopener noreferrer">
-        <span class="gem-table__num">05</span>
-        <span class="gem-table__name">esamz.a</span>
-        <span class="gem-table__desc">Privacy plumbing: Next.js proxy, consent tiers, verifiable purge endpoints.</span>
-        <span class="gem-table__score">81</span>
-      </a>
-    </div>
+    <a class="tile tile--all" href="https://github.com/alakmar344" target="_blank" rel="noopener noreferrer" data-spot data-cursor="GitHub">
+      <span class="tile__big"><span data-count="43">0</span></span>
+      <p>repositories in the full archive <span aria-hidden="true">↗</span></p>
+      <span class="vh"> (opens in a new tab)</span>
+    </a>
+  </div>
+  <p class="note mono">Carats are my own audit of depth, performance, and server independence.</p>
+</section>
 
-    <p class="section__note" data-reveal>Ratings are my own audit of depth, performance, and server independence. <a class="elink" data-ext href="https://github.com/alakmar344" target="_blank" rel="noopener noreferrer">Browse all forty-three <span aria-hidden="true">↗</span><span class="vh"> (opens in a new tab)</span></a></p>
+<!-- ░░ MANIFESTO — scroll-lit words ░░ -->
+<section class="section manifesto" aria-labelledby="manifesto-h">
+  <p class="eyebrow mono">03 — The position</p>
+  <h2 id="manifesto-h" class="vh">Manifesto</h2>
+  <p class="manifesto__text" id="manifesto">Most AI today is retention dressed as research. Keep the session, keep the profile, keep the person coming back. The alternative is simple: process the request, answer well, <em>forget it.</em> Run on the device when it can carry it. Ask before remembering, and prove you can forget. Software should grant dignity, not extract attention.</p>
+  <div class="principles">
+    <div class="principle" data-spot><span class="principle__n mono">I</span><h3>Heart first</h3><p>Built for human elevation — not doom-scroll retention or quiet surveillance.</p></div>
+    <div class="principle" data-spot><span class="principle__n mono">II</span><h3>Zero retention</h3><p>No logging by default. Purge endpoints you can verify.</p></div>
+    <div class="principle" data-spot><span class="principle__n mono">III</span><h3>Uncompromising wonder</h3><p>Useful and delightful are not a trade-off.</p></div>
   </div>
 </section>
 
-<section class="section section--editorial" id="editorial" aria-labelledby="editorial-h">
-  <div class="wrap editorial">
-    <header class="section-head section-head--light" data-reveal>
-      <p class="label">Leading Article</p>
-      <h2 id="editorial-h">The position, <em>plainly stated.</em></h2>
-    </header>
-
-    <div class="editorial__grid">
-      <blockquote data-reveal>Software should grant dignity, not <em>extract attention.</em></blockquote>
-      <div class="editorial__body" data-reveal>
-        <p>Most “AI” today is retention dressed as research. Keep the session, keep the profile, keep the person coming back. The alternative is simple: process the request, answer well, forget it. Run on the device when it can carry it. Ask before remembering, and prove you can forget.</p>
-        <p>Every product here is built that way. Slower to monetise, faster to trust.</p>
+<!-- ░░ LIBRARY — 3D books ░░ -->
+<section class="section library" id="library" aria-labelledby="library-h">
+  <header class="section-head">
+    <p class="eyebrow mono">04 — In print</p>
+    <h2 id="library-h" class="reveal-words">Two volumes, <em>on the shelf.</em></h2>
+  </header>
+  <div class="shelf">
+    <a class="book" href="https://www.amazon.com/dp/B0GX2N6WTT" target="_blank" rel="noopener noreferrer" data-cursor="Read">
+      <div class="book__3d" aria-hidden="true">
+        <div class="book__cover book__cover--a"><span class="mono">Bestseller</span><strong>The AI Mastery Handbook</strong><em>Al-Aqmar Tinwala</em></div>
+        <div class="book__spine"></div><div class="book__pages"></div>
       </div>
-    </div>
-
-    <div class="principles" data-reveal>
-      <div>
-        <p class="label">I · Principle</p>
-        <h3>Heart first</h3>
-        <p>Built for human elevation — not doom-scroll retention or quiet surveillance.</p>
+      <div class="book__meta">
+        <h3>The AI Mastery Handbook</h3>
+        <p>Claude, Gemini, Llama, ChatGPT explained. AI history, LLM mechanics, and prompt engineering.</p>
+        <span class="card__link">Amazon KDP <span aria-hidden="true">↗</span><span class="vh"> (opens in a new tab)</span></span>
       </div>
-      <div>
-        <p class="label">II · Principle</p>
-        <h3>Zero retention</h3>
-        <p>No logging by default. Purge endpoints you can verify.</p>
+    </a>
+    <a class="book" href="https://www.amazon.com/dp/B0GY1F3573" target="_blank" rel="noopener noreferrer" data-cursor="Read">
+      <div class="book__3d" aria-hidden="true">
+        <div class="book__cover book__cover--b"><span class="mono">New release</span><strong>30 Days Mastering Claude Code</strong><em>Al-Aqmar Tinwala</em></div>
+        <div class="book__spine"></div><div class="book__pages"></div>
       </div>
-      <div>
-        <p class="label">III · Principle</p>
-        <h3>Uncompromising wonder</h3>
-        <p>Useful and delightful are not a trade-off.</p>
+      <div class="book__meta">
+        <h3>30 Days Mastering Claude Code</h3>
+        <p>Thirty days inside agentic development: subagents, terminal workflows, and the habits of shipping real products.</p>
+        <span class="card__link">Amazon KDP <span aria-hidden="true">↗</span><span class="vh"> (opens in a new tab)</span></span>
       </div>
-    </div>
+    </a>
   </div>
 </section>
 
-<section class="section" id="contact" aria-labelledby="contact-h">
-  <div class="wrap contact">
-    <div class="contact__head" data-reveal>
-      <p class="label">Correspondence</p>
-      <h2 id="contact-h">Letters to the editor.</h2>
-      <p>Open to AI systems consulting, full-stack builds, and collaborations with soul. Faster to respond than your build pipeline.</p>
-    </div>
+<!-- ░░ TERMINAL ░░ -->
+<section class="section term-section" id="terminal" aria-labelledby="terminal-h">
+  <header class="section-head">
+    <p class="eyebrow mono">05 — Mission control</p>
+    <h2 id="terminal-h" class="reveal-words">Talk to the <em>observatory.</em></h2>
+  </header>
+  <div class="term" id="term">
+    <div class="term__bar"><i></i><i></i><i></i><span class="mono">guest@al-aqmar: ~</span></div>
+    <div class="term__out mono" id="term-out" role="log" aria-live="polite"></div>
+    <form class="term__in mono" id="term-form" autocomplete="off">
+      <label for="term-input"><span class="term__ps">guest@al-aqmar</span>:<span class="term__cwd">~</span>$</label>
+      <input id="term-input" type="text" spellcheck="false" autocapitalize="off" aria-label="Terminal command. Type help for a list.">
+    </form>
+  </div>
+  <p class="note mono">try: <button type="button" class="chip-btn" data-cmd="whoami">whoami</button> <button type="button" class="chip-btn" data-cmd="projects">projects</button> <button type="button" class="chip-btn" data-cmd="moon">moon</button> <button type="button" class="chip-btn" data-cmd="sudo hire-me">sudo hire-me</button></p>
+</section>
 
-    <div class="contact__grid" data-reveal>
-      <a class="contact__card" href="https://github.com/alakmar344" target="_blank" rel="noopener noreferrer">
-        <span class="label">GitHub</span>
-        <span class="contact__handle">@alakmar344</span>
-      </a>
-      <a class="contact__card" href="https://www.linkedin.com/in/alakmar-teenwala-054067393" target="_blank" rel="noopener noreferrer">
-        <span class="label">LinkedIn</span>
-        <span class="contact__handle">Al-Aqmar Teenwala</span>
-      </a>
-      <a class="contact__card" href="https://instagram.com/its_alakmar7" target="_blank" rel="noopener noreferrer">
-        <span class="label">Instagram</span>
-        <span class="contact__handle">@its_alakmar7</span>
-      </a>
-    </div>
+<!-- ░░ CONTACT ░░ -->
+<section class="section contact" id="contact" aria-labelledby="contact-h">
+  <p class="eyebrow mono">06 — Correspondence</p>
+  <h2 id="contact-h" class="contact__big">
+    <a href="https://www.linkedin.com/in/alakmar-teenwala-054067393" target="_blank" rel="noopener noreferrer" data-magnetic="0.25" data-cursor="Say hi">Let's build<br><em>something with soul.</em><span class="vh"> (opens LinkedIn in a new tab)</span></a>
+  </h2>
+  <p class="contact__lede">Open to AI systems consulting, full-stack builds, and collaborations with heart. Faster to respond than your build pipeline.</p>
+  <div class="socials">
+    <a href="https://github.com/alakmar344" target="_blank" rel="noopener noreferrer" data-magnetic><span class="mono">GitHub</span><b>@alakmar344</b><span class="vh"> (opens in a new tab)</span></a>
+    <a href="https://www.linkedin.com/in/alakmar-teenwala-054067393" target="_blank" rel="noopener noreferrer" data-magnetic><span class="mono">LinkedIn</span><b>Al-Aqmar Teenwala</b><span class="vh"> (opens in a new tab)</span></a>
+    <a href="https://instagram.com/its_alakmar7" target="_blank" rel="noopener noreferrer" data-magnetic><span class="mono">Instagram</span><b>@its_alakmar7</b><span class="vh"> (opens in a new tab)</span></a>
   </div>
 </section>
 
 </main>
 
-<footer class="colophon">
-  <div class="wrap">
-    <div class="colophon__rule" aria-hidden="true"></div>
-    <div class="colophon__inner">
-      <p>© 2026 Al-Aqmar Tinwala · Hand-set in HTML &amp; CSS<br>Self-hosted fonts · No trackers · Zero telemetry</p>
-      <a class="to-top" href="#top">Back to top <span aria-hidden="true">↑</span></a>
-    </div>
+<footer class="foot">
+  <div class="foot__word" aria-hidden="true">القمر</div>
+  <div class="foot__row mono">
+    <span>© 2026 Al-Aqmar Tinwala</span>
+    <span>cookies: <b id="cookie-count">0</b> · trackers: <b>0</b> · requests to third parties: <b>0</b></span>
+    <a href="#top" data-magnetic>Back to orbit ↑</a>
   </div>
 </footer>
+
+<!-- ░░ Command palette ░░ -->
+<div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Command palette" hidden>
+  <div class="palette__backdrop" data-close></div>
+  <div class="palette__box">
+    <div class="palette__search">
+      <span aria-hidden="true">⌕</span>
+      <input id="palette-input" type="text" placeholder="Jump to, open, or switch theme…" aria-label="Search commands" aria-controls="palette-list" autocomplete="off" spellcheck="false">
+      <kbd>esc</kbd>
+    </div>
+    <ul class="palette__list" id="palette-list" role="listbox"></ul>
+    <div class="palette__foot mono"><span>↑↓ navigate</span><span>↵ select</span><span>esc close</span></div>
+  </div>
+</div>
+
+<div class="toast mono" id="toast" role="status" aria-live="polite"></div>
 
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Person","name":"Al-Aqmar Tinwala","alternateName":"القمر","jobTitle":"AI Architect & Full-Stack Developer","description":"Heart-first AI architect building privacy-first intelligence with zero data retention.","sameAs":["https://github.com/alakmar344","https://www.linkedin.com/in/alakmar-teenwala-054067393","https://instagram.com/its_alakmar7"]}

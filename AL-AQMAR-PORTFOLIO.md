@@ -1,4 +1,4 @@
-# Al-Aqmar Tinwala — The Gazette ✦ Heart First
+# Al-Aqmar Tinwala — Lunar Observatory ✦ Heart First
 
 > **AI Architect | Full-Stack Developer | Published Author ×2 | Privacy Advocate | Rust Enthusiast | Heart-First Builder**
 
