@@ -2,20 +2,23 @@
 
 > Heart-first AI architecture, shipped in public.
 
-A privacy-first portfolio presented as a **Lunar Observatory** — *Al-Aqmar* means *the moon*. Five curated live products, five open-source gems, two books, and zero data retention. Built to be explored, not tracked.
+A privacy-first portfolio presented as a walk through a **Lunar Observatory** — *Al-Aqmar* means *the moon*. Five curated live products, five open-source gems, two books, and zero data retention. Built to be explored, not tracked.
 
-## The experience
+## The experience — a visit to the observatory
 
-- **Live moon** — tonight's real lunar phase, rendered pixel-by-pixel on your device (no API). Drag it (or use ← →) to scrub through the cycle.
-- **Interactive starfield** — parallax stars, shooting stars, and constellations that form around your cursor.
-- **Kinetic type** — character-split headline, scramble-in roles, blur-in section titles, scroll-lit manifesto.
-- **Orbit reel** — the Works section pins and scrolls horizontally, with 3D-tilt spotlight cards and animated SVG art per product.
-- **Bento gems** — a live causal attention-matrix canvas for youAI-2B, animated carat gauges, and a repo counter.
-- **3D books** — CSS-3D volumes that turn toward you on hover.
-- **Observatory terminal** — `help`, `whoami`, `projects`, `moon`, `privacy`, `theme aurora`, `sudo hire-me`… with history and Tab completion.
-- **⌘K / Ctrl+K command palette** — jump anywhere, launch products, switch themes (Lunar · Solar · Aurora · Eclipse).
-- **Magnetic custom cursor** with contextual labels; a secret Konami-code blood moon.
-- Fully respects `prefers-reduced-motion`, keyboard accessible, and falls back to native scroll-snap on mobile.
+- **Arrival** — the dome's shutters slide open to reveal the real night sky through the slit (click or press any key to skip).
+- **The eyepiece** — tonight's actual moon phase, rendered pixel-by-pixel on your device inside a telescope with a brass barrel, crosshair reticle, and degree ring. Drag to scrub the lunar cycle; use the **MAG** slider (or Ctrl/Alt + scroll) to magnify up to 3× with a refocus effect.
+- **Instrument HUD** — corner brackets, a live declination scale, RA/DEC that follows your cursor, ALT/AZ that follows your scroll, and a tracking indicator.
+- **The sky** — a hand-painted Milky Way band, temperature-tinted stars with diffraction spikes, shooting stars, and constellations that form around your cursor.
+- **The horizon** — the observatory on its hill, telescope poking out of the slit, a warm lit window, and a blinking radio mast.
+- **Room I · Observation log** — pinned horizontal reel of five "photographic plates" (products) with star-chart grids and animated art.
+- **Room II · Star catalogue** — open-source gems as catalogued stars (AQ-001…) with generated constellations, magnitude gauges, and a live attention-matrix for youAI-2B.
+- **Field notes** — a manifesto that lights up word by word as you scroll.
+- **Room III · The archive** — 3D books on a brass-lit shelf.
+- **Room IV · Control room** — console dials (dome azimuth, shutter, tracking, seeing) and a terminal: `help`, `observe`, `zoom 3`, `moon`, `privacy`, `theme aurora`, `sudo hire-me`…
+- **Room V · Transmission** — a radio dish broadcasting on open channels.
+- **⌘K / Ctrl+K control panel** — jump between rooms, launch products, magnify the moon, switch skies (Lunar · Solar · Aurora · Eclipse). Konami code → blood moon.
+- Respects `prefers-reduced-motion`, keyboard accessible, native scroll-snap on mobile.
 
 ## What's here
 
