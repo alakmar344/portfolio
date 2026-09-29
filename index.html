@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Al-Aqmar Tinwala — Lunar Observatory</title>
+<title>Al-Aqmar Tinwala — The Lunar Observatory</title>
 
-<meta name="description" content="Al-Aqmar Tinwala — heart-first AI architect. Five live products, five open-source gems, two books, zero bytes retained. An interactive lunar observatory portfolio.">
+<meta name="description" content="Step inside Al-Aqmar Tinwala's lunar observatory — heart-first AI architect. Five live products, five open-source gems, two books, zero bytes retained.">
 <meta name="author" content="Al-Aqmar Tinwala">
-<meta name="theme-color" content="#05060a">
+<meta name="theme-color" content="#060913">
 <meta name="color-scheme" content="dark">
 
 <meta name="referrer" content="no-referrer">
@@ -16,45 +16,66 @@
 <meta http-equiv="Permissions-Policy" content="interest-cohort=(), browsing-topics()">
 
 <meta property="og:type" content="profile">
-<meta property="og:title" content="Al-Aqmar Tinwala — Lunar Observatory">
+<meta property="og:title" content="Al-Aqmar Tinwala — The Lunar Observatory">
 <meta property="og:description" content="Heart-first AI, shipped in public. Reflected light, no heat.">
 
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2305060a'/%3E%3Ccircle cx='16' cy='16' r='9' fill='%23e9e6ff'/%3E%3Ccircle cx='20' cy='13' r='8' fill='%2305060a'/%3E%3C/svg%3E">
-<link rel="preload" href="assets/fonts/inter-tight-var.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/fonts/geist-mono-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23060913'/%3E%3Ccircle cx='16' cy='16' r='9' fill='%23f5ecd9'/%3E%3Ccircle cx='20' cy='13' r='8' fill='%23060913'/%3E%3C/svg%3E">
+<link rel="preload" href="assets/fonts/newsreader-var-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/newsreader-var-italic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/geist-mono-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/inter-tight-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/styles.css">
 <script>(function(){try{var a=localStorage.getItem('aaj-accent');if(a)document.documentElement.dataset.accent=a;}catch(_){}document.documentElement.classList.add('js');})();</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
-<!-- ░░ Preloader ░░ -->
-<div class="boot" id="boot" aria-hidden="true">
-  <div class="boot__inner">
-    <span class="boot__ar" lang="ar" dir="rtl">القمر</span>
-    <span class="boot__count mono" id="boot-count">000</span>
-    <span class="boot__line mono">calibrating telescope · 0 cookies · 0 trackers</span>
+<!-- ░░ Arrival: the dome opens ░░ -->
+<div class="dome" id="dome" aria-hidden="true">
+  <div class="dome__shutter dome__shutter--l"></div>
+  <div class="dome__shutter dome__shutter--r"></div>
+  <div class="dome__seam"></div>
+  <div class="dome__hud">
+    <span class="dome__ar" lang="ar" dir="rtl">القمر</span>
+    <span class="dome__title">The Lunar Observatory</span>
+    <span class="dome__status mono" id="dome-status">Opening the dome · shutter 000%</span>
+    <span class="dome__skip mono">click anywhere to enter</span>
   </div>
 </div>
 
 <!-- ░░ Ambient layers ░░ -->
 <canvas class="sky" id="sky" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
 <div class="grain" aria-hidden="true"></div>
-<div class="cursor" id="cursor" aria-hidden="true"><span class="cursor__dot"></span><span class="cursor__ring"><span class="cursor__label" id="cursor-label"></span></span></div>
+
+<!-- instrument HUD framing the viewport -->
+<div class="hud" aria-hidden="true">
+  <i class="hud__c hud__c--tl"></i><i class="hud__c hud__c--tr"></i><i class="hud__c hud__c--bl"></i><i class="hud__c hud__c--br"></i>
+  <div class="hud__scale hud__scale--l"><span class="hud__ticks" id="hud-ticks"></span><b class="hud__needle"></b></div>
+  <p class="hud__read hud__read--bl mono"><span>RA <b id="hud-ra">05h 34m</b></span><span>DEC <b id="hud-dec">+22°00′</b></span></p>
+  <p class="hud__read hud__read--br mono"><span>ALT <b id="hud-alt">90.0°</b></span><span>AZ <b id="hud-az">180.0°</b></span><span class="hud__rec"><i></i>TRACKING</span></p>
+</div>
+
+<div class="cursor" id="cursor" aria-hidden="true">
+  <span class="cursor__dot"></span>
+  <span class="cursor__ring">
+    <svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="17"/><path d="M20 0v7M20 33v7M0 20h7M33 20h7"/></svg>
+    <span class="cursor__label" id="cursor-label"></span>
+  </span>
+</div>
 
 <!-- ░░ Nav ░░ -->
 <header class="nav" id="nav">
-  <a class="nav__brand" href="#top" data-magnetic aria-label="Al-Aqmar — back to top">
+  <a class="nav__brand" href="#top" data-magnetic aria-label="Al-Aqmar — back to the eyepiece">
     <span class="nav__moon" aria-hidden="true"></span>
-    <span>Al-Aqmar</span>
+    <span>Al-Aqmar <em>Observatory</em></span>
   </a>
-  <nav class="nav__links" aria-label="Sections">
-    <a href="#works" data-magnetic>Works</a>
-    <a href="#gems" data-magnetic>Gems</a>
-    <a href="#library" data-magnetic>Library</a>
-    <a href="#terminal" data-magnetic>Terminal</a>
-    <a href="#contact" data-magnetic>Contact</a>
+  <nav class="nav__links" aria-label="Observatory rooms">
+    <a href="#works" data-magnetic>Log</a>
+    <a href="#gems" data-magnetic>Catalogue</a>
+    <a href="#library" data-magnetic>Archive</a>
+    <a href="#terminal" data-magnetic>Control</a>
+    <a href="#contact" data-magnetic>Signal</a>
   </nav>
   <div class="nav__right">
     <span class="nav__clock mono" id="clock" title="Local time in India">IST --:--</span>
@@ -67,44 +88,97 @@
 
 <main id="main">
 
-<!-- ░░ HERO ░░ -->
+<!-- ░░ HERO — the eyepiece ░░ -->
 <section class="hero" id="top" aria-labelledby="hero-h">
-  <div class="hero__moon-wrap">
-    <canvas class="hero__moon" id="moon" role="img" aria-label="Live rendering of tonight's moon phase. Drag to scrub through the lunar cycle."></canvas>
-    <svg class="hero__orbit" viewBox="0 0 600 600" aria-hidden="true">
-      <defs><path id="orbit-path" d="M300,300 m-270,0 a270,270 0 1,1 540,0 a270,270 0 1,1 -540,0"/></defs>
-      <text><textPath href="#orbit-path">HEART FIRST ✦ PRIVACY FIRST ✦ CURIOSITY FIRST ✦ ZERO BYTES RETAINED ✦ REFLECTED LIGHT, NO HEAT ✦ </textPath></text>
+  <div class="scope" id="scope">
+    <svg class="scope__chart" viewBox="0 0 600 600" aria-hidden="true">
+      <g fill="none" stroke="currentColor">
+        <circle cx="300" cy="300" r="296" stroke-dasharray="1 5"/>
+        <circle cx="300" cy="300" r="250" opacity=".5"/>
+        <path d="M300 0v600M0 300h600M88 88l424 424M512 88L88 512" opacity=".35" stroke-dasharray="2 6"/>
+      </g>
     </svg>
-    <p class="hero__phase mono" id="phase-readout" aria-live="polite">— tonight —</p>
+    <svg class="scope__orbit" viewBox="0 0 600 600" aria-hidden="true">
+      <defs><path id="orbit-path" d="M300,300 m-282,0 a282,282 0 1,1 564,0 a282,282 0 1,1 -564,0"/></defs>
+      <text><textPath href="#orbit-path">HEART FIRST ✦ PRIVACY FIRST ✦ CURIOSITY FIRST ✦ ZERO BYTES RETAINED ✦ REFLECTED LIGHT, NO HEAT ✦ OBSERVED FROM EARTH ✦ </textPath></text>
+    </svg>
+
+    <div class="scope__barrel">
+      <div class="scope__lens">
+        <canvas class="scope__moon" id="moon" role="img" aria-label="Live rendering of tonight's moon phase through the telescope. Drag to scrub through the lunar cycle; use the magnification control to zoom."></canvas>
+        <svg class="scope__reticle" viewBox="0 0 400 400" aria-hidden="true">
+          <g class="ticks" id="reticle-ticks"></g>
+          <path class="cross" d="M200 30V170M200 230V370M30 200H170M230 200H370"/>
+          <circle class="cross" cx="200" cy="200" r="30"/>
+          <text x="208" y="60">N</text><text x="340" y="196">E</text>
+        </svg>
+        <div class="scope__glass" aria-hidden="true"></div>
+      </div>
+    </div>
+
+    <div class="scope__panel mono">
+      <p class="scope__phase" id="phase-readout" aria-live="polite">— tonight —</p>
+      <label class="scope__zoom">
+        <span>MAG</span>
+        <input type="range" id="zoom" min="1" max="3" step="0.01" value="1" aria-label="Telescope magnification">
+        <b id="zoom-val">1.0×</b>
+      </label>
+    </div>
   </div>
 
   <div class="hero__copy">
-    <p class="eyebrow mono"><span class="pulse" aria-hidden="true"></span> Available for collaborations · 2026</p>
+    <p class="eyebrow mono"><span class="pulse" aria-hidden="true"></span> Dome open · seeing excellent · available 2026</p>
     <h1 id="hero-h" class="hero__title">
       <span class="line"><span class="split">Al-Aqmar</span></span>
       <span class="line line--italic"><span class="split">Tinwala</span></span>
     </h1>
-    <p class="hero__role mono"><span data-scramble="AI Architect">AI Architect</span> <span class="sep">/</span> <span data-scramble="Full-Stack">Full-Stack</span> <span class="sep">/</span> <span data-scramble="Author ×2">Author ×2</span></p>
-    <p class="hero__lede">Shipping AI that <em>forgets you</em> on purpose. Five live products, five open gems, one rule — keep nothing.</p>
+    <p class="hero__role mono"><span data-scramble="AI Architect">AI Architect</span> <span class="sep">✦</span> <span data-scramble="Full-Stack">Full-Stack</span> <span class="sep">✦</span> <span data-scramble="Author ×2">Author ×2</span></p>
+    <p class="hero__lede">Welcome to the observatory. Here I build AI that <em>forgets you</em> on purpose — five live products, five open gems, one rule: keep nothing.</p>
     <div class="hero__cta">
-      <a class="btn btn--solid" href="#works" data-magnetic data-cursor="Explore">See the work <span aria-hidden="true">↓</span></a>
-      <button class="btn btn--ghost" type="button" data-magnetic data-open-palette>Press <kbd>⌘K</kbd> anywhere</button>
+      <a class="btn btn--solid" href="#works" data-magnetic data-cursor="Observe">Begin observation <span aria-hidden="true">↓</span></a>
+      <button class="btn btn--ghost" type="button" data-magnetic data-open-palette>Control panel <kbd>⌘K</kbd></button>
     </div>
   </div>
 
   <dl class="hero__stats">
-    <div><dt>Daily users</dt><dd><span data-count="3000">0</span>+</dd></div>
-    <div><dt>Live products</dt><dd><span data-count="5">0</span></dd></div>
-    <div><dt>Open gems</dt><dd><span data-count="5">0</span></dd></div>
-    <div><dt>Books in print</dt><dd><span data-count="2">0</span></dd></div>
+    <div><dt>Daily observers</dt><dd><span data-count="3000">0</span>+</dd></div>
+    <div><dt>Satellites launched</dt><dd><span data-count="5">0</span></dd></div>
+    <div><dt>Catalogued gems</dt><dd><span data-count="5">0</span></dd></div>
+    <div><dt>Volumes archived</dt><dd><span data-count="2">0</span></dd></div>
     <div><dt>Bytes retained</dt><dd class="accent"><span data-count="0">0</span></dd></div>
   </dl>
-
-  <p class="hero__hint mono" aria-hidden="true">drag the moon ↻ · scroll ↓</p>
 </section>
 
+<!-- ░░ Horizon: the observatory on the hill ░░ -->
+<div class="horizon" aria-hidden="true">
+  <svg viewBox="0 0 1600 300" preserveAspectRatio="xMidYMax slice">
+    <defs>
+      <linearGradient id="hz-glow" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="currentColor" stop-opacity="0"/>
+        <stop offset="1" stop-color="currentColor" stop-opacity=".22"/>
+      </linearGradient>
+      <radialGradient id="win" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#ffd79a"/><stop offset="1" stop-color="#ffd79a" stop-opacity="0"/></radialGradient>
+    </defs>
+    <rect class="hz-sky" width="1600" height="300" fill="url(#hz-glow)"/>
+    <path class="hz-far" d="M0 210 C150 170 260 190 380 175 S620 140 760 165 S1000 190 1120 150 S1400 120 1600 160 V300 H0Z"/>
+    <path class="hz-mid" d="M0 240 C200 215 330 230 470 212 S760 200 900 222 S1130 205 1240 196 S1480 214 1600 205 V300 H0Z"/>
+    <g class="hz-obs">
+      <rect x="1148" y="150" width="104" height="60" rx="2"/>
+      <path d="M1140 152 A60 60 0 0 1 1260 152 Z"/>
+      <path class="hz-slit" d="M1193 96 L1207 96 L1210 152 L1190 152 Z"/>
+      <path class="hz-scope" d="M1200 140 L1224 84" />
+      <rect x="1170" y="178" width="12" height="16" fill="url(#win)" class="hz-win"/>
+      <rect x="1326" y="182" width="52" height="36"/>
+      <path d="M1320 184 A32 32 0 0 1 1384 184 Z"/>
+      <path d="M1040 206 L1040 120 M1040 120 L1030 136 M1040 120 L1050 136" class="hz-mast"/>
+      <circle cx="1040" cy="118" r="3" class="hz-beacon"/>
+    </g>
+    <path class="hz-near" d="M0 262 C180 246 300 258 520 250 S820 236 980 246 S1100 222 1200 214 S1400 236 1600 232 V300 H0Z"/>
+  </svg>
+</div>
+
 <!-- ░░ MARQUEE ░░ -->
-<div class="marquee" aria-label="Tech stack">
+<div class="marquee" aria-label="Instruments in the observatory">
   <div class="marquee__track">
     <span>Rust</span><i>✦</i><span>Next.js</span><i>✦</i><span>TypeScript</span><i>✦</i><span>WebGL</span><i>✦</i><span>Three.js</span><i>✦</i><span>Sarvam 105b</span><i>✦</i><span>Groq</span><i>✦</i><span>Whisper</span><i>✦</i><span>On-device LLMs</span><i>✦</i><span>OKLCH</span><i>✦</i><span>SM-2</span><i>✦</i><span>LoRA</span><i>✦</i>
   </div>
@@ -113,19 +187,20 @@
   </div>
 </div>
 
-<!-- ░░ WORKS — horizontal orbit reel ░░ -->
+<!-- ░░ WORKS — Observation log ░░ -->
 <section class="works" id="works" aria-labelledby="works-h">
   <div class="works__sticky">
     <header class="section-head">
-      <p class="eyebrow mono">01 — Live products</p>
+      <p class="eyebrow mono"><span class="room">Room I</span> Observation log · satellites in orbit</p>
       <h2 id="works-h" class="reveal-words">Five satellites, <em>in orbit.</em></h2>
-      <p class="works__counter mono"><span id="works-idx">01</span> / 05</p>
+      <p class="works__counter mono">PLATE <span id="works-idx">01</span> / 05</p>
     </header>
 
     <div class="works__track" id="works-track">
 
       <article class="card" data-tilt>
         <div class="card__art art-esamz" aria-hidden="true">
+          <span class="plate mono">PLATE 001 · RA 02h 31m · EXP 128k</span>
           <svg viewBox="0 0 200 140"><g class="route"><path d="M20 70H70M130 70H180M70 70C90 30 110 30 130 70M70 70C90 110 110 110 130 70M70 70H130"/></g><rect x="84" y="56" width="32" height="28" rx="6"/><path class="lock" d="M92 56v-6a8 8 0 0 1 16 0v6"/><circle cx="20" cy="70" r="4"/><circle cx="180" cy="70" r="4"/></svg>
         </div>
         <div class="card__body">
@@ -139,6 +214,7 @@
 
       <article class="card" data-tilt>
         <div class="card__art art-learn" aria-hidden="true">
+          <span class="plate mono">PLATE 002 · RA 07h 45m · 63 LANG</span>
           <svg viewBox="0 0 200 140"><path class="axis" d="M20 120H185M20 120V15"/><path class="curve" d="M20 25C40 90 50 100 60 100L60 40C75 85 90 92 100 92L100 45C120 78 135 82 145 82L145 50C160 70 175 72 185 72"/><circle cx="60" cy="40" r="3.5"/><circle cx="100" cy="45" r="3.5"/><circle cx="145" cy="50" r="3.5"/></svg>
         </div>
         <div class="card__body">
@@ -152,6 +228,7 @@
 
       <article class="card" data-tilt>
         <div class="card__art art-pi" aria-hidden="true">
+          <span class="plate mono">PLATE 003 · RA 11h 02m · 60 FPS</span>
           <svg viewBox="0 0 200 140"><g transform="translate(100 70)"><ellipse class="orb o1" rx="70" ry="22"/><ellipse class="orb o2" rx="70" ry="22" transform="rotate(60)"/><ellipse class="orb o3" rx="70" ry="22" transform="rotate(120)"/><circle class="nucleus" r="9"/><g transform="rotate(0)"><circle class="el" r="3.5"><animateMotion dur="3s" repeatCount="indefinite" path="M70 0 A70 22 0 1 1 -70 0 A70 22 0 1 1 70 0"/></circle></g><g transform="rotate(60)"><circle class="el" r="3.5"><animateMotion dur="4.2s" repeatCount="indefinite" path="M70 0 A70 22 0 1 1 -70 0 A70 22 0 1 1 70 0"/></circle></g><g transform="rotate(120)"><circle class="el" r="3.5"><animateMotion dur="5.4s" repeatCount="indefinite" path="M70 0 A70 22 0 1 1 -70 0 A70 22 0 1 1 70 0"/></circle></g></g></svg>
         </div>
         <div class="card__body">
@@ -165,6 +242,7 @@
 
       <article class="card" data-tilt>
         <div class="card__art art-gati" aria-hidden="true">
+          <span class="plate mono">PLATE 004 · RA 16h 20m · LIVE ETA</span>
           <svg viewBox="0 0 200 140"><path class="grid" d="M0 35H200M0 70H200M0 105H200M50 0V140M100 0V140M150 0V140"/><path class="path" d="M18 118L50 105L60 70L100 62L118 35L150 30L182 18"/><circle class="stop" cx="18" cy="118" r="5"/><circle class="stop" cx="100" cy="62" r="4"/><circle class="stop end" cx="182" cy="18" r="6"/><text x="110" y="120" class="devanagari">गति</text></svg>
         </div>
         <div class="card__body">
@@ -178,6 +256,7 @@
 
       <article class="card" data-tilt>
         <div class="card__art art-color" aria-hidden="true">
+          <span class="plate mono">PLATE 005 · RA 21h 58m · AAA</span>
           <div class="swatches"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
           <p class="mono contrast">Δ OKLCH 0.214 · 7.3:1 AAA</p>
         </div>
@@ -194,18 +273,18 @@
   </div>
 </section>
 
-<!-- ░░ GEMS — bento ░░ -->
+<!-- ░░ GEMS — Star catalogue ░░ -->
 <section class="section gems" id="gems" aria-labelledby="gems-h">
   <header class="section-head">
-    <p class="eyebrow mono">02 — Open source</p>
-    <h2 id="gems-h" class="reveal-words">Five git gems, <em>cut &amp; polished.</em></h2>
+    <p class="eyebrow mono"><span class="room">Room II</span> Star catalogue · open-source</p>
+    <h2 id="gems-h" class="reveal-words">Five stars, <em>catalogued.</em></h2>
   </header>
 
   <div class="bento">
     <a class="tile tile--crown" href="https://github.com/alakmar344/youAI-2B-From-Scratch-Transformer-Implementation" target="_blank" rel="noopener noreferrer" data-spot data-cursor="Source">
       <canvas class="attn" id="attn" aria-hidden="true"></canvas>
       <div class="tile__content">
-        <p class="card__tag mono">Crown jewel · 90 carats</p>
+        <p class="card__tag mono">AQ-001 · brightest object · 90 carats</p>
         <h3>youAI-2B</h3>
         <p>A pip-installable toolkit for training and serving a two-billion-parameter transformer — written from raw tensor math.</p>
         <dl class="specs mono">
@@ -219,66 +298,69 @@
     </a>
 
     <a class="tile" href="https://github.com/alakmar344/gati" target="_blank" rel="noopener noreferrer" data-spot data-cursor="Source">
-      <div class="gauge" style="--v:87"><span>87</span></div>
+      <div class="tile__top"><span class="cat mono">AQ-002</span><div class="gauge" style="--v:87"><span>87</span></div></div>
+      <svg class="constellation" data-seed="gati" aria-hidden="true"></svg>
       <h3>gati</h3>
       <p>14k lines of TypeScript. Bilingual voice routing across four transit modes.</p>
       <span class="vh"> (opens in a new tab)</span>
     </a>
 
     <a class="tile" href="https://github.com/alakmar344/vinecraft" target="_blank" rel="noopener noreferrer" data-spot data-cursor="Source">
-      <div class="gauge" style="--v:82"><span>82</span></div>
+      <div class="tile__top"><span class="cat mono">AQ-003</span><div class="gauge" style="--v:82"><span>82</span></div></div>
+      <svg class="constellation" data-seed="vinecraft" aria-hidden="true"></svg>
       <h3>vinecraft</h3>
       <p>Infinite voxel world in the browser: procedural terrain, ambient occlusion, ten biomes.</p>
-      <div class="voxels" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
       <span class="vh"> (opens in a new tab)</span>
     </a>
 
     <a class="tile" href="https://github.com/alakmar344/science-project" target="_blank" rel="noopener noreferrer" data-spot data-cursor="Source">
-      <div class="gauge" style="--v:82"><span>82</span></div>
+      <div class="tile__top"><span class="cat mono">AQ-004</span><div class="gauge" style="--v:82"><span>82</span></div></div>
+      <svg class="constellation" data-seed="science" aria-hidden="true"></svg>
       <h3>science-project</h3>
       <p>The 60fps chemistry renderer behind π, tuned for GPU-less Chromebooks.</p>
       <span class="vh"> (opens in a new tab)</span>
     </a>
 
     <a class="tile" href="https://github.com/alakmar344/esamz.a" target="_blank" rel="noopener noreferrer" data-spot data-cursor="Source">
-      <div class="gauge" style="--v:81"><span>81</span></div>
+      <div class="tile__top"><span class="cat mono">AQ-005</span><div class="gauge" style="--v:81"><span>81</span></div></div>
+      <svg class="constellation" data-seed="esamz" aria-hidden="true"></svg>
       <h3>esamz.a</h3>
       <p>Privacy plumbing: Next.js proxy, consent tiers, verifiable purge endpoints.</p>
       <span class="vh"> (opens in a new tab)</span>
     </a>
 
     <a class="tile tile--uncut" href="https://github.com/alakmar344/breeze-framework" target="_blank" rel="noopener noreferrer" data-spot data-cursor="Source">
-      <div class="gauge gauge--uncut" style="--v:35"><span>—</span></div>
+      <div class="tile__top"><span class="cat mono">AQ-006 · nebula</span><div class="gauge gauge--uncut" style="--v:35"><span>—</span></div></div>
       <h3>breeze-framework</h3>
-      <p>A lightweight, breathable web framework. Still uncut.</p>
+      <p>A lightweight, breathable web framework. Still forming — a nebula, not yet a star.</p>
       <span class="vh"> (opens in a new tab)</span>
     </a>
 
     <a class="tile tile--all" href="https://github.com/alakmar344" target="_blank" rel="noopener noreferrer" data-spot data-cursor="GitHub">
       <span class="tile__big"><span data-count="43">0</span></span>
-      <p>repositories in the full archive <span aria-hidden="true">↗</span></p>
+      <p>objects in the full sky survey <span aria-hidden="true">↗</span></p>
       <span class="vh"> (opens in a new tab)</span>
     </a>
   </div>
   <p class="note mono">Carats are my own audit of depth, performance, and server independence.</p>
 </section>
 
-<!-- ░░ MANIFESTO — scroll-lit words ░░ -->
+<!-- ░░ MANIFESTO — Field notes ░░ -->
 <section class="section manifesto" aria-labelledby="manifesto-h">
-  <p class="eyebrow mono">03 — The position</p>
+  <p class="eyebrow mono"><span class="room">Field notes</span> written by moonlight</p>
   <h2 id="manifesto-h" class="vh">Manifesto</h2>
   <p class="manifesto__text" id="manifesto">Most AI today is retention dressed as research. Keep the session, keep the profile, keep the person coming back. The alternative is simple: process the request, answer well, <em>forget it.</em> Run on the device when it can carry it. Ask before remembering, and prove you can forget. Software should grant dignity, not extract attention.</p>
   <div class="principles">
-    <div class="principle" data-spot><span class="principle__n mono">I</span><h3>Heart first</h3><p>Built for human elevation — not doom-scroll retention or quiet surveillance.</p></div>
-    <div class="principle" data-spot><span class="principle__n mono">II</span><h3>Zero retention</h3><p>No logging by default. Purge endpoints you can verify.</p></div>
-    <div class="principle" data-spot><span class="principle__n mono">III</span><h3>Uncompromising wonder</h3><p>Useful and delightful are not a trade-off.</p></div>
+    <div class="principle" data-spot><span class="principle__n mono">Law I</span><h3>Heart first</h3><p>Built for human elevation — not doom-scroll retention or quiet surveillance.</p></div>
+    <div class="principle" data-spot><span class="principle__n mono">Law II</span><h3>Zero retention</h3><p>No logging by default. Purge endpoints you can verify.</p></div>
+    <div class="principle" data-spot><span class="principle__n mono">Law III</span><h3>Uncompromising wonder</h3><p>Useful and delightful are not a trade-off.</p></div>
   </div>
 </section>
 
-<!-- ░░ LIBRARY — 3D books ░░ -->
+<!-- ░░ LIBRARY — The archive ░░ -->
 <section class="section library" id="library" aria-labelledby="library-h">
   <header class="section-head">
-    <p class="eyebrow mono">04 — In print</p>
+    <p class="eyebrow mono"><span class="room">Room III</span> The archive · in print</p>
     <h2 id="library-h" class="reveal-words">Two volumes, <em>on the shelf.</em></h2>
   </header>
   <div class="shelf">
@@ -288,6 +370,7 @@
         <div class="book__spine"></div><div class="book__pages"></div>
       </div>
       <div class="book__meta">
+        <p class="card__tag mono">Vol. I</p>
         <h3>The AI Mastery Handbook</h3>
         <p>Claude, Gemini, Llama, ChatGPT explained. AI history, LLM mechanics, and prompt engineering.</p>
         <span class="card__link">Amazon KDP <span aria-hidden="true">↗</span><span class="vh"> (opens in a new tab)</span></span>
@@ -299,42 +382,61 @@
         <div class="book__spine"></div><div class="book__pages"></div>
       </div>
       <div class="book__meta">
+        <p class="card__tag mono">Vol. II</p>
         <h3>30 Days Mastering Claude Code</h3>
         <p>Thirty days inside agentic development: subagents, terminal workflows, and the habits of shipping real products.</p>
         <span class="card__link">Amazon KDP <span aria-hidden="true">↗</span><span class="vh"> (opens in a new tab)</span></span>
       </div>
     </a>
   </div>
+  <div class="shelf__plank" aria-hidden="true"></div>
 </section>
 
-<!-- ░░ TERMINAL ░░ -->
+<!-- ░░ TERMINAL — Control room ░░ -->
 <section class="section term-section" id="terminal" aria-labelledby="terminal-h">
   <header class="section-head">
-    <p class="eyebrow mono">05 — Mission control</p>
-    <h2 id="terminal-h" class="reveal-words">Talk to the <em>observatory.</em></h2>
+    <p class="eyebrow mono"><span class="room">Room IV</span> Control room · mission console</p>
+    <h2 id="terminal-h" class="reveal-words">Take the <em>controls.</em></h2>
   </header>
+
+  <div class="console" aria-hidden="true">
+    <div class="dial"><svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="26"/><path class="dial__hand" id="dial-az" d="M30 30V8"/></svg><span class="mono">DOME AZ<b id="c-az">180°</b></span></div>
+    <div class="dial"><svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="26"/><path class="dial__arc" d="M8 30a22 22 0 0 1 44 0"/></svg><span class="mono">SHUTTER<b>OPEN</b></span></div>
+    <div class="dial"><svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="26"/><circle class="dial__blip" cx="30" cy="30" r="4"/><circle class="dial__ping" cx="30" cy="30" r="4"/></svg><span class="mono">TRACKING<b>LUNA</b></span></div>
+    <div class="dial"><svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="26"/><polyline class="dial__wave" id="seeing-wave" points=""/></svg><span class="mono">SEEING<b id="c-seeing">0.8″</b></span></div>
+    <div class="leds"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  </div>
+
   <div class="term" id="term">
-    <div class="term__bar"><i></i><i></i><i></i><span class="mono">guest@al-aqmar: ~</span></div>
+    <div class="term__bar"><i></i><i></i><i></i><span class="mono">observer@al-aqmar · lunar-os</span></div>
     <div class="term__out mono" id="term-out" role="log" aria-live="polite"></div>
     <form class="term__in mono" id="term-form" autocomplete="off">
-      <label for="term-input"><span class="term__ps">guest@al-aqmar</span>:<span class="term__cwd">~</span>$</label>
+      <label for="term-input"><span class="term__ps">observer@al-aqmar</span>:<span class="term__cwd">~/dome</span>$</label>
       <input id="term-input" type="text" spellcheck="false" autocapitalize="off" aria-label="Terminal command. Type help for a list.">
     </form>
   </div>
-  <p class="note mono">try: <button type="button" class="chip-btn" data-cmd="whoami">whoami</button> <button type="button" class="chip-btn" data-cmd="projects">projects</button> <button type="button" class="chip-btn" data-cmd="moon">moon</button> <button type="button" class="chip-btn" data-cmd="sudo hire-me">sudo hire-me</button></p>
+  <p class="note mono">try: <button type="button" class="chip-btn" data-cmd="whoami">whoami</button> <button type="button" class="chip-btn" data-cmd="observe">observe</button> <button type="button" class="chip-btn" data-cmd="projects">projects</button> <button type="button" class="chip-btn" data-cmd="zoom 3">zoom 3</button> <button type="button" class="chip-btn" data-cmd="sudo hire-me">sudo hire-me</button></p>
 </section>
 
-<!-- ░░ CONTACT ░░ -->
+<!-- ░░ CONTACT — Transmission ░░ -->
 <section class="section contact" id="contact" aria-labelledby="contact-h">
-  <p class="eyebrow mono">06 — Correspondence</p>
+  <div class="dish" aria-hidden="true">
+    <svg viewBox="0 0 200 200">
+      <g class="dish__waves"><path d="M120 60a40 40 0 0 1 20 20"/><path d="M126 44a60 60 0 0 1 30 30"/><path d="M132 28a80 80 0 0 1 40 40"/></g>
+      <path class="dish__bowl" d="M40 90 A70 70 0 0 0 130 150 Z"/>
+      <path class="dish__arm" d="M85 120 L112 88 M112 88 m-4 0 a4 4 0 1 0 8 0 a4 4 0 1 0 -8 0"/>
+      <path class="dish__base" d="M85 125 L70 185 M85 125 L100 185 M60 185 H110"/>
+    </svg>
+  </div>
+  <p class="eyebrow mono"><span class="room">Room V</span> Transmission · open frequency</p>
   <h2 id="contact-h" class="contact__big">
-    <a href="https://www.linkedin.com/in/alakmar-teenwala-054067393" target="_blank" rel="noopener noreferrer" data-magnetic="0.25" data-cursor="Say hi">Let's build<br><em>something with soul.</em><span class="vh"> (opens LinkedIn in a new tab)</span></a>
+    <a href="https://www.linkedin.com/in/alakmar-teenwala-054067393" target="_blank" rel="noopener noreferrer" data-magnetic="0.2" data-cursor="Transmit">Send a signal,<br><em>build something with soul.</em><span class="vh"> (opens LinkedIn in a new tab)</span></a>
   </h2>
-  <p class="contact__lede">Open to AI systems consulting, full-stack builds, and collaborations with heart. Faster to respond than your build pipeline.</p>
+  <p class="contact__lede">Open to AI systems consulting, full-stack builds, and collaborations with heart. Replies travel faster than light from the moon (1.28 s).</p>
   <div class="socials">
-    <a href="https://github.com/alakmar344" target="_blank" rel="noopener noreferrer" data-magnetic><span class="mono">GitHub</span><b>@alakmar344</b><span class="vh"> (opens in a new tab)</span></a>
-    <a href="https://www.linkedin.com/in/alakmar-teenwala-054067393" target="_blank" rel="noopener noreferrer" data-magnetic><span class="mono">LinkedIn</span><b>Al-Aqmar Teenwala</b><span class="vh"> (opens in a new tab)</span></a>
-    <a href="https://instagram.com/its_alakmar7" target="_blank" rel="noopener noreferrer" data-magnetic><span class="mono">Instagram</span><b>@its_alakmar7</b><span class="vh"> (opens in a new tab)</span></a>
+    <a href="https://github.com/alakmar344" target="_blank" rel="noopener noreferrer" data-magnetic><span class="mono">CH-01 · GitHub</span><b>@alakmar344</b><span class="vh"> (opens in a new tab)</span></a>
+    <a href="https://www.linkedin.com/in/alakmar-teenwala-054067393" target="_blank" rel="noopener noreferrer" data-magnetic><span class="mono">CH-02 · LinkedIn</span><b>Al-Aqmar Teenwala</b><span class="vh"> (opens in a new tab)</span></a>
+    <a href="https://instagram.com/its_alakmar7" target="_blank" rel="noopener noreferrer" data-magnetic><span class="mono">CH-03 · Instagram</span><b>@its_alakmar7</b><span class="vh"> (opens in a new tab)</span></a>
   </div>
 </section>
 
@@ -342,10 +444,11 @@
 
 <footer class="foot">
   <div class="foot__word" aria-hidden="true">القمر</div>
+  <p class="foot__motto">Reflected light, no heat. <em>The observatory closes at dawn.</em></p>
   <div class="foot__row mono">
     <span>© 2026 Al-Aqmar Tinwala</span>
-    <span>cookies: <b id="cookie-count">0</b> · trackers: <b>0</b> · requests to third parties: <b>0</b></span>
-    <a href="#top" data-magnetic>Back to orbit ↑</a>
+    <span>cookies: <b id="cookie-count">0</b> · trackers: <b>0</b> · third-party requests: <b>0</b></span>
+    <a href="#top" data-magnetic>Back to the eyepiece ↑</a>
   </div>
 </footer>
 
@@ -355,7 +458,7 @@
   <div class="palette__box">
     <div class="palette__search">
       <span aria-hidden="true">⌕</span>
-      <input id="palette-input" type="text" placeholder="Jump to, open, or switch theme…" aria-label="Search commands" aria-controls="palette-list" autocomplete="off" spellcheck="false">
+      <input id="palette-input" type="text" placeholder="Go to a room, launch a satellite, change the sky…" aria-label="Search commands" aria-controls="palette-list" autocomplete="off" spellcheck="false">
       <kbd>esc</kbd>
     </div>
     <ul class="palette__list" id="palette-list" role="listbox"></ul>
