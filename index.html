@@ -30,19 +30,6 @@
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
-<!-- ░░ Arrival: the dome opens ░░ -->
-<div class="dome" id="dome" aria-hidden="true">
-  <div class="dome__shutter dome__shutter--l"></div>
-  <div class="dome__shutter dome__shutter--r"></div>
-  <div class="dome__seam"></div>
-  <div class="dome__hud">
-    <span class="dome__ar" lang="ar" dir="rtl">القمر</span>
-    <span class="dome__title">The Lunar Observatory</span>
-    <span class="dome__status mono" id="dome-status">Opening the dome · shutter 000%</span>
-    <span class="dome__skip mono">click anywhere to enter</span>
-  </div>
-</div>
-
 <!-- ░░ Ambient layers ░░ -->
 <canvas class="sky" id="sky" aria-hidden="true"></canvas>
 <div class="vignette" aria-hidden="true"></div>
@@ -51,9 +38,15 @@
 <!-- instrument HUD framing the viewport -->
 <div class="hud" aria-hidden="true">
   <i class="hud__c hud__c--tl"></i><i class="hud__c hud__c--tr"></i><i class="hud__c hud__c--bl"></i><i class="hud__c hud__c--br"></i>
-  <div class="hud__scale hud__scale--l"><span class="hud__ticks" id="hud-ticks"></span><b class="hud__needle"></b></div>
-  <p class="hud__read hud__read--bl mono"><span>RA <b id="hud-ra">05h 34m</b></span><span>DEC <b id="hud-dec">+22°00′</b></span></p>
-  <p class="hud__read hud__read--br mono"><span>ALT <b id="hud-alt">90.0°</b></span><span>AZ <b id="hud-az">180.0°</b></span><span class="hud__rec"><i></i>TRACKING</span></p>
+  <div class="hud__pill mono">
+    <span>RA <b id="hud-ra">05h 34m</b></span>
+    <span class="hud__sep">/</span>
+    <span>DEC <b id="hud-dec">+22°00′</b></span>
+    <span class="hud__sep">/</span>
+    <span>ALT <b id="hud-alt">90.0°</b> AZ <b id="hud-az">180.0°</b></span>
+    <span class="hud__sep">/</span>
+    <span class="hud__rec"><i></i>TRACKING</span>
+  </div>
 </div>
 
 <div class="cursor" id="cursor" aria-hidden="true">
@@ -177,13 +170,18 @@
   </svg>
 </div>
 
-<!-- ░░ MARQUEE ░░ -->
-<div class="marquee" aria-label="Instruments in the observatory">
-  <div class="marquee__track">
-    <span>Rust</span><i>✦</i><span>Next.js</span><i>✦</i><span>TypeScript</span><i>✦</i><span>WebGL</span><i>✦</i><span>Three.js</span><i>✦</i><span>Sarvam 105b</span><i>✦</i><span>Groq</span><i>✦</i><span>Whisper</span><i>✦</i><span>On-device LLMs</span><i>✦</i><span>OKLCH</span><i>✦</i><span>SM-2</span><i>✦</i><span>LoRA</span><i>✦</i>
-  </div>
-  <div class="marquee__track" aria-hidden="true">
-    <span>Rust</span><i>✦</i><span>Next.js</span><i>✦</i><span>TypeScript</span><i>✦</i><span>WebGL</span><i>✦</i><span>Three.js</span><i>✦</i><span>Sarvam 105b</span><i>✦</i><span>Groq</span><i>✦</i><span>Whisper</span><i>✦</i><span>On-device LLMs</span><i>✦</i><span>OKLCH</span><i>✦</i><span>SM-2</span><i>✦</i><span>LoRA</span><i>✦</i>
+<!-- ░░ TECH STRIP — Liquid glass instruments ░░ -->
+<div class="tech-strip" aria-label="Core stack instruments">
+  <div class="tech-strip__inner">
+    <span class="tech-strip__pill"><i class="tech-strip__dot"></i>Rust</span>
+    <span class="tech-strip__pill"><i class="tech-strip__dot"></i>Next.js 16</span>
+    <span class="tech-strip__pill"><i class="tech-strip__dot"></i>TypeScript</span>
+    <span class="tech-strip__pill"><i class="tech-strip__dot"></i>Sarvam 105b</span>
+    <span class="tech-strip__pill"><i class="tech-strip__dot"></i>Groq LPU</span>
+    <span class="tech-strip__pill"><i class="tech-strip__dot"></i>WebGL / Three.js</span>
+    <span class="tech-strip__pill"><i class="tech-strip__dot"></i>Whisper AI</span>
+    <span class="tech-strip__pill"><i class="tech-strip__dot"></i>On-device SM-2</span>
+    <span class="tech-strip__pill"><i class="tech-strip__dot"></i>OKLCH Color Math</span>
   </div>
 </div>
 
@@ -191,9 +189,18 @@
 <section class="works" id="works" aria-labelledby="works-h">
   <div class="works__sticky">
     <header class="section-head">
-      <p class="eyebrow mono"><span class="room">Room I</span> Observation log · satellites in orbit</p>
+      <div class="section-head__top">
+        <p class="eyebrow mono"><span class="room">Room I</span> Observation log · satellites in orbit</p>
+        <p class="works__counter mono">PLATE <span id="works-idx">01</span> / 05</p>
+      </div>
       <h2 id="works-h" class="reveal-words">Five satellites, <em>in orbit.</em></h2>
-      <p class="works__counter mono">PLATE <span id="works-idx">01</span> / 05</p>
+      <nav class="plates-nav mono" aria-label="Satellite plate navigator">
+        <button type="button" class="plate-pill is-active" data-plate="0">01 eSAMz</button>
+        <button type="button" class="plate-pill" data-plate="1">02 RealLearn</button>
+        <button type="button" class="plate-pill" data-plate="2">03 π — Pi</button>
+        <button type="button" class="plate-pill" data-plate="3">04 गति</button>
+        <button type="button" class="plate-pill" data-plate="4">05 Fit The Color</button>
+      </nav>
     </header>
 
     <div class="works__track" id="works-track">

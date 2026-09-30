@@ -12,6 +12,7 @@
   const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
   const lerp = (a, b, t) => a + (b - a) * t;
   const mouse = { x: innerWidth / 2, y: innerHeight / 2, nx: 0, ny: 0, active: false };
+  let moonApi;
 
   addEventListener('pointermove', (e) => {
     mouse.x = e.clientX; mouse.y = e.clientY; mouse.active = true;
@@ -62,7 +63,7 @@
   const manifesto = $('#manifesto');
   if (manifesto) splitWords(manifesto);
 
-  /* ── Arrival: the dome opens ─────────────────────────────── */
+  /* ── Arrival ─────────────────────────────────────────────── */
   const dome = $('#dome');
   let isReady = false;
   const ready = () => {
@@ -73,7 +74,7 @@
       setTimeout(() => dome.classList.add('is-gone'), 1800);
     }
     runScramble();
-    setTimeout(() => moonApi.intro(), 700);
+    setTimeout(() => { if (moonApi && moonApi.intro) moonApi.intro(); }, 400);
   };
   if (dome && !reduced) {
     const status = $('#dome-status');
@@ -84,12 +85,15 @@
     const tick = (t) => {
       if (skip) return;
       const p = clamp((t - t0) / dur, 0, 1), e = 1 - Math.pow(1 - p, 3);
-      status.textContent = `Opening the dome · shutter ${String(Math.round(e * 100)).padStart(3, '0')}%`;
+      if (status) status.textContent = `Opening the dome · shutter ${String(Math.round(e * 100)).padStart(3, '0')}%`;
       dome.style.setProperty('--seam', (e * 70).toFixed(1));
       if (p < 1) requestAnimationFrame(tick); else setTimeout(ready, 250);
     };
     requestAnimationFrame(tick);
-  } else { if (dome) dome.classList.add('is-gone'); queueMicrotask(ready); }
+  } else {
+    if (dome) dome.classList.add('is-gone');
+    ready();
+  }
 
   /* ── Scramble text ─────────────────────────────────────────── */
   const GLYPHS = '!<>-_\\/[]{}—=+*^?#01ABCDEFXYZ';
@@ -235,10 +239,10 @@
 
   const moon = $('#moon');
   const readout = $('#phase-readout');
-  const moonApi = { phase: tonight, set: () => {}, intro: () => {}, zoom: () => {} };
+  moonApi = { phase: tonight, set: () => {}, intro: () => {}, zoom: () => {} };
   if (moon) {
     const ctx = moon.getContext('2d');
-    const S = innerWidth < 700 ? 520 : 760; // high-res so magnification stays crisp
+    const S = innerWidth < 700 ? 480 : 600; // high-res so magnification stays crisp
     moon.width = S; moon.height = S;
     // seeded RNG
     let seed = 7;
@@ -252,7 +256,7 @@
       return lerp(lerp(g(xi, yi), g(xi + 1, yi), u), lerp(g(xi, yi + 1), g(xi + 1, yi + 1), u), v);
     };
     const fbm = (x, y) => { let s = 0, a = 0.5, f = 1; for (let o = 0; o < 5; o++) { s += a * vn(x * f, y * f); a *= 0.5; f *= 2.03; } return s; };
-    const craters = Array.from({ length: 320 }, () => { const r = rnd() ** 4 * 0.17 + 0.008; return { x: rnd() * 2 - 1, y: rnd() * 2 - 1, r }; });
+    const craters = Array.from({ length: 200 }, () => { const r = rnd() ** 4 * 0.17 + 0.008; return { x: rnd() * 2 - 1, y: rnd() * 2 - 1, r }; });
     const maria = [[-0.25, -0.3, 0.34], [0.18, -0.12, 0.28], [0.05, 0.28, 0.22], [-0.42, 0.12, 0.2], [0.38, 0.3, 0.16]];
 
     const N = S * S, nx = new Float32Array(N), ny = new Float32Array(N), nz = new Float32Array(N), alb = new Float32Array(N), inside = new Uint8Array(N);
@@ -294,6 +298,17 @@
     };
     const rim = new Uint8ClampedArray(N);
     for (let k = 0; k < N; k++) { const i = k % S, j = (k / S) | 0; rim[k] = (R - Math.hypot(i + 0.5 - S / 2, j + 0.5 - S / 2) + 1) * 255; }
+    // Instant base sphere for immediate paint
+    for (let j = 0; j < S; j++) {
+      for (let i = 0; i < S; i++) {
+        const x = (i + 0.5 - S / 2) / R, y = (j + 0.5 - S / 2) / R, r2 = x * x + y * y, k = j * S + i;
+        if (r2 <= 1) {
+          inside[k] = 1;
+          const z = Math.sqrt(1 - r2);
+          nx[k] = x; ny[k] = y; nz[k] = z; alb[k] = 0.88;
+        }
+      }
+    }
     const img = ctx.createImageData(S, S);
     const render = (p) => {
       const th = p * 2 * Math.PI, Lx = Math.sin(th), Lz = -Math.cos(th);
@@ -317,6 +332,8 @@
       const scrubbed = Math.abs(p - tonight) > 0.004;
       readout.textContent = `${scrubbed ? 'scrubbing' : 'tonight'} · ${phaseName(p)} · ${Math.round(illum(p) * 100)}% lit · day ${days}`;
     };
+    render(tonight);
+
     let cur = tonight, target = tonight, anim = 0, backT;
     const loop = () => {
       cur = lerp(cur, target, 0.18);
@@ -324,17 +341,15 @@
       render(((cur % 1) + 1) % 1);
       anim = cur !== target ? requestAnimationFrame(loop) : 0;
     };
-    const go = (p) => { if (!built) return; target = p; moonApi.phase = ((p % 1) + 1) % 1; if (!anim) anim = requestAnimationFrame(loop); };
+    const go = (p) => { target = p; moonApi.phase = ((p % 1) + 1) % 1; if (!anim) anim = requestAnimationFrame(loop); };
     moonApi.set = go;
     // intro: sweep from new moon to tonight
-    let built = false, introWanted = false;
-    moonApi.intro = () => { introWanted = true; if (built) go(tonight); };
+    let built = false;
+    moonApi.intro = () => { if (built) go(tonight); };
     const buildStep = () => {
-      if (!buildRows(10)) { setTimeout(buildStep, 0); return; }
+      if (!buildRows(25)) { setTimeout(buildStep, 0); return; }
       built = true;
-      if (reduced) { render(tonight); return; }
-      cur = tonight - 1; render(0);
-      if (introWanted) go(tonight);
+      render(cur);
     };
     buildStep();
 
@@ -472,6 +487,7 @@
 
   /* ── Works reel (pinned horizontal scroll) ─────────────────── */
   const works = $('#works'), track = $('#works-track'), idx = $('#works-idx');
+  const platePills = $$('.plate-pill');
   let reelOn = false;
   const sizeReel = () => {
     if (!works) return;
@@ -488,8 +504,23 @@
     const dist = track.scrollWidth - innerWidth;
     const p = clamp(-r.top / (r.height - innerHeight), 0, 1);
     track.style.transform = `translate3d(${-p * dist}px,0,0)`;
-    idx.textContent = String(Math.min(5, Math.floor(p * 4.999) + 1)).padStart(2, '0');
+    const plateIndex = Math.min(4, Math.floor(p * 4.999));
+    if (idx) idx.textContent = String(plateIndex + 1).padStart(2, '0');
+    platePills.forEach((pill, i) => pill.classList.toggle('is-active', i === plateIndex));
   };
+  platePills.forEach((pill, i) => {
+    pill.addEventListener('click', () => {
+      if (reelOn) {
+        const top = works.getBoundingClientRect().top + scrollY;
+        const targetP = i / 4;
+        const targetY = top + targetP * (works.offsetHeight - innerHeight) + 2;
+        window.scrollTo({ top: targetY, behavior: 'smooth' });
+      } else {
+        const cards = $$('.works__track .card');
+        if (cards[i]) cards[i].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      }
+    });
+  });
   sizeReel();
   addEventListener('resize', () => { sizeReel(); scrollReel(); }, { passive: true });
   addEventListener('load', sizeReel);
