@@ -1,6 +1,5 @@
 /* Al-Aqmar — Lunar Observatory
-   Vanilla JS, no dependencies, no network calls, no storage beyond one
-   accent preference in localStorage. */
+   Vanilla JS, no dependencies, no network calls, no storage. */
 (() => {
   'use strict';
 
@@ -8,26 +7,18 @@
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const root = document.documentElement;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const finePointer = matchMedia('(hover: hover) and (pointer: fine)').matches;
   const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
   const lerp = (a, b, t) => a + (b - a) * t;
-  const mouse = { x: innerWidth / 2, y: innerHeight / 2, nx: 0, ny: 0, active: false };
+  const mouse = { nx: 0, ny: 0 };
   let moonApi;
 
   addEventListener('pointermove', (e) => {
-    mouse.x = e.clientX; mouse.y = e.clientY; mouse.active = true;
     mouse.nx = e.clientX / innerWidth - 0.5; mouse.ny = e.clientY / innerHeight - 0.5;
   }, { passive: true });
 
-  const accentRGB = () => getComputedStyle(root).getPropertyValue('--glow').trim().split(/\s+/).map(Number);
-
-  /* ── Toast ─────────────────────────────────────────────────── */
-  const toastEl = $('#toast');
-  let toastT;
-  const toast = (msg) => {
-    toastEl.textContent = msg; toastEl.classList.add('is-on');
-    clearTimeout(toastT); toastT = setTimeout(() => toastEl.classList.remove('is-on'), 2200);
-  };
+  /* ── Liquid glass: real refraction where the engine supports
+     SVG filters in backdrop-filter (Chromium). Others keep frosted glass. */
+  if (navigator.userAgentData && navigator.userAgentData.brands.some((b) => /Chrom/.test(b.brand))) root.classList.add('lg-refract');
 
   /* ── Text splitting ────────────────────────────────────────── */
   $$('.split').forEach((el) => {
@@ -64,36 +55,12 @@
   if (manifesto) splitWords(manifesto);
 
   /* ── Arrival ─────────────────────────────────────────────── */
-  const dome = $('#dome');
-  let isReady = false;
   const ready = () => {
-    if (isReady) return; isReady = true;
     root.classList.add('is-ready');
-    if (dome) {
-      dome.classList.add('is-open');
-      setTimeout(() => dome.classList.add('is-gone'), 1800);
-    }
     runScramble();
-    setTimeout(() => { if (moonApi && moonApi.intro) moonApi.intro(); }, 400);
+    setTimeout(() => moonApi && moonApi.intro && moonApi.intro(), 400);
   };
-  if (dome && !reduced) {
-    const status = $('#dome-status');
-    const t0 = performance.now(), dur = 1700;
-    let skip = false;
-    dome.addEventListener('click', () => { skip = true; ready(); });
-    addEventListener('keydown', () => { if (!isReady) { skip = true; ready(); } }, { once: true });
-    const tick = (t) => {
-      if (skip) return;
-      const p = clamp((t - t0) / dur, 0, 1), e = 1 - Math.pow(1 - p, 3);
-      if (status) status.textContent = `Opening the dome · shutter ${String(Math.round(e * 100)).padStart(3, '0')}%`;
-      dome.style.setProperty('--seam', (e * 70).toFixed(1));
-      if (p < 1) requestAnimationFrame(tick); else setTimeout(ready, 250);
-    };
-    requestAnimationFrame(tick);
-  } else {
-    if (dome) dome.classList.add('is-gone');
-    ready();
-  }
+  requestAnimationFrame(() => requestAnimationFrame(ready));
 
   /* ── Scramble text ─────────────────────────────────────────── */
   const GLYPHS = '!<>-_\\/[]{}—=+*^?#01ABCDEFXYZ';
@@ -119,50 +86,20 @@
   const sky = $('#sky');
   if (sky) {
     const ctx = sky.getContext('2d');
-    let W, H, DPR, stars = [], shooters = [], milky = null;
-    const TINTS = ['255,244,230', '235,240,255', '200,218,255', '255,226,190', '255,255,255'];
-    const paintMilky = () => {
-      // a soft diagonal band of dust + dense faint stars, drawn once
-      const c = document.createElement('canvas'), m = c.getContext('2d');
-      c.width = W; c.height = H;
-      m.translate(W / 2, H / 2); m.rotate(-0.42);
-      const L = Math.hypot(W, H);
-      for (let i = 0; i < 90; i++) {
-        const x = (Math.random() - 0.5) * L, y = (Math.random() - 0.5) * H * 0.22 * (1 + Math.sin(x / L * 6) * 0.3);
-        const r = 40 + Math.random() * 140;
-        const g = m.createRadialGradient(x, y, 0, x, y, r);
-        const warm = Math.random() < 0.4;
-        g.addColorStop(0, warm ? 'rgba(255,220,180,0.035)' : 'rgba(150,170,255,0.04)');
-        g.addColorStop(1, 'rgba(0,0,0,0)');
-        m.fillStyle = g; m.fillRect(x - r, y - r, r * 2, r * 2);
-      }
-      for (let i = 0; i < 40; i++) {
-        const x = (Math.random() - 0.5) * L, y = (Math.random() - 0.5) * 30, r = 30 + Math.random() * 70;
-        const g = m.createRadialGradient(x, y, 0, x, y, r);
-        g.addColorStop(0, 'rgba(4,6,14,0.35)'); g.addColorStop(1, 'rgba(4,6,14,0)');
-        m.fillStyle = g; m.fillRect(x - r, y - r, r * 2, r * 2);
-      }
-      for (let i = 0; i < 2200; i++) {
-        const x = (Math.random() - 0.5) * L, y = (Math.random() + Math.random() + Math.random() - 1.5) * H * 0.13;
-        m.fillStyle = `rgba(${TINTS[(Math.random() * TINTS.length) | 0]},${Math.random() * 0.45})`;
-        const sz = Math.random() < 0.95 ? 0.7 : 1.3;
-        m.fillRect(x, y, sz, sz);
-      }
-      milky = c;
-    };
+    let W, H, stars = [], shooters = [];
+    const TINTS = ['255,255,255', '232,238,255', '200,214,255'];
     const build = () => {
-      DPR = Math.min(devicePixelRatio || 1, 2);
+      const DPR = Math.min(devicePixelRatio || 1, 2);
       W = innerWidth; H = innerHeight;
       sky.width = W * DPR; sky.height = H * DPR;
       ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
-      const n = Math.round(clamp(W * H / 4200, 120, 420));
+      const n = Math.round(clamp(W * H / 6000, 90, 280));
       stars = Array.from({ length: n }, () => ({
         x: Math.random() * W, y: Math.random() * H,
         z: Math.random() ** 2 * 0.9 + 0.1,
         tw: Math.random() * Math.PI * 2, ts: 0.5 + Math.random() * 2,
         tint: TINTS[(Math.random() * TINTS.length) | 0],
       }));
-      paintMilky();
     };
     build();
     addEventListener('resize', build, { passive: true });
@@ -170,49 +107,18 @@
     const frame = (t) => {
       ctx.clearRect(0, 0, W, H);
       px = lerp(px, mouse.nx, 0.05); py = lerp(py, mouse.ny, 0.05);
-      drift = lerp(drift, (scrollY - lastScroll), 0.15); lastScroll = scrollY;
-      const [r, g, b] = accentRGB();
-      const near = [];
-      if (milky) {
-        const off = (scrollY * 0.04) % H;
-        ctx.globalAlpha = 0.9;
-        ctx.drawImage(milky, -px * 14, -py * 14 - off, W, H);
-        ctx.drawImage(milky, -px * 14, -py * 14 - off + H, W, H);
-        ctx.globalAlpha = 1;
-      }
+      drift = lerp(drift, scrollY - lastScroll, 0.15); lastScroll = scrollY;
       for (const s of stars) {
         s.y -= drift * s.z * 0.25;
         if (s.y < -5) s.y += H + 10; else if (s.y > H + 5) s.y -= H + 10;
-        const x = s.x - px * 40 * s.z, y = s.y - py * 40 * s.z;
-        const a = (0.35 + 0.65 * s.z) * (reduced ? 1 : 0.6 + 0.4 * Math.sin(s.tw + t * 0.001 * s.ts));
-        const size = s.z * 1.6 + 0.2;
-        ctx.fillStyle = `rgba(${s.z > 0.85 ? `${r},${g},${b}` : s.tint},${a})`;
-        if (s.z > 0.8) {
-          ctx.globalAlpha = a * 0.25;
-          ctx.fillRect(x - size * 3, y - 0.3, size * 6, 0.6);
-          ctx.fillRect(x - 0.3, y - size * 3, 0.6, size * 6);
-          ctx.globalAlpha = 1;
-          ctx.beginPath(); ctx.arc(x, y, size * 0.7, 0, 6.283); ctx.fill();
-        } else ctx.fillRect(x - size / 2, y - size / 2, size, size);
-        if (mouse.active && finePointer) {
-          const dx = x - mouse.x, dy = y - mouse.y, d2 = dx * dx + dy * dy;
-          if (d2 < 150 * 150) near.push({ x, y, d: Math.sqrt(d2) });
-        }
+        const x = s.x - px * 30 * s.z, y = s.y - py * 30 * s.z;
+        const a = (0.3 + 0.6 * s.z) * (reduced ? 1 : 0.6 + 0.4 * Math.sin(s.tw + t * 0.001 * s.ts));
+        const size = s.z * 1.5 + 0.2;
+        ctx.fillStyle = `rgba(${s.tint},${a})`;
+        if (s.z > 0.8) { ctx.beginPath(); ctx.arc(x, y, size * 0.7, 0, 6.283); ctx.fill(); }
+        else ctx.fillRect(x - size / 2, y - size / 2, size, size);
       }
-      // constellation lines near cursor
-      if (near.length) {
-        near.sort((a, b) => a.d - b.d);
-        const pts = near.slice(0, 7);
-        ctx.lineWidth = 0.6;
-        for (let i = 0; i < pts.length; i++) {
-          const p = pts[i];
-          ctx.strokeStyle = `rgba(${r},${g},${b},${0.5 * (1 - p.d / 150)})`;
-          ctx.beginPath(); ctx.moveTo(mouse.x, mouse.y); ctx.lineTo(p.x, p.y); ctx.stroke();
-          if (i) { ctx.beginPath(); ctx.moveTo(pts[i - 1].x, pts[i - 1].y); ctx.lineTo(p.x, p.y); ctx.stroke(); }
-        }
-      }
-      // shooting stars
-      if (!reduced && Math.random() < 0.004) shooters.push({ x: Math.random() * W, y: Math.random() * H * 0.4, vx: 6 + Math.random() * 6, vy: 2 + Math.random() * 2, life: 1 });
+      if (!reduced && Math.random() < 0.002) shooters.push({ x: Math.random() * W, y: Math.random() * H * 0.4, vx: 6 + Math.random() * 6, vy: 2 + Math.random() * 2, life: 1 });
       shooters = shooters.filter((s) => (s.life -= 0.02) > 0);
       for (const s of shooters) {
         s.x += s.vx; s.y += s.vy;
@@ -239,10 +145,10 @@
 
   const moon = $('#moon');
   const readout = $('#phase-readout');
-  moonApi = { phase: tonight, set: () => {}, intro: () => {}, zoom: () => {} };
+  moonApi = { phase: tonight, set: () => {}, intro: () => {} };
   if (moon) {
     const ctx = moon.getContext('2d');
-    const S = innerWidth < 700 ? 480 : 600; // high-res so magnification stays crisp
+    const S = innerWidth < 700 ? 400 : 520;
     moon.width = S; moon.height = S;
     // seeded RNG
     let seed = 7;
@@ -261,7 +167,7 @@
 
     const N = S * S, nx = new Float32Array(N), ny = new Float32Array(N), nz = new Float32Array(N), alb = new Float32Array(N), inside = new Uint8Array(N);
     const R = S / 2 - 2;
-    // surface is built in ~10ms slices so the dome animation never stutters
+    // surface is built in short slices so the intro never stutters
     let row = 0;
     const buildRows = (budget) => {
       const end = performance.now() + budget;
@@ -321,9 +227,9 @@
         const sh = lit * (0.25 + 0.75 * Math.max(0, dot)) ;
         const v = alb[k] * (sh * 1.05 + 0.045); // + earthshine
         const limb = 0.75 + 0.25 * nz[k];
-        d8[o] = clamp(v * 250 * limb + 4, 0, 255);
-        d8[o + 1] = clamp(v * 242 * limb + 3, 0, 255);
-        d8[o + 2] = clamp(v * 226 * limb + 8, 0, 255);
+        d8[o] = clamp(v * 244 * limb + 4, 0, 255);
+        d8[o + 1] = clamp(v * 245 * limb + 4, 0, 255);
+        d8[o + 2] = clamp(v * 250 * limb + 8, 0, 255);
         // antialiased rim
         d8[o + 3] = rim[k];
       }
@@ -363,92 +269,17 @@
     moon.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); clearTimeout(backT); go(target + (e.key === 'ArrowRight' ? 1 : -1) / 29.53); }
     });
-    // magnification (with a brief "refocus" blur)
-    const zoom = $('#zoom'), zoomVal = $('#zoom-val');
-    let focusT;
-    const setZoom = (z) => {
-      z = clamp(+z, 1, 3);
-      moon.style.setProperty('--zoom', z);
-      zoom.value = z; zoomVal.textContent = z.toFixed(1) + '×';
-      zoom.style.setProperty('--fillp', ((z - 1) / 2 * 100) + '%');
-      moon.classList.add('is-focusing'); clearTimeout(focusT);
-      focusT = setTimeout(() => moon.classList.remove('is-focusing'), 260);
-    };
-    moonApi.zoom = setZoom;
-    zoom.addEventListener('input', () => setZoom(zoom.value));
-    $('#scope').addEventListener('wheel', (e) => {
-      if (!e.ctrlKey && !e.altKey) return;
-      e.preventDefault(); setZoom(+zoom.value - e.deltaY * 0.004);
-    }, { passive: false });
-    const tg = $('#reticle-ticks');
-    if (tg) {
-      let h = '';
-      for (let i = 0; i < 72; i++) {
-        const a = i / 72 * Math.PI * 2, r1 = 196, r2 = i % 6 ? 188 : 178;
-        h += `<line x1="${(200 + Math.cos(a) * r1).toFixed(1)}" y1="${(200 + Math.sin(a) * r1).toFixed(1)}" x2="${(200 + Math.cos(a) * r2).toFixed(1)}" y2="${(200 + Math.sin(a) * r2).toFixed(1)}"/>`;
-      }
-      tg.innerHTML = h;
-    }
-    const barrel = $('.scope__barrel');
-    if (!reduced && barrel) {
-      const float = (t) => {
-        const y = Math.sin(t / 1800) * 6;
-        barrel.style.transform = `translate3d(${mouse.nx * -14}px, ${mouse.ny * -14 + y}px, 0)`;
-        requestAnimationFrame(float);
-      };
-      requestAnimationFrame(float);
-    }
   }
 
-  /* ── Cursor + magnetic ─────────────────────────────────────── */
-  const cursor = $('#cursor');
-  if (cursor && finePointer && !reduced) {
-    root.classList.add('has-cursor');
-    const dot = $('.cursor__dot', cursor), ring = $('.cursor__ring', cursor), label = $('#cursor-label');
-    let rx = mouse.x, ry = mouse.y;
-    const draw = () => {
-      rx = lerp(rx, mouse.x, 0.16); ry = lerp(ry, mouse.y, 0.16);
-      dot.style.transform = `translate3d(${mouse.x}px, ${mouse.y}px, 0)`;
-      ring.style.transform = `translate3d(${rx}px, ${ry}px, 0)`;
-      requestAnimationFrame(draw);
-    };
-    requestAnimationFrame(draw);
-    document.addEventListener('pointerover', (e) => {
-      const lab = e.target.closest('[data-cursor]');
-      const hov = e.target.closest('a, button, input, label, [data-tilt], canvas#moon');
-      cursor.classList.toggle('is-label', !!lab);
-      cursor.classList.toggle('is-hover', !lab && !!hov);
-      label.textContent = lab ? lab.dataset.cursor : '';
-    });
-    addEventListener('pointerdown', () => cursor.classList.add('is-down'));
-    addEventListener('pointerup', () => cursor.classList.remove('is-down'));
-    document.addEventListener('pointerleave', () => { cursor.style.opacity = 0; });
-    document.addEventListener('pointerenter', () => { cursor.style.opacity = 1; });
-
-    $$('[data-magnetic]').forEach((el) => {
-      const k = parseFloat(el.dataset.magnetic) || 0.35;
-      el.style.transition = 'transform 0.5s cubic-bezier(.22,1,.36,1)';
-      el.addEventListener('pointermove', (e) => {
-        const r = el.getBoundingClientRect();
-        el.style.transform = `translate(${(e.clientX - r.left - r.width / 2) * k}px, ${(e.clientY - r.top - r.height / 2) * k}px)`;
-      });
-      el.addEventListener('pointerleave', () => { el.style.transform = ''; });
-    });
-  }
-
+  /* ── Liquid-glass specular: follows the pointer across any panel ── */
   /* ── Spotlight + tilt ──────────────────────────────────────── */
-  $$('[data-spot], [data-tilt]').forEach((el) => {
-    el.addEventListener('pointermove', (e) => {
-      const r = el.getBoundingClientRect();
-      const x = e.clientX - r.left, y = e.clientY - r.top;
-      el.style.setProperty('--mx', x + 'px'); el.style.setProperty('--my', y + 'px');
-      if (el.hasAttribute('data-tilt') && finePointer && !reduced) {
-        el.style.setProperty('--ry', ((x / r.width - 0.5) * 10).toFixed(2) + 'deg');
-        el.style.setProperty('--rx', ((0.5 - y / r.height) * 8).toFixed(2) + 'deg');
-      }
-    });
-    el.addEventListener('pointerleave', () => { el.style.setProperty('--rx', '0deg'); el.style.setProperty('--ry', '0deg'); });
-  });
+  document.addEventListener('pointermove', (e) => {
+    const el = e.target.closest && e.target.closest('.glass');
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    el.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+    el.style.setProperty('--my', (e.clientY - r.top) + 'px');
+  }, { passive: true });
 
   /* ── Counters ──────────────────────────────────────────────── */
   const fmt = new Intl.NumberFormat('en-US');
@@ -487,7 +318,6 @@
 
   /* ── Works reel (pinned horizontal scroll) ─────────────────── */
   const works = $('#works'), track = $('#works-track'), idx = $('#works-idx');
-  const platePills = $$('.plate-pill');
   let reelOn = false;
   const sizeReel = () => {
     if (!works) return;
@@ -506,21 +336,7 @@
     track.style.transform = `translate3d(${-p * dist}px,0,0)`;
     const plateIndex = Math.min(4, Math.floor(p * 4.999));
     if (idx) idx.textContent = String(plateIndex + 1).padStart(2, '0');
-    platePills.forEach((pill, i) => pill.classList.toggle('is-active', i === plateIndex));
   };
-  platePills.forEach((pill, i) => {
-    pill.addEventListener('click', () => {
-      if (reelOn) {
-        const top = works.getBoundingClientRect().top + scrollY;
-        const targetP = i / 4;
-        const targetY = top + targetP * (works.offsetHeight - innerHeight) + 2;
-        window.scrollTo({ top: targetY, behavior: 'smooth' });
-      } else {
-        const cards = $$('.works__track .card');
-        if (cards[i]) cards[i].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-      }
-    });
-  });
   sizeReel();
   addEventListener('resize', () => { sizeReel(); scrollReel(); }, { passive: true });
   addEventListener('load', sizeReel);
@@ -534,7 +350,7 @@
     queued = false;
     const y = scrollY, max = document.documentElement.scrollHeight - innerHeight;
     bar.style.setProperty('--p', max > 0 ? (y / max).toFixed(4) : 0);
-    nav.classList.toggle('is-hidden', y > lastY && y > 400 && !$('#palette:not([hidden])'));
+    nav.classList.toggle('is-hidden', y > lastY && y > 400);
     lastY = y;
     let cur = null;
     secs.forEach((s) => { if (s.getBoundingClientRect().top < innerHeight * 0.4) cur = s.id; });
@@ -553,74 +369,6 @@
   const cookieCount = $('#cookie-count');
   if (cookieCount) cookieCount.textContent = document.cookie ? document.cookie.split(';').length : 0;
 
-  /* ── Attention-matrix canvas (youAI-2B) ────────────────────── */
-  const attn = $('#attn');
-  if (attn) {
-    const ctx = attn.getContext('2d');
-    let w, h, cols, rows, cell = 18, vals;
-    const size = () => {
-      const r = attn.getBoundingClientRect(), d = Math.min(devicePixelRatio || 1, 2);
-      w = r.width; h = r.height; attn.width = w * d; attn.height = h * d; ctx.setTransform(d, 0, 0, d, 0, 0);
-      cols = Math.ceil(w / cell); rows = Math.ceil(h / cell);
-      vals = Float32Array.from({ length: cols * rows }, () => Math.random());
-    };
-    size(); addEventListener('resize', size, { passive: true });
-    let visible = false, hover = null;
-    new IntersectionObserver(([e]) => { visible = e.isIntersecting; }).observe(attn);
-    const tile = attn.parentElement;
-    tile.addEventListener('pointermove', (e) => { const r = attn.getBoundingClientRect(); hover = { x: e.clientX - r.left, y: e.clientY - r.top }; });
-    tile.addEventListener('pointerleave', () => { hover = null; });
-    const draw = (t) => {
-      if (visible) {
-        ctx.clearRect(0, 0, w, h);
-        const [r, g, b] = accentRGB();
-        for (let j = 0; j < rows; j++) for (let i = 0; i < cols; i++) {
-          if (i > j + Math.floor(cols - rows)) continue; // causal mask look
-          const k = j * cols + i;
-          let v = 0.5 + 0.5 * Math.sin(t * 0.0012 + vals[k] * 12 + i * 0.3 - j * 0.2);
-          v = v ** 3;
-          if (hover) { const d = Math.hypot(i * cell + cell / 2 - hover.x, j * cell + cell / 2 - hover.y); v = Math.max(v, 1 - d / 120); }
-          ctx.fillStyle = `rgba(${r},${g},${b},${0.04 + v * 0.5})`;
-          ctx.fillRect(i * cell + 2, j * cell + 2, cell - 4, cell - 4);
-        }
-      }
-      if (!reduced) requestAnimationFrame(draw);
-    };
-    requestAnimationFrame(draw);
-  }
-
-  /* ── Instrument HUD ──────────────────────────────────────── */
-  const hudRA = $('#hud-ra'), hudDec = $('#hud-dec'), hudAlt = $('#hud-alt'), hudAz = $('#hud-az'), hudTicks = $('#hud-ticks');
-  const cAz = $('#c-az'), dialAz = $('#dial-az'), cSee = $('#c-seeing'), wave = $('#seeing-wave');
-  const pad = (n, l = 2) => String(Math.floor(n)).padStart(l, '0');
-  const hud = () => {
-    const max = Math.max(1, document.documentElement.scrollHeight - innerHeight);
-    const p = scrollY / max;
-    const ra = (mouse.x / innerWidth) * 24;
-    const dec = 90 - (mouse.y / innerHeight) * 180 - p * 30;
-    if (hudRA) hudRA.textContent = `${pad(ra)}h ${pad((ra % 1) * 60)}m`;
-    if (hudDec) hudDec.textContent = `${dec >= 0 ? '+' : '−'}${pad(Math.abs(dec))}°${pad((Math.abs(dec) % 1) * 60)}′`;
-    const alt = 88 - p * 70, az = (180 + p * 220) % 360;
-    if (hudAlt) hudAlt.textContent = alt.toFixed(1) + '°';
-    if (hudAz) hudAz.textContent = az.toFixed(1) + '°';
-    if (hudTicks) hudTicks.style.setProperty('--tick', `${(-scrollY * 0.25) % 50}px`);
-    if (cAz) cAz.textContent = Math.round(az) + '°';
-    if (dialAz) dialAz.style.transform = `rotate(${az}deg)`;
-  };
-  addEventListener('pointermove', () => requestAnimationFrame(hud), { passive: true });
-  addEventListener('scroll', () => requestAnimationFrame(hud), { passive: true });
-  hud();
-  if (wave && !reduced) {
-    let ph = 0;
-    setInterval(() => {
-      ph += 0.5;
-      let pts = '';
-      for (let i = 0; i <= 20; i++) pts += `${10 + i * 2},${(30 + Math.sin(i * 0.9 + ph) * (4 + Math.random() * 3)).toFixed(1)} `;
-      wave.setAttribute('points', pts);
-      cSee.textContent = (0.7 + Math.random() * 0.25).toFixed(2) + '″';
-    }, 400);
-  } else if (wave) wave.setAttribute('points', '10,30 50,30');
-
   /* ── Constellations for the star catalogue ─────────────────── */
   $$('.constellation').forEach((svg) => {
     let h = 0; for (const c of svg.dataset.seed) h = (h * 31 + c.charCodeAt(0)) >>> 0;
@@ -634,14 +382,6 @@
     pts.forEach(([x, y], i) => { out += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${(1.2 + rnd() * 1.8).toFixed(2)}" style="animation-delay:${i * 0.2}s"/>`; });
     svg.innerHTML = out;
   });
-
-  /* ── Accent themes ─────────────────────────────────────────── */
-  const ACCENTS = { lunar: 'Lunar silver', solar: 'Solar flare', aurora: 'Aurora', eclipse: 'Blood-moon eclipse' };
-  const setAccent = (a) => {
-    root.dataset.accent = a;
-    try { localStorage.setItem('aaj-accent', a); } catch (_) {}
-    toast(`Theme → ${ACCENTS[a]}`);
-  };
 
   /* ── Terminal ──────────────────────────────────────────────── */
   const out = $('#term-out'), form = $('#term-form'), input = $('#term-input');
@@ -663,9 +403,7 @@
   stack         tools of the trade
   moon          tonight's lunar phase
   observe       point the telescope at the moon
-  zoom [1-3]    change magnification
   privacy       what this site collects (spoiler: nothing)
-  theme [name]  lunar · solar · aurora · eclipse
   open [name]   esamz · reallearn · pi · gati · color · github · linkedin
   contact       ways to reach me
   sudo hire-me  you know you want to
@@ -694,7 +432,7 @@ ${a(LINKS.github, '→ all 43 repos')}`,
     privacy: () => `cookies set .......... <span class="ok">${document.cookie ? document.cookie.split(';').length : 0}</span>
 trackers loaded ...... <span class="ok">0</span>
 third-party requests . <span class="ok">0</span>
-localStorage ......... <span class="ok">1 key</span> <span class="dim">(your theme choice)</span>
+localStorage ......... <span class="ok">0 keys</span>
 <span class="dim">fonts are self-hosted. the moon is rendered on your device.</span>`,
     contact: () => `github     ${a(LINKS.github, '@alakmar344')}
 linkedin   ${a(LINKS.linkedin, 'Al-Aqmar Teenwala')}
@@ -716,17 +454,6 @@ instagram  ${a(LINKS.instagram, '@its_alakmar7')}`,
     const [head, ...rest] = cmd.toLowerCase().split(/\s+/);
     const arg = rest.join(' ');
     if (head === 'clear') { out.innerHTML = ''; return; }
-    if (head === 'zoom') {
-      const z = parseFloat(arg);
-      if (z >= 1 && z <= 3) { moonApi.zoom(z); print(`<span class="ok">magnification →</span> ${z.toFixed(1)}×  <span class="dim">(scroll up to the eyepiece)</span>`); }
-      else print('usage: zoom 1 … 3');
-      return;
-    }
-    if (head === 'theme') {
-      if (ACCENTS[arg]) { setAccent(arg); print(`<span class="ok">theme set →</span> ${ACCENTS[arg]}`); }
-      else print('usage: theme lunar | solar | aurora | eclipse');
-      return;
-    }
     if (head === 'open') {
       if (LINKS[arg]) { window.open(LINKS[arg], '_blank', 'noopener,noreferrer'); print(`opening ${a(LINKS[arg], LINKS[arg])}`); }
       else print('usage: open ' + Object.keys(LINKS).join(' | '));
@@ -745,7 +472,7 @@ type <span class="hi">help</span> to begin.`);
       else if (e.key === 'Tab') {
         e.preventDefault();
         const v = input.value.toLowerCase();
-        const m = Object.keys(CMDS).concat('clear', 'theme', 'open', 'zoom').filter((k) => k.startsWith(v));
+        const m = Object.keys(CMDS).concat('clear', 'open').filter((k) => k.startsWith(v));
         if (m.length === 1) input.value = m[0]; else if (m.length) print(m.join('  '), 'dim');
       }
     });
@@ -753,86 +480,4 @@ type <span class="hi">help</span> to begin.`);
     $$('[data-cmd]').forEach((b) => b.addEventListener('click', () => run(b.dataset.cmd)));
   }
 
-  /* ── Command palette ───────────────────────────────────────── */
-  const pal = $('#palette'), pin = $('#palette-input'), plist = $('#palette-list');
-  const jump = (id) => () => { const el = $(id); el && el.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth' }); };
-  const ext = (url) => () => window.open(url, '_blank', 'noopener,noreferrer');
-  const ITEMS = [
-    ['Navigate', '↑', 'Eyepiece — the moon', jump('#top')],
-    ['Navigate', '◎', 'Room I — Observation log', jump('#works')],
-    ['Navigate', '◆', 'Room II — Star catalogue', jump('#gems')],
-    ['Navigate', '❏', 'Room III — The archive', jump('#library')],
-    ['Navigate', '❯', 'Room IV — Control room', () => { jump('#terminal')(); setTimeout(() => input && input.focus({ preventScroll: true }), 600); }],
-    ['Navigate', '✉', 'Room V — Transmission', jump('#contact')],
-    ['Launch', '↗', 'eSAMz AI', ext(LINKS.esamz), 'esamz.info'],
-    ['Launch', '↗', 'RealLearn AI', ext(LINKS.reallearn)],
-    ['Launch', '↗', 'π — Pi', ext(LINKS.pi)],
-    ['Launch', '↗', 'गति — Gati', ext(LINKS.gati)],
-    ['Launch', '↗', 'Fit The Color', ext(LINKS.color)],
-    ['Theme', '●', 'Lunar silver', () => setAccent('lunar')],
-    ['Theme', '●', 'Solar flare', () => setAccent('solar')],
-    ['Theme', '●', 'Aurora', () => setAccent('aurora')],
-    ['Theme', '●', 'Blood-moon eclipse', () => setAccent('eclipse')],
-    ['Moon', '◐', 'Show tonight\'s moon', () => { jump('#top')(); moonApi.set(tonight); }],
-    ['Moon', '○', 'Jump to full moon', () => { jump('#top')(); moonApi.set(Math.floor(moonApi.phase) + 0.5); }],
-    ['Moon', '⊕', 'Magnify 3×', () => { jump('#top')(); moonApi.zoom(3); }],
-    ['Moon', '⊖', 'Reset magnification', () => { jump('#top')(); moonApi.zoom(1); }],
-    ['Moon', '●', 'Jump to new moon', () => { jump('#top')(); moonApi.set(Math.floor(moonApi.phase) + 1); }],
-    ['Connect', '⌥', 'GitHub', ext(LINKS.github), '@alakmar344'],
-    ['Connect', '⌥', 'LinkedIn', ext(LINKS.linkedin)],
-    ['Connect', '⌥', 'Instagram', ext(LINKS.instagram)],
-    ['Connect', '⧉', 'Copy GitHub URL', () => { navigator.clipboard && navigator.clipboard.writeText(LINKS.github).then(() => toast('Copied github.com/alakmar344')); }],
-  ];
-  let filtered = ITEMS, sel = 0, lastFocus = null;
-  const renderPal = () => {
-    const q = pin.value.trim().toLowerCase();
-    filtered = ITEMS.filter(([g, , l, , h]) => (g + ' ' + l + ' ' + (h || '')).toLowerCase().includes(q));
-    sel = clamp(sel, 0, Math.max(0, filtered.length - 1));
-    plist.innerHTML = '';
-    if (!filtered.length) { plist.innerHTML = '<li class="palette__empty">No results. The void stares back.</li>'; return; }
-    let grp = '';
-    filtered.forEach(([g, ico, label, , hint], i) => {
-      if (g !== grp) { grp = g; const h = document.createElement('li'); h.className = 'palette__group'; h.setAttribute('role', 'presentation'); h.textContent = g; plist.appendChild(h); }
-      const li = document.createElement('li');
-      li.className = 'palette__item'; li.id = 'pi-' + i; li.setAttribute('role', 'option');
-      li.setAttribute('aria-selected', String(i === sel));
-      li.innerHTML = `<span class="ico" aria-hidden="true">${ico}</span><span></span>${hint ? `<span class="hint"></span>` : ''}`;
-      li.children[1].textContent = label; if (hint) li.children[2].textContent = hint;
-      li.addEventListener('click', () => choose(i));
-      li.addEventListener('pointermove', () => { if (sel !== i) { sel = i; mark(); } });
-      plist.appendChild(li);
-    });
-    pin.setAttribute('aria-activedescendant', 'pi-' + sel);
-  };
-  const mark = () => {
-    $$('.palette__item', plist).forEach((li) => li.setAttribute('aria-selected', String(li.id === 'pi-' + sel)));
-    const cur = $('#pi-' + sel); cur && cur.scrollIntoView({ block: 'nearest' });
-    pin.setAttribute('aria-activedescendant', 'pi-' + sel);
-  };
-  const openPal = () => { lastFocus = document.activeElement; pal.hidden = false; pin.value = ''; sel = 0; renderPal(); pin.focus(); };
-  const closePal = () => { pal.hidden = true; lastFocus && lastFocus.focus && lastFocus.focus({ preventScroll: true }); };
-  const choose = (i) => { const it = filtered[i]; if (!it) return; closePal(); it[3](); };
-  pin.addEventListener('input', () => { sel = 0; renderPal(); });
-  pin.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowDown') { e.preventDefault(); sel = (sel + 1) % filtered.length; mark(); }
-    else if (e.key === 'ArrowUp') { e.preventDefault(); sel = (sel - 1 + filtered.length) % filtered.length; mark(); }
-    else if (e.key === 'Enter') { e.preventDefault(); choose(sel); }
-    else if (e.key === 'Tab') e.preventDefault();
-  });
-  $$('[data-close]', pal).forEach((b) => b.addEventListener('click', closePal));
-  $('#open-palette').addEventListener('click', openPal);
-  $$('[data-open-palette]').forEach((b) => b.addEventListener('click', openPal));
-
-  /* ── Global keys + easter egg ──────────────────────────────── */
-  const KONAMI = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
-  let kpos = 0;
-  addEventListener('keydown', (e) => {
-    const typing = /INPUT|TEXTAREA/.test(document.activeElement.tagName);
-    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); pal.hidden ? openPal() : closePal(); return; }
-    if (e.key === 'Escape' && !pal.hidden) { closePal(); return; }
-    if (typing) return;
-    if (e.key === '/' && pal.hidden) { e.preventDefault(); openPal(); return; }
-    kpos = e.key === KONAMI[kpos] ? kpos + 1 : (e.key === KONAMI[0] ? 1 : 0);
-    if (kpos === KONAMI.length) { kpos = 0; setAccent('eclipse'); moonApi.set(Math.floor(moonApi.phase) + 0.5); toast('🌕 Blood moon unlocked'); }
-  });
 })();
