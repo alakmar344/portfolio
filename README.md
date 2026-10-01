@@ -6,18 +6,16 @@ A privacy-first portfolio presented as a walk through a **Lunar Observatory** �
 
 ## The experience — a visit to the observatory
 
-- **Arrival** — the dome's shutters slide open to reveal the real night sky through the slit (click or press any key to skip).
-- **The eyepiece** — tonight's actual moon phase, rendered pixel-by-pixel on your device inside a telescope with a brass barrel, crosshair reticle, and degree ring. Drag to scrub the lunar cycle; use the **MAG** slider (or Ctrl/Alt + scroll) to magnify up to 3× with a refocus effect.
-- **Instrument HUD** — corner brackets, a live declination scale, RA/DEC that follows your cursor, ALT/AZ that follows your scroll, and a tracking indicator.
-- **The sky** — a hand-painted Milky Way band, temperature-tinted stars with diffraction spikes, shooting stars, and constellations that form around your cursor.
-- **The horizon** — the observatory on its hill, telescope poking out of the slit, a warm lit window, and a blinking radio mast.
-- **Room I · Observation log** — pinned horizontal reel of five "photographic plates" (products) with star-chart grids and animated art.
-- **Room II · Star catalogue** — open-source gems as catalogued stars (AQ-001…) with generated constellations, magnitude gauges, and a live attention-matrix for youAI-2B.
+- **Liquid glass** — every panel is a sheet of clear glass: lit top edge, bright bevelled rim, and a soft specular highlight that follows your pointer. In Chromium, the nav and pills also refract what's behind them through an SVG displacement filter; other browsers get frosted glass.
+- **The eyepiece** — tonight's actual moon phase, rendered pixel-by-pixel on your device behind a glass lens, ringed by slowly orbiting type. Drag (or use ←/→) to scrub the lunar cycle.
+- **The sky** — twinkling stars with gentle parallax, the occasional shooting star, and a slow-drifting moonlit aura.
+- **The horizon** — the observatory on its hill, telescope poking out of the slit.
+- **Room I · Observation log** — pinned horizontal reel of five "photographic plates" (products) with animated art.
+- **Room II · Star catalogue** — open-source gems as catalogued stars (AQ-001…) with generated constellations and magnitude gauges.
 - **Field notes** — a manifesto that lights up word by word as you scroll.
-- **Room III · The archive** — 3D books on a brass-lit shelf.
-- **Room IV · Control room** — console dials (dome azimuth, shutter, tracking, seeing) and a terminal: `help`, `observe`, `zoom 3`, `moon`, `privacy`, `theme aurora`, `sudo hire-me`…
+- **Room III · The archive** — 3D books that turn toward you on hover.
+- **Room IV · Control room** — a terminal: `help`, `whoami`, `observe`, `moon`, `privacy`, `sudo hire-me`…
 - **Room V · Transmission** — a radio dish broadcasting on open channels.
-- **⌘K / Ctrl+K control panel** — jump between rooms, launch products, magnify the moon, switch skies (Lunar · Solar · Aurora · Eclipse). Konami code → blood moon.
 - Respects `prefers-reduced-motion`, keyboard accessible, native scroll-snap on mobile.
 
 ## What's here
