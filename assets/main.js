@@ -15,6 +15,9 @@
   addEventListener('pointermove', (e) => {
     mouse.nx = e.clientX / innerWidth - 0.5; mouse.ny = e.clientY / innerHeight - 0.5;
   }, { passive: true });
+  // scroll position is read once per frame (in onScroll, before any style
+  // writes) and shared, so other rAF callbacks never force a layout
+  const view = { y: scrollY };
 
   /* ── Liquid glass: real refraction where the engine supports
      SVG filters in backdrop-filter (Chromium). Others keep frosted glass. */
@@ -82,54 +85,105 @@
   }
   $$('[data-scramble]').forEach((el) => el.addEventListener('pointerenter', () => scramble(el, el.dataset.scramble, 500)));
 
-  /* ── Starfield sky ─────────────────────────────────────────── */
+  /* ── Starfield sky ─────────────────────────────────────────
+     Stars are painted ONCE into three depth layers. Parallax, scroll
+     drift and twinkle are plain transforms/opacity on those layers, so
+     the browser composites them on the GPU instead of repainting a
+     full-screen canvas every frame. */
   const sky = $('#sky');
   if (sky) {
-    const ctx = sky.getContext('2d');
-    let W, H, stars = [], shooters = [];
+    const PAD = 40;
     const TINTS = ['255,255,255', '232,238,255', '200,214,255'];
+    const DEPTHS = [0.25, 0.55, 0.9];
+    // each layer is an <img>: painted on a scratch canvas, then frozen into
+    // a static bitmap that the compositor only has to move around
+    const layers = DEPTHS.map((z, i) => {
+      const el = new Image();
+      el.className = 'sky__layer'; el.alt = ''; el.decoding = 'async';
+      el.style.setProperty('--tw', `${4 + i * 1.7}s`);
+      el.style.setProperty('--td', `${-i * 1.3}s`);
+      el.style.setProperty('--tmin', String(0.55 + i * 0.12));
+      sky.insertBefore(el, sky.firstChild);
+      const c = document.createElement('canvas');
+      return { el, c, ctx: c.getContext('2d'), z, url: '' };
+    });
+    const freeze = (L) => L.c.toBlob((blob) => {
+      if (!blob) return;
+      if (L.url) URL.revokeObjectURL(L.url);
+      L.url = URL.createObjectURL(blob);
+      L.el.src = L.url;
+      L.c.width = L.c.height = 0; // release the scratch canvas
+    });
+    let W = 0, H = 0;
     const build = () => {
-      const DPR = Math.min(devicePixelRatio || 1, 2);
+      if (innerWidth === W && Math.abs(innerHeight - H) < 120) return; // ignore mobile URL-bar jitter
       W = innerWidth; H = innerHeight;
-      sky.width = W * DPR; sky.height = H * DPR;
-      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+      const DPR = Math.min(devicePixelRatio || 1, 1.25);
+      const cw = W + PAD * 2, ch = H * 2 + PAD;
+      layers.forEach((L) => {
+        L.c.width = Math.round(cw * DPR); L.c.height = Math.round(ch * DPR);
+        L.el.style.width = cw + 'px'; L.el.style.height = ch + 'px';
+        L.ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+        L.ctx.clearRect(0, 0, cw, ch);
+      });
       const n = Math.round(clamp(W * H / 6000, 90, 280));
-      stars = Array.from({ length: n }, () => ({
-        x: Math.random() * W, y: Math.random() * H,
-        z: Math.random() ** 2 * 0.9 + 0.1,
-        tw: Math.random() * Math.PI * 2, ts: 0.5 + Math.random() * 2,
-        tint: TINTS[(Math.random() * TINTS.length) | 0],
-      }));
+      for (let k = 0; k < n; k++) {
+        const z = Math.random() ** 2 * 0.9 + 0.1;
+        const L = layers[z < 0.4 ? 0 : z < 0.75 ? 1 : 2];
+        const x = Math.random() * cw, y = Math.random() * H;
+        const a = 0.3 + 0.6 * z, size = z * 1.5 + 0.2;
+        L.ctx.fillStyle = `rgba(${TINTS[(Math.random() * TINTS.length) | 0]},${a})`;
+        for (let rep = 0; rep < 3; rep++) { // tile vertically so scroll drift can wrap seamlessly
+          const yy = y + rep * H;
+          if (yy > ch + 2) break;
+          if (z > 0.8) { L.ctx.beginPath(); L.ctx.arc(x, yy, size * 0.7, 0, 6.283); L.ctx.fill(); }
+          else L.ctx.fillRect(x - size / 2, yy - size / 2, size, size);
+        }
+      }
+      layers.forEach(freeze);
+      kick();
     };
+
+    let px = 0, py = 0, oy = scrollY, raf = 0;
+    const place = () => {
+      layers.forEach((L) => {
+        const m = ((oy * L.z * 0.25) % H + H) % H;
+        const tx = -px * 30 * L.z, ty = -(m + PAD / 2) - py * 30 * L.z;
+        L.el.style.transform = `translate3d(${tx.toFixed(1)}px,${ty.toFixed(1)}px,0)`;
+      });
+    };
+    const tick = () => {
+      const sy = view.y;
+      px = lerp(px, mouse.nx, 0.06); py = lerp(py, mouse.ny, 0.06); oy = lerp(oy, sy, 0.15);
+      const settled = Math.abs(px - mouse.nx) < 0.001 && Math.abs(py - mouse.ny) < 0.001 && Math.abs(oy - sy) < 0.5;
+      place();
+      raf = settled ? 0 : requestAnimationFrame(tick);
+    };
+    function kick() {
+      if (reduced) { oy = view.y; place(); return; }
+      if (!raf) raf = requestAnimationFrame(tick);
+    }
     build();
     addEventListener('resize', build, { passive: true });
-    let px = 0, py = 0, lastScroll = scrollY, drift = 0;
-    const frame = (t) => {
-      ctx.clearRect(0, 0, W, H);
-      px = lerp(px, mouse.nx, 0.05); py = lerp(py, mouse.ny, 0.05);
-      drift = lerp(drift, scrollY - lastScroll, 0.15); lastScroll = scrollY;
-      for (const s of stars) {
-        s.y -= drift * s.z * 0.25;
-        if (s.y < -5) s.y += H + 10; else if (s.y > H + 5) s.y -= H + 10;
-        const x = s.x - px * 30 * s.z, y = s.y - py * 30 * s.z;
-        const a = (0.3 + 0.6 * s.z) * (reduced ? 1 : 0.6 + 0.4 * Math.sin(s.tw + t * 0.001 * s.ts));
-        const size = s.z * 1.5 + 0.2;
-        ctx.fillStyle = `rgba(${s.tint},${a})`;
-        if (s.z > 0.8) { ctx.beginPath(); ctx.arc(x, y, size * 0.7, 0, 6.283); ctx.fill(); }
-        else ctx.fillRect(x - size / 2, y - size / 2, size, size);
-      }
-      if (!reduced && Math.random() < 0.002) shooters.push({ x: Math.random() * W, y: Math.random() * H * 0.4, vx: 6 + Math.random() * 6, vy: 2 + Math.random() * 2, life: 1 });
-      shooters = shooters.filter((s) => (s.life -= 0.02) > 0);
-      for (const s of shooters) {
-        s.x += s.vx; s.y += s.vy;
-        const grad = ctx.createLinearGradient(s.x, s.y, s.x - s.vx * 12, s.y - s.vy * 12);
-        grad.addColorStop(0, `rgba(255,255,255,${s.life})`); grad.addColorStop(1, 'rgba(255,255,255,0)');
-        ctx.strokeStyle = grad; ctx.lineWidth = 1.2;
-        ctx.beginPath(); ctx.moveTo(s.x, s.y); ctx.lineTo(s.x - s.vx * 12, s.y - s.vy * 12); ctx.stroke();
-      }
-      if (!reduced) requestAnimationFrame(frame);
-    };
-    requestAnimationFrame(frame);
+    addEventListener('scroll', kick, { passive: true });
+    addEventListener('pointermove', kick, { passive: true });
+
+    // shooting star: one element, replayed by CSS every so often
+    const shoot = $('.sky__shoot', sky);
+    if (shoot && !reduced) {
+      const fire = () => {
+        if (!document.hidden) {
+          const ang = 10 + Math.random() * 20;
+          shoot.style.left = (Math.random() * W * 0.8) + 'px';
+          shoot.style.top = (Math.random() * H * 0.4) + 'px';
+          shoot.style.setProperty('--a', ang + 'deg');
+          shoot.style.setProperty('--d', (380 + Math.random() * 260) + 'px');
+          shoot.classList.remove('go'); void shoot.offsetWidth; shoot.classList.add('go');
+        }
+        setTimeout(fire, 6000 + Math.random() * 12000);
+      };
+      setTimeout(fire, 4000);
+    }
   }
 
   /* ── Live moon ─────────────────────────────────────────────── */
@@ -148,7 +202,7 @@
   moonApi = { phase: tonight, set: () => {}, intro: () => {} };
   if (moon) {
     const ctx = moon.getContext('2d');
-    const S = innerWidth < 700 ? 400 : 520;
+    const S = innerWidth < 700 ? 360 : 460;
     moon.width = S; moon.height = S;
     // seeded RNG
     let seed = 7;
@@ -273,13 +327,32 @@
 
   /* ── Liquid-glass specular: follows the pointer across any panel ── */
   /* ── Spotlight + tilt ──────────────────────────────────────── */
-  document.addEventListener('pointermove', (e) => {
+  let specEv = null;
+  const spec = () => {
+    const e = specEv; specEv = null;
     const el = e.target.closest && e.target.closest('.glass');
     if (!el) return;
     const r = el.getBoundingClientRect();
     el.style.setProperty('--mx', (e.clientX - r.left) + 'px');
     el.style.setProperty('--my', (e.clientY - r.top) + 'px');
+  };
+  document.addEventListener('pointermove', (e) => {
+    if (e.pointerType === 'touch') return;
+    if (!specEv) requestAnimationFrame(spec);
+    specEv = e;
   }, { passive: true });
+
+  /* ── Pause decorative animations while they are off-screen ── */
+  const offIO = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      e.target.classList.toggle('is-off', !e.isIntersecting);
+      $$('svg', e.target).concat(e.target.tagName === 'svg' ? [e.target] : []).forEach((svg) => {
+        if (!svg.pauseAnimations) return;
+        e.isIntersecting ? svg.unpauseAnimations() : svg.pauseAnimations();
+      });
+    });
+  }, { rootMargin: '100px' });
+  $$('.card__art, .scope, .tile, .dish, .aura').forEach((el) => offIO.observe(el));
 
   /* ── Counters ──────────────────────────────────────────────── */
   const fmt = new Intl.NumberFormat('en-US');
@@ -308,55 +381,61 @@
 
   /* ── Manifesto: scroll-lit words ───────────────────────────── */
   const mWords = manifesto ? $$('.w', manifesto) : [];
-  const litManifesto = () => {
-    if (!mWords.length) return;
-    const r = manifesto.getBoundingClientRect();
+  let lastLit = -1;
+  const litManifesto = (r) => {
+    if (!mWords.length || !r) return;
+    if (r.bottom < -innerHeight || r.top > innerHeight * 2) return;
     const p = clamp((innerHeight * 0.8 - r.top) / (r.height + innerHeight * 0.3), 0, 1);
     const n = Math.round(p * mWords.length);
+    if (n === lastLit) return;
+    lastLit = n;
     mWords.forEach((w, i) => w.classList.toggle('on', reduced || i < n));
   };
 
   /* ── Works reel (pinned horizontal scroll) ─────────────────── */
   const works = $('#works'), track = $('#works-track'), idx = $('#works-idx');
-  let reelOn = false;
+  let reelOn = false, reelDist = 0, lastPlate = -1;
   const sizeReel = () => {
     if (!works) return;
     reelOn = !reduced && innerWidth > 900;
     works.classList.toggle('is-native', !reelOn);
     if (reelOn) {
-      const dist = track.scrollWidth - innerWidth;
-      works.style.setProperty('--reel-h', `${dist + innerHeight}px`);
+      reelDist = track.scrollWidth - innerWidth;
+      works.style.setProperty('--reel-h', `${reelDist + innerHeight}px`);
     } else { works.style.removeProperty('--reel-h'); track.style.transform = ''; }
   };
-  const scrollReel = () => {
-    if (!reelOn) return;
-    const r = works.getBoundingClientRect();
-    const dist = track.scrollWidth - innerWidth;
+  const scrollReel = (r) => {
+    if (!reelOn || !r) return;
+    if (r.bottom < -innerHeight || r.top > innerHeight * 2) return;
     const p = clamp(-r.top / (r.height - innerHeight), 0, 1);
-    track.style.transform = `translate3d(${-p * dist}px,0,0)`;
+    track.style.transform = `translate3d(${(-p * reelDist).toFixed(1)}px,0,0)`;
     const plateIndex = Math.min(4, Math.floor(p * 4.999));
-    if (idx) idx.textContent = String(plateIndex + 1).padStart(2, '0');
+    if (idx && plateIndex !== lastPlate) { lastPlate = plateIndex; idx.textContent = String(plateIndex + 1).padStart(2, '0'); }
   };
   sizeReel();
-  addEventListener('resize', () => { sizeReel(); scrollReel(); }, { passive: true });
+  addEventListener('resize', () => { sizeReel(); onScroll(); }, { passive: true });
   addEventListener('load', sizeReel);
 
   /* ── Nav: progress, hide-on-scroll, scroll-spy ─────────────── */
   const nav = $('#nav'), bar = $('#progress');
   const navLinks = $$('.nav__links a');
   const secs = navLinks.map((a) => $(a.getAttribute('href'))).filter(Boolean);
-  let lastY = scrollY, queued = false;
-  const onScroll = () => {
+  let lastY = scrollY, queued = false, lastCur;
+  function onScroll() {
     queued = false;
-    const y = scrollY, max = document.documentElement.scrollHeight - innerHeight;
+    // reads first…
+    const y = view.y = scrollY, max = document.documentElement.scrollHeight - innerHeight;
+    let cur = null;
+    secs.forEach((s) => { if (s.getBoundingClientRect().top < innerHeight * 0.4) cur = s.id; });
+    const worksR = reelOn ? works.getBoundingClientRect() : null;
+    const manR = mWords.length ? manifesto.getBoundingClientRect() : null;
+    // …then writes, so the browser lays out at most once per frame
     bar.style.setProperty('--p', max > 0 ? (y / max).toFixed(4) : 0);
     nav.classList.toggle('is-hidden', y > lastY && y > 400);
     lastY = y;
-    let cur = null;
-    secs.forEach((s) => { if (s.getBoundingClientRect().top < innerHeight * 0.4) cur = s.id; });
-    navLinks.forEach((a) => a.toggleAttribute('aria-current', a.getAttribute('href') === '#' + cur));
-    scrollReel(); litManifesto();
-  };
+    if (cur !== lastCur) { lastCur = cur; navLinks.forEach((a) => a.toggleAttribute('aria-current', a.getAttribute('href') === '#' + cur)); }
+    scrollReel(worksR); litManifesto(manR);
+  }
   addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(onScroll); } }, { passive: true });
   onScroll();
 
