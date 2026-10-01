@@ -6,7 +6,8 @@ A privacy-first portfolio presented as a walk through a **Lunar Observatory** �
 
 ## The experience — a visit to the observatory
 
-- **Liquid glass** — every panel is a sheet of clear glass: lit top edge, bright bevelled rim, and a soft specular highlight that follows your pointer. In Chromium, the nav and pills also refract what's behind them through an SVG displacement filter; other browsers get frosted glass.
+- **Liquid glass** — every panel is a sheet of clear, untinted glass: lit top edge, bright bevelled rim, and a soft specular highlight that follows your pointer. In Chromium, the nav and pills also refract what's behind them through an SVG displacement filter.
+- **Lightweight by design** — stars are painted once and moved by the GPU, panels don't blur their backdrop, and decorative animations pause when off-screen, so the page sits nearly idle when you're not interacting.
 - **The eyepiece** — tonight's actual moon phase, rendered pixel-by-pixel on your device behind a glass lens, ringed by slowly orbiting type. Drag (or use ←/→) to scrub the lunar cycle.
 - **The sky** — twinkling stars with gentle parallax, the occasional shooting star, and a slow-drifting moonlit aura.
 - **The horizon** — the observatory on its hill, telescope poking out of the slit.
