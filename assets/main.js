@@ -397,7 +397,7 @@
   let reelOn = false, reelDist = 0, lastPlate = -1;
   const sizeReel = () => {
     if (!works) return;
-    reelOn = !reduced && innerWidth > 900;
+    reelOn = !reduced && innerWidth > 900 && innerHeight >= 620;
     works.classList.toggle('is-native', !reelOn);
     if (reelOn) {
       reelDist = track.scrollWidth - innerWidth;
@@ -412,6 +412,13 @@
     const plateIndex = Math.min(4, Math.floor(p * 4.999));
     if (idx && plateIndex !== lastPlate) { lastPlate = plateIndex; idx.textContent = String(plateIndex + 1).padStart(2, '0'); }
   };
+  // native (swipe) mode: keep the plate counter in step with the card in view
+  if (track && idx) track.addEventListener('scroll', () => {
+    if (reelOn) return;
+    const max = track.scrollWidth - track.clientWidth;
+    const n = max > 0 ? Math.round((track.scrollLeft / max) * 4) : 0;
+    if (n !== lastPlate) { lastPlate = n; idx.textContent = String(n + 1).padStart(2, '0'); }
+  }, { passive: true });
   sizeReel();
   addEventListener('resize', () => { sizeReel(); onScroll(); }, { passive: true });
   addEventListener('load', sizeReel);
@@ -476,7 +483,7 @@
   const CMDS = {
     help: () => `<span class="hi">available commands</span>
   whoami        who is behind the telescope
-  projects      live products in orbit
+  projects      satellites in orbit
   gems          open-source repositories
   books         volumes in print
   stack         tools of the trade
@@ -488,10 +495,10 @@
   sudo hire-me  you know you want to
   clear         wipe the screen`,
     whoami: () => `<span class="hi">Al-Aqmar Tinwala</span> <span class="dim">(القمر — "the moon")</span>
-AI Architect · Full-Stack Developer · Author ×2 · Rust enthusiast
-Builds heart-first, privacy-first intelligence. 3,000+ daily users. 0 bytes retained.
+AI Architect · Full-Stack Developer · Author
+Builds heart-first, privacy-first intelligence. 0 bytes retained.
 <span class="dim">"I'm just getting started."</span>`,
-    projects: () => [['eSAMz AI', 'esamz', '128k-ctx privacy-first assistant, Rust router'], ['RealLearn AI', 'reallearn', 'question → mastery, 63 languages, SM-2'], ['π — Pi', 'pi', 'atoms & molecules at 60fps'], ['गति — Gati', 'gati', 'hyperlocal Indian mobility, voice intent'], ['Fit The Color', 'color', 'OKLCH distance + WCAG AAA']]
+    projects: () => [['RealLearn AI', 'reallearn', 'question → mastery, 63 languages'], ['π — Pi', 'pi', 'atoms & molecules at 60fps'], ['गति — Gati', 'gati', 'hyperlocal mobility, voice intent'], ['Fit The Color', 'color', 'OKLCH distance + WCAG AAA'], ['eSAMz AI', 'esamz', '<span class="warn">[deprecated]</span> signal lost']]
       .map(([n, k, d], i) => `<span class="hi">0${i + 1}</span>  ${a(LINKS[k], n.padEnd(14))} <span class="dim">${d}</span>`).join('\n'),
     gems: () => `<span class="hi">◆ 90</span>  youAI-2B          2B-param transformer from raw tensor math
 <span class="hi">◆ 87</span>  gati              14k lines TS, bilingual voice routing
