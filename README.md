@@ -11,12 +11,13 @@ A privacy-first portfolio presented as a walk through a **Lunar Observatory** �
 - **The eyepiece** — tonight's actual moon phase, rendered pixel-by-pixel on your device behind a glass lens, ringed by slowly orbiting type. Drag (or use ←/→) to scrub the lunar cycle.
 - **The sky** — twinkling stars with gentle parallax, the occasional shooting star, and a slow-drifting moonlit aura.
 - **The horizon** — the observatory on its hill, telescope poking out of the slit.
-- **Room I · Observation log** — pinned horizontal reel of five "photographic plates" (products) with animated art.
+- **Room I · Observation log** — pinned horizontal reel of five "photographic plates" (products) with animated art. eSAMz AI is shown as a powered-down, *Deprecated* plate.
 - **Room II · Star catalogue** — open-source gems as catalogued stars (AQ-001…) with generated constellations and magnitude gauges.
 - **Field notes** — a manifesto that lights up word by word as you scroll.
 - **Room III · The archive** — 3D books that turn toward you on hover.
 - **Room IV · Control room** — a terminal: `help`, `whoami`, `observe`, `moon`, `privacy`, `sudo hire-me`…
 - **Room V · Transmission** — a radio dish broadcasting on open channels.
+- Minimal copy by design — the details live in the terminal for those who look.
 - Respects `prefers-reduced-motion`, keyboard accessible, native scroll-snap on mobile.
 
 ## What's here
@@ -28,11 +29,11 @@ A privacy-first portfolio presented as a walk through a **Lunar Observatory** �
 
 ## Curated works
 
-1. **eSAMz AI** — 128k-context privacy-first assistant on a Rust router.
-2. **RealLearn AI** — One question becomes mastery across 63 languages.
-3. **π — Pi** — Atoms, molecules, and geometry at 60fps.
-4. **गति — Gati** — Hyperlocal Indian mobility with live ETAs and voice intent.
-5. **Fit The Color** — OKLCH distance, WCAG AAA checks, and harmonic palettes.
+1. **RealLearn AI** — One question becomes mastery across 63 languages.
+2. **π — Pi** — Atoms, molecules, and geometry at 60fps.
+3. **गति — Gati** — Hyperlocal Indian mobility with live ETAs and voice intent.
+4. **Fit The Color** — OKLCH distance, WCAG AAA checks, and harmonic palettes.
+5. **eSAMz AI** — *Deprecated.* 128k-context privacy-first assistant on a Rust router.
 
 ## Curated git gems
 

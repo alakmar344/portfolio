@@ -41,7 +41,7 @@ Build for wonder — atoms, molecules, motion.
 
 ## Curated Live Products
 
-### 🤖 eSAMz AI — *Flagship*
+### 🤖 eSAMz AI — *Deprecated*
 A 128k-context privacy-first assistant on a Rust router with web search and consent tiers. Three thousand daily users, zero data retention.
 - **Tech:** Rust, Sarvam 105b, Next.js
 - **Launch:** [esamz.info](https://esamz.info)
