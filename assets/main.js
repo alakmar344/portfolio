@@ -505,8 +505,9 @@ Builds heart-first, privacy-first intelligence. 0 bytes retained.
 <span class="hi">◆ 87</span>  gati              14k lines TS, bilingual voice routing
 <span class="hi">◆ 82</span>  vinecraft         infinite voxel world in the browser
 <span class="hi">◆ 82</span>  science-project   60fps chemistry renderer
-<span class="hi">◆ 81</span>  esamz.a           consent tiers + verifiable purge
-<span class="dim">◇ --</span>  breeze-framework  uncut
+<span class="hi">◆ 86</span>  breeze-framework  one-file reactive framework, zero deps
+<span class="hi">◆ 84</span>  not-a-thing       Nothing OS–style Android launcher
+<span class="hi">◆ 81</span>  esamz.a           consent as an API, Next.js PWA
 ${a(LINKS.github, '→ all 43 repos')}`,
     books: () => `📘 ${a('https://www.amazon.com/dp/B0GX2N6WTT', 'The AI Mastery Handbook')} <span class="dim">— bestseller</span>
 📗 ${a('https://www.amazon.com/dp/B0GY1F3573', '30 Days Mastering Claude Code')} <span class="dim">— new release</span>`,

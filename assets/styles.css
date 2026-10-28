@@ -312,7 +312,8 @@ main, .foot, .horizon { position: relative; z-index: 2; }
 .card__art svg { width: 66%; height: 84%; overflow: visible; fill: none; stroke: var(--sage-deep); stroke-width: 1.4; stroke-linecap: round; }
 .card__body { padding: clamp(1.5rem, 2.4vw, 2.2rem); display: grid; gap: 0.7rem; }
 .card h3 { font: 400 clamp(1.9rem, 1.2rem + 1.7vw, 2.8rem)/1 var(--serif); letter-spacing: -0.03em; }
-.card__body > p:not(.card__tag) { color: var(--ink-2); max-width: 34ch; }
+.card__body > p:not(.card__tag):not(.card__desc) { color: var(--ink); max-width: 34ch; font-family: var(--serif); font-style: italic; font-size: 1.08rem; line-height: 1.35; }
+.card__desc { color: var(--ink-2); font-size: 0.88rem; line-height: 1.55; max-width: 42ch; }
 .glyph { font-style: italic; color: var(--burgundy); }
 
 .art-esamz .route path { stroke-dasharray: 5 7; animation: dash 1.8s linear infinite; }
@@ -366,7 +367,7 @@ main, .foot, .horizon { position: relative; z-index: 2; }
 .works.is-native .card { scroll-snap-align: center; width: min(84vw, 460px); }
 
 /* ── 12. GEMS — star catalogue ───────────────────────────────── */
-.bento { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: minmax(240px, auto); gap: 1rem; }
+.bento { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: minmax(280px, auto); gap: 1rem; }
 .tile { overflow: hidden; padding: 1.8rem; border-radius: var(--r); display: flex; flex-direction: column; gap: 0.6rem; transition: transform 0.5s var(--ease); }
 .tile:hover { transform: translateY(-2px); }
 .tile h3 { transition: color 0.3s; }
@@ -398,9 +399,16 @@ main, .foot, .horizon { position: relative; z-index: 2; }
   -webkit-mask: radial-gradient(circle, transparent 62%, #000 64%); mask: radial-gradient(circle, transparent 62%, #000 64%); }
 @property --fill { syntax: "<number>"; inherits: true; initial-value: 0; }
 .tile.is-in .gauge { --fill: var(--v); }
-.gauge--uncut::before { background: repeating-conic-gradient(var(--line-2) 0 6deg, transparent 6deg 14deg); }
-.tile--all, .tile--uncut { grid-column: span 2; }
-.tile--uncut { background: radial-gradient(60% 90% at 80% 50%, rgba(156, 166, 151, 0.3), transparent 70%), var(--lg-fill); }
+.tile--wide { grid-column: span 2; background: radial-gradient(60% 90% at 85% 30%, rgba(109, 26, 42, 0.07), transparent 70%), var(--lg-fill); }
+.tile--wide .constellation { width: 40%; right: 6%; }
+/* small tiles: the constellation gets its own strip instead of sitting under the text */
+.tile:not(.tile--crown):not(.tile--wide) .constellation { position: relative; inset: auto; z-index: 0; width: 100%; height: 58px; margin: 0.5rem 0 0.2rem; flex: none; }
+@media (max-width: 600px) { .tile--wide .constellation { position: relative; inset: auto; z-index: 0; width: 100%; height: 58px; margin: 0.5rem 0 0.2rem; } }
+.tile__tag { color: var(--ink) !important; font-family: var(--serif); font-style: italic; font-size: 1.02rem !important; line-height: 1.3; }
+.tile__desc { font-size: 0.86rem !important; line-height: 1.55; }
+.tile__desc code { font: 0.8em var(--mono); color: var(--burgundy); }
+.tile .chips { margin-top: 0.4rem; }
+.tile--crown .tile__desc { max-width: 46ch; font-size: 0.93rem !important; }
 .tile--all { justify-content: center; background: linear-gradient(150deg, var(--burgundy-2), var(--burgundy) 55%, var(--night)); color: var(--paper); }
 .tile--all p { color: rgba(244, 237, 225, 0.75); }
 .tile--all::after { opacity: 0.4; }
@@ -408,7 +416,7 @@ main, .foot, .horizon { position: relative; z-index: 2; }
 @media (max-width: 980px) { .bento { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 600px) {
   .bento { grid-template-columns: 1fr; }
-  .tile--crown, .tile--all, .tile--uncut { grid-column: auto; grid-row: auto; }
+  .tile--crown, .tile--all, .tile--wide { grid-column: auto; grid-row: auto; }
   .tile--crown { min-height: 420px; }
 }
 

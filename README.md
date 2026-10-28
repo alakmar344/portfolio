@@ -38,10 +38,12 @@ A privacy-first portfolio presented as a walk through a **Lunar Observatory** �
 ## Curated git gems
 
 1. **youAI-2B** — Two-billion-parameter transformer from raw tensor math.
-2. **breeze-framework** — A lightweight, breathable web framework.
-3. **gati** — Bilingual voice routing across four transit modes.
-4. **vinecraft** — Infinite voxel world in the browser.
-5. **science-project** — The 60fps chemistry renderer behind π.
+2. **breeze-framework** — One-file, zero-dependency reactive web framework with signals, SSR and Web Components.
+3. **gati** — Intent-first Indian mobility OS with bilingual voice commands.
+4. **vinecraft** — Infinite, offline voxel sandbox in the browser.
+5. **science-project** — ATOMVERSE, the 60fps atoms & molecules museum behind π.
+6. **esamz.a** — The consent-first Next.js PWA behind eSAMz AI.
+7. **Not-a-thing launcher** — A Nothing OS–inspired Android launcher in Kotlin.
 
 ## Public accounts
 
