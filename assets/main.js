@@ -93,7 +93,7 @@
   const sky = $('#sky');
   if (sky) {
     const PAD = 40;
-    const TINTS = ['255,255,255', '232,238,255', '200,214,255'];
+    const TINTS = ['109,26,42', '142,44,62', '92,104,88', '120,132,115']; // burgundy + sage ink on parchment
     const DEPTHS = [0.25, 0.55, 0.9];
     // each layer is an <img>: painted on a scratch canvas, then frozen into
     // a static bitmap that the compositor only has to move around
@@ -131,7 +131,7 @@
         const z = Math.random() ** 2 * 0.9 + 0.1;
         const L = layers[z < 0.4 ? 0 : z < 0.75 ? 1 : 2];
         const x = Math.random() * cw, y = Math.random() * H;
-        const a = 0.3 + 0.6 * z, size = z * 1.5 + 0.2;
+        const a = 0.18 + 0.42 * z, size = z * 1.6 + 0.35;
         L.ctx.fillStyle = `rgba(${TINTS[(Math.random() * TINTS.length) | 0]},${a})`;
         for (let rep = 0; rep < 3; rep++) { // tile vertically so scroll drift can wrap seamlessly
           const yy = y + rep * H;
@@ -281,9 +281,10 @@
         const sh = lit * (0.25 + 0.75 * Math.max(0, dot)) ;
         const v = alb[k] * (sh * 1.05 + 0.045); // + earthshine
         const limb = 0.75 + 0.25 * nz[k];
-        d8[o] = clamp(v * 244 * limb + 4, 0, 255);
-        d8[o + 1] = clamp(v * 245 * limb + 4, 0, 255);
-        d8[o + 2] = clamp(v * 250 * limb + 8, 0, 255);
+        // warm ivory moonlight; the dark side keeps a faint burgundy earthshine
+        d8[o] = clamp(v * 268 * limb + 16, 0, 255);
+        d8[o + 1] = clamp(v * 258 * limb + 6, 0, 255);
+        d8[o + 2] = clamp(v * 236 * limb + 9, 0, 255);
         // antialiased rim
         d8[o + 3] = rim[k];
       }
