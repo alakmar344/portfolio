@@ -9,19 +9,7 @@
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
   const lerp = (a, b, t) => a + (b - a) * t;
-  const mouse = { nx: 0, ny: 0 };
   let moonApi;
-
-  addEventListener('pointermove', (e) => {
-    mouse.nx = e.clientX / innerWidth - 0.5; mouse.ny = e.clientY / innerHeight - 0.5;
-  }, { passive: true });
-  // scroll position is read once per frame (in onScroll, before any style
-  // writes) and shared, so other rAF callbacks never force a layout
-  const view = { y: scrollY };
-
-  /* ── Liquid glass: real refraction where the engine supports
-     SVG filters in backdrop-filter (Chromium). Others keep frosted glass. */
-  if (navigator.userAgentData && navigator.userAgentData.brands.some((b) => /Chrom/.test(b.brand))) root.classList.add('lg-refract');
 
   /* ── Text splitting ────────────────────────────────────────── */
   $$('.split').forEach((el) => {
@@ -60,131 +48,9 @@
   /* ── Arrival ─────────────────────────────────────────────── */
   const ready = () => {
     root.classList.add('is-ready');
-    runScramble();
     setTimeout(() => moonApi && moonApi.intro && moonApi.intro(), 400);
   };
   requestAnimationFrame(() => requestAnimationFrame(ready));
-
-  /* ── Scramble text ─────────────────────────────────────────── */
-  const GLYPHS = '!<>-_\\/[]{}—=+*^?#01ABCDEFXYZ';
-  function scramble(el, finalText, dur = 900) {
-    if (reduced) { el.textContent = finalText; return; }
-    const t0 = performance.now();
-    const step = (t) => {
-      const p = clamp((t - t0) / dur, 0, 1);
-      const reveal = Math.floor(p * finalText.length);
-      let out = finalText.slice(0, reveal);
-      for (let i = reveal; i < finalText.length; i++) out += finalText[i] === ' ' ? ' ' : GLYPHS[(Math.random() * GLYPHS.length) | 0];
-      el.textContent = out;
-      if (p < 1) requestAnimationFrame(step);
-    };
-    requestAnimationFrame(step);
-  }
-  function runScramble() {
-    $$('[data-scramble]').forEach((el, i) => setTimeout(() => scramble(el, el.dataset.scramble), 500 + i * 180));
-  }
-  $$('[data-scramble]').forEach((el) => el.addEventListener('pointerenter', () => scramble(el, el.dataset.scramble, 500)));
-
-  /* ── Starfield sky ─────────────────────────────────────────
-     Stars are painted ONCE into three depth layers. Parallax, scroll
-     drift and twinkle are plain transforms/opacity on those layers, so
-     the browser composites them on the GPU instead of repainting a
-     full-screen canvas every frame. */
-  const sky = $('#sky');
-  if (sky) {
-    const PAD = 40;
-    const TINTS = ['109,26,42', '142,44,62', '92,104,88', '120,132,115']; // burgundy + sage ink on parchment
-    const DEPTHS = [0.25, 0.55, 0.9];
-    // each layer is an <img>: painted on a scratch canvas, then frozen into
-    // a static bitmap that the compositor only has to move around
-    const layers = DEPTHS.map((z, i) => {
-      const el = new Image();
-      el.className = 'sky__layer'; el.alt = ''; el.decoding = 'async';
-      el.style.setProperty('--tw', `${4 + i * 1.7}s`);
-      el.style.setProperty('--td', `${-i * 1.3}s`);
-      el.style.setProperty('--tmin', String(0.55 + i * 0.12));
-      sky.insertBefore(el, sky.firstChild);
-      const c = document.createElement('canvas');
-      return { el, c, ctx: c.getContext('2d'), z, url: '' };
-    });
-    const freeze = (L) => L.c.toBlob((blob) => {
-      if (!blob) return;
-      if (L.url) URL.revokeObjectURL(L.url);
-      L.url = URL.createObjectURL(blob);
-      L.el.src = L.url;
-      L.c.width = L.c.height = 0; // release the scratch canvas
-    });
-    let W = 0, H = 0;
-    const build = () => {
-      if (innerWidth === W && Math.abs(innerHeight - H) < 120) return; // ignore mobile URL-bar jitter
-      W = innerWidth; H = innerHeight;
-      const DPR = Math.min(devicePixelRatio || 1, 1.25);
-      const cw = W + PAD * 2, ch = H * 2 + PAD;
-      layers.forEach((L) => {
-        L.c.width = Math.round(cw * DPR); L.c.height = Math.round(ch * DPR);
-        L.el.style.width = cw + 'px'; L.el.style.height = ch + 'px';
-        L.ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
-        L.ctx.clearRect(0, 0, cw, ch);
-      });
-      const n = Math.round(clamp(W * H / 6000, 90, 280));
-      for (let k = 0; k < n; k++) {
-        const z = Math.random() ** 2 * 0.9 + 0.1;
-        const L = layers[z < 0.4 ? 0 : z < 0.75 ? 1 : 2];
-        const x = Math.random() * cw, y = Math.random() * H;
-        const a = 0.18 + 0.42 * z, size = z * 1.6 + 0.35;
-        L.ctx.fillStyle = `rgba(${TINTS[(Math.random() * TINTS.length) | 0]},${a})`;
-        for (let rep = 0; rep < 3; rep++) { // tile vertically so scroll drift can wrap seamlessly
-          const yy = y + rep * H;
-          if (yy > ch + 2) break;
-          if (z > 0.8) { L.ctx.beginPath(); L.ctx.arc(x, yy, size * 0.7, 0, 6.283); L.ctx.fill(); }
-          else L.ctx.fillRect(x - size / 2, yy - size / 2, size, size);
-        }
-      }
-      layers.forEach(freeze);
-      kick();
-    };
-
-    let px = 0, py = 0, oy = scrollY, raf = 0;
-    const place = () => {
-      layers.forEach((L) => {
-        const m = ((oy * L.z * 0.25) % H + H) % H;
-        const tx = -px * 30 * L.z, ty = -(m + PAD / 2) - py * 30 * L.z;
-        L.el.style.transform = `translate3d(${tx.toFixed(1)}px,${ty.toFixed(1)}px,0)`;
-      });
-    };
-    const tick = () => {
-      const sy = view.y;
-      px = lerp(px, mouse.nx, 0.06); py = lerp(py, mouse.ny, 0.06); oy = lerp(oy, sy, 0.15);
-      const settled = Math.abs(px - mouse.nx) < 0.001 && Math.abs(py - mouse.ny) < 0.001 && Math.abs(oy - sy) < 0.5;
-      place();
-      raf = settled ? 0 : requestAnimationFrame(tick);
-    };
-    function kick() {
-      if (reduced) { oy = view.y; place(); return; }
-      if (!raf) raf = requestAnimationFrame(tick);
-    }
-    build();
-    addEventListener('resize', build, { passive: true });
-    addEventListener('scroll', kick, { passive: true });
-    addEventListener('pointermove', kick, { passive: true });
-
-    // shooting star: one element, replayed by CSS every so often
-    const shoot = $('.sky__shoot', sky);
-    if (shoot && !reduced) {
-      const fire = () => {
-        if (!document.hidden) {
-          const ang = 10 + Math.random() * 20;
-          shoot.style.left = (Math.random() * W * 0.8) + 'px';
-          shoot.style.top = (Math.random() * H * 0.4) + 'px';
-          shoot.style.setProperty('--a', ang + 'deg');
-          shoot.style.setProperty('--d', (380 + Math.random() * 260) + 'px');
-          shoot.classList.remove('go'); void shoot.offsetWidth; shoot.classList.add('go');
-        }
-        setTimeout(fire, 6000 + Math.random() * 12000);
-      };
-      setTimeout(fire, 4000);
-    }
-  }
 
   /* ── Live moon ─────────────────────────────────────────────── */
   const SYNODIC = 29.530588853;
@@ -353,7 +219,7 @@
       });
     });
   }, { rootMargin: '100px' });
-  $$('.card__art, .scope, .tile, .dish, .aura').forEach((el) => offIO.observe(el));
+  $$('.card__art, .scope, .tile').forEach((el) => offIO.observe(el));
 
   /* ── Counters ──────────────────────────────────────────────── */
   const fmt = new Intl.NumberFormat('en-US');
@@ -432,7 +298,7 @@
   function onScroll() {
     queued = false;
     // reads first…
-    const y = view.y = scrollY, max = document.documentElement.scrollHeight - innerHeight;
+    const y = scrollY, max = document.documentElement.scrollHeight - innerHeight;
     let cur = null;
     secs.forEach((s) => { if (s.getBoundingClientRect().top < innerHeight * 0.4) cur = s.id; });
     const worksR = reelOn ? works.getBoundingClientRect() : null;
@@ -455,20 +321,6 @@
   tickClock(); setInterval(tickClock, 15000);
   const cookieCount = $('#cookie-count');
   if (cookieCount) cookieCount.textContent = document.cookie ? document.cookie.split(';').length : 0;
-
-  /* ── Constellations for the star catalogue ─────────────────── */
-  $$('.constellation').forEach((svg) => {
-    let h = 0; for (const c of svg.dataset.seed) h = (h * 31 + c.charCodeAt(0)) >>> 0;
-    const rnd = () => ((h = (Math.imul(h, 1103515245) + 12345) >>> 0) / 4294967296);
-    const n = 5 + Math.floor(rnd() * 3), pts = [];
-    for (let i = 0; i < n; i++) pts.push([10 + (i / (n - 1)) * 180 + (rnd() - 0.5) * 30, 15 + rnd() * 70]);
-    svg.setAttribute('viewBox', '0 0 200 100');
-    let out = '';
-    for (let i = 1; i < n; i++) out += `<line x1="${pts[i - 1][0].toFixed(1)}" y1="${pts[i - 1][1].toFixed(1)}" x2="${pts[i][0].toFixed(1)}" y2="${pts[i][1].toFixed(1)}" style="transition-delay:${i * 0.15}s"/>`;
-    if (n > 5) out += `<line x1="${pts[1][0].toFixed(1)}" y1="${pts[1][1].toFixed(1)}" x2="${pts[n - 2][0].toFixed(1)}" y2="${pts[n - 2][1].toFixed(1)}" style="transition-delay:${n * 0.15}s"/>`;
-    pts.forEach(([x, y], i) => { out += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${(1.2 + rnd() * 1.8).toFixed(2)}" style="animation-delay:${i * 0.2}s"/>`; });
-    svg.innerHTML = out;
-  });
 
   /* ── Terminal ──────────────────────────────────────────────── */
   const out = $('#term-out'), form = $('#term-form'), input = $('#term-input');
