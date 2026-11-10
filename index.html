@@ -30,18 +30,6 @@
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
-<!-- ░░ Ambient ░░ -->
-<div class="sky" id="sky" aria-hidden="true"><i class="sky__shoot"></i></div>
-<div class="aura" aria-hidden="true"><i></i><i></i><i></i></div>
-
-<!-- Liquid-glass refraction lens (Chromium only; others get frosted glass) -->
-<svg class="vh" aria-hidden="true" focusable="false">
-  <filter id="lg-refract" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
-    <feTurbulence type="fractalNoise" baseFrequency="0.006 0.01" numOctaves="1" seed="11" result="n"/>
-    <feDisplacementMap in="SourceGraphic" in2="n" scale="30" xChannelSelector="R" yChannelSelector="G"/>
-  </filter>
-</svg>
-
 <!-- ░░ Nav ░░ -->
 <header class="nav glass" id="nav">
   <a class="nav__brand" href="#top" aria-label="Al-Aqmar — back to the eyepiece">
@@ -63,11 +51,6 @@
 <!-- ░░ HERO — the eyepiece ░░ -->
 <section class="hero" id="top" aria-labelledby="hero-h">
   <div class="scope" id="scope">
-    <svg class="scope__orbit" viewBox="0 0 600 600" aria-hidden="true">
-      <defs><path id="orbit-path" d="M300,300 m-282,0 a282,282 0 1,1 564,0 a282,282 0 1,1 -564,0"/></defs>
-      <text><textPath href="#orbit-path">HEART FIRST ✦ PRIVACY FIRST ✦ CURIOSITY FIRST ✦ ZERO BYTES RETAINED ✦ REFLECTED LIGHT, NO HEAT ✦ OBSERVED FROM EARTH ✦ </textPath></text>
-    </svg>
-
     <div class="scope__barrel">
       <div class="scope__lens">
         <canvas class="scope__moon" id="moon" role="img" aria-label="Live rendering of tonight's moon phase. Drag or use arrow keys to scrub through the lunar cycle."></canvas>
@@ -84,7 +67,7 @@
       <span class="line"><span class="split">Al-Aqmar</span></span>
       <span class="line line--italic"><span class="split">Tinwala</span></span>
     </h1>
-    <p class="hero__role mono"><span data-scramble="AI Architect">AI Architect</span> <span class="sep">✦</span> <span data-scramble="Full-Stack">Full-Stack</span> <span class="sep">✦</span> <span data-scramble="Author">Author</span></p>
+    <p class="hero__role mono"><span>AI Architect</span> <span class="sep">✦</span> <span>Full-Stack</span> <span class="sep">✦</span> <span>Author</span></p>
     <p class="hero__lede">I build AI that <em>forgets&nbsp;you</em> —<br>on purpose.</p>
     <div class="hero__cta">
       <a class="btn btn--solid" href="#works">Observe <span aria-hidden="true">↓</span></a>
@@ -97,30 +80,6 @@
     <span>Heart · Privacy · Curiosity</span>
   </div>
 </section>
-
-<!-- ░░ Horizon: the observatory on the hill ░░ -->
-<div class="horizon" aria-hidden="true">
-  <svg viewBox="0 0 1600 300" preserveAspectRatio="xMidYMax slice">
-    <defs>
-      <linearGradient id="hz-glow" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stop-color="currentColor" stop-opacity="0"/>
-        <stop offset="1" stop-color="currentColor" stop-opacity=".22"/>
-      </linearGradient>
-    </defs>
-    <rect class="hz-sky" width="1600" height="300" fill="url(#hz-glow)"/>
-    <path class="hz-far" d="M0 210 C150 170 260 190 380 175 S620 140 760 165 S1000 190 1120 150 S1400 120 1600 160 V300 H0Z"/>
-    <path class="hz-mid" d="M0 240 C200 215 330 230 470 212 S760 200 900 222 S1130 205 1240 196 S1480 214 1600 205 V300 H0Z"/>
-    <g class="hz-obs">
-      <rect x="1148" y="150" width="104" height="60" rx="2"/>
-      <path d="M1140 152 A60 60 0 0 1 1260 152 Z"/>
-      <path class="hz-slit" d="M1193 96 L1207 96 L1210 152 L1190 152 Z"/>
-      <path class="hz-scope" d="M1200 140 L1224 84" />
-      <rect x="1326" y="182" width="52" height="36"/>
-      <path d="M1320 184 A32 32 0 0 1 1384 184 Z"/>
-    </g>
-    <path class="hz-near" d="M0 262 C180 246 300 258 520 250 S820 236 980 246 S1100 222 1200 214 S1400 236 1600 232 V300 H0Z"/>
-  </svg>
-</div>
 
 <!-- ░░ WORKS — Observation log ░░ -->
 <section class="works" id="works" aria-labelledby="works-h">
@@ -218,7 +177,6 @@
 
   <div class="bento">
     <a class="glass tile tile--crown" href="https://github.com/alakmar344/youAI-2B-From-Scratch-Transformer-Implementation" target="_blank" rel="noopener noreferrer">
-      <svg class="constellation constellation--crown" data-seed="youai-2b" aria-hidden="true"></svg>
       <div class="tile__content">
         <p class="card__tag mono">AQ-001 · brightest object</p>
         <h3>youAI-2B</h3>
@@ -231,8 +189,7 @@
     </a>
 
     <a class="glass tile" href="https://github.com/alakmar344/gati" target="_blank" rel="noopener noreferrer">
-      <div class="tile__top"><span class="cat mono">AQ-002</span><div class="gauge" style="--v:87"><span>87</span></div></div>
-      <svg class="constellation" data-seed="gati" aria-hidden="true"></svg>
+      <div class="tile__top"><span class="cat mono">AQ-002</span><span class="score mono">87</span></div>
       <h3>gati</h3>
       <p class="tile__tag">Bilingual voice routing.</p>
       <p class="tile__desc">An intent-first mobility OS for Indian vehicle services — challans, FASTag, licences — with an autopilot feed and voice commands in English and हिन्दी.</p>
@@ -241,8 +198,7 @@
     </a>
 
     <a class="glass tile" href="https://github.com/alakmar344/vinecraft" target="_blank" rel="noopener noreferrer">
-      <div class="tile__top"><span class="cat mono">AQ-003</span><div class="gauge" style="--v:82"><span>82</span></div></div>
-      <svg class="constellation" data-seed="vinecraft" aria-hidden="true"></svg>
+      <div class="tile__top"><span class="cat mono">AQ-003</span><span class="score mono">82</span></div>
       <h3>vinecraft</h3>
       <p class="tile__tag">An infinite world, in a tab.</p>
       <p class="tile__desc">A Minecraft-inspired voxel sandbox with 10 biomes, 46 blocks, caves, weather, day/night and survival — fully offline, touch-ready.</p>
@@ -251,8 +207,7 @@
     </a>
 
     <a class="glass tile" href="https://github.com/alakmar344/science-project" target="_blank" rel="noopener noreferrer">
-      <div class="tile__top"><span class="cat mono">AQ-004</span><div class="gauge" style="--v:82"><span>82</span></div></div>
-      <svg class="constellation" data-seed="science" aria-hidden="true"></svg>
+      <div class="tile__top"><span class="cat mono">AQ-004</span><span class="score mono">82</span></div>
       <h3>science-project</h3>
       <p class="tile__tag">The renderer behind π.</p>
       <p class="tile__desc">ATOMVERSE: an interactive atoms-and-molecules museum with a Bohr-model builder, periodic table and a 60fps 3D molecule viewer — no WebGL.</p>
@@ -261,8 +216,7 @@
     </a>
 
     <a class="glass tile" href="https://github.com/alakmar344/esamz.a" target="_blank" rel="noopener noreferrer">
-      <div class="tile__top"><span class="cat mono">AQ-005</span><div class="gauge" style="--v:81"><span>81</span></div></div>
-      <svg class="constellation" data-seed="esamz" aria-hidden="true"></svg>
+      <div class="tile__top"><span class="cat mono">AQ-005</span><span class="score mono">81</span></div>
       <h3>esamz.a</h3>
       <p class="tile__tag">The privacy plumbing behind eSAMz.</p>
       <p class="tile__desc">The Next.js PWA behind eSAMz AI, where consent is an API surface — explicit acceptance, one-call revocation, and a proxy so clients never touch the model.</p>
@@ -271,8 +225,7 @@
     </a>
 
     <a class="glass tile tile--wide" href="https://github.com/alakmar344/breeze-framework" target="_blank" rel="noopener noreferrer">
-      <div class="tile__top"><span class="cat mono">AQ-006 · new star</span><div class="gauge" style="--v:86"><span>86</span></div></div>
-      <svg class="constellation" data-seed="breeze" aria-hidden="true"></svg>
+      <div class="tile__top"><span class="cat mono">AQ-006 · new star</span><span class="score mono">86</span></div>
       <h3>breeze-framework</h3>
       <p class="tile__tag">One file. Zero dependencies. Fully reactive.</p>
       <p class="tile__desc">An ultra-light web framework: write a declarative <code>.breeze</code> file and get signals, keyed lists, SSR and native Web Components — no build step, no node_modules, smaller than Vue or React gzipped.</p>
@@ -281,8 +234,7 @@
     </a>
 
     <a class="glass tile" href="https://github.com/alakmar344/Not-a-thing-launcher" target="_blank" rel="noopener noreferrer">
-      <div class="tile__top"><span class="cat mono">AQ-007</span><div class="gauge" style="--v:84"><span>84</span></div></div>
-      <svg class="constellation" data-seed="launcher" aria-hidden="true"></svg>
+      <div class="tile__top"><span class="cat mono">AQ-007</span><span class="score mono">84</span></div>
       <h3>Not-a-thing launcher</h3>
       <p class="tile__tag">A quiet home screen for loud phones.</p>
       <p class="tile__desc">A Nothing OS–inspired Android launcher — monochrome, dot-matrix, red only when it matters — with zero-idle battery drain and instant cold starts.</p>
@@ -296,7 +248,7 @@
       <span class="vh"> (opens in a new tab)</span>
     </a>
   </div>
-  <p class="note mono">Rings: my own audit of depth.</p>
+  <p class="note mono">Scores: my own audit of depth, out of 100.</p>
 </section>
 
 <!-- ░░ MANIFESTO — Field notes ░░ -->
@@ -319,10 +271,7 @@
   </header>
   <div class="shelf">
     <a class="book" href="https://www.amazon.com/dp/B0GX2N6WTT" target="_blank" rel="noopener noreferrer">
-      <div class="book__3d" aria-hidden="true">
-        <div class="book__cover book__cover--a"><span class="mono">Bestseller</span><strong>The AI Mastery Handbook</strong><em>Al-Aqmar Tinwala</em></div>
-        <div class="book__spine"></div><div class="book__pages"></div>
-      </div>
+      <div class="book__cover book__cover--a" aria-hidden="true"><span class="mono">Bestseller</span><strong>The AI Mastery Handbook</strong><em>Al-Aqmar Tinwala</em></div>
       <div class="book__meta">
         <p class="card__tag mono">Vol. I</p>
         <h3>The AI Mastery Handbook</h3>
@@ -331,10 +280,7 @@
       </div>
     </a>
     <a class="book" href="https://www.amazon.com/dp/B0GY1F3573" target="_blank" rel="noopener noreferrer">
-      <div class="book__3d" aria-hidden="true">
-        <div class="book__cover book__cover--b"><span class="mono">New release</span><strong>30 Days Mastering Claude Code</strong><em>Al-Aqmar Tinwala</em></div>
-        <div class="book__spine"></div><div class="book__pages"></div>
-      </div>
+      <div class="book__cover book__cover--b" aria-hidden="true"><span class="mono">New release</span><strong>30 Days Mastering Claude Code</strong><em>Al-Aqmar Tinwala</em></div>
       <div class="book__meta">
         <p class="card__tag mono">Vol. II</p>
         <h3>30 Days Mastering Claude Code</h3>
@@ -365,14 +311,6 @@
 
 <!-- ░░ CONTACT — Transmission ░░ -->
 <section class="section contact" id="contact" aria-labelledby="contact-h">
-  <div class="dish" aria-hidden="true">
-    <svg viewBox="0 0 200 200">
-      <g class="dish__waves"><path d="M120 60a40 40 0 0 1 20 20"/><path d="M126 44a60 60 0 0 1 30 30"/><path d="M132 28a80 80 0 0 1 40 40"/></g>
-      <path class="dish__bowl" d="M40 90 A70 70 0 0 0 130 150 Z"/>
-      <path class="dish__arm" d="M85 120 L112 88 M112 88 m-4 0 a4 4 0 1 0 8 0 a4 4 0 1 0 -8 0"/>
-      <path class="dish__base" d="M85 125 L70 185 M85 125 L100 185 M60 185 H110"/>
-    </svg>
-  </div>
   <p class="eyebrow mono"><span class="room">V</span> Transmission</p>
   <h2 id="contact-h" class="contact__big">
     <a href="https://www.linkedin.com/in/alakmar-teenwala-054067393" target="_blank" rel="noopener noreferrer">Send a signal,<br><em>build something with soul.</em><span class="vh"> (opens LinkedIn in a new tab)</span></a>
@@ -388,7 +326,6 @@
 </main>
 
 <footer class="foot">
-  <div class="foot__word" aria-hidden="true">القمر</div>
   <p class="foot__motto">Reflected light, no heat. <em>The observatory closes at dawn.</em></p>
   <div class="foot__row mono">
     <span>© 2026 Al-Aqmar Tinwala</span>
